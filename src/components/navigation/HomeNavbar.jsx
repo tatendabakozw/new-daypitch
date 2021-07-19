@@ -4,35 +4,22 @@ import NavbarDropdown from '../dropdowns/NavbarDropdown'
 import logo from '../../images/logo425.png'
 
 const UnAuthenticatedNaOptions = [
-  {name : 'Explore', location:'/explore', id:"ias878"},
-  {name : 'How It Works', location:'/howitworks', id:"asld86"},
-  {name : 'Sign In', location:'/auth/login', id:"kjsadf8"}
+  {name : 'Explore', location:'/explore', id:"ias878", authenticated: true},
+  {name : 'How It Works', location:'/howitworks', id:"asld86", authenticated: true},
+  {name : 'Dashboard', location:'/dashboard', id:"kjsau67", authenticated: true},
+  {name : 'Sign In', location:'/auth/login', id:"kjsadf8", authenticated: false},
+  {name : 'Explore', location:'/explore', id:"aaa876g", authenticated: false},
+  {name : 'How It Works', location:'/howitworks', id:"salk90", authenticated: false},
 ]
 
 const UnAuthenticatedMobileNavOptions = [
-  {name : 'Explore', location:'/explore', id:"ias878"},
-  {name : 'How It Works', location:'/howitworks', id:"asld86"},
-  {name : 'Sign In', location:'/auth/login', id:"kjsadf8"}
-]
-
-const SellerAuthenticatedOptions = [
-  { name: 'Explore', href: '/explore', current: false, id: '1278hj' },
-  { name: 'Messages', href: '/chat', current: true, id:'asd87a' },
-  { name: 'Dashboard', href: '/dashboard', current: true, id: '19208jhj' },
-]
-
-const SellerAuthenticatedNavigation = [
-  { name: 'Explore', href: '/explore', current: false, id:'ajkjs90' },
-  { name: 'Messages', href: '/chat', current: true, id: '909asd' },
-  { name: 'Dashboard', href: '/dashboard', current: true, id:'9812jk' },
-
-]
-
-const BuyerAuthenticatedOptions = [
-  { name: 'Explore', href: '/explore', current: false, id: '1298ada' },
-  { name: 'Become a seller', href: '/becomeaseller', current: true, id: '19uiu' },
-  { name: 'Messages', href: '/chat', current: false, id: 'asklk12' },
-
+  {name : 'Explore', location:'/explore', id:"ias878", authenticated: true},
+  {name : 'How It Works', location:'/howitworks', id:"asld86", authenticated: true},
+  {name : 'Dashboard', location:'/dashboard', id:"kjsau67", authenticated: true},
+  {name : 'Sign In', location:'/auth/login', id:"kjsadf8", authenticated: false},
+  {name : 'Explore', location:'/explore', id:"aaa876g", authenticated: false},
+  {name : 'How It Works', location:'/howitworks', id:"salk90", authenticated: false},
+  {name : 'Join community', location:'/register', id:"salk6a0", authenticated: false},
 ]
 
 function HomeNavbar() {
@@ -57,13 +44,33 @@ function HomeNavbar() {
               <img src={logo} alt="logo" className="h-6 w-auto" />
             </div>
             <div className="lg:flex md:flex hidden items-center">
+             <>
               {
-                UnAuthenticatedNaOptions.map(option =>(
-                  <span key={option.id} className="mr-4 uppercase text-sm text-gray-700 font-semibold cursor-pointer">
-                    <p>{option.name}</p>
-                  </span>
-                ))
+                authenticated ? (
+                  <>
+                     {
+                        UnAuthenticatedNaOptions.map(option =>(
+                          <>
+                            {option.authenticated ? (<span key={option.id} className="mr-4 uppercase text-sm text-gray-700 font-semibold cursor-pointer">
+                            <p>{option.name}</p>
+                          </span>) : null}
+                          </>
+                        ))
+                      }
+                  </>
+                ) : (<>
+                  {
+                      UnAuthenticatedNaOptions.map(option =>(
+                        <>
+                          {!option.authenticated ? (<span key={option.id} className="mr-4 uppercase text-sm text-gray-700 font-semibold cursor-pointer">
+                            <p>{option.name}</p>
+                          </span>) : null}
+                        </>
+                      ))
+                    }
+                </>)
               }
+             </>
               <span className="uppercase p-2 bg-yellow-400 rounded-sm text-gray-700 cursor-pointer hover:bg-yellow-500 text-sm font-semibold">
                 <p>JOIN COMMUNITY</p>
               </span>

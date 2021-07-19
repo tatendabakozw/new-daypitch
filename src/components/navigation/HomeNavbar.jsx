@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import {Link} from 'react-router-dom'
-import {MenuAlt1Icon, ChevronDownIcon} from '@heroicons/react/outline'
+import {MenuAlt1Icon} from '@heroicons/react/outline'
 import NavbarDropdown from '../dropdowns/NavbarDropdown'
+import logo from '../../images/logo425.png'
 
 const UnAuthenticatedNaOptions = [
   {name : 'Explore', location:'/explore', id:"ias878"},
@@ -15,14 +15,29 @@ const UnAuthenticatedMobileNavOptions = [
   {name : 'Sign In', location:'/auth/login', id:"kjsadf8"}
 ]
 
-const AuthenticatedMobileNavOptions = [
-  {name : 'Explore', location:'/explore', id:"ias878"},
-  {name : 'Dashboard', location:'/howitworks', id:"asld86"},
-  {name : 'Account', location:'/auth/login', id:"kjsadf8"}
+const SellerAuthenticatedOptions = [
+  { name: 'Explore', href: '/explore', current: false, id: '1278hj' },
+  { name: 'Messages', href: '/chat', current: true, id:'asd87a' },
+  { name: 'Dashboard', href: '/dashboard', current: true, id: '19208jhj' },
+]
+
+const SellerAuthenticatedNavigation = [
+  { name: 'Explore', href: '/explore', current: false, id:'ajkjs90' },
+  { name: 'Messages', href: '/chat', current: true, id: '909asd' },
+  { name: 'Dashboard', href: '/dashboard', current: true, id:'9812jk' },
+
+]
+
+const BuyerAuthenticatedOptions = [
+  { name: 'Explore', href: '/explore', current: false, id: '1298ada' },
+  { name: 'Become a seller', href: '/becomeaseller', current: true, id: '19uiu' },
+  { name: 'Messages', href: '/chat', current: false, id: 'asklk12' },
+
 ]
 
 function HomeNavbar() {
     const [navbaron, setNavbarOn] = useState(false)
+    const [authenticated, setAuthenticated] = useState(false)
 
     const changeBackground = () => {
       if (window.scrollY >= 100) {
@@ -36,10 +51,10 @@ function HomeNavbar() {
 
     return (
       <>
-        <nav className={`${navbaron ? 'bg-gray-50' : 'bg-white'} bg-white lg:px-24 md:px-16 px-4 h-16 flex flex-row items-center w-full transition duration-500 ease-in-out`}>
+        <nav className={`${navbaron ? 'bg-gray-50' : 'bg-white'} bg-white lg:px-32 md:px-16 px-4 h-16 flex flex-row items-center w-full transition duration-500 ease-in-out`}>
           <div className="flex flex-row items-center justify-between w-full">
-            <div className="">
-              <p>logo</p>
+            <div className="w-auto">
+              <img src={logo} alt="logo" className="h-6 w-auto" />
             </div>
             <div className="lg:flex md:flex hidden items-center">
               {

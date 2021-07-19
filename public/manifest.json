@@ -1,0 +1,25 @@
+{
+  "short_name": "Daypitch",
+  "name": "Emmersive professional linking platform",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo425.png",
+      "type": "image/png",
+      "sizes": "425x100"
+    },
+    {
+      "src": "logo850.png",
+      "type": "image/png",
+      "sizes": "850x200"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

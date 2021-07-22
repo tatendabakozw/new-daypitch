@@ -1,19 +1,18 @@
 export const initialState = {
     user: null,
     searchItem: 'initial load',
-    location: ''
+    location: '',
+    token : ''
 }
 
 function reducer(state, action) {
     switch (action.type) {
         case 'SET_USER':
-            localStorage.setItem('daypitchuser', JSON.stringify(action.user))
             return {
                 ...state,
                 user: action.user
             }
         case 'REMOVE_USER':
-            localStorage.removeItem('daypitchuser')
             return{
                 ...state,
                 user: null
@@ -28,6 +27,11 @@ function reducer(state, action) {
             return {
                 ...state,
                 searchItem: action.search
+            }
+        case 'SET_TOKEN':
+            return{
+                ...state,
+                token: action.token
             }
 
         default:

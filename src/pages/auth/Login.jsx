@@ -6,6 +6,12 @@ import Text from '../../components/Text/Text'
 import { useHistory } from 'react-router'
 import {Link } from 'react-router-dom'
 import logo from '../../images/favicon.png'
+import { auth } from '../../helpers/firebase'
+import firebase from 'firebase'
+import { useStateValue } from '../../context/StateProvier'
+import { useEffect } from 'react'
+var provider = new firebase.auth.GoogleAuthProvider();
+
 
 function Login() {
 
@@ -15,15 +21,31 @@ function Login() {
     const [passwordVisible, setPasswordVisible] = useState(false)
     const [msg, setMsg] = useState('')
     const [err, setErr] = useState('')
-    const [liading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false)
+
+    // eslint-disable-next-line
+    const [{token}, dispatch] = useStateValue()
+
 
     const loginWithGoogle = (e) =>{
         e.preventDefault()
+        auth.signInWithPopup(provider).then(userCred=>{
+            if(userCred){
+                dispatch({
+                    type: 'SET_USER',
+                    user: 'daypitch_user_logged_in'
+                })
+                window.localStorage.setItem('daypitch_user_auth', 'true')  
+                // ConstantSourceNode.log(userCred)              
+            }
+        })
     }
 
     const loginWIthCreds = (e) =>{
         e.preventDefault()
     } 
+
+        // console.log(token)   
 
     return (
         <HomeLayout>

@@ -7,6 +7,9 @@ import first from '../../images/homeBuy.svg'
 import second from '../../images/homeInvest.svg'
 import third from '../../images/homeQuick.svg'
 import CategoryLoading from '../../components/loading/CategoryLoading'
+import { useHistory } from 'react-router-dom'
+import { LockClosedIcon } from '@heroicons/react/outline'
+
 
 function Home() {
     return (
@@ -122,6 +125,15 @@ function Home() {
 
                     <div className="absolute top-0 right-0 bg-gradient-to-l from-gray-50 dark:from-gray-800 h-10 w-3/12" />
                 </div >
+
+                {/* // paying boxes */}
+                <div className="flex flex-col items-center md:pt-16 md:px-16 pt-4 px-4 z-20 pb-16">
+                    <p className="text-2xl text-gray-700 dark:text-gray-400 text-center font-semibold mb-16">Professionals price arrangements</p>
+                    <div className="grid md:grid-cols-2 grid-cols-1 md:gap-24 gap-8">
+                        <FreeComponent className="col-span-1" />
+                        <PayComponent className="col-span-1" />
+                    </div>
+                </div>
             </div>
         </HomeLayout>
     )
@@ -136,6 +148,77 @@ const HomeViewComponent = ({ className, picture, description, heading, id }) => 
                 <p className="font-gray-500 dark:text-gray-400 text-center text-sm">{description}</p>
             </div>
         </div>
+    )
+}
+
+// login as a free user
+const FreeComponent = ({ className }) => {
+    const history = useHistory()
+    return (
+        <>
+            <div className={`${className} flex flex-col bg-blue-100 p-4 rounded-sm`}>
+                <p className="text-gray-800 font-semibold text-center mb-1">Free Tier</p>
+                <p className="text-gray-800 text-xl font-extrabold text-center mb-1"><sup className="font-semibold">$</sup> 0</p>
+                <p className="text-gray-500 text-xs text-center mb-4">Free for a lifetime</p>
+                <span className="flex flex-row items-center text-xs text-left text-gray-800 mb-1">
+                    {/* <p className="text-green-600 font-semibold">✓</p> */}
+                    <p className="text-red-500 font-semibold">&#10006;</p>
+                    <p className="">Unlimited uploads</p>
+                </span>
+                <span className="flex flex-row items-center text-xs text-left text-gray-800 mb-1">
+                    {/* <p className="text-green-600 font-semibold">✓</p> */}
+                    <p className="text-red-500 font-semibold">&#10006;</p>
+                    <p className="">Free onsight comminication</p>
+                </span>
+                <span className="flex flex-row items-center text-xs text-left text-gray-800 mb-1">
+                    {/* <p className="text-green-600 font-semibold">✓</p> */}
+                    <p className="text-red-500 font-semibold">&#10006;</p>
+                    <p className="">Approved as professional</p>
+                </span>
+                <span className="flex flex-row items-center text-xs text-left text-gray-800 mb-4">
+                    {/* <p className="text-green-600 font-semibold">✓</p> */}
+                    <p className="text-red-500 font-semibold">&#10006;</p>
+                    <p className="">Free advertisement</p>
+                </span>
+                <button onClick={() => history.push('/register')} className="text-gray-50 bg-blue-800 mb-4 p-2 rounded-sm outline-none border-none w-56 text-sm">Try it out for free</button>
+                <small className="text-gray-500 text-center text-xs">No credit card needed</small>
+            </div>
+        </>
+    )
+}
+
+//register as a paid user
+const PayComponent = ({ className }) => {
+    const history = useHistory()
+    return (
+        <>
+            <div className={`${className} flex flex-col bg-yellow-100 p-4 rounded-sm`}>
+                <p className="text-gray-800 font-semibold text-center mb-1">Payed Tier</p>
+                <p className="text-gray-800 text-xl font-extrabold text-center mb-1"><sup className="font-semibold">$</sup>9.99</p>
+                <p className="text-gray-500 text-xs text-center mb-4">Payed per month</p>
+                <span className="flex flex-row items-center text-xs text-left text-gray-800 mb-1">
+                    <p className="text-green-600 font-semibold">✓</p>
+                    <p className="">Unlimited uploads</p>
+                </span>
+                <span className="flex flex-row items-center text-xs text-left text-gray-800 mb-1">
+                    <p className="text-green-600 font-semibold">✓</p>
+                    <p className="">Free onsight comminication</p>
+                </span>
+                <span className="flex flex-row items-center text-xs text-left text-gray-800 mb-1">
+                    <p className="text-green-600 font-semibold">✓</p>
+                    <p className="">Approved as professional</p>
+                </span>
+                <span className="flex flex-row items-center text-xs text-left text-gray-800 mb-4">
+                    <p className="text-green-600 font-semibold">✓</p>
+                    <p className="">Free advertisement</p>
+                </span>
+                <button onClick={() => history.push('/upgrade')} className="text-gray-50 bg-blue-800 mb-4 p-2 rounded-sm outline-none border-none w-56 text-sm">Try it out</button>
+                <span className="text-gray-500 text-center self-center text-sm flex flex-row items-center">
+                    <LockClosedIcon width={15} height={15} />
+                    <p className="text-xs">Credit card info secured</p>
+                </span>
+            </div>
+        </>
     )
 }
 

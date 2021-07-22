@@ -2,7 +2,7 @@ import React from 'react'
 
 function Stars() {
     return (
-        <div>
+        <div className="w-full">
             <svg
             xmlns="http://www.w3.org/2000/svg"
             width="100%"

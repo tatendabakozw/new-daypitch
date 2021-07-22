@@ -10,7 +10,6 @@ function HomeLayout({children}) {
             <div className="min-h-screen">
                 {children}
             </div>
-            <div className="h-screen bg-green-600"></div>
         </div>
     )
 }

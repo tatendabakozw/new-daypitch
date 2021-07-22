@@ -41,15 +41,15 @@ function HomeSearch() {
                     <input 
                         onChange={e=>setCategory(e.target.value)}
                         type="text" 
-                        className="bg-white w-full border dark:bg-gray-700 dark:border-gray-700 border-gray-300 md:mx-2 mx-0 p-3 my-2 rounded outline-none"
-                        placeholder="Category"
+                        className="bg-white w-full border dark:bg-gray-700 dark:border-gray-700 border-gray-100 md:mx-2 mx-0 p-3 my-2 rounded outline-none"
+                        placeholder="Search..."
                     />
-                    <input 
+                    {/* <input 
                         type="text" 
                         onChange={e=>setLocation(e.target.value)}
                         className="bg-white border w-full dark:bg-gray-700 dark:border-gray-700 border-gray-300 md:mx-2 mx-0 p-3 rounded outline-none"
                         placeholder="Location"
-                    />
+                    /> */}
                     <button type="submit" className="dark:text-blue-800 text-blue-800 cursor-pointer outline-none hover:bg-gray-200 dark:border-gray-700 dark:hover:bg-gray-700 rounded-full p-2">
                             <SearchIcon height={24} width={24} className="dark:text-blue-800 text-blue-800" />
                     </button>

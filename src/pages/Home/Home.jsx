@@ -2,13 +2,18 @@ import React from 'react'
 import HomeLayout from '../../layouts/HomeLayout/HomeLayout'
 import person from '../../images/Daypitch31.png'
 import HomeSearch from '../../components/HomeSearch/HomeSearch'
+import Stars from '../../components/banner/Stars'
 
 function Home() {
     return (
         <HomeLayout>
             <div>
             <div className="transition duration-500 ease-in-out min-h-screen grid md:grid-cols-2 grid-cols-1 gap-2 bg-gray-50 dark:bg-gray-900 lg:px-32 md:px-16 px-4 w-full">
+                        <div className="md:block hidden opacity-50 absolute z-0 w-full">
+                            <Stars/>
+                        </div>
                     <div className="md:my-auto pt-16 w-full">
+                        
                         <div className="col-span-1 pt-8 flex flex-col md:items-start items-center w-full">
                             <p className="md:text-6xl text-gray-900  md:dark:text-gray-100 dark:text-geay-100 text-4xl mx-auto w-full mb-4 font-semibold z-40">Find the perfect location for your professionals</p>
                             <p className="md:w-full text-gray-800  md:dark:text-gray-100 dark:text-geay-100 md:mb-16 mb-8 w-full dark:text-gray-400 z-40">View Professionals in your local area for free</p>

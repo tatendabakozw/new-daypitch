@@ -6,6 +6,7 @@ import Stars from '../../components/banner/Stars'
 import first from '../../images/homeBuy.svg'
 import second from '../../images/homeInvest.svg'
 import third from '../../images/homeQuick.svg'
+import CategoryLoading from '../../components/loading/CategoryLoading'
 
 function Home() {
     return (
@@ -72,6 +73,8 @@ function Home() {
                     </div>
 
                 </div>
+
+                {/* // category items */}
                 <div className="flex flex-col items-center md:pt-40 md:px-16 pt-4 px-4 z-20 pb-36 w-full">
                     <p className="text-gray-700 text-4xl dark:text-gray-200 text-center font-semibold mb-24 md:px-32 px-8">Easily prototype and communicate your vision</p>
                     <div className="grid md:grid-cols-3 grid-cols-1 md:gap-40 gap-24 items-center">
@@ -98,6 +101,27 @@ function Home() {
                             />
                     </div>
                 </div>
+
+                {/* // category loading */}
+                <div className="md:pt-16 md:px-16 pt-4 px-4 z-20 flex flex-col">
+                    <p className="text-gray-700 dark:text-gray-400 text-3xl pb-8 self-center font-semibold z-20">Categories</p>
+                        <>
+                            <div className="md:grid hidden md:grid-cols-5 grid-col-2 gap-8">
+                                <CategoryLoading />
+                                <CategoryLoading />
+                                <CategoryLoading />
+                                <CategoryLoading />
+                                <CategoryLoading />
+                                
+                            </div>
+                            <div className="grid md:hidden grid-cols-2 gap-4">
+                                <CategoryLoading />
+                                <CategoryLoading />
+                            </div>
+                        </>
+
+                    <div className="absolute top-0 right-0 bg-gradient-to-l from-gray-50 dark:from-gray-800 h-10 w-3/12" />
+                </div >
             </div>
         </HomeLayout>
     )

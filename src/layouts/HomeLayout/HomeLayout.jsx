@@ -10,6 +10,7 @@ function HomeLayout({children}) {
             <div className="min-h-screen bg-gray-50">
                 {children}
             </div>
+            <div className="foorer h-32 bg-gray-50"></div>
         </div>
     )
 }

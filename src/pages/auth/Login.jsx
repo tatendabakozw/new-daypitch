@@ -9,7 +9,6 @@ import logo from '../../images/favicon.png'
 import { auth } from '../../helpers/firebase'
 import firebase from 'firebase'
 import { useStateValue } from '../../context/StateProvier'
-import { useEffect } from 'react'
 var provider = new firebase.auth.GoogleAuthProvider();
 
 
@@ -23,7 +22,7 @@ function Login() {
     const [err, setErr] = useState('')
 
     // eslint-disable-next-line
-    const [{token}, dispatch] = useStateValue()
+    const [{}, dispatch] = useStateValue()
 
 
     const loginWithGoogle = (e) =>{
@@ -35,7 +34,7 @@ function Login() {
                     user: 'daypitch_user_logged_in'
                 })
                 window.localStorage.setItem('daypitch_user_auth', 'true')  
-                setMsg('Login Sucessfull')
+                setMsg('Login Sucessful')
                 setTimeout(() => {
                     history.push('/') 
                 }, 2000);            

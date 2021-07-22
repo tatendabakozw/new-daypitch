@@ -5,6 +5,11 @@ import google from '../../images/google.svg'
 import Text from '../../components/Text/Text'
 import { useHistory } from 'react-router'
 import {Link } from 'react-router-dom'
+import { auth } from '../../helpers/firebase'
+import firebase from 'firebase'
+import { useStateValue } from '../../context/StateProvier'
+var provider = new firebase.auth.GoogleAuthProvider();
+
 
 
 function Register() {
@@ -17,12 +22,53 @@ function Register() {
     const [msg, setMSg] = useState('')
     const history = useHistory()
 
+    // eslint-disable-next-line
+    const [{}, dispatch] = useStateValue()
+
     const registerWithGoogle = (e) =>{
         e.preventDefault()
+
+            auth.signInWithPopup(provider).then(auth_user=>{
+                if(auth_user){
+                    setMSg('Account created Sucessfully')
+                    dispatch({
+                        type: 'SET_USER',
+                        user: 'daypitch_user_logged_in'
+                    })
+                    window.localStorage.setItem('daypitch_user_auth', 'true')
+                    setTimeout(() => {
+                        history.push('/') 
+                    }, 2000);
+                } 
+            }).catch(err=>{
+                setErr(err.message)
+            })
     }
 
     const registerWithCreds = (e) =>{
         e.preventDefault()
+        if(passwor2 != password){
+            setErr('passwords do not match')
+        }else{
+            auth.createUserWithEmailAndPassword(email, password).then(auth_user=>{
+                if(auth_user){
+                    if(auth_user.additionalUserInfo.isNewUser){
+                        setMSg('Sign Up successfull')
+                        setTimeout(() => {
+                            history.push('/becomeaseller')
+                        }, 2000);
+                    }else{
+                        setMSg('Sign Up successfull')
+                        window.localStorage.setItem('daypitch_user_auth', 'true')
+                        setTimeout(() => {
+                            history.push('/login') 
+                        }, 2000);
+                    }
+                }
+            }).catch(err=>{
+                setErr(err.message)
+            })
+        }
     }
 
     return (

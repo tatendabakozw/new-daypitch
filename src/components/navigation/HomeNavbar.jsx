@@ -16,7 +16,7 @@ function classNames(...classes) {
 function HomeNavbar() {
   const [navbaron, setNavbarOn] = useState(false)
   const [colorTheme, setTheme] = useDarkMode();
-  const user = localStorage.getItem('daypitchuser')
+  const user = localStorage.getItem('daypitch_user_auth')
 
   const history = useHistory()
    // eslint-disable-next-line
@@ -30,16 +30,17 @@ function HomeNavbar() {
     }
   }
 
-  const logout = (e) => {
+    const logout = (e) => {
     e.preventDefault()
-    localStorage.removeItem('daypitchtoken')
+    localStorage.removeItem('daypitch_user_auth')
     dispatch({
-        type: 'REMOVE_USER'
+        type: 'SET_USER',
+        user: null
     })
     setTimeout(() => {
         history.push('/')
     }, 1500);
-}
+    }
 
     useEffect(()=>{
         window.addEventListener('scroll', changeBackground)
@@ -184,13 +185,13 @@ function HomeNavbar() {
                                                 >
                                                     <Menu.Item>
                                                         {({ active }) => (
-                                                            <Link to='/'
+                                                            <Link to='/account'
                                                                 className={classNames(
                                                                     active ? 'bg-gray-100' : '',
                                                                     'block px-4 py-2 text-sm text-gray-700'
                                                                 )}
                                                             >
-                                                                Settings
+                                                                Account
                                                             </Link>
                                                         )}
                                                     </Menu.Item>

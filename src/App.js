@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import { useStateValue } from './context/StateProvier'
 import { auth } from './helpers/firebase'
+import Account from './pages/account/Account'
 import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
 import Home from './pages/Home/Home'
@@ -33,6 +34,7 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
+        <Route exact path="/account" component={Account} />
         <Route exact path="/howitworks" component={HowItWorks} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />

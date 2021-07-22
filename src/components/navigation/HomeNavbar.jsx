@@ -7,6 +7,7 @@ import useDarkMode from '../../helpers/useDarkMode'
 import {nav_options} from '../../helpers/nav_options'
 import Text from '../Text/Text'
 import { useStateValue } from '../../context/StateProvier'
+import { useEffect } from 'react'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -40,7 +41,9 @@ function HomeNavbar() {
     }, 1500);
 }
 
-  window.addEventListener('scroll', changeBackground)
+    useEffect(()=>{
+        window.addEventListener('scroll', changeBackground)
+    },[])
 
   return (
     <Disclosure as="nav" className={`${navbaron ? "bg-white dark:bg-gray-900 shadow " : "md:bg-transparent bg-gray-50  dark:bg-gray-900 "} transition duration-500 ease-in-out`}>

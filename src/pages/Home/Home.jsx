@@ -12,9 +12,9 @@ function Home() {
         <HomeLayout>
             <div className="home">
             <div className="relative transition duration-500 ease-in-out min-h-screen grid md:grid-cols-2 grid-cols-1 gap-2 bg-gray-50 dark:bg-gray-900 lg:px-32 md:px-16 px-4 w-full">
-                        <div className="md:block hidden absolute z-0 w-full opacity-50">
-                            <Stars />
-                        </div>
+                    <div className="md:block hidden absolute z-0 w-full opacity-50">
+                        <Stars />
+                    </div>
                     <div className="md:my-auto my-auto pt-16 w-full">
 
                         <div className="col-span-1 pt-8 flex flex-col md:items-start items-center w-full">
@@ -73,23 +73,29 @@ function Home() {
 
                 </div>
                 <div className="flex flex-col items-center md:pt-40 md:px-16 pt-4 px-4 z-20 pb-36 w-full">
-                    <p className="text-2xl text-gray-700 dark:text-gray-200 text-center font-semibold mb-24 md:px-32 px-8">Easily prototype and communicate your vision</p>
+                    <p className="text-gray-700 text-4xl dark:text-gray-200 text-center font-semibold mb-24 md:px-32 px-8">Easily prototype and communicate your vision</p>
                     <div className="grid md:grid-cols-3 grid-cols-1 md:gap-40 gap-24 items-center">
                         <HomeViewComponent
                             className="col-span-1"
                             picture={first}
                             description={'Mix and match best professionals as a seller'}
-                            heading={'Communication'} />
+                            heading={'Communication'}
+                            id={1}
+                            />
                         <HomeViewComponent
                             className="col-span-1"
                             picture={second}
                             description={'No need for advertisement, because we do it for you'}
-                            heading={'Advertisement'} />
+                            heading={'Advertisement'} 
+                            id={2}
+                            />
                         <HomeViewComponent
                             className="col-span-1"
                             picture={third}
                             description={'Dont waste time, jump to the task buy either becoming a professional or becoming a buyer'}
-                            heading={'Quick'} />
+                            heading={'Quick'} 
+                            id={3}
+                            />
                     </div>
                 </div>
             </div>
@@ -97,15 +103,15 @@ function Home() {
     )
 }
 
-const HomeViewComponent = ({ className, picture, description, heading }) => {
+const HomeViewComponent = ({ className, picture, description, heading, id }) => {
     return (
-        <>
+        <div key={id}>
             <div className={`${className} flex flex-col w-64 items-center`}>
                 <img src={picture} className="w-60 mb-4" alt="buy" />
                 <h3 className="text-gray-800 dark:text-gray-200 mb-2 font-semibold">{heading}</h3>
                 <p className="font-gray-500 dark:text-gray-400 text-center text-sm">{description}</p>
             </div>
-        </>
+        </div>
     )
 }
 

@@ -8,7 +8,6 @@ function HomeSearch() {
     const history = useHistory()
     // eslint-disable-next-line
     const [{}, dispatch] = useStateValue()
-    const [location, setLocation] = useState('')
     const [category, setCategory] = useState('')
 
     const searchItems = (e) => {
@@ -28,7 +27,6 @@ function HomeSearch() {
         history.push('/explore')
     }
 
-    console.log(location)
 
     return (
 

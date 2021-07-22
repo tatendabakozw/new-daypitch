@@ -37,7 +37,7 @@ function HomeSearch() {
                 <div className="bg-gray-200  dark:bg-gray-700 dark:text-gray-200 ml-4 rounded-b-none rounded w-24 py-1 text-center flex flex-col items-center">
                     <p className="text-center text-sm text-gray-600 dark:text-gray-400">Search</p>
                 </div>
-                <form onSubmit={searchItems} className="transition duration-100 transform hover:scale-105 cursor-pointer flex flex-col md:flex-col lg:flex-row items-center bg-white dark:bg-gray-800 p-2 shadow rounded w-full">
+                <form onSubmit={searchItems} className="transition duration-100 transform hover:scale-105 cursor-pointer flex flex-row items-center bg-white dark:bg-gray-800 p-2 shadow rounded w-full">
                     <input 
                         onChange={e=>setCategory(e.target.value)}
                         type="text" 

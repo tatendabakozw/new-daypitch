@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import HomeLayout from '../../layouts/HomeLayout'
 import {ArrowLeftIcon} from '@heroicons/react/solid'
+import HomeLayout from '../../layouts/HomeLayout/HomeLayout'
 
 function NotFound() {
     return (

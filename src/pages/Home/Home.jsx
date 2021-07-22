@@ -3,20 +3,24 @@ import HomeLayout from '../../layouts/HomeLayout/HomeLayout'
 import person from '../../images/Daypitch31.png'
 import HomeSearch from '../../components/HomeSearch/HomeSearch'
 import Stars from '../../components/banner/Stars'
+import first from '../../images/homeBuy.svg'
+import second from '../../images/homeInvest.svg'
+import third from '../../images/homeQuick.svg'
 
 function Home() {
     return (
         <HomeLayout>
-            <div>
+            <div className="home">
             <div className="relative transition duration-500 ease-in-out min-h-screen grid md:grid-cols-2 grid-cols-1 gap-2 bg-gray-50 dark:bg-gray-900 lg:px-32 md:px-16 px-4 w-full">
                         <div className="md:block hidden absolute z-0 w-full opacity-50">
-                            <Stars/>
+                            <Stars />
                         </div>
-                    <div className="md:my-auto pt-16 w-full">
+                    <div className="md:my-auto my-auto pt-16 w-full">
 
                         <div className="col-span-1 pt-8 flex flex-col md:items-start items-center w-full">
                             <p className="md:text-6xl text-gray-900  md:dark:text-gray-100 dark:text-geay-100 text-4xl mx-auto w-full mb-4 font-semibold z-40">Find the perfect location for your professionals</p>
                             <p className="md:w-full text-gray-800  md:dark:text-gray-100 dark:text-geay-100 md:mb-16 mb-8 w-full dark:text-gray-400 z-40">View Professionals in your local area for free</p>
+                            
                             {/* search component */}
                             <div className="w-full self-center flex mb-2 z-40">
                                 <HomeSearch />
@@ -24,6 +28,7 @@ function Home() {
                             <p className="text-gray-900 text-xs self-start dark:text-gray-300 z-40">Popular: Mechanic, Health, Software</p>
                         </div>
                     </div>
+
                     <div className="col-span-1 overflow-hidden">
                         <div className="absolute md:flex z-20 hidden bottom-0 right-0">
                             <img src={person} alt='first' className="lg:max-h-[500px] md:max-h-[400] max-h-[250px]" />
@@ -65,9 +70,42 @@ function Home() {
                             </g>
                         </svg>
                     </div>
+
+                </div>
+                <div className="flex flex-col items-center md:pt-40 md:px-16 pt-4 px-4 z-20 pb-36 w-full">
+                    <p className="text-2xl text-gray-700 dark:text-gray-200 text-center font-semibold mb-24 md:px-32 px-8">Easily prototype and communicate your vision</p>
+                    <div className="grid md:grid-cols-3 grid-cols-1 md:gap-40 gap-24 items-center">
+                        <HomeViewComponent
+                            className="col-span-1"
+                            picture={first}
+                            description={'Mix and match best professionals as a seller'}
+                            heading={'Communication'} />
+                        <HomeViewComponent
+                            className="col-span-1"
+                            picture={second}
+                            description={'No need for advertisement, because we do it for you'}
+                            heading={'Advertisement'} />
+                        <HomeViewComponent
+                            className="col-span-1"
+                            picture={third}
+                            description={'Dont waste time, jump to the task buy either becoming a professional or becoming a buyer'}
+                            heading={'Quick'} />
+                    </div>
                 </div>
             </div>
         </HomeLayout>
+    )
+}
+
+const HomeViewComponent = ({ className, picture, description, heading }) => {
+    return (
+        <>
+            <div className={`${className} flex flex-col w-64 items-center`}>
+                <img src={picture} className="w-60 mb-4" alt="buy" />
+                <h3 className="text-gray-800 dark:text-gray-200 mb-2 font-semibold">{heading}</h3>
+                <p className="font-gray-500 dark:text-gray-400 text-center text-sm">{description}</p>
+            </div>
+        </>
     )
 }
 

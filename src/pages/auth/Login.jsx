@@ -35,6 +35,7 @@ function Login() {
                 })
                 window.localStorage.setItem('daypitch_user_auth', 'true')  
                 setMsg('Login Sucessful')
+                setErr(null)
                 setTimeout(() => {
                     history.push('/') 
                 }, 2000);            
@@ -48,7 +49,17 @@ function Login() {
         e.preventDefault()
         auth.signInWithEmailAndPassword(email, password).then(userCred=>{
             if(userCred){
+                dispatch({
+                    type: 'SET_USER',
+                    user: 'daypitch_user_logged_in'
+                })
+                window.localStorage.setItem('daypitch_user_auth', 'true')
+                setMsg('Login successfull')
+                setErr(null)
                 console.log(userCred)
+                setTimeout(() => {
+                    history.push('/') 
+                }, 2000);
             }
         }).catch(err=>{
             setErr(err.message)

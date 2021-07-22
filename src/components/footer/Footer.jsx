@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import facebook from '../../images/facebook.svg'
 import instagram from '../../images/instagram.svg'
 import linkedin from '../../images/linkedin.svg'
@@ -19,6 +19,7 @@ function Footer() {
               <div className="mt-6 mb-4">
                 <a 
                   target="_blank"
+                  rel="noreferrer"
                   href="https://www.facebook.com/DayPitch-102652645342114"
                   className="text-blue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
                   type="button"
@@ -27,6 +28,7 @@ function Footer() {
                 </a>
                 <a
                   target="_blank"
+                  rel="noreferrer"
                   href="https://www.instagram.com/daypitchapp/"
                   className="text-blue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
                   type="button"
@@ -41,6 +43,7 @@ function Footer() {
                 </button>
                 <a
                   target="_blank"
+                  rel="noreferrer"
                   href="https://twitter.com/Daypitch1"
                   className="text-gray-900 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
                   type="button"

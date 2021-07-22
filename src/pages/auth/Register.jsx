@@ -47,7 +47,7 @@ function Register() {
 
     const registerWithCreds = (e) =>{
         e.preventDefault()
-        if(passwor2 != password){
+        if(passwor2 !== password){
             setErr('passwords do not match')
         }else{
             auth.createUserWithEmailAndPassword(email, password).then(auth_user=>{

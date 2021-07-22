@@ -13,7 +13,7 @@ function Register() {
     const [passwor2, setPassword2] = useState('')
     const [passwordVisible, setPasswordVisible] = useState(false)
     const [passwordVisible2, setPasswordVisible2] = useState(false)
-    const [err, setErr] = useState('iam a message')
+    const [err, setErr] = useState('')
     const [msg, setMSg] = useState('')
     const history = useHistory()
 
@@ -48,7 +48,6 @@ function Register() {
                             placeholder="Your email address"
                             className="border-2 dark:bg-gray-700 outline-none dark:border-gray-700 border-blue-800 rounded p-2" />
                     </div>
-
 
                     <div className="emai flex flex-col md:w-2/5 w-4/5 my-2">
                         <label htmlFor="password2" className="text-gray-700 text-sm mb-1 dark:text-gray-200">Password</label>

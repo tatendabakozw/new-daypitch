@@ -15,7 +15,6 @@ function CategoryLoading() {
                     </div>
                 </div>
             </div>
-
         </>
     )
 }

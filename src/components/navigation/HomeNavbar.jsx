@@ -1,6 +1,7 @@
 import React, { useState, Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { MenuAlt2Icon, XIcon, UserCircleIcon, MoonIcon, LightBulbIcon } from '@heroicons/react/outline'
+import { MenuAlt2Icon, XIcon, MoonIcon, LightBulbIcon } from '@heroicons/react/outline'
+import {UserCircleIcon} from '@heroicons/react/solid'
 import { Link, useHistory } from 'react-router-dom'
 import logo from '../../images/logo425.png'
 import useDarkMode from '../../helpers/useDarkMode'
@@ -149,7 +150,7 @@ function HomeNavbar() {
                                                                             alt="propic"
                                                                         />
                                                                     ) : (
-                                                                        <UserCircleIcon width={24} height={24} className="text-gray-600" />
+                                                                        <UserCircleIcon width={36} height={36} className="text-gray-600 font-light" />
                                                                     )
                                                                 }
                                                             </>

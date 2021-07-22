@@ -14,7 +14,7 @@ function Account() {
 
     return (
         <HomeLayout>
-            <div className="flex flex-col pt-24 px-96">
+            <div className="flex flex-col pt-24 lg:px-96 md:px-44 px-4">
                 <p className="text-2xl text-gray-700 pb-8">Edit Profile</p>
 
                 {/* //edit picture */}
@@ -28,7 +28,7 @@ function Account() {
                 </div>
 
                 {/* //first and last name */}
-                <div className="grid grid-cols-2 gap-16 pb-8">
+                <div className="grid grid-cols-2 md:gap-16 gap-4 pb-8">
                     <span className="flex flex-col col-span-1">
                         <label htmlFor="firstname" className="text-gray-500 text-sm pb-2 font-semibold">First Name</label>
                         <input 
@@ -80,7 +80,7 @@ function Account() {
                 </div>
 
                 {/* //sity and country */}
-                <div className="grid grid-cols-2 gap-16 pb-8">
+                <div className="grid grid-cols-2 md:gap-16 gap-4 pb-8">
                     <span className="flex flex-col col-span-1">
                         <label htmlFor="city" className="text-gray-500 text-sm pb-2 font-semibold">City</label>
                         <input 

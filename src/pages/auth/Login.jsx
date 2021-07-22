@@ -21,7 +21,6 @@ function Login() {
     const [passwordVisible, setPasswordVisible] = useState(false)
     const [msg, setMsg] = useState('')
     const [err, setErr] = useState('')
-    const [loading, setLoading] = useState(false)
 
     // eslint-disable-next-line
     const [{token}, dispatch] = useStateValue()
@@ -36,13 +35,25 @@ function Login() {
                     user: 'daypitch_user_logged_in'
                 })
                 window.localStorage.setItem('daypitch_user_auth', 'true')  
-                // ConstantSourceNode.log(userCred)              
+                setMsg('Login Sucessfull')
+                setTimeout(() => {
+                    history.push('/') 
+                }, 2000);            
             }
+        }).catch(err=>{
+            setErr(err.message)
         })
     }
 
     const loginWIthCreds = (e) =>{
         e.preventDefault()
+        auth.signInWithEmailAndPassword(email, password).then(userCred=>{
+            if(userCred){
+                console.log(userCred)
+            }
+        }).catch(err=>{
+            setErr(err.message)
+        })
     } 
 
         // console.log(token)   

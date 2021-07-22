@@ -11,7 +11,7 @@ import CategoryLoading from '../../components/loading/CategoryLoading'
 function Home() {
     return (
         <HomeLayout>
-            <div className="home">
+            <div className="home pb-16">
             <div className="relative transition duration-500 ease-in-out min-h-screen grid md:grid-cols-2 grid-cols-1 gap-2 bg-gray-50 dark:bg-gray-900 lg:px-32 md:px-16 px-4 w-full">
                     <div className="md:block hidden absolute z-0 w-full opacity-50">
                         <Stars />

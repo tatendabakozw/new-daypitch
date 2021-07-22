@@ -1,4 +1,5 @@
 import React from 'react'
+import Footer from '../../components/footer/Footer'
 import HomeNavbar from '../../components/navigation/HomeNavbar'
 
 function HomeLayout({children}) {
@@ -10,7 +11,9 @@ function HomeLayout({children}) {
             <div className="min-h-screen bg-gray-50">
                 {children}
             </div>
-            <div className="foorer h-32 bg-gray-50"></div>
+            <div className="footer">
+                <Footer/>
+            </div>
         </div>
     )
 }

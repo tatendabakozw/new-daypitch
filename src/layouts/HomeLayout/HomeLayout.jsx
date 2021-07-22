@@ -7,7 +7,7 @@ function HomeLayout({children}) {
             <div className="fixed w-full top-0 z-50">
                 <HomeNavbar/>
             </div>
-            <div className="min-h-screen bg-red-500 pt-16">
+            <div className="min-h-screen">
                 {children}
             </div>
             <div className="h-screen bg-green-600"></div>

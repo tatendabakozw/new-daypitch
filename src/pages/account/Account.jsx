@@ -5,6 +5,9 @@ import image from '../../images/man.png'
 import { auth, storage } from '../../helpers/firebase'
 import Dropzone from "react-dropzone";
 import { PhotographIcon } from "@heroicons/react/outline";
+import axios from 'axios'
+import { useStateValue } from '../../context/StateProvier'
+import { apiUrl } from '../../helpers/apiUrl'
 
 
 
@@ -19,6 +22,7 @@ function Account() {
     const [country, setCountry] = useState('')
     const [username, setUsername] = useState('')
     const [user, setUser] = useState()
+    const [{token}] = useStateValue()
 
     //for image picking
     const [previewSrc, setPreviewSrc] = useState("");
@@ -70,13 +74,34 @@ function Account() {
 
     const editDetails = (e) =>{
         e.preventDefault()
-        console.log(firstname)
-        console.log(lastname)
-        console.log(email)
-        console.log(address)
-        console.log(city)
-        console.log(country)
-        console.log(username)
+        // console.log(firstname)
+        // console.log(lastname)
+        // console.log(email)
+        // console.log(address)
+        // console.log(city)
+        // console.log(country)
+        // console.log(username)
+        // console.log(token)
+
+        axios.patch(`${apiUrl}/user/edit/${user?.uid}`,{},{
+            headers: {
+                authorization : token
+            }
+        })
+
+        // ,{
+        //     firstname: firstname,
+        //     lastname: lastname,
+        //     email: email,
+        //     username: username,
+        //     city: city, 
+        //     country: country,
+        //     address: address
+        // }).then(res=>{
+        //     console.log(res)
+        // }).catch(err=>{
+        //     console.log(err)
+        // },
     }
 
     return (
@@ -236,10 +261,8 @@ function Account() {
                 <div className="pb-8">
                     <span className="flex flex-col">
                         <button 
-                            type="submit" 
                             onClick={editDetails}
                             className="border-none bg-blue-900 hover:bg-blue-800 cursor-pointer outline-none rounded-sm p-2 text-white"
-                            onChange={e=> setAddress(e.target.value)}
                         >Save</button>
                     </span>
                 </div>

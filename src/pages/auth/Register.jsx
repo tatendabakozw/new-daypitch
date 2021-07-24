@@ -8,6 +8,8 @@ import {Link } from 'react-router-dom'
 import { auth } from '../../helpers/firebase'
 import firebase from 'firebase'
 import { useStateValue } from '../../context/StateProvier'
+import axios from 'axios'
+import { apiUrl } from '../../helpers/apiUrl'
 var provider = new firebase.auth.GoogleAuthProvider();
 
 
@@ -39,6 +41,18 @@ function Register() {
                     setTimeout(() => {
                         history.push('/') 
                     }, 2000);
+                    axios.post(`${apiUrl}/user/create`,{
+                        username: auth_user.user.displayName,
+                        firstname: '',
+                        lastname: '',
+                        city: '',
+                        country: '',
+                        firebase_uid: auth_user.user.uid
+                    }).then(res=>{
+                        console.log(res)
+                    }).catch(err=>{
+                        console.log(err)
+                    })
                 } 
             }).catch(err=>{
                 setErr(err.message)
@@ -55,10 +69,22 @@ function Register() {
                     if(auth_user.additionalUserInfo.isNewUser){
                         setMSg('Sign Up successfull')
                         setTimeout(() => {
-                            history.push('/becomeaseller')
+                            history.push('/login')
                         }, 2000);
+                        axios.post(`${apiUrl}/user/create`,{
+                            displayName: auth_user.user.displayName,
+                            firstname: '',
+                            lastname: '',
+                            city: '',
+                            country: '',
+                            firebase_uid: auth_user.user.uid
+                        }).then(res=>{
+                            console.log(res)
+                        }).catch(err=>{
+                            console.log(err)
+                        })
                     }else{
-                        setMSg('Sign Up successfull')
+                        setErr('Account already exists')
                         window.localStorage.setItem('daypitch_user_auth', 'true')
                         setTimeout(() => {
                             history.push('/login') 

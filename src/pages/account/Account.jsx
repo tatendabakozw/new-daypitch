@@ -1,29 +1,159 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import HomeLayout from '../../layouts/HomeLayout/HomeLayout'
 import {CameraIcon} from '@heroicons/react/outline'
-import image from '../../images/tatenda.jpg'
+import image from '../../images/man.png'
+import { auth, storage } from '../../helpers/firebase'
+import Dropzone from "react-dropzone";
+import { PhotographIcon } from "@heroicons/react/outline";
+
+
 
 function Account() {
 
     const [firstname, setFirstmame] = useState('')
+    const [picture, setPicture] = useState(null);
     const [lastname, setLastname] = useState('')
     const [email, setEmail] = useState('')
     const [address, setAddress] = useState('')
     const [city, setCity] = useState('')
     const [country, setCountry] = useState('')
+    const [username, setUsername] = useState('')
+    const [user, setUser] = useState()
+
+    //for image picking
+    const [previewSrc, setPreviewSrc] = useState("");
+    const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
+    const [profile_progress, setProfileProgress] = useState(101)
+    const dropRef = useRef();
+
+
+    const onDrop = (files) => {
+        const [uploadedFile] = files;
+        setPicture(uploadedFile);
+        const fileReader = new FileReader();
+        fileReader.onload = () => {
+          setPreviewSrc(fileReader.result);
+        };
+        fileReader.readAsDataURL(uploadedFile);
+        setIsPreviewAvailable(uploadedFile.name.match(/\.(jpeg|jpg|png)$/));
+      };
+
+    useEffect(()=>{
+        auth.onAuthStateChanged(auth_user=>{
+            if(auth_user){
+                console.log(auth_user)
+                setUser(auth_user)
+            }
+        })
+    },[])
+
+    const changeProPic = (e) =>{
+        e.preventDefault()
+        const uploadTask = storage.ref(`/images/daypitch/propics/${user?.uid}`).put(picture)
+        uploadTask.on("state_changed", (snapshot) => {
+            const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+            setProfileProgress(progress);
+            console.log(progress)
+        }, (error) => {
+            console.log(error);
+            alert(error.message)
+        },
+            () => {
+                storage.ref('images/daypitch/propics').child(user.uid).getDownloadURL().then(url => {
+                    user.updateProfile({
+                        photoURL: url
+                    })
+                })
+            }
+        )
+    }
+
+    const editDetails = (e) =>{
+        e.preventDefault()
+        console.log(firstname)
+        console.log(lastname)
+        console.log(email)
+        console.log(address)
+        console.log(city)
+        console.log(country)
+        console.log(username)
+    }
 
     return (
         <HomeLayout>
             <div className="flex flex-col pt-24 lg:px-96 md:px-44 px-4">
                 <p className="text-2xl text-gray-700 pb-8">Edit Profile</p>
-
+                
                 {/* //edit picture */}
                 <div className="flex flex-row self-center items-end pb-16">
                     <div className="self-center h-28 w-28 bg-gray-200 rounded-full overflow-hidden border border-gray-300">
-                        <img src={image} alt="w-auto" />
+                        <img src={user?.photoURL ? user?.photoURL : image} alt="w-auto" />
                     </div>
-                    <span className="cursor-pointer">
+                    {/* <span className="cursor-pointer">
                         <CameraIcon height={24} width={24} className="text-blue-400 hover:text-blue-600" />
+                    </span> */}
+                    <Dropzone onDrop={onDrop}>
+                        {({ getRootProps, getInputProps }) => (
+                        <div
+                            {...getRootProps({ className: "drop-zone" })}
+                            ref={dropRef}
+                        >
+                            <input {...getInputProps()} />
+                            <div className="cursor-pointer text-gray-400 flex flex-col  items-center rounded outline-none border-none">
+                                <CameraIcon width={24} height={24} className="text-blue-400 hover:text-blue-600" />
+                            </div>
+                            {picture && (
+                            <span>
+                                <p className="font-semibold text-gray-700 dark:text-gray-300 text-sm">
+                                Selected file:
+                                </p>
+                                <p className="font-semibold text-gray-700 dark:text-gray-300 text-sm">
+                                {picture.name}
+                                </p>
+                            </span>
+                            )}
+                        </div>
+                        )}
+                    </Dropzone>
+                    {previewSrc ? (
+                        isPreviewAvailable ? (
+                        <div className="flex flex-col ml-2">
+                            <div className="self-center h-28 w-28 bg-gray-200 rounded-full overflow-hidden border border-gray-300">
+                                <img
+                                className="w-auto"
+                                src={previewSrc}
+                                alt="Preview"
+                                />
+                            </div>
+                            {
+                                profile_progress < 100 ? 'uploading...' : (<span
+                                    onClick={changeProPic} 
+                                    className="bg-blue-900 p-1 text-sm cursor-pointer hover:bg-blue-800 rounded-sm text-white text-center">save image</span>)
+                            }
+                        </div>
+                        ) : (
+                        <div className="preview-message">
+                            <p>No preview available for this file</p>
+                        </div>
+                        )
+                    ) : (
+                        <div className="font-semibold text-gray-700 dark:text-gray-300 text-sm ml-2">
+                        <p>Select picture</p>
+                        </div>
+                    )}
+                </div>
+
+                {/* //edit email part */}
+                <div className="w-full pb-8">
+                    <span className="flex flex-col">
+                        <label htmlFor="username" className="text-gray-500 text-sm pb-2 font-semibold">Username/Businessname</label>
+                        <input 
+                            type="text" 
+                            id='username' 
+                            className="border border-blue-300 outline-none rounded-sm p-2 bg-gray-50"
+                            onChange={e=> setUsername(e.target.value)}
+                            placeholder={`tatendaZw`}
+                        />
                     </span>
                 </div>
 
@@ -60,7 +190,7 @@ function Account() {
                             id='email' 
                             className="border border-blue-300 outline-none rounded-sm p-2 bg-gray-50"
                             onChange={e=> setEmail(e.target.value)}
-                            placeholder={`tatenda@email.com`}
+                            placeholder={`${user?.email}`}
                         />
                     </span>
                 </div>
@@ -68,7 +198,7 @@ function Account() {
                 {/* //edit address part */}
                 <div className="w-full pb-8">
                     <span className="flex flex-col">
-                        <label htmlFor="email" className="text-gray-500 text-sm pb-2 font-semibold">Address</label>
+                        <label htmlFor="address" className="text-gray-500 text-sm pb-2 font-semibold">Address</label>
                         <input 
                             type="text" 
                             id='address' 
@@ -107,6 +237,7 @@ function Account() {
                     <span className="flex flex-col">
                         <button 
                             type="submit" 
+                            onClick={editDetails}
                             className="border-none bg-blue-900 hover:bg-blue-800 cursor-pointer outline-none rounded-sm p-2 text-white"
                             onChange={e=> setAddress(e.target.value)}
                         >Save</button>

@@ -9,9 +9,29 @@ import third from '../../images/homeQuick.svg'
 import CategoryLoading from '../../components/loading/CategoryLoading'
 import { useHistory } from 'react-router-dom'
 import { LockClosedIcon } from '@heroicons/react/outline'
+import { useEffect } from 'react'
+import axios from 'axios'
+import { useStateValue } from '../../context/StateProvier'
 
 
 function Home() {
+
+    const [{token}] = useStateValue()
+
+    // useEffect(()=>{
+    //     axios.get('http://localhost:5500/api/v1/user/get',{
+    //         headers: {
+    //             authorization : token
+    //         }
+    //     }).then(res=>{
+    //         console.log(res)
+    //     }).catch(err =>{
+    //         console.log(err.message)
+    //     })
+    // },[])
+
+    // console.log(token)
+
     return (
         <HomeLayout>
             <div className="home pb-16">

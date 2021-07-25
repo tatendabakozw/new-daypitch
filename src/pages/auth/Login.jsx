@@ -9,6 +9,8 @@ import logo from '../../images/favicon.png'
 import { auth } from '../../helpers/firebase'
 import firebase from 'firebase'
 import { useStateValue } from '../../context/StateProvier'
+import axios from 'axios'
+import { apiUrl } from '../../helpers/apiUrl'
 var provider = new firebase.auth.GoogleAuthProvider();
 
 
@@ -28,17 +30,35 @@ function Login() {
     const loginWithGoogle = (e) =>{
         e.preventDefault()
         auth.signInWithPopup(provider).then(userCred=>{
+            console.log(userCred)
             if(userCred){
-                dispatch({
-                    type: 'SET_USER',
-                    user: 'daypitch_user_logged_in'
-                })
-                window.localStorage.setItem('daypitch_user_auth', 'true')  
-                setMsg('Login Sucessful')
-                setErr(null)
-                setTimeout(() => {
-                    history.push('/') 
-                }, 2000);            
+                if(userCred.additionalUserInfo.isNewUser){
+                    axios.post(`${apiUrl}/user/create`,{
+                        displayName: userCred.user.displayName,
+                        firstname: '',
+                        lastname: '',
+                        city: '',
+                        country: '',
+                        firebase_uid: userCred.user.uid
+                    }).then(res=>{
+                        setTimeout(() => {
+                            history.push('/') 
+                        }, 2000);
+                    }).catch(err=>{
+                        console.log(err)
+                    })
+                }else{
+                    dispatch({
+                        type: 'SET_USER',
+                        user: 'daypitch_user_logged_in'
+                    })
+                    window.localStorage.setItem('daypitch_user_auth', 'true')  
+                    setMsg('Login Sucessful')
+                    setErr(null)
+                    setTimeout(() => {
+                        history.push('/') 
+                    }, 2000);
+                }
             }
         }).catch(err=>{
             setErr(err.message)

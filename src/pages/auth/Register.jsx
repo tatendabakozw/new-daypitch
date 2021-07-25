@@ -32,27 +32,31 @@ function Register() {
 
             auth.signInWithPopup(provider).then(auth_user=>{
                 if(auth_user){
-                    setMSg('Account created Sucessfully')
-                    dispatch({
-                        type: 'SET_USER',
-                        user: 'daypitch_user_logged_in'
-                    })
-                    window.localStorage.setItem('daypitch_user_auth', 'true')
-                    setTimeout(() => {
-                        history.push('/') 
-                    }, 2000);
-                    axios.post(`${apiUrl}/user/create`,{
-                        username: auth_user.user.displayName,
-                        firstname: '',
-                        lastname: '',
-                        city: '',
-                        country: '',
-                        firebase_uid: auth_user.user.uid
-                    }).then(res=>{
-                        console.log(res)
-                    }).catch(err=>{
-                        console.log(err)
-                    })
+                    if(auth_user.additionalUserInfo.isNewUser){
+                        setMSg('Account created Sucessfully')
+                        dispatch({
+                            type: 'SET_USER',
+                            user: 'daypitch_user_logged_in'
+                        })
+                        window.localStorage.setItem('daypitch_user_auth', 'true')
+                        setTimeout(() => {
+                            history.push('/') 
+                        }, 2000);
+                        axios.post(`${apiUrl}/user/create`,{
+                            username: auth_user.user.displayName,
+                            firstname: '',
+                            lastname: '',
+                            city: '',
+                            country: '',
+                            firebase_uid: auth_user.user.uid
+                        }).then(res=>{
+                            console.log(res)
+                        }).catch(err=>{
+                            console.log(err)
+                        })
+                    }else{
+                        setErr('Account already exist')
+                    }                    
                 } 
             }).catch(err=>{
                 setErr(err.message)

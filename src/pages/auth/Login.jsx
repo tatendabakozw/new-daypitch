@@ -39,10 +39,11 @@ function Login() {
                         lastname: '',
                         city: '',
                         country: '',
-                        firebase_uid: userCred.user.uid
+                        firebase_uid: userCred.user.uid,
+                        email: userCred.user.email
                     }).then(res=>{
                         setTimeout(() => {
-                            history.push('/') 
+                            history.push('/login') 
                         }, 2000);
                     }).catch(err=>{
                         console.log(err)
@@ -52,7 +53,11 @@ function Login() {
                         type: 'SET_USER',
                         user: 'daypitch_user_logged_in'
                     })
-                    window.localStorage.setItem('daypitch_user_auth', 'true')  
+                    window.localStorage.setItem('daypitch_user_auth', 'true') 
+                    window.localStorage.setItem('daypitch_user', JSON.stringify({
+                        username: userCred.user.displayName,
+                        propic: userCred.user.photoURL
+                    })) 
                     setMsg('Login Sucessful')
                     setErr(null)
                     setTimeout(() => {
@@ -74,6 +79,10 @@ function Login() {
                     user: 'daypitch_user_logged_in'
                 })
                 window.localStorage.setItem('daypitch_user_auth', 'true')
+                window.localStorage.setItem('daypitch_user', JSON.stringify({
+                    username: userCred.user.displayName,
+                    propic: userCred.user.photoURL
+                }))
                 setMsg('Login successfull')
                 setErr(null)
                 console.log(userCred)

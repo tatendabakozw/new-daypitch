@@ -29,7 +29,6 @@ function Register() {
 
     const registerWithGoogle = (e) =>{
         e.preventDefault()
-
             auth.signInWithPopup(provider).then(auth_user=>{
                 if(auth_user){
                     if(auth_user.additionalUserInfo.isNewUser){
@@ -39,6 +38,10 @@ function Register() {
                             user: 'daypitch_user_logged_in'
                         })
                         window.localStorage.setItem('daypitch_user_auth', 'true')
+                        window.localStorage.setItem('daypitch_user', JSON.stringify({
+                            username: auth_user.user.displayName,
+                            propic: auth_user.user.photoURL
+                        }))
                         setTimeout(() => {
                             history.push('/') 
                         }, 2000);
@@ -48,7 +51,8 @@ function Register() {
                             lastname: '',
                             city: '',
                             country: '',
-                            firebase_uid: auth_user.user.uid
+                            firebase_uid: auth_user.user.uid,
+                            email: auth_user.user.email
                         }).then(res=>{
                             console.log(res)
                         }).catch(err=>{
@@ -71,7 +75,7 @@ function Register() {
             auth.createUserWithEmailAndPassword(email, password).then(auth_user=>{
                 if(auth_user){
                     if(auth_user.additionalUserInfo.isNewUser){
-                        setMSg('Sign Up successfull')
+                        setMSg('Account created successfully')
                         setTimeout(() => {
                             history.push('/login')
                         }, 2000);
@@ -81,7 +85,8 @@ function Register() {
                             lastname: '',
                             city: '',
                             country: '',
-                            firebase_uid: auth_user.user.uid
+                            firebase_uid: auth_user.user.uid,
+                            email: auth_user.user.email
                         }).then(res=>{
                             console.log(res)
                         }).catch(err=>{
@@ -89,10 +94,6 @@ function Register() {
                         })
                     }else{
                         setErr('Account already exists')
-                        window.localStorage.setItem('daypitch_user_auth', 'true')
-                        setTimeout(() => {
-                            history.push('/login') 
-                        }, 2000);
                     }
                 }
             }).catch(err=>{

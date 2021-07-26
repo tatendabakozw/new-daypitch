@@ -5,6 +5,7 @@ import { auth } from './helpers/firebase'
 import Account from './pages/account/Account'
 import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
+import BecomeASeller from './pages/becomeAseller/BecomeASeller'
 import Home from './pages/Home/Home'
 import HowItWorks from './pages/howitworks/HowItWorks'
 import NotFound from './pages/notfound/NotFound'
@@ -34,6 +35,7 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
+        <Route exact path="/becomeaseller" component={BecomeASeller} />
         <Route exact path="/account" component={Account} />
         <Route exact path="/howitworks" component={HowItWorks} />
         <Route exact path="/register" component={Register} />

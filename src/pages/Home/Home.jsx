@@ -22,7 +22,7 @@ function Home() {
                     <div className="md:my-auto my-auto pt-16 w-full">
 
                         <div className="col-span-1 pt-8 flex flex-col md:items-start items-center w-full">
-                            <p className="md:text-6xl text-gray-900  md:dark:text-gray-100 dark:text-geay-100 text-4xl mx-auto w-full mb-4 font-semibold z-40">Find the perfect location for your professionals</p>
+                            <p className="md:text-7xl text-gray-900  md:dark:text-gray-100 dark:text-geay-100 text-4xl mx-auto w-full mb-4 font-semibold z-40">Find the perfect location for your professionals</p>
                             <p className="md:w-full text-gray-800  md:dark:text-gray-100 dark:text-geay-100 md:mb-16 mb-8 w-full dark:text-gray-400 z-40">View Professionals in your local area for free</p>
                             
                             {/* search component */}

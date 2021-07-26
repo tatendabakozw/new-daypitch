@@ -29,7 +29,7 @@ const Tags = (props) => {
                                             className="material-icons"
                                             onClick={() => removeTags(index)}
                                         >
-                                            <XIcon width={12} height={12} className="cursor-pointer"/>
+                                            <XIcon width={12} height={12} className="cursor-pointer ml-1"/>
                                         </i>
                                     </li>
                                 ))}

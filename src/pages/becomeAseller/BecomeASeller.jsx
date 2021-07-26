@@ -63,7 +63,7 @@ function BecomeASeller() {
                             limit={150} 
                             cols="30" rows="7"
                             className="p-2 border border-gray-300 outline-none rounded-sm"
-                            placeholder="describe yourself and/or your service with not less than 150 words"
+                            placeholder="Describe yourself and/or your service with not less than 150 words"
                             value={description}/>
                     </div>
                </div>
@@ -75,16 +75,42 @@ function BecomeASeller() {
                         <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
                             <input 
                                 type="text"
-                                placeholder="level reached"
+                                placeholder="Level Reached"
                                 className="p-2 col-span-1 border border-gray-300 outline-none rounded-sm"
                             />
                             <input 
                                 type="text"
-                                placeholder="attended at?"
+                                placeholder="School Attended"
                                 className="p-2 border col-span-2 border-gray-300 outline-none rounded-sm"
                             />
                         
                         </div>
+                    </div>
+               </div>
+
+                {/* price range */}
+               <div className="flex flex-col lg:w-2/5 md:w-2/3 w-full items-center mt-4">
+                    <div className="flex flex-col self-center bg-gray-50 w-full">
+                        <p className="text-sm my-2 text-gray-700 ml-4">Price range e.g $45/hour</p>
+                        {/* <textarea 
+                            name="description" 
+                            id="description" 
+                            cols="30" rows="10"
+                            className="p-2 border border-gray-300 outline-none"  
+                            placeholder="describe yourself with not less than 150 words"/> */}
+                        <input 
+                            type="text"
+                            placeholder="$35/hour"
+                            className="p-2 border col-span-2 border-gray-300 outline-none rounded-sm"
+                        />
+                    </div>
+               </div>
+               
+
+               {/* //create profile button */}
+               <div className="flex flex-col lg:w-2/5 md:w-2/3 w-full items-center mt-8">
+                    <div className="flex flex-col self-center bg-gray-50 w-full">
+                        <span className="capitalize bg-blue-900 p-2 text-white rounded-sm text-center cursor-pointer hover:bg-blue-800">Create My Profile</span>
                     </div>
                </div>
            </div>

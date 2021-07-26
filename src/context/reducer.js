@@ -2,7 +2,8 @@ export const initialState = {
     user: null,
     searchItem: 'initial load',
     location: '',
-    token : ''
+    token : '',
+    description: ''
 }
 
 function reducer(state, action) {
@@ -16,6 +17,11 @@ function reducer(state, action) {
             return{
                 ...state,
                 user: null
+            }
+        case 'SET_DESCRIPTION':
+            return{
+                ...state,
+                description: action.description
             }
         case 'SET_LOCATION':
             return {

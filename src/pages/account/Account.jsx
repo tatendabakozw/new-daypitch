@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, Fragment } from 'react'
 import HomeLayout from '../../layouts/HomeLayout/HomeLayout'
 import {CameraIcon} from '@heroicons/react/outline'
 import image from '../../images/man.png'
@@ -7,7 +7,7 @@ import Dropzone from "react-dropzone";
 import axios from 'axios'
 import { useStateValue } from '../../context/StateProvier'
 import { apiUrl } from '../../helpers/apiUrl'
-
+import { Dialog, Transition } from '@headlessui/react'
 
 
 function Account() {
@@ -28,6 +28,17 @@ function Account() {
     const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
     const [profile_progress, setProfileProgress] = useState(101)
     const dropRef = useRef();
+
+    //delete account
+    let [isDelteDialogOpen, setIsDeleteDialogOpen] = useState(false)
+
+    function closeDelteModal() {
+        setIsDeleteDialogOpen(false)
+    }
+
+    function openDeleteModal() {
+        setIsDeleteDialogOpen(true)
+    }
 
 
     const onDrop = (files) => {
@@ -94,6 +105,10 @@ function Account() {
         }).catch(err=>{
             console.log(err)
         })
+    }
+
+    const deleteAccount = (e) =>{
+        e.preventDefault()
     }
 
     return (
@@ -257,6 +272,87 @@ function Account() {
                             className="border-none bg-blue-900 hover:bg-blue-800 cursor-pointer outline-none rounded-sm p-2 text-white"
                         >Save</button>
                     </span>
+                </div>
+
+                {/* //edit address part */}
+                <div className="pb-8">
+                    <span className="flex flex-col">
+                        <button 
+                            onClick={openDeleteModal}
+                            className="border-none bg-red-500 hover:bg-red-600 cursor-pointer outline-none rounded-sm p-2 text-white"
+                        >Delete Account</button>
+                    </span>
+                    <>
+                        <Transition appear show={isDelteDialogOpen} as={Fragment}>
+                            <Dialog
+                            as="div"
+                            className="fixed inset-0 z-10 overflow-y-auto"
+                            onClose={closeDelteModal}
+                            >
+                            <div className="min-h-screen px-4 text-center">
+                                <Transition.Child
+                                as={Fragment}
+                                enter="ease-out duration-300"
+                                enterFrom="opacity-0"
+                                enterTo="opacity-100"
+                                leave="ease-in duration-200"
+                                leaveFrom="opacity-100"
+                                leaveTo="opacity-0"
+                                >
+                                <Dialog.Overlay className="fixed inset-0" />
+                                </Transition.Child>
+
+                                {/* This element is to trick the browser into centering the modal contents. */}
+                                <span
+                                className="inline-block h-screen align-middle"
+                                aria-hidden="true"
+                                >
+                                    &#8203;
+                                </span>
+                                <Transition.Child
+                                as={Fragment}
+                                enter="ease-out duration-300"
+                                enterFrom="opacity-0 scale-95"
+                                enterTo="opacity-100 scale-100"
+                                leave="ease-in duration-200"
+                                leaveFrom="opacity-100 scale-100"
+                                leaveTo="opacity-0 scale-95"
+                                >
+                                    <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-3xl rounded-sm border border-gray-200">
+                                        <Dialog.Title
+                                            as="h3"
+                                            className="text-lg font-medium leading-6 text-gray-900"
+                                            >
+                                            Confirm Delete!
+                                        </Dialog.Title>
+                                        <div className="mt-2">
+                                        <p className="text-sm text-gray-500">
+                                            Once your account has been deleted it can never be retreived. Are you sure you want to proceed?
+                                        </p>
+                                        </div>
+
+                                        <div className="mt-4">
+                                            <button
+                                                type="button"
+                                                className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 mr-4 border border-transparent rounded-sm hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                                                onClick={closeDelteModal}
+                                            >
+                                                Cancel
+                                            </button>
+                                            <button
+                                                type="button"
+                                                className="inline-flex justify-center px-4 py-2 text-sm font-medium text-red-900 bg-red-100 border border-transparent rounded-sm hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
+                                                onClick={deleteAccount}
+                                            >
+                                                Delete my account!
+                                            </button>
+                                        </div>
+                                    </div>
+                                </Transition.Child>
+                            </div>
+                            </Dialog>
+                        </Transition>
+                    </>
                 </div>
 
             </div>

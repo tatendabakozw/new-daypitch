@@ -4,7 +4,6 @@ import {CameraIcon} from '@heroicons/react/outline'
 import image from '../../images/man.png'
 import { auth, storage } from '../../helpers/firebase'
 import Dropzone from "react-dropzone";
-import { PhotographIcon } from "@heroicons/react/outline";
 import axios from 'axios'
 import { useStateValue } from '../../context/StateProvier'
 import { apiUrl } from '../../helpers/apiUrl'
@@ -16,7 +15,7 @@ function Account() {
     const [firstname, setFirstmame] = useState('')
     const [picture, setPicture] = useState(null);
     const [lastname, setLastname] = useState('')
-    const [email, setEmail] = useState('')
+    // const [email, setEmail] = useState('')
     const [address, setAddress] = useState('')
     const [city, setCity] = useState('')
     const [country, setCountry] = useState('')
@@ -40,7 +39,7 @@ function Account() {
         };
         fileReader.readAsDataURL(uploadedFile);
         setIsPreviewAvailable(uploadedFile.name.match(/\.(jpeg|jpg|png)$/));
-      };
+    };
 
     useEffect(()=>{
         auth.onAuthStateChanged(auth_user=>{
@@ -67,6 +66,10 @@ function Account() {
                     user.updateProfile({
                         photoURL: url
                     })
+                    window.localStorage.setItem('daypitch_user', JSON.stringify({
+                        propic: url,
+                        username: user.displayName
+                    }))
                 })
             }
         )
@@ -74,34 +77,23 @@ function Account() {
 
     const editDetails = (e) =>{
         e.preventDefault()
-        // console.log(firstname)
-        // console.log(lastname)
-        // console.log(email)
-        // console.log(address)
-        // console.log(city)
-        // console.log(country)
-        // console.log(username)
-        // console.log(token)
-
-        axios.patch(`${apiUrl}/user/edit/${user?.uid}`,{},{
+        axios.patch(`${apiUrl}/user/edit/${user?.uid}`,{
+            username: username,
+            lastname: lastname,
+            firstname: firstname,
+            city: city,
+            address: address,
+            country: country,
+            // email: email
+        },{
             headers: {
                 authorization : token
             }
+        }).then(res=>{
+            console.log(res)
+        }).catch(err=>{
+            console.log(err)
         })
-
-        // ,{
-        //     firstname: firstname,
-        //     lastname: lastname,
-        //     email: email,
-        //     username: username,
-        //     city: city, 
-        //     country: country,
-        //     address: address
-        // }).then(res=>{
-        //     console.log(res)
-        // }).catch(err=>{
-        //     console.log(err)
-        // },
     }
 
     return (
@@ -111,7 +103,7 @@ function Account() {
                 
                 {/* //edit picture */}
                 <div className="flex flex-row self-center items-end pb-16">
-                    <div className="self-center h-28 w-28 bg-gray-200 rounded-full overflow-hidden border border-gray-300">
+                    <div className="self-center h-24 w-24 bg-gray-200 rounded-full overflow-hidden border border-gray-300">
                         <img src={user?.photoURL ? user?.photoURL : image} alt="w-auto" />
                     </div>
                     {/* <span className="cursor-pointer">
@@ -168,7 +160,7 @@ function Account() {
                     )}
                 </div>
 
-                {/* //edit email part */}
+                {/* //edit username part */}
                 <div className="w-full pb-8">
                     <span className="flex flex-col">
                         <label htmlFor="username" className="text-gray-500 text-sm pb-2 font-semibold">Username/Businessname</label>
@@ -177,7 +169,7 @@ function Account() {
                             id='username' 
                             className="border border-blue-300 outline-none rounded-sm p-2 bg-gray-50"
                             onChange={e=> setUsername(e.target.value)}
-                            placeholder={`tatendaZw`}
+                            placeholder={`Username`}
                         />
                     </span>
                 </div>
@@ -207,7 +199,7 @@ function Account() {
                 </div>
 
                 {/* //edit email part */}
-                <div className="w-full pb-8">
+                {/* <div className="w-full pb-8">
                     <span className="flex flex-col">
                         <label htmlFor="email" className="text-gray-500 text-sm pb-2 font-semibold">Email</label>
                         <input 
@@ -218,7 +210,7 @@ function Account() {
                             placeholder={`${user?.email}`}
                         />
                     </span>
-                </div>
+                </div> */}
 
                 {/* //edit address part */}
                 <div className="w-full pb-8">

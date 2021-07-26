@@ -8,7 +8,7 @@ function HomeLayout({children}) {
             <div className="fixed w-full top-0 z-50">
                 <HomeNavbar/>
             </div>
-            <div className="min-h-screen bg-gray-50">
+            <div className="min-h-screen bg-gray-50 pb-8">
                 {children}
             </div>
             <div className="footer">

@@ -3,18 +3,22 @@ import HomeLayout from '../../layouts/HomeLayout/HomeLayout'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import Tags from '../../components/tags/Tags'
+import { useStateValue } from '../../context/StateProvier'
+import axios from 'axios'
+import { apiUrl } from '../../helpers/apiUrl'
+import { useEffect } from 'react'
 
 const categories = [
-    { name: 'Wade Cooper' },
-    { name: 'Arlene Mccoy' },
-    { name: 'Devon Webb' },
-    { name: 'Tom Cook' },
-    { name: 'Tanya Fox' },
-    { name: 'Hellen Schmidt' },
+    { name: 'Programming and tech' },
+    { name: 'Writing & translation' },
+    { name: 'video and animation' },
+    { name: 'graphocs and design' },
+    { name: 'home and living' },
+    { name: 'budiness' },
+    { name: 'vehicle and transportation'}
   ]
 
-function BecomeASeller() {
-   
+function BecomeASeller() {   
 
     //input values
     const [description, setDescription] = useState('')
@@ -23,23 +27,43 @@ function BecomeASeller() {
     const [school, setSchool] = useState('')
     const [pricerange, setPriceRange] = useState('')
     const [selected, setSelected] = useState(categories[0])
-
+    const [{token}] = useStateValue()
+    const [loading, setLoading] = useState(false)
 
 
     const selectedTags = (tags) => {
         setCatTags(tags)
     }
 
-    // console.log(selected)
-
     const create_user_profile = (e) =>{
         e.preventDefault()
-        console.log(catTags)
-        console.log(description)
-        console.log(selected.name)
-        console.log(level)
-        console.log(school)
-        console.log(pricerange)
+        // console.log(catTags)
+        // console.log(description)
+        // console.log(selected.name)
+        // console.log(level)
+        // console.log(school)
+        // console.log(pricerange)
+        setLoading(true)
+        
+        axios.post(`${apiUrl}/service/create`,{
+            description,
+            tags: catTags,
+            school_level: level,
+            school_attended: school,
+            price_range: pricerange,
+            category: selected.name
+        },{
+            headers: {
+                authorization: token
+            }
+        }).then(res=>{
+            setLoading(false)
+            console.log(res)
+        }).catch(err=>{
+            setLoading(false)
+            console.log(err)
+        })
+
     }
 
     return (
@@ -186,7 +210,11 @@ function BecomeASeller() {
                {/* //create profile button */}
                <div className="flex flex-col lg:w-2/5 md:w-2/3 w-full items-center mt-8">
                     <div className="flex flex-col self-center bg-gray-50 w-full">
-                        <span onClick={create_user_profile} className="capitalize bg-blue-900 p-2 text-white rounded-sm text-center cursor-pointer hover:bg-blue-800">Create My Profile</span>
+                        {
+                            loading ? (<p className="capitalize bg-blue-900 p-2 text-white rounded-sm text-center opacity-75 hover:bg-blue-800">Loading ...</p>) : (
+                                <span onClick={create_user_profile} className="capitalize bg-blue-900 p-2 text-white rounded-sm text-center cursor-pointer hover:bg-blue-800">Create My Profile</span>
+                            )
+                        }
                     </div>
                </div>
            </div>

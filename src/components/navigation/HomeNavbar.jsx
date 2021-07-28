@@ -146,11 +146,14 @@ function HomeNavbar() {
                                                                 <>
                                                                     {
                                                                         JSON.parse(user_info)?.propic ? (
-                                                                            <img
-                                                                                className="h-12 w-12 rounded-full bg-gray-300"
-                                                                                src={JSON.parse(user_info)?.propic}
-                                                                                alt="propic"
-                                                                            />
+                                                                            <>
+                                                                                <img
+                                                                                    className="h-12 w-12 rounded-full bg-gray-300"
+                                                                                    src={JSON.parse(user_info)?.propic}
+                                                                                    alt="profile"
+                                                                                />
+                                                                                {/* <p>{JSON.parse(user_info)?.propic}</p> */}
+                                                                            </>
                                                                         ) : (
                                                                             <UserCircleIcon width={40} height={40} className="text-gray-600 font-light" />
                                                                         )

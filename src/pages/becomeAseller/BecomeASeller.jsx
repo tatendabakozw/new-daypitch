@@ -6,7 +6,6 @@ import Tags from '../../components/tags/Tags'
 import { useStateValue } from '../../context/StateProvier'
 import axios from 'axios'
 import { apiUrl } from '../../helpers/apiUrl'
-import { useEffect } from 'react'
 
 const categories = [
     { name: 'Programming and tech' },
@@ -29,7 +28,6 @@ function BecomeASeller() {
     const [selected, setSelected] = useState(categories[0])
     const [{token}] = useStateValue()
     const [loading, setLoading] = useState(false)
-
 
     const selectedTags = (tags) => {
         setCatTags(tags)
@@ -58,12 +56,17 @@ function BecomeASeller() {
             }
         }).then(res=>{
             setLoading(false)
+            // console.log(res.data)
+            axios.patch(`${apiUrl}/user/edit/seller/${res.data.user.firebase_uid}`,{
+                role: 'seller'
+            }).then(res2=>{
+                console.log(res2)
+            })
             console.log(res)
         }).catch(err=>{
             setLoading(false)
             console.log(err)
         })
-
     }
 
     return (

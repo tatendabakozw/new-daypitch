@@ -87,7 +87,7 @@ function HomeNavbar() {
                                             </span>
                                         </div> */}
                                         {
-                                            JSON.parse(user_info).role === 'buyer' ? (
+                                            JSON.parse(user_info)?.role === 'buyer' ? (
                                                 <div className="flex space-x-4">
                                                     {nav_options.BuyerAuthenticatedNavigation.map((item) => (
                                                         <Link to={item.href}

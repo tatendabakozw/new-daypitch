@@ -9,6 +9,7 @@ import {nav_options} from '../../helpers/nav_options'
 import Text from '../Text/Text'
 import { useStateValue } from '../../context/StateProvier'
 import { useEffect } from 'react'
+import { auth } from '../../helpers/firebase'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -33,7 +34,6 @@ function HomeNavbar() {
 
     const logout = (e) => {
         e.preventDefault()
-        localStorage.removeItem('daypitch_user_auth')
         window.localStorage.removeItem('daypitch_user_auth') 
         window.localStorage.removeItem('daypitch_user')
         dispatch({
@@ -43,6 +43,7 @@ function HomeNavbar() {
         setTimeout(() => {
             history.push('/')
         }, 1500);
+        auth.signOut()
     }
 
     useEffect(()=>{

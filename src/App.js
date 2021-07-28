@@ -10,6 +10,7 @@ import Register from './pages/auth/Register'
 import BecomeASeller from './pages/becomeAseller/BecomeASeller'
 import Home from './pages/Home/Home'
 import HowItWorks from './pages/howitworks/HowItWorks'
+import MyJobs from './pages/my_jobs/MyJobs'
 import NotFound from './pages/notfound/NotFound'
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
+        <Route exact path="/jobs" component={MyJobs} />
         <Route exact path="/becomeaseller" component={BecomeASeller} />
         <Route exact path="/account" component={Account} />
         <Route exact path="/howitworks" component={HowItWorks} />

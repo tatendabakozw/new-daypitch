@@ -6,9 +6,9 @@ export const nav_options = {
       ],
       
     SellerAuthenticatedNavigation : [
-        { name: 'Explore Sellers', href: '/explore', current: false },
+        // { name: 'Find Work', href: '/work', current: false },
         { name: 'Messages', href: '/chat', current: true },
-        { name: 'Dashboard', href: '/dashboard', current: true },
+        { name: 'My Jobs', href: '/jobs', current: true },
       
       ],
       

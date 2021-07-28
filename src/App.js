@@ -1,6 +1,8 @@
+import axios from 'axios'
 import React, { useEffect } from 'react'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import { useStateValue } from './context/StateProvier'
+import { apiUrl } from './helpers/apiUrl'
 import { auth } from './helpers/firebase'
 import Account from './pages/account/Account'
 import Login from './pages/auth/Login'
@@ -27,6 +29,16 @@ function App() {
             token: token
           })
           // console.log(token)
+        })
+        axios.get(`${apiUrl}/user/get/${userCred.uid}`).then(res=>{
+          console.log(res)
+          window.localStorage.setItem('daypitch_user', JSON.stringify({
+            username: userCred.displayName,
+            propic: userCred.photoURL,
+            role: res.data.user.role
+          }))
+        }).catch(err=>{
+          console.log(err)
         })
       }
     })

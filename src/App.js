@@ -8,6 +8,7 @@ import Account from './pages/account/Account'
 import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
 import BecomeASeller from './pages/becomeAseller/BecomeASeller'
+import ExploreSellers from './pages/explore/ExploreSellers'
 import Home from './pages/Home/Home'
 import HowItWorks from './pages/howitworks/HowItWorks'
 import MyJobs from './pages/my_jobs/MyJobs'
@@ -48,6 +49,7 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
+        <Route exact path="/explore" component={ExploreSellers} />
         <Route exact path="/jobs" component={MyJobs} />
         <Route exact path="/becomeaseller" component={BecomeASeller} />
         <Route exact path="/account" component={Account} />

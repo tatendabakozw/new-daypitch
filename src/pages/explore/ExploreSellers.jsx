@@ -2,9 +2,26 @@ import React, { useState } from 'react'
 import HomeLayout from '../../layouts/HomeLayout/HomeLayout'
 import {SearchIcon, ViewGridIcon} from '@heroicons/react/outline'
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
+import ExploreGridItem from '../../components/Exploreseller/ExploreGridItem'
+
 
 function ExploreSellers() {
     const [grid_view, setGridView] = useState(false)
+
+    const [all_services, setAllServices] = useState()
+
+    const services =[
+        {
+            businessname: 'devbako',
+            rating: '4.5',
+            price: '60',
+            tags: ['react', 'node.js', 'mongoose', 'web development'],
+            id: '1',
+            propic: '../../images/tatenda.jpg',
+            category: 'Programming and tech',
+            verified: true
+        }
+    ]
 
     return (
         <HomeLayout>
@@ -31,6 +48,22 @@ function ExploreSellers() {
                                 onClick={()=> setGridView(false)} 
                                 className={`${grid_view ? "text-gray-500" : "text-blue-500" } mr-4 cursor-pointer`} />
                         </div>
+                    </div>
+                    <div className="sellers grid grid-cols-2 gap-16 items-center">
+                        {
+                            services.map(service=>(
+                                <ExploreGridItem 
+                                    className="col-span-1"
+                                    verified={service.verified}
+                                    category={service.category}
+                                    price={service.price}
+                                    rating={service.rating}
+                                    tags={service.tags}
+                                    propic={service.propic}
+                                    businessname={service.businessname}
+                                    />
+                            ))
+                        }
                     </div>
                 </div>
             </div>

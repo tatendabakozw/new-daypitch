@@ -28,6 +28,7 @@ function BecomeASeller() {
     const [selected, setSelected] = useState(categories[0])
     const [{token}] = useStateValue()
     const [loading, setLoading] = useState(false)
+    const loggedInUser = localStorage.getItem('daypitch_user')
 
     const selectedTags = (tags) => {
         setCatTags(tags)
@@ -49,7 +50,9 @@ function BecomeASeller() {
             school_level: level,
             school_attended: school,
             price_range: pricerange,
-            category: selected.name
+            category: selected.name,
+            username: JSON.parse(loggedInUser)?.username,
+            picture: JSON.parse(loggedInUser)?.propic
         },{
             headers: {
                 authorization: token

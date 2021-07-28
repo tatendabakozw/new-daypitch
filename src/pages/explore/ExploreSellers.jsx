@@ -3,12 +3,29 @@ import HomeLayout from '../../layouts/HomeLayout/HomeLayout'
 import {SearchIcon, ViewGridIcon} from '@heroicons/react/outline'
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 import ExploreGridItem from '../../components/Exploreseller/ExploreGridItem'
+import axios from 'axios';
+import { apiUrl } from '../../helpers/apiUrl';
+import { useEffect } from 'react';
 
 
 function ExploreSellers() {
     const [grid_view, setGridView] = useState(false)
+    const [skip, setSkip] = useState(0);
+    const [limit, setLimit] = useState(8);
 
     const [all_services, setAllServices] = useState()
+
+    useEffect(()=>{
+        axios.post(`${apiUrl}/service/get/all`,{
+            skip: skip,
+            limit: limit
+        }).then(res=>{
+            console.log(res.data)
+            setAllServices(res.data.services)
+        }).catch(err=>{
+            console.log(err)
+        })
+    },[])
 
     const services =[
         {
@@ -49,19 +66,24 @@ function ExploreSellers() {
                                 className={`${grid_view ? "text-gray-500" : "text-blue-500" } mr-4 cursor-pointer`} />
                         </div>
                     </div>
-                    <div className="sellers grid grid-cols-2 gap-16 items-center">
+                    <div className="sellers grid md:grid-cols-2 grid-cols-1 gap-16 items-center">
                         {
-                            services.map(service=>(
-                                <ExploreGridItem 
+                            all_services?.map(service=>(
+                                <div key={service._id}>
+                                    <ExploreGridItem 
+                                    key={service._id}
                                     className="col-span-1"
                                     verified={service.verified}
                                     category={service.category}
-                                    price={service.price}
+                                    price={service.price_range}
                                     rating={service.rating}
                                     tags={service.tags}
-                                    propic={service.propic}
-                                    businessname={service.businessname}
-                                    />
+                                    propic={service.picture}
+                                    businessname={service.username}
+                                    description={service.description}
+                                    id={service._id}
+                                />
+                                </div>
                             ))
                         }
                     </div>

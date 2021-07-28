@@ -33,7 +33,7 @@ function App() {
           // console.log(token)
         })
         axios.get(`${apiUrl}/user/get/${userCred.uid}`).then(res=>{
-          console.log(res)
+          // console.log(res)
           window.localStorage.setItem('daypitch_user', JSON.stringify({
             username: userCred.displayName,
             propic: userCred.photoURL,

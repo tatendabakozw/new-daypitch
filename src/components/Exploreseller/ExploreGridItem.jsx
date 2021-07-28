@@ -10,7 +10,7 @@ import { HeartIcon as FavoriteBorderIcon } from '@heroicons/react/solid'
 function ExploreGridItem({className, verified, category, price, rating, tags, propic, businessname, id}) {
     const [save, setSaved] = useState(false)
     return (
-        <div className={`${className } flex flex-col rounded-sm overflow-hidden shadow cursor-pointer bg-white`}>
+        <div className={`${className } flex flex-col rounded-sm overflow-hidden shadow cursor-pointer bg-white border border-gray-200`}>
             <div className="picture bg-white rounded-b-none rounded-t-sm p-4 h-40 flex flex-col items-center">
                 <img
                     className="inline-block rounded-full ring-2 ring-white bg-gray-50"

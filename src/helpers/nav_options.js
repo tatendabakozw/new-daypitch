@@ -1,7 +1,7 @@
 export const nav_options = {
     navigation : [
         { name: 'Explore Sellers', href: '/explore', current: false },
-        { name: 'How It Works', href: '/howitworks', current: false },
+        { name: 'About', href: '/howitworks', current: false },
         { name: 'Sign In', href: '/login', current: false },
       ],
       

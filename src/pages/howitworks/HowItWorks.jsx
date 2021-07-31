@@ -2,7 +2,7 @@ import React from 'react'
 import search from '../../images/search.svg'
 import referal from '../../images/referal.svg'
 import analytics from '../../images/analytics.svg'
-import location from '../../images/location.svg'
+import location from '../../images/choose.svg'
 import future from '../../images/future.svg'
 import HomeLayout from '../../layouts/HomeLayout/HomeLayout'
 
@@ -39,12 +39,12 @@ function HowItWorks() {
                             business and profession so you can be connected to people who are interested in your services </p>
                         </div>
                         <div className="roight col-span-1 items-center mx-auto">
-                            <img src={future} alt="ffsvg" className="w-48" />
+                            <img src={future} alt="ffsvg" className="w-72" />
                         </div>
                     </div>
                     <div className="1 grid md:grid-cols-2 grid-cols-1 items-center gap-24">
                         <div className="left col-span-1 mx-auto">
-                            <img src={location} alt="search_svg" className="w-48" />
+                            <img src={location} alt="search_svg" className="w-72" />
                         </div>
                         <div className="roight col-span-1">
                             <p className="font-semibold text-gray-800 dark:text-gray-300 mb-8">Choice</p>

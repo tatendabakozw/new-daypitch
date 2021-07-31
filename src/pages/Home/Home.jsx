@@ -1,6 +1,6 @@
 import React from 'react'
 import HomeLayout from '../../layouts/HomeLayout/HomeLayout'
-import person from '../../images/nomad2.svg'
+import person from '../../images/nomad3.svg'
 import HomeSearch from '../../components/HomeSearch/HomeSearch'
 import Stars from '../../components/banner/Stars'
 import first from '../../images/homeBuy.svg'
@@ -53,7 +53,7 @@ function Home() {
                                 </clipPath>
                             </defs>
                             <g clip-path="url(#shape)">
-                                <path fill="#1E40AF" d="M713.5,593.5Q723,687,637,737.5Q551,788,442,788.5Q333,789,292.5,689.5Q252,590,178.5,473Q105,356,220,285Q335,214,457.5,131Q580,48,710,131.5Q840,215,772,357.5Q704,500,713.5,593.5Z" />
+                                <path fill="#1E3A8A" d="M713.5,593.5Q723,687,637,737.5Q551,788,442,788.5Q333,789,292.5,689.5Q252,590,178.5,473Q105,356,220,285Q335,214,457.5,131Q580,48,710,131.5Q840,215,772,357.5Q704,500,713.5,593.5Z" />
                             </g>
                         </svg>
                     </div>

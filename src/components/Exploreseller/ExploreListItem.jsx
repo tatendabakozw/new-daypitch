@@ -1,15 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, Fragment } from 'react'
 import {
     StarIcon as StarRateIcon,
     ThumbUpIcon, HeartIcon as FavoriteIcon,
     UserCircleIcon
 } from '@heroicons/react/outline'
 import { HeartIcon as FavoriteBorderIcon } from '@heroicons/react/solid'
+import { Dialog, Transition } from '@headlessui/react'
 
 function ExploreListItem({className, verified, category, price, rating, tags, propic, businessname, id, description}) {
     const [save, setSaved] = useState(false)
     return (
-        <div className="bg-white rounded-sm md:px-8 px-4 py-4 justify-between items-center w-4/5 self-center shadow mb-4">
+        <span className="bg-white rounded-sm md:px-8 px-4 py-4 justify-between items-center w-full self-center shadow mb-4 cursor-pointer">
             <div className="flex flex-row items-center justify-between mb-8">
                 <div className="flex flex-row items-center mr-2">
                     <img
@@ -55,7 +56,7 @@ function ExploreListItem({className, verified, category, price, rating, tags, pr
                 ))}
 
             </div>
-        </div>
+        </span>
     )
 }
 

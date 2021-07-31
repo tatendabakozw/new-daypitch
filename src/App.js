@@ -13,6 +13,7 @@ import Home from './pages/Home/Home'
 import HowItWorks from './pages/howitworks/HowItWorks'
 import MyJobs from './pages/my_jobs/MyJobs'
 import NotFound from './pages/notfound/NotFound'
+import Upgrade from './pages/upgrade/Upgrade'
 
 function App() {
   const [{token}, dispatch] = useStateValue()
@@ -50,6 +51,7 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route exact path="/explore" component={ExploreSellers} />
+        <Route exact path="/upgrade" component={Upgrade} />
         <Route exact path="/jobs" component={MyJobs} />
         <Route exact path="/becomeaseller" component={BecomeASeller} />
         <Route exact path="/account" component={Account} />

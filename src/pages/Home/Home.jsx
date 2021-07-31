@@ -1,6 +1,6 @@
 import React from 'react'
 import HomeLayout from '../../layouts/HomeLayout/HomeLayout'
-import person from '../../images/Daypitch31.png'
+import person from '../../images/nomad2.svg'
 import HomeSearch from '../../components/HomeSearch/HomeSearch'
 import Stars from '../../components/banner/Stars'
 import first from '../../images/homeBuy.svg'
@@ -34,13 +34,13 @@ function Home() {
                     </div>
 
                     <div className="col-span-1 overflow-hidden">
-                        <div className="absolute md:flex z-20 hidden bottom-0 right-0">
+                        <div className="absolute z-20 bottom-0 right-0">
                             <img src={person} alt='first' className="lg:max-h-[500px] md:max-h-[400] max-h-[250px]" />
                         </div>
                     </div>
 
 
-                    <div className="blob md:block hidden absolute opacity-75 z-0 top-0 right-0">
+                    <div className="blob md:block hidden absolute z-0 top-0 right-0">
                         <svg
                             width="900"
                             height="900"
@@ -57,7 +57,7 @@ function Home() {
                             </g>
                         </svg>
                     </div>
-                    <div className="blob md:hidden block absolute opacity-75 z-0 top-0 right-0">
+                    <div className="blob md:hidden block absolute z-0 top-0 right-0">
                         <svg
                             width="700"
                             height="800"

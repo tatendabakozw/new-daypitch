@@ -34,9 +34,9 @@ function HowItWorks() {
                 <div className="below min-h-screen">
                     <div className="1 grid md:grid-cols-2 grid-cols-1 md:mb-32 mb-16 items-center gap-24">
                         <div className="left col-span-1">
-                            <p className="font-semibold text-gray-800 dark:text-gray-300 mb-8">Feature</p>
-                            <p className="text-gray-700 dark:text-gray-500">Having a place to properly choose your local professionals in your area is a great advantage.
-                                So just search area, category and range u want for your services </p>
+                            <p className="font-semibold text-gray-800 dark:text-gray-300 mb-8">Market</p>
+                            <p className="text-gray-700 dark:text-gray-500">You also have a free platform to market and advertise your 
+                            business and profession so you can be connected to people who are interested in your services </p>
                         </div>
                         <div className="roight col-span-1 items-center mx-auto">
                             <img src={future} alt="ffsvg" className="w-48" />
@@ -47,7 +47,7 @@ function HowItWorks() {
                             <img src={location} alt="search_svg" className="w-48" />
                         </div>
                         <div className="roight col-span-1">
-                            <p className="font-semibold text-gray-800 dark:text-gray-300 mb-8">Feature</p>
+                            <p className="font-semibold text-gray-800 dark:text-gray-300 mb-8">Choice</p>
                             <p className="text-gray-700 dark:text-gray-500">Having a place to properly choose your local professionals in your area is a great advantage.
                                 So just search area, category and range u want for your services </p>
                         </div>

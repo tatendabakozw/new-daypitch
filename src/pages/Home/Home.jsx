@@ -106,7 +106,7 @@ function Home() {
                 </div>
 
                 {/* // category loading */}
-                <div className="md:pt-16 md:px-16 pt-4 px-4 z-20 flex flex-col">
+                {/* <div className="md:pt-16 md:px-16 pt-4 px-4 z-20 flex flex-col">
                     <p className="text-gray-700 dark:text-gray-400 text-3xl pb-8 self-center font-semibold z-20">Categories</p>
                         <>
                             <div className="md:grid hidden md:grid-cols-5 grid-col-2 gap-8">
@@ -124,7 +124,7 @@ function Home() {
                         </>
 
                     <div className="absolute top-0 right-0 bg-gradient-to-l from-gray-50 dark:from-gray-800 h-10 w-3/12" />
-                </div >
+                </div > */}
 
                 {/* // paying boxes */}
                 <div className="flex flex-col items-center md:pt-16 md:px-16 pt-4 px-4 z-20 pb-16">

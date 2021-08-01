@@ -10,6 +10,8 @@ import { apiUrl } from '../../helpers/apiUrl';
 import { useEffect } from 'react';
 import ExploreListItem from '../../components/Exploreseller/ExploreListItem';
 import { useSelector } from 'react-redux';
+import {UserCircleIcon} from '@heroicons/react/solid'
+import { useHistory } from 'react-router-dom';
 
 const filter_price = [
     { name: 'High To Low' },
@@ -35,6 +37,7 @@ function ExploreSellers() {
     const [all_services, setAllServices] = useState()
     const userSignin = useSelector(state=> state.userCredsSignIn)
     const {userInfo} = userSignin 
+    const history = useHistory()
 
     //filter items
     const [selected_category, setSelecCategory] = useState('category')
@@ -281,8 +284,16 @@ function ExploreSellers() {
                                 <span className="bg-blue-900 text-sm p-2 text-white text-center w-2/3 hover:bg-blue-800 cursor-pointer">Upgrade account</span>
                             </div>
                         ):(
-                            <div>
-                                <p>Login</p>
+                            <div className="flex flex-col">
+                                <div className="flex flex-row items-center mb-8">
+                                    <div className="rounded-full overflow-hidden mr-2">
+                                        <UserCircleIcon className="text-gray-600" height={40} width={40} />
+                                    </div>
+                                    <p className="text-gray-700 font-semibold">You are not logged in</p>
+                                </div>
+                                <div className="grid items-center w-full border border-gray-200 p-16 content-center rounded-lg">
+                                    <span onClick={() => history.push('/login')} className="text-center bg-blue-900 text-white p-2 text-sm rounded cursor-pointer hover:bg-blue-800">Login</span>
+                                </div>
                             </div>
                         )
                     }

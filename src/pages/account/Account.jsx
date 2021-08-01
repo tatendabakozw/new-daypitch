@@ -5,9 +5,9 @@ import image from '../../images/man.png'
 import { auth, storage } from '../../helpers/firebase'
 import Dropzone from "react-dropzone";
 import axios from 'axios'
-import { useStateValue } from '../../context/StateProvier'
 import { apiUrl } from '../../helpers/apiUrl'
 import { Dialog, Transition } from '@headlessui/react'
+import { useSelector } from 'react-redux'
 
 
 function Account() {
@@ -21,7 +21,9 @@ function Account() {
     const [country, setCountry] = useState('')
     const [username, setUsername] = useState('')
     const [user, setUser] = useState()
-    const [{token}] = useStateValue()
+
+    const userSignin = useSelector(state=> state.userCredsSignIn)
+    const {userInfo} = userSignin 
 
     //for image picking
     const [previewSrc, setPreviewSrc] = useState("");
@@ -98,7 +100,7 @@ function Account() {
             // email: email
         },{
             headers: {
-                authorization : token
+                authorization : userInfo?.credential?.oauthIdToken
             }
         }).then(res=>{
             console.log(res)
@@ -160,7 +162,7 @@ function Account() {
                             {
                                 profile_progress < 100 ? 'uploading...' : (<span
                                     onClick={changeProPic} 
-                                    className="bg-blue-900 p-1 text-sm cursor-pointer hover:bg-blue-800 rounded-sm text-white text-center">save image</span>)
+                                    className="bg-blue-900 p-1 text-sm cursor-pointer hover:bg-blue-800 rounded-lg text-white text-center">save image</span>)
                             }
                         </div>
                         ) : (
@@ -182,7 +184,7 @@ function Account() {
                         <input 
                             type="text" 
                             id='username' 
-                            className="border border-blue-300 outline-none rounded-sm p-2 bg-gray-50"
+                            className="border border-blue-300 outline-none rounded-lg p-2 bg-gray-50"
                             onChange={e=> setUsername(e.target.value)}
                             placeholder={`Username`}
                         />
@@ -196,7 +198,7 @@ function Account() {
                         <input 
                             type="text" 
                             id='firstname' 
-                            className="border border-blue-300 outline-none rounded-sm p-2 bg-gray-50"
+                            className="border border-blue-300 outline-none rounded-lg p-2 bg-gray-50"
                             onChange={e=> setFirstmame(e.target.value)}
                             placeholder={`Tatenda`}
                         />
@@ -206,7 +208,7 @@ function Account() {
                         <input 
                             type="text" 
                             id='lastname' 
-                            className="border border-blue-300 outline-none rounded-sm p-2 bg-gray-50"
+                            className="border border-blue-300 outline-none rounded-lg p-2 bg-gray-50"
                             onChange={e=> setLastname(e.target.value)}
                             placeholder={`Bako`}
                         />
@@ -220,7 +222,7 @@ function Account() {
                         <input 
                             type="text" 
                             id='email' 
-                            className="border border-blue-300 outline-none rounded-sm p-2 bg-gray-50"
+                            className="border border-blue-300 outline-none rounded-lg p-2 bg-gray-50"
                             onChange={e=> setEmail(e.target.value)}
                             placeholder={`${user?.email}`}
                         />
@@ -234,7 +236,7 @@ function Account() {
                         <input 
                             type="text" 
                             id='address' 
-                            className="border border-blue-300 outline-none rounded-sm p-2 bg-gray-50"
+                            className="border border-blue-300 outline-none rounded-lg p-2 bg-gray-50"
                             onChange={e=> setAddress(e.target.value)}
                             placeholder={`15002 Zengeza 3 Extension, Chitungwiza`}
                         />
@@ -248,7 +250,7 @@ function Account() {
                         <input 
                             type="text" 
                             id='city' 
-                            className="border border-blue-300 outline-none rounded-sm p-2 bg-gray-50"
+                            className="border border-blue-300 outline-none rounded-lg p-2 bg-gray-50"
                             onChange={e=> setCity(e.target.value)}
                             placeholder={`Harare`}
                         />
@@ -258,7 +260,7 @@ function Account() {
                         <input 
                             type="text" 
                             id='country' 
-                            className="border border-blue-300 outline-none rounded-sm p-2 bg-gray-50"
+                            className="border border-blue-300 outline-none rounded-lg p-2 bg-gray-50"
                             onChange={e=> setCountry(e.target.value)}
                             placeholder={`Zimbabwe`}
                         />
@@ -269,7 +271,7 @@ function Account() {
                     <span className="flex flex-col">
                         <button 
                             onClick={editDetails}
-                            className="border-none bg-blue-900 hover:bg-blue-800 cursor-pointer outline-none rounded-sm p-2 text-white"
+                            className="border-none bg-blue-900 hover:bg-blue-800 cursor-pointer outline-none rounded-lg p-2 text-white"
                         >Save</button>
                     </span>
                 </div>
@@ -279,7 +281,7 @@ function Account() {
                     <span className="flex flex-col">
                         <button 
                             onClick={openDeleteModal}
-                            className="border-none bg-red-500 hover:bg-red-600 cursor-pointer outline-none rounded-sm p-2 text-white"
+                            className="border-none bg-red-500 hover:bg-red-600 cursor-pointer outline-none rounded-lg p-2 text-white"
                         >Delete Account</button>
                     </span>
                     <>
@@ -318,7 +320,7 @@ function Account() {
                                 leaveFrom="opacity-100 scale-100"
                                 leaveTo="opacity-0 scale-95"
                                 >
-                                    <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-3xl rounded-sm border border-gray-200">
+                                    <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-3xl rounded-lg border border-gray-200">
                                         <Dialog.Title
                                             as="h3"
                                             className="text-lg font-medium leading-6 text-gray-900"
@@ -334,14 +336,14 @@ function Account() {
                                         <div className="mt-4">
                                             <button
                                                 type="button"
-                                                className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 mr-4 border border-transparent rounded-sm hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                                                className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 mr-4 border border-transparent rounded-lg hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
                                                 onClick={closeDelteModal}
                                             >
                                                 Cancel
                                             </button>
                                             <button
                                                 type="button"
-                                                className="inline-flex justify-center px-4 py-2 text-sm font-medium text-red-900 bg-red-100 border border-transparent rounded-sm hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
+                                                className="inline-flex justify-center px-4 py-2 text-sm font-medium text-red-900 bg-red-100 border border-transparent rounded-lg hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
                                                 onClick={deleteAccount}
                                             >
                                                 Delete my account!

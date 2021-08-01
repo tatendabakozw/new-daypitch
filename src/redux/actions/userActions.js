@@ -13,7 +13,7 @@ var provider = new firebase.auth.GoogleAuthProvider();
 //login with credentials
 export const loginWithCred = (email, password) => (dispatch) =>{
     dispatch({
-        type: LOGIN_USER_REQUEST, payload: {email, password}
+        type: LOGIN_USER_REQUEST
     })
     auth.signInWithEmailAndPassword(email, password).then(res=>{
         dispatch({

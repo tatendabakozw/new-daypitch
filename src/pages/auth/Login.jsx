@@ -27,12 +27,6 @@ function  Login() {
     const loginWithGoogle = (e) =>{
         e.preventDefault()
         dispatch(loginWithGoog())
-        if(!error){
-            setMsg('Login sucessful')
-            setTimeout(() => {
-                history.push('/explore')
-            },1500)
-        }
     }
 
     const dispatch = useDispatch()

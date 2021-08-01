@@ -5,8 +5,11 @@ import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import Tags from '../../components/tags/Tags'
 import axios from 'axios'
 import { apiUrl } from '../../helpers/apiUrl'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import AccountLayout from '../../layouts/AccountLayuot/AccountLayout'
+import { useEffect } from 'react'
+import { get_serviceAction } from '../../redux/actions/serviceActions'
+import { auth } from '../../helpers/firebase'
 
 const categories = [
     { name: 'Programming and tech' },
@@ -27,8 +30,12 @@ function BecomeASeller() {
     const [school, setSchool] = useState('')
     const [pricerange, setPriceRange] = useState('')
     const [selected, setSelected] = useState(categories[0])
-    const [loading, setLoading] = useState(false)
+    const [create_lodaing, setCreate_lodaing] = useState(false)
     const loggedInUser = localStorage.getItem('daypitch_user')
+    const dispatch = useDispatch()
+
+    const user_service = useSelector(state => state.getService)
+    const {loading, service} = user_service
 
     const userSignin = useSelector(state=> state.userCredsSignIn)
     const {userInfo} = userSignin 
@@ -45,7 +52,7 @@ function BecomeASeller() {
         // console.log(level)
         // console.log(school)
         // console.log(pricerange)
-        setLoading(true)
+        setCreate_lodaing(true)
         
         axios.post(`${apiUrl}/service/create`,{
             description,
@@ -61,7 +68,7 @@ function BecomeASeller() {
                 authorization: userInfo?.credential?.oauthIdToken
             }
         }).then(res=>{
-            setLoading(false)
+            setCreate_lodaing(false)
             // console.log(res.data)
             axios.patch(`${apiUrl}/user/edit/seller/${res.data.user.firebase_uid}`,{
                 role: 'seller'
@@ -70,10 +77,18 @@ function BecomeASeller() {
             })
             console.log(res)
         }).catch(err=>{
-            setLoading(false)
+            setCreate_lodaing(false)
             console.log(err)
         })
     }
+
+    useEffect(()=>{
+        auth?.currentUser?.getIdToken().then(res=>{
+            dispatch(get_serviceAction(res, userInfo?.user?.uid))
+        }).catch(err=>{
+            console.log(err)
+        })
+    },[dispatch])
 
     return (
         <HomeLayout>
@@ -220,8 +235,22 @@ function BecomeASeller() {
                <div className="flex flex-col w-full items-center mt-8">
                     <div className="flex flex-col self-center bg-gray-50 w-full">
                         {
-                            loading ? (<p className="capitalize bg-blue-900 p-2 text-white rounded-lg text-center opacity-75 hover:bg-blue-800">Loading ...</p>) : (
-                                <span onClick={create_user_profile} className="capitalize bg-blue-900 p-2 text-white rounded-lg text-center cursor-pointer hover:bg-blue-800">Create My Profile</span>
+                            service?.data?.error ? (
+                                <>
+                                    {
+                                        create_lodaing ? (<p className="capitalize bg-blue-900 p-2 text-white rounded-lg text-center opacity-75 hover:bg-blue-800">create_lodaing ...</p>) : (
+                                            <span onClick={create_user_profile} className="capitalize bg-blue-900 p-2 text-white rounded-lg text-center cursor-pointer hover:bg-blue-800">Create My Profile</span>
+                            )
+                                    }
+                                            </>
+                                        ):(
+                                            <>
+                                            {
+                                        create_lodaing ? (<p className="capitalize bg-blue-900 p-2 text-white rounded-lg text-center opacity-75 hover:bg-blue-800">create_lodaing ...</p>) : (
+                                            <span onClick={create_user_profile} className="capitalize bg-blue-900 p-2 text-white rounded-lg text-center cursor-pointer hover:bg-blue-800">Edit Profile</span>
+                                        )
+                                    }
+                                </>
                             )
                         }
                     </div>

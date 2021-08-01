@@ -16,9 +16,14 @@ const filter_price = [
 ]
 
 const categories = [
-    {name: 'programming and tech'},
-    {name: 'entertainment'}
-]
+    { name: 'Programming and tech' },
+    { name: 'Writing & translation' },
+    { name: 'video and animation' },
+    { name: 'graphics and design' },
+    { name: 'home and living' },
+    { name: 'budiness' },
+    { name: 'vehicle and transportation'}
+  ]
 
 function ExploreSellers() {
     const [grid_view, setGridView] = useState(false)
@@ -64,7 +69,7 @@ function ExploreSellers() {
                             <div className="bg-white z-30 mb-4">
                                 <Listbox value={selected} onChange={setSelected}>
                                     <div className="relative mt-1">
-                                    <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white rounded-lg border border-gray-300 focus:outline-none cursor-pointer sm:text-sm">
+                                    <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white rounded-sm border border-gray-300 focus:outline-none cursor-pointer sm:text-sm">
                                         <span className="block truncate">{selected.name}</span>
                                         <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                                         <SelectorIcon
@@ -79,7 +84,7 @@ function ExploreSellers() {
                                         leaveFrom="opacity-100"
                                         leaveTo="opacity-0"
                                     >
-                                        <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow border border-gray-300 max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                        <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-sm shadow border border-gray-300 max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                                         {filter_price.map((person, personIdx) => (
                                             <Listbox.Option
                                             key={personIdx}
@@ -128,7 +133,7 @@ function ExploreSellers() {
                                             <RadioGroup value={selected_category} onChange={setSelecCategory}>
                                             <RadioGroup.Label className="sr-only">Server size</RadioGroup.Label>
                                             <div className="space-y-2">
-                                                {categories?.categories?.map((category) => (
+                                                {categories?.map((category) => (
                                                 <RadioGroup.Option
                                                     key={category.name}
                                                     value={category}
@@ -144,7 +149,7 @@ function ExploreSellers() {
                                                             <div className="text-sm">
                                                             <RadioGroup.Label
                                                                 as="p"
-                                                                className={`text-sm font-medium ${
+                                                                className={`text-sm ${
                                                                 checked ? 'text-gray-900 font-semibold' : 'text-gray-500'
                                                                 }`}
                                                             >

@@ -185,9 +185,11 @@ function ExploreSellers() {
                     </div>
 
                 </div>
+
+                {/* //middle row */}
                 <div className="col-span-6 min-h-screen">
                     <div className="w-full flex flex-col">
-                        <div className="search bg-white flex flex-row items-center w-full rounded-sm border border-gray-200 overflow-hidden mb-8">
+                        <div className="search bg-white flex flex-row items-center w-full rounded-sm border border-gray-200 overflow-hidden mb-4">
                             <input 
                                 type="text" 
                                 className="bg-white border-none outline-none p-2 flex-1" 

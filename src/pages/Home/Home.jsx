@@ -156,7 +156,7 @@ const FreeComponent = ({ className }) => {
     const history = useHistory()
     return (
         <>
-            <div className={`${className} flex flex-col bg-blue-100 p-4 rounded-sm`}>
+            <div className={`${className} flex flex-col bg-blue-100 p-4 rounded-lg`}>
                 <p className="text-gray-800 font-semibold text-center mb-1">Free Tier</p>
                 <p className="text-gray-800 text-xl font-extrabold text-center mb-1"><sup className="font-semibold">$</sup> 0</p>
                 <p className="text-gray-500 text-xs text-center mb-4">Free for a lifetime</p>
@@ -180,7 +180,7 @@ const FreeComponent = ({ className }) => {
                     <p className="text-red-500 font-semibold">&#10006;</p>
                     <p className="">Free advertisement</p>
                 </span>
-                <button onClick={() => history.push('/register')} className="text-gray-50 bg-blue-800 mb-4 p-2 rounded-sm outline-none border-none w-56 text-sm">Try it out for free</button>
+                <button onClick={() => history.push('/register')} className="text-gray-50 bg-blue-800 mb-4 p-2 rounded-lg outline-none border-none w-56 text-sm">Try it out for free</button>
                 <small className="text-gray-500 text-center text-xs">No credit card needed</small>
             </div>
         </>
@@ -192,7 +192,7 @@ const PayComponent = ({ className }) => {
     const history = useHistory()
     return (
         <>
-            <div className={`${className} flex flex-col bg-yellow-100 p-4 rounded-sm`}>
+            <div className={`${className} flex flex-col bg-yellow-100 p-4 rounded-lg`}>
                 <p className="text-gray-800 font-semibold text-center mb-1">Payed Tier</p>
                 <p className="text-gray-800 text-xl font-extrabold text-center mb-1"><sup className="font-semibold">$</sup>9.99</p>
                 <p className="text-gray-500 text-xs text-center mb-4">Payed per month</p>
@@ -212,7 +212,7 @@ const PayComponent = ({ className }) => {
                     <p className="text-green-600 font-semibold">✓</p>
                     <p className="">Free advertisement</p>
                 </span>
-                <button onClick={() => history.push('/upgrade')} className="text-gray-50 bg-blue-800 mb-4 p-2 rounded-sm outline-none border-none w-56 text-sm">Try it out</button>
+                <button onClick={() => history.push('/upgrade')} className="text-gray-50 bg-blue-800 mb-4 p-2 rounded-lg outline-none border-none w-56 text-sm">Try it out</button>
                 <span className="text-gray-500 text-center self-center text-sm flex flex-row items-center">
                     <LockClosedIcon width={15} height={15} />
                     <p className="text-xs">Credit card info secured</p>

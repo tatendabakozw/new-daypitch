@@ -34,7 +34,7 @@ function Home() {
                     </div>
 
                     <div className="col-span-1 overflow-hidden">
-                        <div className="absolute z-20 md:bottom-0 -bottom-16 right-0 md:mt-0 mt-8">
+                        <div className="absolute z-20 md:bottom-0 md:opacity-100 opacity-80 -bottom-16 right-0 md:mt-0 mt-8">
                             <img src={person} alt='first' className="lg:max-h-[500px] md:max-h-[400] max-h-[250px]" />
                         </div>
                     </div>

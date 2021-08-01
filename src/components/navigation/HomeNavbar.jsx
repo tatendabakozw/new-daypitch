@@ -9,7 +9,7 @@ import {nav_options} from '../../helpers/nav_options'
 import Text from '../Text/Text'
 import { useStateValue } from '../../context/StateProvier'
 import { useEffect } from 'react'
-import { auth } from '../../helpers/firebase'
+import { useSelector } from 'react-redux'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -19,10 +19,9 @@ function HomeNavbar({off_background, on_background}) {
     const [navbaron, setNavbarOn] = useState(false)
     const [colorTheme, setTheme] = useDarkMode();
     const user_info = localStorage.getItem('daypitch_user')
+    const userSignin = useSelector(state=> state.userCredsSignIn)
+    const {userInfo} = userSignin 
 
-    const history = useHistory()
-    // eslint-disable-next-line
-    const [{}, dispatch] = useStateValue()
 
     const changeBackground = () => {
         if (window.scrollY >= 80) {
@@ -33,17 +32,6 @@ function HomeNavbar({off_background, on_background}) {
     }
 
     const logout = (e) => {
-        e.preventDefault()
-        window.localStorage.removeItem('daypitch_user_auth') 
-        window.localStorage.removeItem('daypitch_user')
-        dispatch({
-            type: 'SET_USER',
-            user: null
-        })
-        setTimeout(() => {
-            history.push('/')
-        }, 1500);
-        auth.signOut()
     }
 
     useEffect(()=>{
@@ -88,7 +76,7 @@ function HomeNavbar({off_background, on_background}) {
                                             </span>
                                         </div> */}
                                         {
-                                            JSON.parse(user_info)?.role === 'buyer' ? (
+                                            userInfo  ? (
                                                 <div className="flex space-x-4">
                                                     {nav_options.BuyerAuthenticatedNavigation.map((item) => (
                                                         <Link to={item.href}

@@ -7,9 +7,10 @@ import { useHistory } from 'react-router'
 import {Link } from 'react-router-dom'
 import { auth } from '../../helpers/firebase'
 import firebase from 'firebase'
-import { useStateValue } from '../../context/StateProvier'
 import axios from 'axios'
 import { apiUrl } from '../../helpers/apiUrl'
+import { useDispatch, useSelector } from 'react-redux'
+import { registerWithCred, registerWithGoog } from '../../redux/actions/userActions'
 var provider = new firebase.auth.GoogleAuthProvider();
 
 
@@ -23,82 +24,26 @@ function Register() {
     const [err, setErr] = useState('')
     const [msg, setMSg] = useState('')
     const history = useHistory()
+    const dispatch = useDispatch()
 
     // eslint-disable-next-line
-    const [{}, dispatch] = useStateValue()
+    // const [{}, dispatch] = useStateValue()
+    const userRegister = useSelector(state=> state.registerWithCreds)
+    let {loading, error, message} = userRegister
 
     const registerWithGoogle = (e) =>{
         e.preventDefault()
-            auth.signInWithPopup(provider).then(auth_user=>{
-                if(auth_user){
-                    if(auth_user.additionalUserInfo.isNewUser){
-                        setMSg('Account created Sucessfully')
-                        dispatch({
-                            type: 'SET_USER',
-                            user: 'daypitch_user_logged_in'
-                        })
-                        window.localStorage.setItem('daypitch_user_auth', 'true')
-                        window.localStorage.setItem('daypitch_user', JSON.stringify({
-                            username: auth_user.user.displayName,
-                            propic: auth_user.user.photoURL
-                        }))
-                        setTimeout(() => {
-                            history.push('/') 
-                        }, 2000);
-                        axios.post(`${apiUrl}/user/create`,{
-                            username: auth_user.user.displayName,
-                            firstname: '',
-                            lastname: '',
-                            city: '',
-                            country: '',
-                            firebase_uid: auth_user.user.uid,
-                            email: auth_user.user.email
-                        }).then(res=>{
-                            console.log(res)
-                        }).catch(err=>{
-                            console.log(err)
-                        })
-                    }else{
-                        setErr('Account already exist')
-                    }                    
-                } 
-            }).catch(err=>{
-                setErr(err.message)
-            })
+        dispatch(registerWithGoog())
     }
 
     const registerWithCreds = (e) =>{
         e.preventDefault()
-        if(passwor2 !== password){
-            setErr('passwords do not match')
+        if(password !== passwor2){
+            setErr('Passwords do not match')
+            error = null
         }else{
-            auth.createUserWithEmailAndPassword(email, password).then(auth_user=>{
-                if(auth_user){
-                    if(auth_user.additionalUserInfo.isNewUser){
-                        setMSg('Account created successfully')
-                        setTimeout(() => {
-                            history.push('/login')
-                        }, 2000);
-                        axios.post(`${apiUrl}/user/create`,{
-                            displayName: auth_user.user.displayName,
-                            firstname: '',
-                            lastname: '',
-                            city: '',
-                            country: '',
-                            firebase_uid: auth_user.user.uid,
-                            email: auth_user.user.email
-                        }).then(res=>{
-                            console.log(res)
-                        }).catch(err=>{
-                            console.log(err)
-                        })
-                    }else{
-                        setErr('Account already exists')
-                    }
-                }
-            }).catch(err=>{
-                setErr(err.message)
-            })
+            dispatch(registerWithCred(email, password))
+            setErr(error)
         }
     }
 
@@ -113,8 +58,9 @@ function Register() {
                     </button>
                     <p className="text-gray-500 dark:text-gray-400 text-sm my-2">Or register using credentials</p>
 
-                    {msg ? (<p className="bg-blue-200 border-l-4 border-blue-600 md:w-2/5 w-4/5 text-gray-700 capitalize font-semibold text-center p-2 rounded-sm">{msg}</p>) : null}
+                    {message ? (<p className="bg-blue-200 border-l-4 border-blue-600 md:w-2/5 w-4/5 text-gray-700 capitalize font-semibold text-center p-2 rounded-sm">{message}</p>) : null}
                     {err ? (<p className="bg-red-200 border-l-4 border-red-600 md:w-2/5 w-4/5 text-gray-700 capitalize font-semibold text-center p-2 rounded-sm">{err}</p>) : null}
+                    {error ? (<p className="bg-red-200 border-l-4 border-red-600 md:w-2/5 w-4/5 text-gray-700 capitalize font-semibold text-center p-2 rounded-sm">{error}</p>) : null}
 
                     <div className="emai flex flex-col md:w-2/5 w-4/5 my-2">
                         <label htmlFor="service" className="text-gray-700 text-sm mb-1 dark:text-gray-200">Email Address</label>
@@ -157,7 +103,10 @@ function Register() {
                         </div>
                     </div>
                     <p className="text-xs text-gray-500 dark:text-gray-400 font-semibold">By signing up you agree to our terms and conditions of use</p>
-                    <button type="submit" className="bg-yellow-400 hover:bg-yellow-500 self-center font-semibold w-2/5 mt-8 justify-center rounded text-gray-700 p-2 flex flex-row items-center">Sign Up</button>
+                        {
+                            !loading ? (<button type="submit" className = {`bg-yellow-400 hover:bg-yellow-500 self-center font-semibold w-2/5 mt-8 justify-center rounded text-gray-700 p-2 flex flex-row items-center`}>Sign Up</button>):
+                            (<button type="submit" disabled className = {`bg-yellow-400 opacity-50 self-center font-semibold w-2/5 mt-8 justify-center rounded text-gray-700 p-2 flex flex-row items-center`}>Sign Up</button>)
+                        }
                     <p className="text-gray-500 dark:text-gray-200 mt-2 text-sm">Already registered? <Link to='/login'>Sign In here</Link></p>
 
                 </form>

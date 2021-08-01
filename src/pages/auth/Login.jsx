@@ -11,10 +11,12 @@ import firebase from 'firebase'
 import { useStateValue } from '../../context/StateProvier'
 import axios from 'axios'
 import { apiUrl } from '../../helpers/apiUrl'
+import { useDispatch, useSelector } from 'react-redux'
+import { loginWithCred, loginWithGoog } from '../../redux/actions/userActions'
 var provider = new firebase.auth.GoogleAuthProvider();
 
 
-function Login() {
+function  Login() {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -24,78 +26,25 @@ function Login() {
     const [err, setErr] = useState('')
 
     // eslint-disable-next-line
-    const [{}, dispatch] = useStateValue()
+    // const [{}, dispatch] = useStateValue()
+    const userLogin = useSelector(state=> state.userCredsSignIn)
+    const {loading, error} = userLogin
 
 
     const loginWithGoogle = (e) =>{
         e.preventDefault()
-        auth.signInWithPopup(provider).then(userCred=>{
-            console.log(userCred)
-            if(userCred){
-                if(userCred.additionalUserInfo.isNewUser){
-                    axios.post(`${apiUrl}/user/create`,{
-                        displayName: userCred.user.displayName,
-                        firstname: '',
-                        lastname: '',
-                        city: '',
-                        country: '',
-                        firebase_uid: userCred.user.uid,
-                        email: userCred.user.email
-                    }).then(res=>{
-                        setTimeout(() => {
-                            history.push('/login') 
-                        }, 2000);
-                    }).catch(err=>{
-                        console.log(err)
-                    })
-                }else{
-                    dispatch({
-                        type: 'SET_USER',
-                        user: 'daypitch_user_logged_in'
-                    })
-                    window.localStorage.setItem('daypitch_user_auth', 'true') 
-                    window.localStorage.setItem('daypitch_user', JSON.stringify({
-                        username: userCred.user.displayName,
-                        propic: userCred.user.photoURL
-                    })) 
-                    setMsg('Login Sucessful')
-                    setErr(null)
-                    setTimeout(() => {
-                        history.push('/') 
-                    }, 2000);
-                }
-            }
-        }).catch(err=>{
-            setErr(err.message)
-        })
+        dispatch(loginWithGoog())
     }
+
+    const dispatch = useDispatch()
 
     const loginWIthCreds = (e) =>{
         e.preventDefault()
-        auth.signInWithEmailAndPassword(email, password).then(userCred=>{
-            if(userCred){
-                dispatch({
-                    type: 'SET_USER',
-                    user: 'daypitch_user_logged_in'
-                })
-                window.localStorage.setItem('daypitch_user_auth', 'true')
-                window.localStorage.setItem('daypitch_user', JSON.stringify({
-                    username: userCred.user.displayName,
-                    propic: userCred.user.photoURL
-                }))
-                setMsg('Login successfull')
-                setErr(null)
-                console.log(userCred)
-                setTimeout(() => {
-                    history.push('/') 
-                }, 2000);
-            }
-        }).catch(err=>{
-            setErr(err.message)
-        })
+        dispatch(loginWithCred(email, password))
+        if(!error){
+            setMsg('Login sucessful')
+        }
     } 
-
-        // console.log(token)   
 
     return (
         <HomeLayout>
@@ -114,7 +63,7 @@ function Login() {
 
                     <p className="text-gray-500 dark:text-gray-400 my-2">or sign in using credentials</p>
                     {msg ? (<p className="bg-blue-200 border-l-4 border-blue-600 md:w-2/5 w-4/5 text-gray-700 text-center p-2 rounded-sm">{msg}</p>) : null}
-                    {err ? (<p className="bg-red-200 border-l-4 border-red-600 md:w-2/5 w-4/5 text-gray-700 text-center p-2 rounded-sm">{err}</p>) : null}
+                    {error ? (<p className="bg-red-200 border-l-4 border-red-600 md:w-2/5 w-4/5 text-gray-700 text-center p-2 rounded-sm">{error}</p>) : null}
                     <div className="emai flex flex-col md:w-2/5 w-4/5 my-2">
                         <label htmlFor="email" className="text-gray-700 dark:text-gray-100 text-sm mb-1">Email Address</label>
                         <input
@@ -144,7 +93,10 @@ function Login() {
                     </div>
 
 
-                        <button type="submit" className="bg-yellow-400 hover:bg-yellow-500 self-center font-semibold w-2/5 mt-8 justify-center rounded text-gray-700 p-2 flex flex-row items-center">Sign In</button>
+                        {
+                            loading ? (<button type="submit" disabled className="bg-yellow-400 opacity-50 self-center font-semibold w-2/5 mt-8 justify-center rounded text-gray-700 p-2 flex flex-row items-center">Sign In</button>) :
+                            (<button type="submit" className="bg-yellow-400 hover:bg-yellow-500 self-center font-semibold w-2/5 mt-8 justify-center rounded text-gray-700 p-2 flex flex-row items-center">Sign In</button>)
+                        }
 
 
                     <p className="text-gray-500 mt-2 dark:text-gray-300 text-sm">Not yet registered? <Link to='/register'>Register here</Link></p>

@@ -4,11 +4,15 @@ import {
     ThumbUpIcon, HeartIcon as FavoriteIcon,
     CheckCircleIcon
 } from '@heroicons/react/outline'
-import { HeartIcon as FavoriteBorderIcon, LocationMarkerIcon, BookmarkIcon } from '@heroicons/react/solid'
-import { Dialog, Transition } from '@headlessui/react'
+import { HeartIcon as FavoriteBorderIcon, BookmarkIcon, ChatIcon } from '@heroicons/react/solid'
 
 function ExploreListItem({className, verified, category, price, rating, tags, propic, businessname, id, description}) {
     const [save, setSaved] = useState(false)
+
+    const hireUser = (e) =>{
+        e.preventDefault()
+    }
+
     return (
         <span className="bg-white rounded-sm md:px-8 px-4 py-4 justify-between items-center w-full self-center shadow mb-4 cursor-pointer">
             <div className="flex flex-row items-center justify-between mb-8">
@@ -52,12 +56,17 @@ function ExploreListItem({className, verified, category, price, rating, tags, pr
             <div className="price mb-8">
                 <p className="text-sm text-gray-500">{description}</p>
             </div>
-            <div className="flex-wrap flex flex-row">
-                {tags?.map(tag => (
-                    <ItemCategory
-                        realatedcatefory={tag} />
-                ))}
-
+            <div className="flex flex-row md:items-center items-end justify-between">
+                <div className="flex-wrap flex flex-row">
+                    {tags?.map(tag => (
+                        <ItemCategory
+                            realatedcatefory={tag} />
+                    ))}
+                </div>
+                <span className="flex bg-blue-100 hover:bg-blue-200 rounded-full py-1 px-2 flex-row items-center justify-between">
+                    <p className="text-xs text-blue-800 mr-1">Talk</p>
+                    <ChatIcon height={24} width={24}  className="text-blue-800" />
+                </span>
             </div>
         </span>
     )

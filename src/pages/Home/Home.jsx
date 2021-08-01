@@ -6,7 +6,6 @@ import Stars from '../../components/banner/Stars'
 import first from '../../images/homeBuy.svg'
 import second from '../../images/homeInvest.svg'
 import third from '../../images/homeQuick.svg'
-import CategoryLoading from '../../components/loading/CategoryLoading'
 import { useHistory } from 'react-router-dom'
 import { LockClosedIcon } from '@heroicons/react/outline'
 

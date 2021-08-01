@@ -35,7 +35,7 @@ function BecomeASeller() {
     const dispatch = useDispatch()
 
     const user_service = useSelector(state => state.getService)
-    const {loading, service} = user_service
+    const {service} = user_service
 
     const userSignin = useSelector(state=> state.userCredsSignIn)
     const {userInfo} = userSignin 
@@ -88,7 +88,7 @@ function BecomeASeller() {
         }).catch(err=>{
             console.log(err)
         })
-    },[])
+    },[dispatch, userInfo?.user?.uid])
 
     return (
         <HomeLayout>

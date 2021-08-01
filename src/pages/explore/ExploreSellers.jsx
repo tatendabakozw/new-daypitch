@@ -5,8 +5,6 @@ import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 import ExploreGridItem from '../../components/Exploreseller/ExploreGridItem'
 import { RadioGroup, Listbox, Transition } from '@headlessui/react'
 import {CheckIcon , SelectorIcon } from '@heroicons/react/solid'
-import axios from 'axios';
-import { apiUrl } from '../../helpers/apiUrl';
 import { useEffect } from 'react';
 import ExploreListItem from '../../components/Exploreseller/ExploreListItem';
 import { useDispatch, useSelector } from 'react-redux';
@@ -32,6 +30,7 @@ const categories = [
 function ExploreSellers() {
     const [grid_view, setGridView] = useState(false)
     const [skip, setSkip] = useState(0);
+    // eslint-disable-next-line
     const [limit, setLimit] = useState(8);
     const dispatch = useDispatch()
 
@@ -49,7 +48,12 @@ function ExploreSellers() {
 
     useEffect(()=>{
         dispatch(get_allServices(limit, skip))
-    },[dispatch])
+    },[dispatch, limit, skip])
+
+    const handleLoadMore = (e) => {
+        e.preventDefault();
+        setSkip(skip + limit);
+    };
 
     return (
         <HomeLayout>
@@ -298,8 +302,8 @@ function ExploreSellers() {
 
             </div>
             </div>
-            <div className="py-24 flex flex-col items-center">
-                
+            <div onClick={handleLoadMore} className="py-24 flex flex-col items-center">
+                <span className="bg-blue-900 rounded text-white">Load More</span>
             </div>
         </HomeLayout>
     )

@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { MenuAlt2Icon, XIcon, MoonIcon, LightBulbIcon } from '@heroicons/react/outline'
+import { MenuAlt2Icon, XIcon } from '@heroicons/react/outline'
 import {UserCircleIcon} from '@heroicons/react/solid'
 import { Link, useHistory } from 'react-router-dom'
 import logo from '../../images/logo425.png'

@@ -3,7 +3,6 @@ import HomeLayout from '../../layouts/HomeLayout/HomeLayout'
 import InfoIcon from '@material-ui/icons/Info';
 import upload from '../../images/uploadI.svg'
 import CreditCardIcon from '@material-ui/icons/CreditCard';
-import LockRoundedIcon from '@material-ui/icons/LockRounded';
 import premium from '../../images/premium.svg'
 import text from '../../images/textM.svg'
 import {LockClosedIcon} from '@heroicons/react/outline'

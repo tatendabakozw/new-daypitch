@@ -3,17 +3,9 @@ import HomeLayout from '../../layouts/HomeLayout/HomeLayout'
 import { EyeIcon, EyeOffIcon } from '@heroicons/react/solid'
 import google from '../../images/google.svg'
 import Text from '../../components/Text/Text'
-import { useHistory } from 'react-router'
 import {Link } from 'react-router-dom'
-import { auth } from '../../helpers/firebase'
-import firebase from 'firebase'
-import axios from 'axios'
-import { apiUrl } from '../../helpers/apiUrl'
 import { useDispatch, useSelector } from 'react-redux'
 import { registerWithCred, registerWithGoog } from '../../redux/actions/userActions'
-var provider = new firebase.auth.GoogleAuthProvider();
-
-
 
 function Register() {
     const [email, setEmail] = useState('')
@@ -22,12 +14,8 @@ function Register() {
     const [passwordVisible, setPasswordVisible] = useState(false)
     const [passwordVisible2, setPasswordVisible2] = useState(false)
     const [err, setErr] = useState('')
-    const [msg, setMSg] = useState('')
-    const history = useHistory()
     const dispatch = useDispatch()
 
-    // eslint-disable-next-line
-    // const [{}, dispatch] = useStateValue()
     const userRegister = useSelector(state=> state.registerWithCreds)
     let {loading, error, message} = userRegister
 

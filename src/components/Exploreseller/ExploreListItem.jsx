@@ -1,11 +1,11 @@
-import React, { useState, Fragment } from 'react'
+import React, { useState } from 'react'
 import { StarIcon as StarRateIcon, HeartIcon as FavoriteIcon,CheckCircleIcon} from '@heroicons/react/outline'
 import { HeartIcon as FavoriteBorderIcon, BookmarkIcon, ChatIcon } from '@heroicons/react/solid'
 
 function ExploreListItem({className, verified, category, price, rating, tags, propic, businessname, id, description}) {
     const [save, setSaved] = useState(false)
 
-    const hireUser = (e) =>{
+    const chat_with_user = (e) =>{
         e.preventDefault()
     }
 
@@ -16,7 +16,7 @@ function ExploreListItem({className, verified, category, price, rating, tags, pr
                     <img
                         className="inline-block rounded-full w-10 h-10 mr-2"
                         src={propic}
-                        alt="picture"
+                        alt="user propic "
                     />
                 <p className={`text-gray-700 font-semibold`}>{businessname} -</p>
                 {verified ? (<div className="saved flex flex-row items-center text-blue-600">
@@ -59,7 +59,7 @@ function ExploreListItem({className, verified, category, price, rating, tags, pr
                             realatedcatefory={tag} />
                     ))}
                 </div>
-                <span className="flex bg-blue-100 hover:bg-blue-200 rounded-full py-1 px-2 flex-row items-center justify-between cursor-pointer">
+                <span onClick={chat_with_user} className="flex bg-blue-100 hover:bg-blue-200 rounded-full py-1 px-2 flex-row items-center justify-between cursor-pointer">
                     <p className="text-xs text-blue-800 mr-1">Talk</p>
                     <ChatIcon height={24} width={24}  className="text-blue-800" />
                 </span>
@@ -70,7 +70,7 @@ function ExploreListItem({className, verified, category, price, rating, tags, pr
 
 const ItemCategory = ({ realatedcatefory }) => {
     return (
-        <div className="similarcats bg-blue-100 dark:bg-gray-700 dark:text-gray-200 rounded-full px-2 py-1 mr-2 my-1">
+        <div  className="similarcats bg-blue-100 dark:bg-gray-700 dark:text-gray-200 rounded-full px-2 py-1 mr-2 my-1">
             <div className="flex">
                 <p className="text-xs text-blue-900 dark:text-gray-200">{realatedcatefory}</p>
             </div>

@@ -19,8 +19,8 @@ function ExploreListItem({className, verified, category, price, rating, tags, pr
                         alt="picture"
                     />
                 <p className={`text-gray-700 font-semibold`}>{businessname} -</p>
-                {verified === true ? (<div className="saved flex flex-row items-center text-blue-600">
-                        <ThumbUpIcon width={15} height={15} />
+                {verified ? (<div className="saved flex flex-row items-center text-blue-600">
+                        <CheckCircleIcon height={24} width={24} className="text-blue-700" />
                         <p className="text-xs">Verified</p>
                     </div>) : (
                         <p className="text-xs text-gray-500 dark:text-gray-400 p-1 rounded flex flex-row items-center">

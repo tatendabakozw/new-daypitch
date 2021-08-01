@@ -131,14 +131,14 @@ function HomeNavbar({off_background, on_background}) {
                                                     <Menu.Button className="flex text-sm rounded-full focus:outline-none" style={{ transition: "all .15s ease" }}>
                                                         <span className="sr-only">Open user menu</span>
                                                         {
-                                                            user_info ? (
+                                                            userInfo ? (
                                                                 <>
                                                                     {
-                                                                        JSON.parse(user_info)?.propic ? (
+                                                                        userInfo?.user?.photoURL ? (
                                                                             <>
                                                                                 <img
                                                                                     className="h-12 w-12 rounded-full bg-gray-300"
-                                                                                    src={JSON.parse(user_info)?.propic}
+                                                                                    src={userInfo?.user?.photoURL}
                                                                                     alt="profile"
                                                                                 />
                                                                                 {/* <p>{JSON.parse(user_info)?.propic}</p> */}

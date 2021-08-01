@@ -9,6 +9,7 @@ import axios from 'axios';
 import { apiUrl } from '../../helpers/apiUrl';
 import { useEffect } from 'react';
 import ExploreListItem from '../../components/Exploreseller/ExploreListItem';
+import { useSelector } from 'react-redux';
 
 const filter_price = [
     { name: 'High To Low' },
@@ -32,6 +33,8 @@ function ExploreSellers() {
     const [loading, setLoading] = useState(false)
 
     const [all_services, setAllServices] = useState()
+    const userSignin = useSelector(state=> state.userCredsSignIn)
+    const {userInfo} = userSignin 
 
     //filter items
     const [selected_category, setSelecCategory] = useState('category')
@@ -57,7 +60,7 @@ function ExploreSellers() {
 
                     <div className="flex flex-col items-center">
                     <div className="lg:block md:block hidden w-full">
-                        <div className="border border-gray-200 dark:border-gray-800 rounded-sm p-3 bg-white dark:bg-gray-800 lg:flex md:hidden hidden flex-col">
+                        <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-3 bg-white dark:bg-gray-800 lg:flex md:hidden hidden flex-col">
                             <span className="flex flex-row items-center mb-4 dark:text-white">
                                 {/* <XIcon height={20} width={20} /> */}
                                 <p className="text-gray-700 font-sm dark:text-green-500 font-semibold">Filters</p>
@@ -69,7 +72,7 @@ function ExploreSellers() {
                             <div className="bg-white z-30 mb-4">
                                 <Listbox value={selected} onChange={setSelected}>
                                     <div className="relative mt-1">
-                                    <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white rounded-sm border border-gray-300 focus:outline-none cursor-pointer sm:text-sm">
+                                    <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white rounded-lg border border-gray-300 focus:outline-none cursor-pointer sm:text-sm">
                                         <span className="block truncate">{selected.name}</span>
                                         <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                                         <SelectorIcon
@@ -84,7 +87,7 @@ function ExploreSellers() {
                                         leaveFrom="opacity-100"
                                         leaveTo="opacity-0"
                                     >
-                                        <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-sm shadow border border-gray-300 max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                        <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-lg shadow border border-gray-300 max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                                         {filter_price.map((person, personIdx) => (
                                             <Listbox.Option
                                             key={personIdx}
@@ -189,12 +192,12 @@ function ExploreSellers() {
                 {/* //middle row */}
                 <div className="col-span-6 min-h-screen">
                     <div className="w-full flex flex-col">
-                        <div className="search bg-white flex flex-row items-center w-full rounded-sm border border-gray-200 overflow-hidden mb-4">
+                        <div className="search bg-white flex flex-row items-center w-full rounded-lg border border-gray-200 overflow-hidden mb-4">
                             <input 
                                 type="text" 
                                 className="bg-white border-none outline-none p-2 flex-1" 
                                 placeholder="search" />
-                            <span className="bg-blue-900 p-4 cursor-pointer hover:bg-blue-800 rounded-sm">
+                            <span className="bg-blue-900 p-4 cursor-pointer hover:bg-blue-800 rounded-lg">
                                 <SearchIcon height={20} width={20} className="text-white" />
                             </span>
                         </div>
@@ -254,8 +257,24 @@ function ExploreSellers() {
                 </div>
 
                 {/* right column */}
-                <div className="col-span-3 min-h-screen">
-                    <p>Ads and user info</p>
+                <div className="col-span-3 min-h-screen w-full flex flex-col">
+                    {
+                        userInfo ? (
+                            <div className="w-full flex flex-col">
+                                <div className="flex flex-row items-center mb-8">
+                                    <div className="h-12 w-12 bg-white rounded-full overflow-hidden mr-2">
+                                        <img src={userInfo?.user?.photoURL} alt="user_pic" className="object-contain" />
+                                    </div>
+                                    <p className="text-gray-700 font-semibold">My Account</p>
+                                </div>
+                                <span className="bg-blue-900 text-sm p-2 text-white text-center self-center w-2/3 hover:bg-blue-800 cursor-pointer">Upgrade account</span>
+                            </div>
+                        ):(
+                            <div>
+                                <p>Login</p>
+                            </div>
+                        )
+                    }
                 </div>
 
             </div>

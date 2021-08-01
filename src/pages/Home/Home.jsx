@@ -34,7 +34,7 @@ function Home() {
                     </div>
 
                     <div className="col-span-1 overflow-hidden">
-                        <div className="absolute z-20 bottom-0 right-0">
+                        <div className="absolute z-20 md:bottom-0 -bottom-16 right-0 md:mt-0 mt-8">
                             <img src={person} alt='first' className="lg:max-h-[500px] md:max-h-[400] max-h-[250px]" />
                         </div>
                     </div>
@@ -78,7 +78,7 @@ function Home() {
                 </div>
 
                 {/* // category items */}
-                <div className="flex flex-col items-center md:pt-40 md:px-16 pt-4 px-4 z-20 pb-36 w-full">
+                <div className="flex flex-col items-center md:pt-40 md:px-16 pt-16 px-4 z-20 pb-36 w-full">
                     <p className="text-gray-700 text-4xl dark:text-gray-200 text-center font-semibold mb-24 md:px-32 px-8">Easily prototype and communicate your vision</p>
                     <div className="grid md:grid-cols-3 grid-cols-1 lg:gap-40 md:gap-16 gap-8 items-center">
                         <HomeViewComponent

@@ -1,9 +1,5 @@
 import React, { useState } from 'react'
-import {
-    StarIcon as StarRateIcon,
-    ThumbUpIcon, HeartIcon as FavoriteIcon,
-    UserCircleIcon
-} from '@heroicons/react/outline'
+import {StarIcon as StarRateIcon,ThumbUpIcon, HeartIcon as FavoriteIcon,UserCircleIcon,CheckCircleIcon} from '@heroicons/react/outline'
 import { HeartIcon as FavoriteBorderIcon } from '@heroicons/react/solid'
 
 
@@ -21,7 +17,7 @@ function ExploreGridItem({className, verified, category, price, rating, tags, pr
                     <p className="text-xs text-gray-700 p-2">{category}</p>
                 </div>
             </div>
-            <div className="border-b border-gray-300 w-1/4 self-center my-4"></div>
+            <div className="border-b border-gray-300 w-4/5 self-center my-4"></div>
             
             <div className="flex flex-col py-2 px-8 bg-white">
                 
@@ -35,8 +31,8 @@ function ExploreGridItem({className, verified, category, price, rating, tags, pr
                         </div>
                     </div>
                     <span className="text-gray-700 text-sm font-semibold flex flex-row items-center">
-                        <p className="font-normal text-gray-700 dark:text-gray-300 mr-1 text-xs">from:</p>
-                        <sup className="text-gray-700 dark:text-gray-300">$</sup>
+                        <p className="font-normal text-gray-600 dark:text-gray-300 mr-1 text-xs">from:</p>
+                        <p className="text-gray-700 dark:text-gray-300">$</p>
                         <p className="text-gray-700 dark:text-gray-300">{price}</p>
                     </span>
                 </div>
@@ -45,11 +41,14 @@ function ExploreGridItem({className, verified, category, price, rating, tags, pr
                         <StarRateIcon width={15} height={15} className="text-yellow-500" />
                         <p className="text-xs dark:bg-gray-700 rounded px-1 dark:text-gray-400" >{rating}</p>
                     </div>
-                    {verified === "true" ? (<div className="saved flex flex-row items-center text-blue-600">
-                        <ThumbUpIcon width={15} height={15} />
+                    {verified ? (<div className="saved flex flex-row items-center text-blue-600">
+                        <CheckCircleIcon height={24} width={24} className="text-blue-700" />
                         <p className="text-xs">Verified</p>
                     </div>) : (
-                        <p className="text-xs text-gray-600 dark:text-gray-400 dark:bg-gray-700 p-1 bg-gray-200 rounded">not verified</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 p-1 rounded flex flex-row items-center">
+                            <CheckCircleIcon height={24} width={24} />
+                            <p>not verified</p>
+                        </p>
                     )}
                     {!save ? (
                         <span onClick={() => setSaved(true)} className="saved flex flex-row items-center text-gray-600">
@@ -62,15 +61,13 @@ function ExploreGridItem({className, verified, category, price, rating, tags, pr
                         </span>)}
                 </div>
                 {/* related categories */}
-                <div className="flex flex-row ">
-                <p className="text-blue-900 text-xs  font-semibold mb-1 items-center">Tags: {"  "}</p>
-                <div className=" bottom-0 flex-wrap flex flex-row">
-                    {tags?.map(tag => (
-                        <ItemCategory
-                            realatedcatefory={tag} />
-                    ))}
-
-                </div>
+                <div className="flex flex-col w-full ">
+                    <div className=" bottom-0 flex-wrap justify-between flex flex-row">
+                        {tags?.map(tag => (
+                            <ItemCategory
+                                realatedcatefory={tag} />
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>
@@ -79,7 +76,7 @@ function ExploreGridItem({className, verified, category, price, rating, tags, pr
 
 const ItemCategory = ({ realatedcatefory }) => {
     return (
-        <div className="similarcats bg-blue-100 dark:bg-gray-700 dark:text-gray-200 rounded px-2 py-1 mx-2 my-1">
+        <div className="similarcats bg-blue-100 dark:bg-gray-700 dark:text-gray-200 rounded-full px-2 py-1 my-1">
             <p className="text-xs text-blue-900 dark:text-gray-200">{realatedcatefory}</p>
         </div>
     )

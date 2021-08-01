@@ -49,7 +49,7 @@ function ExploreListItem({className, verified, category, price, rating, tags, pr
             <div className="price mb-2">
                 <p className="text-sm text-gray-700 font-semibold flex flex-row flex-wrap">Price range - <span className="font-normal">${price}/hr - </span><span className="flex flex-row items-center"><BookmarkIcon height={16} width={16}/>{category}</span></p>
             </div>
-            <div className="price mb-8">
+            <div className="price mb-4">
                 <p className="text-sm text-gray-500">{description}</p>
             </div>
             <div className="flex-wrap flex flex-row">

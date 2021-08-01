@@ -7,6 +7,7 @@ import axios from 'axios'
 import { apiUrl } from '../../helpers/apiUrl'
 import { Dialog, Transition } from '@headlessui/react'
 import { useSelector } from 'react-redux'
+import AccountLayout from '../../layouts/AccountLayuot/AccountLayout';
 
 
 function Account() {
@@ -114,7 +115,8 @@ function Account() {
 
     return (
         <HomeLayout>
-            <div className="flex flex-col pt-24 lg:px-96 md:px-44 px-4">
+            <AccountLayout>
+            <div className="flex flex-col lg:px-32 md:px-16 px-4 w-full">
                 <p className="text-2xl text-gray-700 pb-8">Edit Profile</p>
                 
                 {/* //edit picture */}
@@ -357,6 +359,7 @@ function Account() {
                 </div>
 
             </div>
+            </AccountLayout>
         </HomeLayout>
     )
 }

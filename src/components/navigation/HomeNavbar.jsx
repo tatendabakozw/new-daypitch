@@ -224,14 +224,14 @@ function HomeNavbar({off_background, on_background}) {
                         </nav>
 
                         <Disclosure.Panel className="sm:hidden transition duration-150 ease-in-out">
-                            <span onClick={() => setTheme(colorTheme)} style={{ transition: "all .15s ease" }} className="transition duration-150 ease-in-out px-2 pt-2 pb-3 space-y-1 flex flex-row items-center">
+                            {/* <span onClick={() => setTheme(colorTheme)} style={{ transition: "all .15s ease" }} className="transition duration-150 ease-in-out px-2 pt-2 pb-3 space-y-1 flex flex-row items-center">
                                 {colorTheme === 'light' ? (
                                     <LightBulbIcon width={25} height={25} className="hover:bg-gray-800 cursor-pointer text-gray-200 hover:text-gray-400 rounded p-1" />
                                 ) : (
                                     <MoonIcon width={25} height={25} className="hover:bg-gray-200 cursor-pointer text-gray-500 rounded p-1" />
                                 )}
                                 <Text>Theme</Text>
-                            </span>
+                            </span> */}
                             {
                                 JSON.parse(user_info)?.role === "buyer" ? (
                                     <div className="px-2 pt-2 pb-3 space-y-1 shadow-md">

@@ -57,7 +57,7 @@ function Home() {
                             </g>
                         </svg>
                     </div>
-                    <div className="blob md:hidden block absolute z-0 top-0 right-0">
+                    <div className="blob md:hidden block opacity-75 absolute z-0 top-0 right-0">
                         <svg
                             width="700"
                             height="800"

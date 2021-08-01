@@ -14,7 +14,7 @@ import Upgrade from './pages/upgrade/Upgrade'
 function App() {
 
   useEffect(()=>{
-    
+        
   },[])
 
   return (

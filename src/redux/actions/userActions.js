@@ -6,7 +6,8 @@ import { LOGIN_USER_FAIL,
         LOGIN_USER_SUCCESS, 
         REGISTER_USER_FAIL,
         REGISTER_USER_REQUEST, 
-        REGISTER_USER_SUCCESS } from "../constants/userConstants"
+        REGISTER_USER_SUCCESS, 
+        USER_SIGNOUT} from "../constants/userConstants"
 import firebase from 'firebase'
 var provider = new firebase.auth.GoogleAuthProvider();
 
@@ -149,5 +150,12 @@ export const registerWithGoog = () => (dispatch) =>{
                     ? error.response.error.message 
                     : error.message
         })
+    })
+}
+
+export const user_logout = () => () =>{
+    localStorage.removeItem('userInfo')
+    dispatch({
+        type: USER_SIGNOUT
     })
 }

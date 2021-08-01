@@ -88,7 +88,7 @@ function BecomeASeller() {
         }).catch(err=>{
             console.log(err)
         })
-    },[dispatch])
+    },[])
 
     return (
         <HomeLayout>

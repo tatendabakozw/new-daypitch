@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import HomeLayout from '../../layouts/HomeLayout/HomeLayout'
 import { EyeIcon, EyeOffIcon } from '@heroicons/react/solid'
 import google from '../../images/google.svg'
@@ -21,7 +21,7 @@ function  Login() {
     // eslint-disable-next-line
     // const [{}, dispatch] = useStateValue()
     const userLogin = useSelector(state=> state.userCredsSignIn)
-    const {loading, error} = userLogin
+    const {loading, error, userInfo} = userLogin
 
 
     const loginWithGoogle = (e) =>{
@@ -34,13 +34,16 @@ function  Login() {
     const loginWIthCreds = (e) =>{
         e.preventDefault()
         dispatch(loginWithCred(email, password))
-        if(!error){
-            setMsg('Login sucessful')
+    } 
+
+    useEffect(()=>{
+        if(userInfo){
             setTimeout(() => {
                 history.push('/explore')
+                setMsg('Login sucessfful')
             }, 1500);
         }
-    } 
+    },[userInfo, history])
 
     return (
         <HomeLayout>

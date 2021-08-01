@@ -1,5 +1,3 @@
-import React from 'react'
-
 import React, { useState, Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { MenuAlt2Icon, XIcon, MoonIcon, LightBulbIcon } from '@heroicons/react/outline'

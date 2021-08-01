@@ -30,7 +30,13 @@ function ExploreSellers() {
 
     return (
         <HomeLayout>
-            <div className="py-24 flex flex-col items-center">
+            <div className="grid grid-col-5">
+                <div className="col-span-1 bg-green-600">
+
+                </div>
+
+            </div>
+            {/* <div className="py-24 flex flex-col items-center">
                 <div className="lg:w-3/5 md:w-4/5 w-full px-4 flex flex-col">
                     <div className="search bg-white flex flex-row items-center w-full rounded-sm border border-gray-200 overflow-hidden mb-8">
                         <input 
@@ -42,7 +48,7 @@ function ExploreSellers() {
                         </span>
                     </div>
                     <div className="md:flex hidden flex-row items-center justify-between p-8">
-                        <p className="flex-1 text-gray-700">Sellers</p>
+                        <p className="flex-1 text-gray-700 font-semibold">Sellers</p>
                         <div className="flex flex-row items-center">
                             <ViewGridIcon  
                                 height={20} width={20} 
@@ -94,7 +100,7 @@ function ExploreSellers() {
                         }
                     </div>
                 </div>
-            </div>
+            </div> */}
         </HomeLayout>
     )
 }

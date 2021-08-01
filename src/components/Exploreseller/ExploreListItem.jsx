@@ -74,7 +74,7 @@ function ExploreListItem({className, verified, category, price, rating, tags, pr
 
 const ItemCategory = ({ realatedcatefory }) => {
     return (
-        <div className="similarcats bg-blue-100 dark:bg-gray-700 dark:text-gray-200 rounded px-2 py-1 mr-2 my-1">
+        <div className="similarcats bg-blue-100 dark:bg-gray-700 dark:text-gray-200 rounded-full px-2 py-1 mr-2 my-1">
             <div className="flex">
                 <p className="text-xs text-blue-900 dark:text-gray-200">{realatedcatefory}</p>
             </div>

@@ -215,27 +215,15 @@ function ExploreSellers() {
                         </div>
                         <div >
                             {
-                                all_services?.map(service=>(
+                                !loading ? (
                                     <>
-                                        {grid_view ? (<div className="sellers grid md:grid-cols-2 grid-cols-1 gap-16 items-center" key={service._id}>
-                                        <ExploreGridItem 
-                                            key={service._id}
-                                            className="col-span-1"
-                                            verified={service.verified}
-                                            category={service.category}
-                                            price={service.price_range}
-                                            rating={service.rating}
-                                            tags={service.tags}
-                                            propic={service.picture}
-                                            businessname={service.username}
-                                            description={service.description}
-                                            id={service._id}
-                                        />
-                                        </div>):(
-                                            <div key={service._id} className="flex flex-col">
-                                                <ExploreListItem 
+                                    {
+                                        all_services?.map(service=>(
+                                            <>
+                                                {grid_view ? (<div className="sellers grid md:grid-cols-2 grid-cols-1 gap-16 items-center" key={service._id}>
+                                                <ExploreGridItem 
                                                     key={service._id}
-                                                    className="col-span-2"
+                                                    className="col-span-1"
                                                     verified={service.verified}
                                                     category={service.category}
                                                     price={service.price_range}
@@ -246,10 +234,34 @@ function ExploreSellers() {
                                                     description={service.description}
                                                     id={service._id}
                                                 />
-                                        </div>
-                                    )}
+        
+        
+                                                </div>):(
+                                                    <div key={service._id} className="flex flex-col">
+                                                        <ExploreListItem 
+                                                            key={service._id}
+                                                            className="col-span-2"
+                                                            verified={service.verified}
+                                                            category={service.category}
+                                                            price={service.price_range}
+                                                            rating={service.rating}
+                                                            tags={service.tags}
+                                                            propic={service.picture}
+                                                            businessname={service.username}
+                                                            description={service.description}
+                                                            id={service._id}
+                                                        />
+                                                </div>
+                                            )}
+                                            </>
+                                        ))
+                                    }
                                     </>
-                                ))
+                                ):(
+                                    <div className="flex flex-col">
+                                        <LoadingComponent />
+                                    </div>
+                                )
                             }
                         </div>
                     </div>
@@ -266,7 +278,7 @@ function ExploreSellers() {
                                     </div>
                                     <p className="text-gray-700 font-semibold">My Account</p>
                                 </div>
-                                <span className="bg-blue-900 text-sm p-2 text-white text-center self-center w-2/3 hover:bg-blue-800 cursor-pointer">Upgrade account</span>
+                                <span className="bg-blue-900 text-sm p-2 text-white text-center w-2/3 hover:bg-blue-800 cursor-pointer">Upgrade account</span>
                             </div>
                         ):(
                             <div>
@@ -300,4 +312,22 @@ function NewCheckIcon(props) {
     )
   }
 
+  
+const LoadingComponent = () =>{
+    return (
+        <div class="border border-gray-300 rounded p-4 max-w-sm w-full mx-auto">
+            <div class="animate-pulse flex flex-col space-x-4">
+                <div class="rounded bg-gray-200 self-center mb-8 h-24 w-32"></div>
+                <div class="flex-1 space-y-4 py-1">
+                    <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+                    <div class="space-y-2">
+                        <div class="h-4 bg-gray-300 rounded"></div>
+                        <div class="h-4 bg-gray-400 rounded w-5/6"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
 export default ExploreSellers
+

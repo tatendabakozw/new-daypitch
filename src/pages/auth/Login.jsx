@@ -6,14 +6,8 @@ import Text from '../../components/Text/Text'
 import { useHistory } from 'react-router'
 import {Link } from 'react-router-dom'
 import logo from '../../images/favicon.png'
-import { auth } from '../../helpers/firebase'
-import firebase from 'firebase'
-import { useStateValue } from '../../context/StateProvier'
-import axios from 'axios'
-import { apiUrl } from '../../helpers/apiUrl'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginWithCred, loginWithGoog } from '../../redux/actions/userActions'
-var provider = new firebase.auth.GoogleAuthProvider();
 
 
 function  Login() {
@@ -23,7 +17,6 @@ function  Login() {
     const history = useHistory()
     const [passwordVisible, setPasswordVisible] = useState(false)
     const [msg, setMsg] = useState('')
-    const [err, setErr] = useState('')
 
     // eslint-disable-next-line
     // const [{}, dispatch] = useStateValue()
@@ -34,6 +27,12 @@ function  Login() {
     const loginWithGoogle = (e) =>{
         e.preventDefault()
         dispatch(loginWithGoog())
+        if(!error){
+            setMsg('Login sucessful')
+            setTimeout(() => {
+                history.push('/explore')
+            },1500)
+        }
     }
 
     const dispatch = useDispatch()
@@ -43,6 +42,9 @@ function  Login() {
         dispatch(loginWithCred(email, password))
         if(!error){
             setMsg('Login sucessful')
+            setTimeout(() => {
+                history.push('/explore')
+            }, 1500);
         }
     } 
 

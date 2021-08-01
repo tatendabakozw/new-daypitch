@@ -55,12 +55,11 @@ function ExploreSellers() {
     return (
         <HomeLayout>
             <div className="lg:px-16 md:px-8 px-4 pt-32">
-            <div className="grid grid-cols-12 gap-16">
-                <div className="col-span-3 min-h-screen">
-
+            <div className="flex flex-row justify-between gap-8">
+                <div className="w-1/4 lg:block md:block hidden min-h-screen">
                     <div className="flex flex-col items-center">
-                    <div className="lg:block md:block hidden w-full">
-                        <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-3 bg-white dark:bg-gray-800 lg:flex md:hidden hidden flex-col">
+                    <div className=" w-full">
+                        <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-3 bg-white dark:bg-gray-800 flex-col">
                             <span className="flex flex-row items-center mb-4 dark:text-white">
                                 {/* <XIcon height={20} width={20} /> */}
                                 <p className="text-gray-700 font-sm dark:text-green-500 font-semibold">Filters</p>
@@ -190,7 +189,7 @@ function ExploreSellers() {
                 </div>
 
                 {/* //middle row */}
-                <div className="col-span-6 min-h-screen">
+                <div className="lg:w-2/4 md:w-3/4 w-full min-h-screen">
                     <div className="w-full flex flex-col">
                         <div className="search bg-white flex flex-row items-center w-full rounded-lg border border-gray-200 overflow-hidden mb-4">
                             <input 
@@ -257,7 +256,7 @@ function ExploreSellers() {
                 </div>
 
                 {/* right column */}
-                <div className="col-span-3 min-h-screen w-full flex flex-col">
+                <div className="w-1/4 min-h-screen lg:flex md:hidden hidden flex-col">
                     {
                         userInfo ? (
                             <div className="w-full flex flex-col">

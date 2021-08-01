@@ -1,9 +1,5 @@
 import React, { useState, Fragment } from 'react'
-import {
-    StarIcon as StarRateIcon,
-    ThumbUpIcon, HeartIcon as FavoriteIcon,
-    CheckCircleIcon
-} from '@heroicons/react/outline'
+import { StarIcon as StarRateIcon, HeartIcon as FavoriteIcon,CheckCircleIcon} from '@heroicons/react/outline'
 import { HeartIcon as FavoriteBorderIcon, BookmarkIcon, ChatIcon } from '@heroicons/react/solid'
 
 function ExploreListItem({className, verified, category, price, rating, tags, propic, businessname, id, description}) {
@@ -14,7 +10,7 @@ function ExploreListItem({className, verified, category, price, rating, tags, pr
     }
 
     return (
-        <span className="bg-white rounded-sm md:px-8 px-4 py-4 justify-between items-center w-full self-center shadow mb-4 cursor-pointer">
+        <span className="bg-white rounded-sm md:px-8 px-4 py-4 justify-between items-center w-full self-center shadow mb-4">
             <div className="flex flex-row items-center justify-between mb-8">
                 <div className="flex flex-row items-center mr-2">
                     <img
@@ -63,7 +59,7 @@ function ExploreListItem({className, verified, category, price, rating, tags, pr
                             realatedcatefory={tag} />
                     ))}
                 </div>
-                <span className="flex bg-blue-100 hover:bg-blue-200 rounded-full py-1 px-2 flex-row items-center justify-between">
+                <span className="flex bg-blue-100 hover:bg-blue-200 rounded-full py-1 px-2 flex-row items-center justify-between cursor-pointer">
                     <p className="text-xs text-blue-800 mr-1">Talk</p>
                     <ChatIcon height={24} width={24}  className="text-blue-800" />
                 </span>

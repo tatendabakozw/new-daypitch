@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef, Fragment } from 'react'
 import HomeLayout from '../../layouts/HomeLayout/HomeLayout'
 import {CameraIcon} from '@heroicons/react/outline'
-import image from '../../images/man.png'
 import { auth, storage } from '../../helpers/firebase'
 import Dropzone from "react-dropzone";
 import axios from 'axios'
@@ -121,7 +120,7 @@ function Account() {
                 {/* //edit picture */}
                 <div className="flex flex-row self-center items-end pb-16">
                     <div className="self-center h-24 w-24 bg-gray-200 rounded-full overflow-hidden border border-gray-300">
-                        <img src={user?.photoURL ? user?.photoURL : image} alt="w-auto" />
+                        <img src={userInfo?.user?.photoURL} alt="w-auto" />
                     </div>
                     {/* <span className="cursor-pointer">
                         <CameraIcon height={24} width={24} className="text-blue-400 hover:text-blue-600" />

@@ -9,7 +9,8 @@ import {nav_options} from '../../helpers/nav_options'
 import Text from '../Text/Text'
 import { useStateValue } from '../../context/StateProvier'
 import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { user_logout } from '../../redux/actions/userActions'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -17,11 +18,11 @@ function classNames(...classes) {
 
 function HomeNavbar({off_background, on_background}) {
     const [navbaron, setNavbarOn] = useState(false)
-    const [colorTheme, setTheme] = useDarkMode();
     const user_info = localStorage.getItem('daypitch_user')
     const userSignin = useSelector(state=> state.userCredsSignIn)
     const {userInfo} = userSignin 
-
+    const dispatch = useDispatch()
+    const history = useHistory()
 
     const changeBackground = () => {
         if (window.scrollY >= 80) {
@@ -32,6 +33,10 @@ function HomeNavbar({off_background, on_background}) {
     }
 
     const logout = (e) => {
+        dispatch(user_logout())
+        setTimeout(() => {
+            history.push('/explore')
+        }, 1500);
     }
 
     useEffect(()=>{

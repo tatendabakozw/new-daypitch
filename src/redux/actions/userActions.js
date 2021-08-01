@@ -153,7 +153,7 @@ export const registerWithGoog = () => (dispatch) =>{
     })
 }
 
-export const user_logout = () => () =>{
+export const user_logout = () => (dispatch) =>{
     localStorage.removeItem('userInfo')
     dispatch({
         type: USER_SIGNOUT

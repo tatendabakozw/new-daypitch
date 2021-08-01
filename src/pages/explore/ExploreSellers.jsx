@@ -52,7 +52,7 @@ function ExploreSellers() {
     return (
         <HomeLayout>
             <div className="lg:px-16 md:px-8 px-4 pt-32">
-            <div className="grid grid-cols-12 gap-8">
+            <div className="grid grid-cols-12 gap-16">
                 <div className="col-span-3 min-h-screen">
 
                     <div className="flex flex-col items-center">
@@ -252,8 +252,10 @@ function ExploreSellers() {
                         </div>
                     </div>
                 </div>
-                <div className="col-span-3 bg-green-600 min-h-screen">
 
+                {/* right column */}
+                <div className="col-span-3 min-h-screen">
+                    <p>Ads and user info</p>
                 </div>
 
             </div>

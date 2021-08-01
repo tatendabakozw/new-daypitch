@@ -1,29 +1,15 @@
 import React, { useState } from 'react'
 import { SearchIcon } from '@heroicons/react/solid'
 import { useHistory } from 'react-router-dom'
-import { useStateValue } from '../../context/StateProvier'
 
 
 function HomeSearch() {
     const history = useHistory()
     // eslint-disable-next-line
-    const [{}, dispatch] = useStateValue()
     const [category, setCategory] = useState('')
 
     const searchItems = (e) => {
         e.preventDefault()
-        dispatch({
-            type: 'SET_SEARCH',
-            search: ({
-                search: category,
-            })
-        })
-        // dispatch({
-        //     type: 'SET_LOCATION',
-        //     search: ({
-        //         location: location,
-        //     })
-        // })
         history.push('/explore')
     }
 

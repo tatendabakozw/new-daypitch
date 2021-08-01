@@ -85,7 +85,7 @@ function ExploreSellers() {
                                         leaveFrom="opacity-100"
                                         leaveTo="opacity-0"
                                     >
-                                        <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-lg shadow border border-gray-300 max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                        <Listbox.Options className=" w-full py-1 mt-1 overflow-auto text-base bg-white rounded-lg border border-gray-200 max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                                         {filter_price.map((person, personIdx) => (
                                             <Listbox.Option
                                             key={personIdx}
@@ -129,10 +129,10 @@ function ExploreSellers() {
                             {/* // categories */}
                             {
                                 !loading ? (
-                                    <div className="w-full py-2">
-                                        <div className="w-full max-w-md mx-auto">
+                                    <div className="w-full py-2 z-10">
+                                        <div className="w-full max-w-md mx-aut">
                                             <RadioGroup value={selected_category} onChange={setSelecCategory}>
-                                            <RadioGroup.Label className="sr-only">Server size</RadioGroup.Label>
+                                            <RadioGroup.Label className="sr-only">category</RadioGroup.Label>
                                             <div className="space-y-2">
                                                 {categories?.map((category) => (
                                                 <RadioGroup.Option

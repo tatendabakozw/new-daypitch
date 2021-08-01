@@ -1,6 +1,6 @@
 import axios from "axios";
 import { apiUrl } from "../../helpers/apiUrl";
-import { SERVICE_GET_FAIL, 
+import { ALL_SERVICE_GET_REQUEST, ALL_SERVICE_GET_SUCSESS, SERVICE_GET_FAIL, 
         SERVICE_GET_REQUEST, 
         SERVICE_GET_SUCSESS } from "../constants/serviceConstants"
 
@@ -29,3 +29,24 @@ export const get_serviceAction = (token, id) => (dispatch)=>{
         })
     })
 }
+
+//get all setvices 
+export const get_allServices = (limit, skip) => (dispatch) =>{
+    dispatch({
+        type: ALL_SERVICE_GET_REQUEST,
+        payload: {limit, skip}
+    });
+    axios.post(`${apiUrl}/service/get/all`,{limit, skip}).then(res=>{
+        dispatch({
+            type: ALL_SERVICE_GET_SUCSESS,
+            payload: res
+        })
+    }).catch(error=>{
+        dispatch({
+            type: SERVICE_GET_FAIL,
+            payload: error.response && error.response.message 
+                    ? error.response.error.message 
+                    : error.message
+        })
+    })
+} 

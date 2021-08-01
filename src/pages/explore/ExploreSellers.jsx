@@ -9,9 +9,10 @@ import axios from 'axios';
 import { apiUrl } from '../../helpers/apiUrl';
 import { useEffect } from 'react';
 import ExploreListItem from '../../components/Exploreseller/ExploreListItem';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {UserCircleIcon} from '@heroicons/react/solid'
 import { useHistory } from 'react-router-dom';
+import { get_allServices } from '../../redux/actions/serviceActions';
 
 const filter_price = [
     { name: 'High To Low' },
@@ -32,28 +33,23 @@ function ExploreSellers() {
     const [grid_view, setGridView] = useState(false)
     const [skip, setSkip] = useState(0);
     const [limit, setLimit] = useState(8);
-    const [loading, setLoading] = useState(false)
+    const dispatch = useDispatch()
 
-    const [all_services, setAllServices] = useState()
     const userSignin = useSelector(state=> state.userCredsSignIn)
     const {userInfo} = userSignin 
     const history = useHistory()
+
+    //service info
+    const servicesInfo = useSelector(state => state.allServices)
+    const {loading, all_services} = servicesInfo
 
     //filter items
     const [selected_category, setSelecCategory] = useState('category')
     const [selected, setSelected] = useState(filter_price[0])
 
     useEffect(()=>{
-        axios.post(`${apiUrl}/service/get/all`,{
-            skip: skip,
-            limit: limit
-        }).then(res=>{
-            console.log(res.data)
-            setAllServices(res.data.services)
-        }).catch(err=>{
-            console.log(err)
-        })
-    },[])
+        dispatch(get_allServices(limit, skip))
+    },[dispatch])
 
     return (
         <HomeLayout>
@@ -221,7 +217,7 @@ function ExploreSellers() {
                                 !loading ? (
                                     <>
                                     {
-                                        all_services?.map(service=>(
+                                        all_services?.data?.services.map(service=>(
                                             <>
                                                 {grid_view ? (<div className="sellers grid md:grid-cols-2 grid-cols-1 gap-16 items-center" key={service._id}>
                                                 <ExploreGridItem 
@@ -261,7 +257,8 @@ function ExploreSellers() {
                                     }
                                     </>
                                 ):(
-                                    <div className="flex flex-col">
+                                    <div className="flex flex-col w-full">
+                                        <LoadingComponent />
                                         <LoadingComponent />
                                     </div>
                                 )
@@ -326,9 +323,9 @@ function NewCheckIcon(props) {
   
 const LoadingComponent = () =>{
     return (
-        <div class="border border-gray-300 rounded p-4 max-w-sm w-full mx-auto">
+        <div class="border border-gray-200 rounded p-4 w-full mx-auto bg-white mb-8">
             <div class="animate-pulse flex flex-col space-x-4">
-                <div class="rounded bg-gray-200 self-center mb-8 h-24 w-32"></div>
+                <div class="rounded-full bg-gray-200 self-start mb-8 h-16 w-16"></div>
                 <div class="flex-1 space-y-4 py-1">
                     <div class="h-4 bg-gray-200 rounded w-3/4"></div>
                     <div class="space-y-2">

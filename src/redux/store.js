@@ -1,7 +1,7 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux"
 import thunk from "redux-thunk"
-import { singleServiceReducer } from "./reducers/serviceReducer"
-import { registerWithCresReducer, signInWithCredsReducer } from "./userReducer"
+import { getAllServicesReducer, singleServiceReducer } from "./reducers/serviceReducer"
+import { registerWithCresReducer, signInWithCredsReducer } from "./reducers/userReducer"
 
 const initialState = {
     userCredsSignIn:{
@@ -12,6 +12,7 @@ const reducer = combineReducers({
     userCredsSignIn : signInWithCredsReducer,
     registerWithCreds: registerWithCresReducer,
     getService: singleServiceReducer,
+    allServices: getAllServicesReducer
 })
 
 const composeForBrowser = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose

@@ -2,10 +2,12 @@ import React, { useState, Fragment } from 'react'
 import { StarIcon as StarRateIcon, HeartIcon as FavoriteIcon,CheckCircleIcon} from '@heroicons/react/outline'
 import { HeartIcon as FavoriteBorderIcon, BookmarkIcon, ChatIcon } from '@heroicons/react/solid'
 import { Dialog, Transition } from '@headlessui/react'
+import { useHistory } from 'react-router-dom'
 
 function ExploreListItem({verified, category, price, rating, tags, propic, businessname, id, description}) {
     const [save, setSaved] = useState(false)
     let [isOpen, setIsOpen] = useState(false)
+    const history = useHistory()
 
     function closeModal() {
         setIsOpen(false)
@@ -22,7 +24,7 @@ function ExploreListItem({verified, category, price, rating, tags, propic, busin
         if(!userInfo){
             openModal()
         }else{
-            alert('you are signed in')
+            history.push('/chat')
         }
     }
 

@@ -4,15 +4,15 @@ import Sidebar from '../../components/sidebar/Sidebar'
 
 function ChatLayout({children}) {
     return (
-        <div className="flex flex-col w-full">
+        <div className="flex flex-col">
             <div className="navbar">
                 <HomeNavbar/>
             </div>
-            <div className="flex w-full">
-                <div className="w-1/4 min-h-screen">
+            <div className="flex">
+                <div className="w-1/4 min-h-screen bg-white">
                     <Sidebar/>
                 </div>
-                <div className="w-4/5 min-h-screen bg-green-600">
+                <div className="w-4/5 min-h-screen bg-gray-50">
                     {children}
                 </div>
             </div>

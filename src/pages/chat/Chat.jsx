@@ -82,6 +82,28 @@ function Chat() {
                             <ChevronLeftIcon height={20} width={20} className="text-gray-700" />
                             <p>Back to chats</p>
                         </span>
+                        {
+                            current_chat_id ? (<>
+                                {
+                                    messages.map((message, index)=>(
+                                        <div className="flex flex-col w-full justify-between" key={index}>
+                                            {message.receiver_name === "tatenda bako" ? (<div className="flex flex-row justify-end w-full">
+                                                <p className="text-right my-2 bg-blue-900 text-white text-sm max-w-4xl rounded-lg p-4">{message.message}</p>
+                                            </div>) : null}
+                                            {message.receiver_name === "tafara bako" ? (<div className="flex flex-row justify-start">
+                                                <p className="text-left my-2 bg-gray-100 text-gray-700 text-sm max-w-4xl rounded-lg p-4">{message.message}</p>
+                                            </div>) : null}
+                                        </div>
+                                    ))
+                                }
+                            </>) : (<div className="grid items-center content-center my-auto">
+                                <div className="flex flex-col items-center my-auto">
+                                    <ChatIcon height={96} width={96} className="text-blue-900" />
+                                    <p>Click a chat to view</p>
+                                </div>
+                            </div>)
+                        }
+                        .chatata
                     </div>
                 </div>
 
@@ -130,6 +152,10 @@ function Chat() {
                                 </div>
                             </div>)
                         }
+                        <div className="flex-1"></div>
+                        <div className="flex bottom-5 mb-16 flex-end self-end bg-gray-500 w-full rounded-full">
+                            <input type="text" className="bg-gray-50 p-4 rounded-full" placeholder="type message" />
+                        </div>
                     </div>
                 </div>
             </div>

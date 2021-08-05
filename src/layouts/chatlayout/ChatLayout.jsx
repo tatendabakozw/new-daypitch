@@ -8,14 +8,8 @@ function ChatLayout({children}) {
             <div className="navbar">
                 <HomeNavbar/>
             </div>
-            <div className="flex">
-                <div className="w-1/4 min-h-screen bg-white">
-                    <Sidebar/>
-                </div>
-                <div className="w-4/5 min-h-screen bg-gray-50">
-                    {children}
-                </div>
-            </div>
+            {children}
+            
         </div>
     )
 }

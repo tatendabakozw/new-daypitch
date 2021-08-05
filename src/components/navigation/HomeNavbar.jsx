@@ -42,7 +42,7 @@ function HomeNavbar({off_background, on_background}) {
     },[])
 
     return (
-        <Disclosure as="nav" className={`${navbaron ? 'bg-white dark:bg-gray-900 shadow ' : "md:bg-transparent bg-gray-50  dark:bg-gray-900 "} transition duration-500 ease-in-out`}>
+        <Disclosure as="nav" className={`${navbaron ? 'bg-white dark:bg-gray-900 shadow-sm ' : "bg-white shadow-sm  dark:bg-gray-900 "} transition duration-500 ease-in-out`}>
                 {({ open }) => (
                     <>
                         <nav className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">

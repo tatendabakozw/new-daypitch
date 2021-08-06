@@ -1,4 +1,4 @@
-export const sort_by = (field, reverse, primer) => {
+const sort_by = (field, reverse, primer) => {
 
     const key = primer ?
         function (x) {
@@ -14,3 +14,5 @@ export const sort_by = (field, reverse, primer) => {
         return a = key(a), b = key(b), reverse * ((a > b) - (b > a));
     }
 }
+
+export default sort_by

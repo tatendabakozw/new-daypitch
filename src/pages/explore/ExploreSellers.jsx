@@ -55,6 +55,8 @@ function ExploreSellers() {
         setSkip(skip + limit);
     };
 
+    console.log(all_services)
+
     return (
         <HomeLayout>
             <div className="lg:px-16 md:px-8 px-4 pt-32">
@@ -252,6 +254,7 @@ function ExploreSellers() {
                                                             propic={service.picture}
                                                             businessname={service.username}
                                                             description={service.description}
+                                                            school={service.school_attended}
                                                             id={service._id}
                                                         />
                                                 </div>

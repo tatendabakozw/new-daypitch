@@ -12,18 +12,18 @@ function AccountLayout({children}) {
             name: 'Account',
             location: '/account',
             id: 1,
-            icon: <CogIcon height={20} width={20}/>
+            icon: <CogIcon height={24} width={24}/>
         },
         {
             name: 'Business Profile',
             location: '/becomeaseller',
             id: 2,
-            icon: <UserCircleIcon height={20} width={20}/>
+            icon: <UserCircleIcon height={24} width={24}/>
         }
     ]
 
     return (
-        <div className='flex md:flex-row flex-col pt-16 bg-white'>
+        <div className='flex md:flex-row flex-col md:pt-16 pt-8 bg-white'>
             <div className="sidebar md:w-1/4 w-full flex md:flex-col bg-white flex-row items-center pt-8 border-r border-gray-200 mb-4">
                 {
                     side_option.map(option=>(

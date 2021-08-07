@@ -6,8 +6,12 @@ import Stars from '../../components/banner/Stars'
 import first from '../../images/homeBuy.svg'
 import second from '../../images/homeInvest.svg'
 import third from '../../images/homeQuick.svg'
-import { useHistory } from 'react-router-dom'
-import { LockClosedIcon } from '@heroicons/react/outline'
+import { useHistory, Link } from 'react-router-dom'
+import { LockClosedIcon, CheckIcon } from '@heroicons/react/outline'
+
+function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+  }
 
 function Home() {
 
@@ -128,10 +132,34 @@ function Home() {
                 {/* // paying boxes */}
                 <div className="flex flex-col items-center md:pt-16 md:px-16 pt-4 px-4 z-20 pb-16">
                     <p className="text-2xl text-gray-700 dark:text-gray-400 text-center font-semibold mb-16">Professionals price arrangements</p>
-                    <div className="grid md:grid-cols-2 grid-cols-1 md:gap-24 gap-8">
                         <FreeComponent className="col-span-1" />
-                        <PayComponent className="col-span-1" />
+                        {/* <PayComponent className="col-span-1" /> */}
+                </div>
+
+                        {/* CTA Section */}
+                <div className="bg-white">
+                <div className="max-w-4xl mx-auto py-16 px-4 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8 lg:flex lg:items-center lg:justify-between">
+                    <h2 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    <span className="block">Ready to get started?</span>
+                    <span className="block bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                        Get in touch or create an account.
+                    </span>
+                    </h2>
+                    <div className="mt-6 space-y-4 sm:space-y-0 sm:flex sm:space-x-5">
+                    <Link
+                        to='/howitworks'
+                        className="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-900 hover:bg-blue-800"
+                    >
+                        How it works
+                    </Link>
+                    <Link
+                        Link='/login'
+                        className="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-800 bg-indigo-50 hover:bg-indigo-100"
+                    >
+                        Get started
+                    </Link>
                     </div>
+                </div>
                 </div>
             </div>
         </HomeLayout>
@@ -150,39 +178,106 @@ const HomeViewComponent = ({ className, picture, description, heading, id }) => 
     )
 }
 
+const pricing = {
+    tiers: [
+      {
+        title: 'Freelancer',
+        price: 9.99,
+        frequency: '/month',
+        description: 'The essentials to provide your best work for clients.',
+        features: ['5 products', 'Up to 1,000 subscribers', 'Basic analytics', '48-hour support response time'],
+        cta: 'Monthly billing',
+        mostPopular: false,
+      },
+      {
+        title: 'Startup',
+        price: 0,
+        frequency: '/month',
+        description: 'A plan that scales with your rapidly growing business.',
+        features: [
+          '25 products',
+          'Up to 10,000 subscribers',
+          'Advanced analytics',
+          '24-hour support response time',
+          'Marketing automations',
+        ],
+        cta: 'Monthly billing',
+        mostPopular: true,
+      },
+    //   {
+    //     title: 'Enterprise',
+    //     price: 10,
+    //     frequency: '/month',
+    //     description: 'Dedicated support and infrastructure for your company.',
+    //     features: [
+    //       'Unlimited products',
+    //       'Unlimited subscribers',
+    //       'Advanced analytics',
+    //       '1-hour, dedicated support response time',
+    //       'Marketing automations',
+    //       'Custom integrations',
+    //     ],
+    //     cta: 'Monthly billing',
+    //     mostPopular: false,
+    //   },
+    ],
+  }
+
 // login as a free user
 const FreeComponent = ({ className }) => {
     const history = useHistory()
     return (
-        <>
-            <div className={`${className} flex flex-col bg-blue-100 p-4 rounded-lg`}>
-                <p className="text-gray-800 font-semibold text-center mb-1">Free Tier</p>
-                <p className="text-gray-800 text-xl font-extrabold text-center mb-1"><sup className="font-semibold">$</sup> 0</p>
-                <p className="text-gray-500 text-xs text-center mb-4">Free for a lifetime</p>
-                <span className="flex flex-row items-center text-xs text-left text-gray-800 mb-1">
-                    {/* <p className="text-green-600 font-semibold">✓</p> */}
-                    <p className="text-red-500 font-semibold">&#10006;</p>
-                    <p className="">Unlimited uploads</p>
-                </span>
-                <span className="flex flex-row items-center text-xs text-left text-gray-800 mb-1">
-                    {/* <p className="text-green-600 font-semibold">✓</p> */}
-                    <p className="text-red-500 font-semibold">&#10006;</p>
-                    <p className="">Free onsight comminication</p>
-                </span>
-                <span className="flex flex-row items-center text-xs text-left text-gray-800 mb-1">
-                    {/* <p className="text-green-600 font-semibold">✓</p> */}
-                    <p className="text-red-500 font-semibold">&#10006;</p>
-                    <p className="">Approved as professional</p>
-                </span>
-                <span className="flex flex-row items-center text-xs text-left text-gray-800 mb-4">
-                    {/* <p className="text-green-600 font-semibold">✓</p> */}
-                    <p className="text-red-500 font-semibold">&#10006;</p>
-                    <p className="">Free advertisement</p>
-                </span>
-                <button onClick={() => history.push('/register')} className="text-gray-50 bg-blue-800 mb-4 p-2 rounded-lg outline-none border-none w-56 text-sm">Try it out for free</button>
-                <small className="text-gray-500 text-center text-xs">No credit card needed</small>
-            </div>
-        </>
+        <section className="relative" aria-labelledby="pricing-heading">
+          <h2 id="pricing-heading" className="sr-only">
+            Pricing
+          </h2>
+
+          {/* Tiers */}
+          <div className="max-w-2xl mx-auto px-4 space-y-12 sm:px-6 lg:max-w-7xl lg:space-y-0 lg:px-8 lg:grid lg:grid-cols-2 lg:gap-x-16">
+            {pricing.tiers.map((tier) => (
+              <div
+                key={tier.title}
+                className="relative p-8 bg-white border border-gray-200 rounded-2xl shadow-sm flex flex-col"
+              >
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold text-gray-900">{tier.title}</h3>
+                  {tier.mostPopular ? (
+                    <p className="absolute top-0 py-1.5 px-4 bg-blue-900 rounded-full text-xs font-semibold uppercase tracking-wide text-white transform -translate-y-1/2">
+                      Most popular
+                    </p>
+                  ) : null}
+                  <p className="mt-4 flex items-baseline text-gray-900">
+                    <span className="text-5xl font-extrabold tracking-tight">${tier.price}</span>
+                    <span className="ml-1 text-xl font-semibold">{tier.frequency}</span>
+                  </p>
+                  <p className="mt-6 text-gray-500">{tier.description}</p>
+
+                  {/* Feature list */}
+                  <ul role="list" className="mt-6 space-y-6">
+                    {tier.features.map((feature) => (
+                      <li key={feature} className="flex">
+                        <CheckIcon className="flex-shrink-0 w-6 h-6 text-green-500" aria-hidden="true" />
+                        <span className="ml-3 text-gray-500">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <a
+                  href="#"
+                  className={classNames(
+                    tier.mostPopular
+                      ? 'bg-blue-900 text-white hover:bg-blue-800'
+                      : 'bg-blue-50 text-blue-900 hover:bg-blue-100',
+                    'mt-8 block w-full py-3 px-6 border border-transparent rounded-md text-center font-medium'
+                  )}
+                >
+                  {tier.cta}
+                </a>
+              </div>
+            ))}
+          </div>
+        </section>
     )
 }
 

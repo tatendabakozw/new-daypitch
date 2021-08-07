@@ -1,5 +1,6 @@
 import React from "react";
 import  {XIcon} from '@heroicons/react/outline'
+import { Input } from "@chakra-ui/react";
 
 const Tags = (props) => {
 
@@ -39,11 +40,12 @@ const Tags = (props) => {
                 </ul>
                 
             </div>
-            <input
+                <Input
                     type="text"
                     onKeyUp={event => addTags(event)}
                     placeholder="Press enter to add tags"
-                    className="outline-none dark:bg-gray-700 p-2 text-sm rounded-sm flex-1 w-full border border-gray-300 my-2"
+                    variant="filled"
+                    className="outline-none dark:bg-gray-700 p-2 bg-gray-100 rounded-lg text-sm flex-1 w-full border border-gray-300 my-2"
                 />
         </div>
     );

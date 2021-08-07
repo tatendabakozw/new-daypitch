@@ -8,6 +8,7 @@ import { apiUrl } from '../../helpers/apiUrl'
 import { Dialog, Transition } from '@headlessui/react'
 import { useSelector } from 'react-redux'
 import AccountLayout from '../../layouts/AccountLayuot/AccountLayout';
+import { Input } from '@chakra-ui/react';
 
 
 function Account() {
@@ -182,8 +183,9 @@ function Account() {
                 <div className="w-full pb-8">
                     <span className="flex flex-col">
                         <label htmlFor="username" className="text-gray-500 text-sm pb-2 font-semibold">Username/Businessname</label>
-                        <input 
-                            type="text" 
+                        <Input 
+                            type="text"
+                            variant="filled" 
                             id='username' 
                             className="border border-blue-300 outline-none rounded-lg p-2 bg-gray-50"
                             onChange={e=> setUsername(e.target.value)}
@@ -196,8 +198,9 @@ function Account() {
                 <div className="grid grid-cols-2 md:gap-16 gap-4 pb-8">
                     <span className="flex flex-col col-span-1">
                         <label htmlFor="firstname" className="text-gray-500 text-sm pb-2 font-semibold">First Name</label>
-                        <input 
-                            type="text" 
+                        <Input 
+                            type="text"
+                            variant="filled" 
                             id='firstname' 
                             className="border border-blue-300 outline-none rounded-lg p-2 bg-gray-50"
                             onChange={e=> setFirstmame(e.target.value)}
@@ -206,8 +209,9 @@ function Account() {
                     </span>
                     <span className="flex flex-col col-span-1">
                         <label htmlFor="lastname" className="text-gray-500 text-sm pb-2 font-semibold">Last Name</label>
-                        <input 
-                            type="text" 
+                        <Input 
+                            type="text"
+                            variant="filled" 
                             id='lastname' 
                             className="border border-blue-300 outline-none rounded-lg p-2 bg-gray-50"
                             onChange={e=> setLastname(e.target.value)}
@@ -220,8 +224,9 @@ function Account() {
                 {/* <div className="w-full pb-8">
                     <span className="flex flex-col">
                         <label htmlFor="email" className="text-gray-500 text-sm pb-2 font-semibold">Email</label>
-                        <input 
-                            type="text" 
+                        <Input 
+                            type="text"
+                            variant="filled" 
                             id='email' 
                             className="border border-blue-300 outline-none rounded-lg p-2 bg-gray-50"
                             onChange={e=> setEmail(e.target.value)}
@@ -234,8 +239,9 @@ function Account() {
                 <div className="w-full pb-8">
                     <span className="flex flex-col">
                         <label htmlFor="address" className="text-gray-500 text-sm pb-2 font-semibold">Address</label>
-                        <input 
-                            type="text" 
+                        <Input 
+                            type="text"
+                            variant="filled" 
                             id='address' 
                             className="border border-blue-300 outline-none rounded-lg p-2 bg-gray-50"
                             onChange={e=> setAddress(e.target.value)}
@@ -248,8 +254,9 @@ function Account() {
                 <div className="grid grid-cols-2 md:gap-16 gap-4 pb-8">
                     <span className="flex flex-col col-span-1">
                         <label htmlFor="city" className="text-gray-500 text-sm pb-2 font-semibold">City</label>
-                        <input 
-                            type="text" 
+                        <Input 
+                            type="text"
+                            variant="filled" 
                             id='city' 
                             className="border border-blue-300 outline-none rounded-lg p-2 bg-gray-50"
                             onChange={e=> setCity(e.target.value)}
@@ -258,8 +265,9 @@ function Account() {
                     </span>
                     <span className="flex flex-col col-span-1">
                         <label htmlFor="country" className="text-gray-500 text-sm pb-2 font-semibold">Country</label>
-                        <input 
-                            type="text" 
+                        <Input 
+                            type="text"
+                            variant="filled" 
                             id='country' 
                             className="border border-blue-300 outline-none rounded-lg p-2 bg-gray-50"
                             onChange={e=> setCountry(e.target.value)}

@@ -5,6 +5,7 @@ import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
 import BecomeASeller from './pages/becomeAseller/BecomeASeller'
 import Chat from './pages/chat/Chat'
+import Contact from './pages/contact/Contact'
 import ExploreSellers from './pages/explore/ExploreSellers'
 import Home from './pages/Home/Home'
 import HowItWorks from './pages/howitworks/HowItWorks'
@@ -28,6 +29,7 @@ function App() {
         <Route exact path="/becomeaseller" component={BecomeASeller} />
         <Route exact path="/account" component={Account} />
         <Route exact path="/howitworks" component={HowItWorks} />
+        <Route exact path="/contact" component={Contact} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/" component={Home} />

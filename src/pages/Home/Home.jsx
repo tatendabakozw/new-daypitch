@@ -153,7 +153,7 @@ function Home() {
                         How it works
                     </Link>
                     <Link
-                        Link='/login'
+                        Link='/login    '
                         className="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-800 bg-indigo-50 hover:bg-indigo-100"
                     >
                         Get started

@@ -1,6 +1,6 @@
 export const nav_options = {
     navigation : [
-        { name: 'Explore Professional', href: '/explore', current: false },
+        { name: 'Explore', href: '/explore', current: false },
         { name: 'About', href: '/howitworks', current: false },
         { name: 'Sign In', href: '/login', current: false },
       ],

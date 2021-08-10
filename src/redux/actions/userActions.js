@@ -82,16 +82,18 @@ export const registerWithCred = (email, password) => (dispatch) =>{
         currentUser.updateProfile({
             displayName: fields[0]
         }).then(()=>{
-            db.collection('users').add({
+            db.collection('users').doc(res.user.uid).set({
                 name: fields[0],
                 uid: res.user.uid,
                 createdAt: new Date(),
-                role: 'buyer'
+                role: 'buyer',
+                isOnline: true,
+                propic: res.user.photoURL ? res.user.photoURL : null
             }).then(res=>{
                 dispatch({
                     type: REGISTER_USER_SUCCESS,
                     payload: res,
-                    message: 'Account created sucessfully'
+                    message: 'Account created sucessfully, you can login now'
                 })
             }).catch(err=>{
                 dispatch({
@@ -127,16 +129,18 @@ export const registerWithGoog = () => (dispatch) =>{
     })
     auth.signInWithPopup(provider).then(res=>{
         if(res.additionalUserInfo.isNewUser){
-           db.collection('users').add({
+           db.collection('users').doc(res.user.uid).set({
                name: res.user.displayName,
                uid: res.user.uid,
                role: 'buyer',
-               createdAt: new Date()
+               createdAt: new Date(),
+               isOnline: true,
+                propic: res.user.photoURL ? res.user.photoURL : null
            }).then((res)=>{
                 dispatch({
                     type: REGISTER_USER_SUCCESS,
                     payload: res,
-                    message: 'Account created sucessfully'
+                    message: 'Account created sucessfully, you can login now'
                 })
            }).catch(err=>{
                 dispatch({

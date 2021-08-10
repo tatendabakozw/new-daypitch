@@ -1,6 +1,5 @@
 import React from 'react'
 import HomeNavbar from '../../components/navigation/HomeNavbar'
-import Sidebar from '../../components/sidebar/Sidebar'
 
 function ChatLayout({children}) {
     return (

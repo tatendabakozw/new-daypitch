@@ -1,5 +1,6 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux"
 import thunk from "redux-thunk"
+import { create_conversation_Reducer, get_conversation_Reducer } from "./reducers/conversationsReducer"
 import { firestore_users_Reducer } from "./reducers/firestore_usersReducer"
 import { createAServiceReducer, getAllServicesReducer, singleServiceReducer } from "./reducers/serviceReducer"
 import { registerWithCresReducer, signInWithCredsReducer } from "./reducers/userReducer"
@@ -17,7 +18,9 @@ const reducer = combineReducers({
     allServices: getAllServicesReducer,
     sidebar_panel: sidebarReducer,
     create_service: createAServiceReducer,
-    all_users: firestore_users_Reducer
+    all_users: firestore_users_Reducer,
+    create_message: create_conversation_Reducer,
+    all_messages: get_conversation_Reducer
 })
 
 const composeForBrowser = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose

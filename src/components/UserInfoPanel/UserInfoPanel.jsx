@@ -1,8 +1,6 @@
-import React, { useState, Fragment } from 'react'
+import React, { Fragment } from 'react'
 import { CheckCircleIcon, XIcon } from '@heroicons/react/outline'
-import { HeartIcon as FavoriteBorderIcon, BookmarkIcon, ChatIcon, DotsVerticalIcon  } from '@heroicons/react/solid'
-import { Dialog, Transition, Menu  } from '@headlessui/react'
-import { useHistory } from 'react-router-dom'
+import { Dialog, Transition  } from '@headlessui/react'
 
 function UserInfoPanel({open, setOpen, propic, description, verified, id, rating, name, school}) {
     return (

@@ -11,6 +11,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { get_all_Firestore_users } from '../../redux/actions/firestore_usersActions'
 import { Spinner, Text } from "@chakra-ui/react"
+import { create_a_Message_action, get_all_Messages } from '../../redux/actions/conversationsActions'
 
 const messages = [
     {
@@ -58,20 +59,41 @@ function Chat() {
     const [current_chat_id, setCurrentChat_id] = useState()
 	const dispatch = useDispatch()
 	const all_users = useSelector(state=> state.all_users)
+	const all_messages = useSelector(state=> state.all_messages)
 	const {loading, users} = all_users
 	const [chatStart, setChatStart] = useState(false)
 	const [chat_user, setChatUser] = useState()
+	const [message, setMessage] = useState('')
 
 	const logged_in_user = window.localStorage.getItem('userInfo')
 
 	useEffect(()=>{
 		dispatch(get_all_Firestore_users(JSON.parse(logged_in_user)?.user?.uid))
-	},[])
+	},[dispatch])
+
+	
 
 	const initializeChat = (user) =>{
 		setChatStart(true)
 		setChatUser(user)
 		// console.log(user)
+		if(chat_user){
+			dispatch(get_all_Messages({uid_1:JSON.parse(logged_in_user)?.user?.uid, uid_2: chat_user?.uid }))
+		}
+
+	}
+
+	const send_a_message = (e) =>{
+		e.preventDefault()
+		const msg_obj = {
+			sender : JSON.parse(logged_in_user)?.user?.uid,
+			receiver : chat_user?.uid,
+			message: message
+		}
+		if(message !== ""){
+			dispatch(create_a_Message_action(msg_obj))
+			setMessage('')
+		}
 	}
 
     return (
@@ -228,25 +250,27 @@ function Chat() {
 						<div className="text-center sticky top-0 flex flex-col"><Text className="bg-blue-50 p-2 fixed top-16 z-0 rounded-lg text-sm text-blue-900 text-center self-center">{chat_user?.name}</Text></div>
                         {
 							loading ? (<div className="grid items-center my-auto h-96 content-center">
-
-										<div className="flex flex-col items-center"><Spinner
-										thickness="4px"
-										speed="0.65s"
-										emptyColor="gray.200"
-										color="blue.500"
-										size="xl"
-									/></div>
-							</div>) : (<>
-								{
-									chatStart ? (<>
+										<div className="flex flex-col items-center">
+											<Spinner
+												thickness="4px"
+												speed="0.65s"
+												emptyColor="gray.200"
+												color="blue.500"
+												size="xl"
+											/>
+										</div>
+									</div>) : (<>
 										{
-											messages.map((message, index)=>(
+											chatStart ? (<>
+										{
+											all_messages?.messages?.map((message, index)=>(
 												<div className="flex flex-col w-full justify-between" key={index}>
-													{message.receiver_name === "tatenda bako" ? (<div className="flex flex-row justify-end w-full">
-														<p className="text-right my-4 bg-blue-900 text-white max-w-4xl rounded-lg p-4">{message.message}</p>
+													{/* <p>{message.sender }</p> */}
+													{message.sender === JSON.parse(logged_in_user)?.user?.uid ? (<div className="flex flex-row justify-end w-full">
+														<p className="text-right my-4 bg-blue-900 text-white max-w-4xl rounded-lg p-2">{message.message}</p>
 													</div>) : null}
-													{message.receiver_name === "tafara bako" ? (<div className="flex flex-row justify-start">
-														<p className="text-left my-4 bg-gray-100 text-gray-700 max-w-4xl rounded-lg p-4">{message.message}</p>
+													{message.sender !== JSON.parse(logged_in_user)?.user?.uid ? (<div className="flex flex-row justify-start">
+														<p className="text-left my-4 bg-gray-100 text-gray-700 max-w-4xl rounded-lg p-2">{message.message}</p>
 													</div>) : null}
 												</div>
 											))
@@ -262,8 +286,8 @@ function Chat() {
 						}
                         <div className="flex-1"></div>
                         <div className="flex bottom-5 mb-16 flex-row items-center flex-end self-end bg-white w-full rounded-full">
-                            <input type="text" className="bg-gray-50 p-4 rounded-full w-full outline-none" placeholder="type message" />
-							<span className="cursor-pointer p-4">
+                            <input value={message} onChange={e=>setMessage(e.target.value)} type="text" className="bg-gray-50 p-4 rounded-full w-full outline-none" placeholder="type message" />
+							<span onClick={send_a_message} className="cursor-pointer p-4">
 								<SendRoundedIcon fontSize = "large" className="text-gray-700"/>
 							</span>
                         </div>

@@ -1,13 +1,9 @@
 import React, { useState, Fragment } from 'react'
-import { StarIcon as StarRateIcon, HeartIcon as FavoriteIcon,CheckCircleIcon, XIcon } from '@heroicons/react/outline'
-import { HeartIcon as FavoriteBorderIcon, BookmarkIcon, ChatIcon, DotsVerticalIcon  } from '@heroicons/react/solid'
-import { Dialog, Transition, Menu  } from '@headlessui/react'
+import { StarIcon as StarRateIcon, HeartIcon as FavoriteIcon,CheckCircleIcon } from '@heroicons/react/outline'
+import { HeartIcon as FavoriteBorderIcon, BookmarkIcon, ChatIcon  } from '@heroicons/react/solid'
+import { Dialog, Transition  } from '@headlessui/react'
 import { useHistory } from 'react-router-dom'
 import UserInfoPanel from '../UserInfoPanel/UserInfoPanel'
-
-function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
-}
 
 function ExploreListItem({verified, category, price, rating, tags, propic, businessname, id, description, school}) {
     const [save, setSaved] = useState(false)

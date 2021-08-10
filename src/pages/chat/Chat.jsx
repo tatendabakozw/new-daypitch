@@ -164,14 +164,14 @@ function Chat() {
                         {
 							loading ? (<p>loading...</p>): (<>
 								{
-									current_chat_id ? (<>
+									chatStart ? (<>
 										{
-											messages.map((message, index)=>(
+											all_messages?.messages?.map((message, index)=>(
 												<div className="flex flex-col w-full justify-between" key={index}>
-													{message.receiver_name === "tatenda bako" ? (<div className="flex flex-row justify-end w-full">
+													{message.sender === JSON.parse(logged_in_user)?.user?.uid ? (<div className="flex flex-row justify-end w-full">
 														<p className="text-right my-2 bg-blue-900 text-white text-sm max-w-4xl rounded-lg p-4">{message.message}</p>
 													</div>) : null}
-													{message.receiver_name === "tafara bako" ? (<div className="flex flex-row justify-start">
+													{message.receiver === JSON.parse(logged_in_user)?.user?.uid ? (<div className="flex flex-row justify-start">
 														<p className="text-left my-2 bg-gray-100 text-gray-700 text-sm max-w-4xl rounded-lg p-4">{message.message}</p>
 													</div>) : null}
 												</div>
@@ -186,6 +186,13 @@ function Chat() {
 								}
 							</>)
 						}
+						 <div className="flex-1"></div>
+                        <div className="flex bottom-5 mb-16 flex-row items-center flex-end self-end bg-white w-full rounded-full">
+                            <input value={message} onChange={e=>setMessage(e.target.value)} type="text" className="bg-white p-4 rounded-full w-full outline-none" placeholder="type message" />
+							<span onClick={send_a_message} className="cursor-pointer p-4">
+								<SendRoundedIcon fontSize = "large" className="text-gray-700"/>
+							</span>
+                        </div>
                     </div>
                 </div>
 
@@ -268,10 +275,11 @@ function Chat() {
 													{/* <p>{message.sender }</p> */}
 													{message.sender === JSON.parse(logged_in_user)?.user?.uid ? (<div className="flex flex-row justify-end w-full">
 														<p className="text-right my-4 bg-blue-900 text-white max-w-4xl rounded-lg p-2">{message.message}</p>
-													</div>) : null}
-													{message.sender !== JSON.parse(logged_in_user)?.user?.uid ? (<div className="flex flex-row justify-start">
-														<p className="text-left my-4 bg-gray-100 text-gray-700 max-w-4xl rounded-lg p-2">{message.message}</p>
-													</div>) : null}
+													</div>) : message.receiver === JSON.parse(logged_in_user)?.user?.uid ? (
+														<div className="flex flex-row justify-start">
+															<p className="text-left my-4 bg-gray-100 text-gray-700 max-w-4xl rounded-lg p-2">{message.message}</p>
+														</div>
+													):null}
 												</div>
 											))
 										}

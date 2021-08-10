@@ -1,8 +1,12 @@
 import axios from "axios";
 import { apiUrl } from "../../helpers/apiUrl";
+import { db } from "../../helpers/firebase";
 import { ALL_SERVICE_GET_REQUEST, ALL_SERVICE_GET_SUCSESS, SERVICE_GET_FAIL, 
         SERVICE_GET_REQUEST, 
-        SERVICE_GET_SUCSESS } from "../constants/serviceConstants"
+        SERVICE_GET_SUCSESS, 
+        SERVIVE_CREATE_FAIL, 
+        SERVIVE_CREATE_REQUEST,
+        SERVIVE_CREATE_SUCCESS} from "../constants/serviceConstants"
 
 //get a single service
 export const get_serviceAction = (token, id) => (dispatch)=>{
@@ -50,3 +54,31 @@ export const get_allServices = (limit, skip) => (dispatch) =>{
         })
     })
 } 
+
+//create a service 
+export const create_a_service = (id, description, tags, level, school, price, category, location) => (dispatch) =>{
+    dispatch({
+        type: SERVIVE_CREATE_REQUEST
+    })
+    db.collection('services').doc(id).set({
+        description: description,
+        tags: tags,
+        level: level,
+        school: school,
+        price: price,
+        category: category,
+        location: location
+    }).then(res=>{
+        dispatch({
+            type: SERVIVE_CREATE_SUCCESS,
+            payload: res
+        })
+    }).catch(error=>{
+        dispatch({
+            type: SERVIVE_CREATE_FAIL,
+            payload: error.response && error.response.message 
+                    ? error.response.error.message 
+                    : error.message
+        })
+    })
+}

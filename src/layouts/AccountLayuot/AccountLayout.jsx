@@ -34,7 +34,7 @@ function AccountLayout({children}) {
                     ))
                 }
             </div>
-            <div className="body md:w-3/4 w-full bg-white">
+            <div className="body md:w-3/4 w-full bg-white min-h-screen">
                 {children}
             </div>
         </div>

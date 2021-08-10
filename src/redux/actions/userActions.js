@@ -1,6 +1,4 @@
-import axios from "axios"
-import { apiUrl } from "../../helpers/apiUrl"
-import { auth } from "../../helpers/firebase"
+import { auth, db } from "../../helpers/firebase"
 import { LOGIN_USER_FAIL, 
         LOGIN_USER_REQUEST, 
         LOGIN_USER_SUCCESS, 
@@ -38,25 +36,24 @@ export const loginWithGoog = () =>(dispatch)=>{
     })
     auth.signInWithPopup(provider).then(res=>{
         if(res.additionalUserInfo.isNewUser){
-            axios.post(`${apiUrl}/user/create`,{
-                displayName: res.user.displayName,
-                firstname: '',
-                lastname: '',
-                city: '',
-                country: '',
-                firebase_uid: res.user.uid,
-                email: res.user.email
-            }).finally((res)=>{
-                dispatch({
-                    type: REGISTER_USER_SUCCESS, payload:res, message: 'Account created sucessfully'
-                })
+            db.collection('users').add({
+                name: res.user.displayName,
+                uid: res.user.uid,
+                role: 'buyer',
+                createdAt: new Date()
+            }).then((res)=>{
+                 dispatch({
+                     type: REGISTER_USER_SUCCESS,
+                     payload: res,
+                     message: 'Account created sucessfully'
+                 })
             }).catch(err=>{
-                dispatch({
-                    type: REGISTER_USER_FAIL,
-                    payload: err.response && err.response.message 
-                            ? err.response.err.message 
-                            : err.message
-                })
+                 dispatch({
+                     type: REGISTER_USER_FAIL,
+                     payload: err.response && err.response.message 
+                             ? err.response.err.message 
+                             : err.message
+                 })
             })
         }else{
             dispatch({
@@ -80,18 +77,31 @@ export const registerWithCred = (email, password) => (dispatch) =>{
         type: REGISTER_USER_REQUEST, payload: {email, password}
     })
     auth.createUserWithEmailAndPassword(email, password).then(res=>{
-        axios.post(`${apiUrl}/user/create`,{
-            displayName: res.user.displayName,
-            firstname: '',
-            lastname: '',
-            city: '',
-            country: '',
-            firebase_uid: res.user.uid,
-            email: res.user.email
-        }).finally((res)=>{
-            dispatch({
-                type: REGISTER_USER_SUCCESS, payload:res, message: 'Account created sucessfully'
+        const currentUser = auth.currentUser
+        const fields = email.split('@');
+        currentUser.updateProfile({
+            displayName: fields[0]
+        }).then(()=>{
+            db.collection('users').add({
+                name: fields[0],
+                uid: res.user.uid,
+                createdAt: new Date(),
+                role: 'buyer'
+            }).then(res=>{
+                dispatch({
+                    type: REGISTER_USER_SUCCESS,
+                    payload: res,
+                    message: 'Account created sucessfully'
+                })
+            }).catch(err=>{
+                dispatch({
+                    type: REGISTER_USER_FAIL,
+                    payload: err.response && err.response.message 
+                            ? err.response.err.message 
+                            : err.message
+                })
             })
+            
         }).catch(err=>{
             dispatch({
                 type: REGISTER_USER_FAIL,
@@ -117,26 +127,25 @@ export const registerWithGoog = () => (dispatch) =>{
     })
     auth.signInWithPopup(provider).then(res=>{
         if(res.additionalUserInfo.isNewUser){
-            axios.post(`${apiUrl}/user/create`,{
-                displayName: res.user.displayName,
-                firstname: '',
-                lastname: '',
-                city: '',
-                country: '',
-                firebase_uid: res.user.uid,
-                email: res.user.email
-            }).finally((res)=>{
+           db.collection('users').add({
+               name: res.user.displayName,
+               uid: res.user.uid,
+               role: 'buyer',
+               createdAt: new Date()
+           }).then((res)=>{
                 dispatch({
-                    type: REGISTER_USER_SUCCESS, payload:res, message: 'Account created sucessfully'
+                    type: REGISTER_USER_SUCCESS,
+                    payload: res,
+                    message: 'Account created sucessfully'
                 })
-            }).catch(err=>{
+           }).catch(err=>{
                 dispatch({
                     type: REGISTER_USER_FAIL,
                     payload: err.response && err.response.message 
                             ? err.response.err.message 
                             : err.message
                 })
-            })
+           })
         }else{
             dispatch({
                 type: LOGIN_USER_SUCCESS, payload: res, message: 'Login Sucessful'
@@ -153,8 +162,10 @@ export const registerWithGoog = () => (dispatch) =>{
     })
 }
 
+//logout function
 export const user_logout = () => (dispatch) =>{
     localStorage.removeItem('userInfo')
+    auth.signOut()
     dispatch({
         type: USER_SIGNOUT
     })

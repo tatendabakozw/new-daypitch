@@ -1,10 +1,8 @@
 import React, { useState, Fragment } from 'react'
 import { CheckCircleIcon, XIcon } from '@heroicons/react/outline'
+import { HeartIcon as FavoriteBorderIcon, BookmarkIcon, ChatIcon, DotsVerticalIcon  } from '@heroicons/react/solid'
 import { Dialog, Transition, Menu  } from '@headlessui/react'
-
-function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
-}
+import { useHistory } from 'react-router-dom'
 
 function UserInfoPanel({open, setOpen, propic, description, verified, id, rating, name, school}) {
     return (

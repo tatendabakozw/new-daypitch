@@ -236,21 +236,9 @@ function HomeNavbar({off_background, on_background}) {
                                 <Text>Theme</Text>
                             </span> */}
                             {
-                                JSON.parse(user_info)?.role === "buyer" ? (
+                                userInfo ? (
                                     <div className="px-2 pt-2 pb-3 space-y-1 shadow-md">
                                         {nav_options.BuyerAuthenticatedNavigation.map((item) => (
-                                            <Link to={item.href}
-                                                key={item.name}
-                                                className={classNames('text-gray-600 hover:text-gray-900 block px-3 py-2 rounded-md text-base')}
-                                                aria-current={item.current ? 'page' : undefined}
-                                            >
-                                                {item.name}
-                                            </Link>
-                                        ))}
-                                    </div>
-                                ) : JSON.parse(user_info)?.role === "seller" ? (
-                                    <div className="px-2 pt-2 pb-3 space-y-1 shadow-md">
-                                        {nav_options.SellerAuthenticatedNavigation.map((item) => (
                                             <Link to={item.href}
                                                 key={item.name}
                                                 className={classNames('text-gray-600 hover:text-gray-900 block px-3 py-2 rounded-md text-base')}

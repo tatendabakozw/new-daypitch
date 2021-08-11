@@ -1,8 +1,4 @@
 import {ChatAlt2Icon, BellIcon} from '@heroicons/react/outline'
-import { Fragment, useState } from 'react'
-import { Transition } from '@headlessui/react'
-import { CheckCircleIcon } from '@heroicons/react/outline'
-import { XIcon } from '@heroicons/react/solid'
 import NavbarNotification from '../components/navigation/NavbarNotification'
 
 export const nav_options = {
@@ -24,8 +20,8 @@ export const nav_options = {
         { name: 'My Jobs', href: '/jobs', current: true },
         { name: <ChatAlt2Icon height={20} width={20} className="text-gray-700" />, href: '/chat', current: true },
         { name: <span>
-                      <NavbarNotification/>
-                </span>, current: true }
+                <NavbarNotification/>
+          </span>, current: true }
         // { name: 'Messages', href: '/chat', current: false },
     ]
 }

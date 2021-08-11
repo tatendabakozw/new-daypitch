@@ -305,7 +305,7 @@ function ExploreSellers() {
             </div>
             </div>
             <div onClick={handleLoadMore} className="py-24 flex flex-col items-center">
-                <span className="bg-blue-900 rounded text-white">Load More</span>
+                <span className="bg-blue-900 rounded text-white p-2">Load More</span>
             </div>
         </HomeLayout>
     )

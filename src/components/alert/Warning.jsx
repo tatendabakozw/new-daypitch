@@ -8,7 +8,7 @@ export default function Warning() {
         Make sure you add some bottom padding to pages that include a sticky banner like this to prevent
         your content from being obscured when the user scrolls to the bottom of the page.
       */}
-      <div className="fixed inset-x-0 bottom-0">
+      <div className="z-30 fixed inset-x-0 bottom-0">
         <div className="bg-blue-600">
           <div className="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between flex-wrap">

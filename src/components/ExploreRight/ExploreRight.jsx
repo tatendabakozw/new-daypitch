@@ -25,7 +25,7 @@ function ExploreRight() {
             console.log(err)
             setUserLoading(false)
         })
-    },[])
+    },[userInfo?.user?.uid])
 
     return (
         <>

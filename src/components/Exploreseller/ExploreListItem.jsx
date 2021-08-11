@@ -4,6 +4,8 @@ import { HeartIcon as FavoriteBorderIcon, BookmarkIcon, ChatIcon  } from '@heroi
 import { Dialog, Transition  } from '@headlessui/react'
 import { useHistory } from 'react-router-dom'
 import UserInfoPanel from '../UserInfoPanel/UserInfoPanel'
+import image from '../../images/man.png'
+
 
 function ExploreListItem({verified, category, price, rating, tags, propic, businessname, id, description, school}) {
     const [save, setSaved] = useState(false)
@@ -36,9 +38,10 @@ function ExploreListItem({verified, category, price, rating, tags, propic, busin
                 <span onClick={()=> setOpen(true)} className="flex flex-row items-center mr-2 cursor-pointer">
                     <img
                         className="inline-block rounded-full w-10 h-10 mr-2"
-                        src={propic}
-                        alt="user propic "
+                        src={propic ? propic : image }
+                        alt="user propic"
                     />
+
                     <p className={`text-gray-700 font-semibold`}>{businessname} -</p>
                     {verified ? (<div className="saved flex flex-row items-center text-blue-600">
                         <CheckCircleIcon height={24} width={24} className="text-blue-700" />

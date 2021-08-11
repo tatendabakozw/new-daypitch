@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import {StarIcon as StarRateIcon, HeartIcon as FavoriteIcon,UserCircleIcon,CheckCircleIcon} from '@heroicons/react/outline'
 import { HeartIcon as FavoriteBorderIcon } from '@heroicons/react/solid'
+import image from '../../images/man.png'
 
 
 function ExploreGridItem({className, verified, category, price, rating, tags, propic, businessname, id}) {
@@ -10,8 +11,8 @@ function ExploreGridItem({className, verified, category, price, rating, tags, pr
             <div className="picture bg-white rounded-b-none rounded-t-sm p-4 h-40 flex flex-col items-center">
                 <img
                     className="inline-block rounded-full ring-2 ring-white bg-gray-50"
-                    src={propic}
-                    alt="userprofile pic"
+                    src={propic ? propic : image }
+                    alt="user pic"
                 />
                 <div className={`cat bg-blue-200 rounded-sm m-4 flex flex-row items-center`}>
                     <p className="text-xs text-gray-700 p-2">{category}</p>

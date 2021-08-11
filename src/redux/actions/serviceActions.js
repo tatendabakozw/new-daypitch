@@ -42,7 +42,7 @@ export const get_allServices = () => (dispatch) =>{
         snapshot.forEach(doc=>{
             all_services.push(doc.data())
         })
-        console.log(all_services)
+        // console.log(all_services)
         dispatch({
             type: ALL_SERVICE_GET_SUCSESS,
             payload: all_services

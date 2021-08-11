@@ -223,39 +223,38 @@ function ExploreSellers() {
                                 !loading ? (
                                     <>
                                     {
-                                        all_services?.data?.services.map(service=>(
+                                        all_services?.map(service=>(
                                             <>
                                                 {grid_view ? (<div className="sellers grid md:grid-cols-2 grid-cols-1 gap-16 items-center" key={service._id}>
                                                 <ExploreGridItem 
-                                                    key={service._id}
+                                                    key={service.user}
                                                     className="col-span-1"
                                                     verified={service.verified}
                                                     category={service.category}
-                                                    price={service.price_range}
+                                                    price={service.price}
                                                     rating={service.rating}
                                                     tags={service.tags}
-                                                    propic={service.picture}
+                                                    propic={service.service_picture}
                                                     businessname={service.username}
                                                     description={service.description}
-                                                    id={service._id}
+                                                    id={service.user}
                                                 />
         
         
                                                 </div>):(
                                                     <div key={service._id} className="flex flex-col">
                                                         <ExploreListItem 
-                                                            key={service._id}
-                                                            className="col-span-2"
+                                                            key={service.user}
+                                                            className="col-span-1"
                                                             verified={service.verified}
                                                             category={service.category}
-                                                            price={service.price_range}
+                                                            price={service.price}
                                                             rating={service.rating}
                                                             tags={service.tags}
-                                                            propic={service.picture}
+                                                            propic={service.service_picture}
                                                             businessname={service.username}
                                                             description={service.description}
-                                                            school={service.school_attended}
-                                                            id={service._id}
+                                                            id={service.user}
                                                         />
                                                 </div>
                                             )}

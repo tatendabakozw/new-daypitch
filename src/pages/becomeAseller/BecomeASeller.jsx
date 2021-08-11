@@ -1,10 +1,6 @@
 import React, {Fragment, useCallback, useState} from 'react'
 import HomeLayout from '../../layouts/HomeLayout/HomeLayout'
-import { Listbox, Transition } from '@headlessui/react'
-import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import Tags from '../../components/tags/Tags'
-import axios from 'axios'
-import { apiUrl } from '../../helpers/apiUrl'
 import { useDispatch, useSelector } from 'react-redux'
 import AccountLayout from '../../layouts/AccountLayuot/AccountLayout'
 import { useEffect } from 'react'
@@ -49,22 +45,25 @@ function BecomeASeller() {
         e.preventDefault()
         // console.log(catTags)
         // console.log(description)
-        // console.log(selected.name)
+        // console.log(selected)
         // console.log(level)
         // console.log(school)
         // console.log(pricerange)
         setCreate_lodaing(true)   
-        db.collection('services').doc(auth.currentUser.uid).set({
+        db.collection('services').doc(auth?.currentUser?.uid).set({
             description: description,
             school_level: level,
             school_attended: school,
             price:pricerange,
-            category: selected.name,
+            category: selected,
             user: auth.currentUser.uid,
             location: location,
             website: website,
             tags: catTags,
-            role: 'seller'
+            role: 'seller',
+            service_picture : auth.currentUser.photoURL,
+            username: auth.currentUser.displayName,
+            email: auth.currentUser.email
         },{merge: true}).then(res=>{
             setCreate_lodaing(false)
             console.log(res)
@@ -76,18 +75,21 @@ function BecomeASeller() {
 
     const edit_user_profiule = (e) =>{
         e.preventDefault()
-        db.collection('services').doc(auth.currentUser.uid).update({
+        db.collection('services').doc(auth.currentUser.uid).set({
             description: description,
             school_level: level === "" ? service?.school_level : level,
             school_attended: school === "" ? service?.school_level : school,
             price:pricerange === "" ? service?.price : pricerange,
-            category: selected.name === "" ? service?.category : selected.name,
+            category: selected === "" ? service?.category : selected.name,
             user: auth.currentUser.uid,
             location: location === "" ? service?.location : location,
             website: website === "" ? service?.website : website,
             tags: catTags === undefined ? service?.tags : catTags,
-            role: 'seller'
-        }).then(res=>{
+            role: 'seller',
+            service_picture : auth.currentUser.photoURL,
+            username: auth.currentUser.displayName,
+            email: auth.currentUser.email
+        },{merge: true}).then(res=>{
             setCreate_lodaing(false)
             console.log(res)
         }).catch(err=>{
@@ -101,9 +103,10 @@ function BecomeASeller() {
         if(!service){
             stableDispatch(get_serviceAction(auth?.currentUser?.uid))
         }
-    },[stableDispatch ,service])
+    },[stableDispatch ,service, auth?.currentUser?.uid])
 
     // console.log(service)
+    // console.log(auth?.currentUser?.uid)
     if(loading){
         return(
             <HomeLayout>

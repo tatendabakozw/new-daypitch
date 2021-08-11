@@ -16,7 +16,7 @@ export const get_serviceAction = (id) => (dispatch)=>{
         payload: {id}
     });
     db.collection('services').doc(id).onSnapshot(snapshot=>{
-        console.log(snapshot.data())
+        console.log(id)
         dispatch({
             type: SERVICE_GET_SUCSESS, 
             payload: snapshot.data()
@@ -32,17 +32,22 @@ export const get_serviceAction = (id) => (dispatch)=>{
 }
 
 //get all setvices 
-export const get_allServices = (limit, skip) => (dispatch) =>{
+export const get_allServices = () => (dispatch) =>{
     dispatch({
-        type: ALL_SERVICE_GET_REQUEST,
-        payload: {limit, skip}
+        type: ALL_SERVICE_GET_REQUEST
     });
-    axios.post(`${apiUrl}/service/get/all`,{limit, skip}).then(res=>{
+    const all_services = []
+
+    db.collection('services').onSnapshot(snapshot=>{
+        snapshot.forEach(doc=>{
+            all_services.push(doc.data())
+        })
+        console.log(all_services)
         dispatch({
             type: ALL_SERVICE_GET_SUCSESS,
-            payload: res
+            payload: all_services
         })
-    }).catch(error=>{
+    },(error)=>{
         dispatch({
             type: SERVICE_GET_FAIL,
             payload: error.response && error.response.message 

@@ -15,6 +15,7 @@ export const nav_options = {
     BuyerAuthenticatedNavigation : [
         { name: 'Explore Sellers', href: '/explore', current: false },
         { name: 'My Jobs', href: '/jobs', current: true },
+        { name: 'Messages', href: '/chat', current: true }
         // { name: 'Messages', href: '/chat', current: false },
       
     ]

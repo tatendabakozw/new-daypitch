@@ -182,7 +182,7 @@ const pricing = {
     tiers: [
       {
         title: 'Freelancer',
-        price: 9.99,
+        price: 0,
         frequency: '/month',
         description: 'The essentials to provide your best work for clients.',
         features: ['5 products', 'Up to 1,000 subscribers', 'Basic analytics', '48-hour support response time'],
@@ -191,7 +191,7 @@ const pricing = {
       },
       {
         title: 'Startup',
-        price: 0,
+        price: 9.99,
         frequency: '/month',
         description: 'A plan that scales with your rapidly growing business.',
         features: [

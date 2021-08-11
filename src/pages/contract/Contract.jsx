@@ -144,9 +144,9 @@ function Contract() {
                                             name="country"
                                             className="h-full py-0 pl-4 pr-8 border-transparent bg-transparent text-gray-500  rounded-md"
                                         >
+                                            <option>ZAR</option>
+                                            <option>ZWL</option>
                                             <option>US</option>
-                                            <option>CA</option>
-                                            <option>EU</option>
                                         </select>
                                     </div>
                                     <input

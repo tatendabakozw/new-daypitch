@@ -17,6 +17,8 @@ function Contract() {
     const [email, setEmail] = useState('')
     const [country_code, setCountryCode] = useState('')
     const [details, setDetails] = useState('')
+    const [phone_number, setPhonenumber] = useState()
+    const [amount, setAmount] = useState(0)
 
     return (
         <HomeLayout>
@@ -82,6 +84,7 @@ function Contract() {
                                     <input
                                         type="text"
                                         name="first-name"
+                                        onChange={e=> setFirstname(e.target.value)}
                                         id="first-name"
                                         autoComplete="given-name"
                                         className="py-3 px-4 block w-full shadow-sm  border-gray-300 rounded-md"
@@ -96,6 +99,7 @@ function Contract() {
                                     <input
                                         type="text"
                                         name="last-name"
+                                        onChange={e=> setLastname(e.target.value)}
                                         id="last-name"
                                         autoComplete="family-name"
                                         className="py-3 px-4 block w-full shadow-sm  border-gray-300 rounded-md"
@@ -111,6 +115,7 @@ function Contract() {
                                         type="text"
                                         name="company"
                                         id="company"
+                                        onChange={e=> setCompany(e.target.value)}
                                         autoComplete="organization"
                                         className="py-3 px-4 block w-full shadow-sm  border-gray-300 rounded-md"
                                     />
@@ -125,6 +130,7 @@ function Contract() {
                                         id="email"
                                         name="email"
                                         type="email"
+                                        onChange={e=> setEmail(e.target.value)}
                                         autoComplete="email"
                                         className="py-3 px-4 block w-full shadow-sm  border-gray-300 rounded-md"
                                     />
@@ -140,13 +146,15 @@ function Contract() {
                                             Country
                                         </label>
                                         <select
+                                            onChange={e=> setCountryCode(e.target.value)}
                                             id="country"
                                             name="country"
+                                            value={country_code}
                                             className="h-full py-0 pl-4 pr-8 border-transparent bg-transparent text-gray-500  rounded-md"
                                         >
-                                            <option>ZAR</option>
-                                            <option>ZWL</option>
-                                            <option>US</option>
+                                            <option value="zar">ZAR</option>
+                                            <option value="zwl">ZWL</option>
+                                            <option value="us">US</option>
                                         </select>
                                     </div>
                                     <input
@@ -154,6 +162,7 @@ function Contract() {
                                         name="phone-number"
                                         id="phone-number"
                                         autoComplete="tel"
+                                        onChange={e=> setPhonenumber(e.target.value)}
                                         className="py-3 px-4 block w-full pl-20  border-gray-300 rounded-md"
                                         placeholder="+1 (555) 987-6543"
                                     />
@@ -168,6 +177,7 @@ function Contract() {
                                         id="message"
                                         name="message"
                                         rows={4}
+                                        onChange={e=> setDetails(e.target.value)}
                                         className="py-3 px-4 block w-full shadow-sm  border border-gray-300 rounded-md"
                                         defaultValue={''}
                                     />
@@ -181,6 +191,7 @@ function Contract() {
                                     <input
                                         id="number"
                                         name="amount"
+                                        onChange={e=> setAmount(e.target.value)}
                                         type="amount"
                                         className="py-3 px-4 block w-full shadow-sm border  border-gray-300 rounded-md"
                                     />

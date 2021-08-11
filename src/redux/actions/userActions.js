@@ -88,7 +88,10 @@ export const registerWithCred = (email, password) => (dispatch) =>{
                 createdAt: new Date(),
                 role: 'buyer',
                 isOnline: true,
-                propic: res.user.photoURL ? res.user.photoURL : null
+                propic: res.user.photoURL ? res.user.photoURL : null,
+                current_contracts: 0,
+                total_contracts: 0,
+                verified: false
             }).then(res=>{
                 dispatch({
                     type: REGISTER_USER_SUCCESS,
@@ -130,12 +133,15 @@ export const registerWithGoog = () => (dispatch) =>{
     auth.signInWithPopup(provider).then(res=>{
         if(res.additionalUserInfo.isNewUser){
            db.collection('users').doc(res.user.uid).set({
-               name: res.user.displayName,
-               uid: res.user.uid,
-               role: 'buyer',
-               createdAt: new Date(),
-               isOnline: true,
-                propic: res.user.photoURL ? res.user.photoURL : null
+                name: res.user.displayName,
+                uid: res.user.uid,
+                role: 'buyer',
+                createdAt: new Date(),
+                isOnline: true,
+                propic: res.user.photoURL ? res.user.photoURL : null,
+                current_contracts: 0,
+                total_contracts: 0,
+                verified: false
            }).then((res)=>{
                 dispatch({
                     type: REGISTER_USER_SUCCESS,

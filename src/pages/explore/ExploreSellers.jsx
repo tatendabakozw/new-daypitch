@@ -59,10 +59,10 @@ function ExploreSellers() {
 
     return (
         <HomeLayout>
-            <div className="lg:px-16 md:px-8 px-4">
-                <div className="pt-24 pb-8">
+            <div className="lg:px-16 md:px-8 pt-24 px-4">
+                {/* <div className="pt-24 pb-8">
                     <Warning />
-                </div>
+                </div> */}
             <div className="flex flex-row justify-between gap-8">
                 <div className="w-1/4 lg:block md:block hidden min-h-screen">
                     <div className="flex flex-col items-center">

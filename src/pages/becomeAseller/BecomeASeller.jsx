@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react'
+import React, {Fragment, useCallback, useState} from 'react'
 import HomeLayout from '../../layouts/HomeLayout/HomeLayout'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import AccountLayout from '../../layouts/AccountLayuot/AccountLayout'
 import { useEffect } from 'react'
 import { get_serviceAction } from '../../redux/actions/serviceActions'
-import { auth } from '../../helpers/firebase'
+import { auth, db } from '../../helpers/firebase'
 import { Input, Select, Textarea } from '@chakra-ui/react'
 
 const categories = [
@@ -26,7 +26,7 @@ function BecomeASeller() {
 
     //input values
     const [description, setDescription] = useState('')
-    const [catTags, setCatTags] = useState()
+    const [catTags, setCatTags] = useState([])
     const [level, setLevel] = useState('')
     const [school, setSchool] = useState('')
     const [pricerange, setPriceRange] = useState(0)
@@ -34,16 +34,12 @@ function BecomeASeller() {
     const [create_lodaing, setCreate_lodaing] = useState(false)
     const [website, setWebsite] = useState('')
     const [location, setLocation] = useState('')
-    const loggedInUser = localStorage.getItem('userinfo')
     const dispatch = useDispatch()
 
     const user_service = useSelector(state => state.getService)
-    const {service} = user_service
+    const {service, loading} = user_service
+    const stableDispatch = useCallback(dispatch, []);
 
-    const userSignin = useSelector(state=> state.userCredsSignIn)
-    const {userInfo} = userSignin 
-
-    console.log(userInfo?.user?.uid)
 
     const selectedTags = (tags) => {
         setCatTags(tags)
@@ -57,79 +53,66 @@ function BecomeASeller() {
         // console.log(level)
         // console.log(school)
         // console.log(pricerange)
-        setCreate_lodaing(true)
-        auth.currentUser.getIdToken().then(token=>{
-            axios.post(`${apiUrl}/service/create`,{
-                description,
-                tags: catTags,
-                school_level: level,
-                school_attended: school,
-                price_range: pricerange,
-                category: selected,
-                username: userInfo?.user?.displayName,
-                picture: userInfo?.user?.photoURL,
-                location: location,
-                website: website
-            },{
-                headers: {
-                    authorization: token
-                }
-            }).then(res=>{
-                setCreate_lodaing(false)
-                console.log(res.data)
-                axios.patch(`${apiUrl}/user/edit/seller/${res.data.user.firebase_uid}`,{
-                    role: 'seller'
-                }).then(res2=>{
-                    console.log(res2)
-                })
-                console.log(res)
-            }).catch(err=>{
-                setCreate_lodaing(false)
-                console.log(err)
-            })
-        }).catch(err=>{
+        setCreate_lodaing(true)   
+        db.collection('services').doc(auth.currentUser.uid).set({
+            description: description,
+            school_level: level,
+            school_attended: school,
+            price:pricerange,
+            category: selected.name,
+            user: auth.currentUser.uid,
+            location: location,
+            website: website,
+            tags: catTags,
+            role: 'seller'
+        },{merge: true}).then(res=>{
             setCreate_lodaing(false)
+            console.log(res)
+        }).catch(err=>{
             console.log(err)
-        })
-        
-        
+            setCreate_lodaing(false)
+        })        
     }
 
     const edit_user_profiule = (e) =>{
         e.preventDefault()
-        auth.currentUser.getIdToken().then(token=>{
-            axios.patch(`${apiUrl}/service/eit/${userInfo?.user?.uid}`,{
-                description,
-                tags: catTags,
-                school_level: level,
-                school_attended: school,
-                price_range: pricerange,
-                category: selected,
-                username: userInfo?.user?.displayName,
-                picture: userInfo?.user?.photoURL,
-                location: location,
-                website: website
-            },{
-                headers: token
-            }).then(res=>{
-                console.log(res)
-            }).catch(err=>{
-                console.log(err)
-            })
+        db.collection('services').doc(auth.currentUser.uid).update({
+            description: description,
+            school_level: level === "" ? service?.school_level : level,
+            school_attended: school === "" ? service?.school_level : school,
+            price:pricerange === "" ? service?.price : pricerange,
+            category: selected.name === "" ? service?.category : selected.name,
+            user: auth.currentUser.uid,
+            location: location === "" ? service?.location : location,
+            website: website === "" ? service?.website : website,
+            tags: catTags === undefined ? service?.tags : catTags,
+            role: 'seller'
+        }).then(res=>{
+            setCreate_lodaing(false)
+            console.log(res)
         }).catch(err=>{
             console.log(err)
-        })
+            setCreate_lodaing(false)
+        })        
+        console.log(catTags)
     }
 
     useEffect(()=>{
-        auth?.currentUser?.getIdToken().then(res=>{
-            dispatch(get_serviceAction(res, userInfo?.user?.uid))
-        }).catch(err=>{
-            console.log(err)
-        })
-    },[dispatch, userInfo?.user?.uid])
+        if(!service){
+            stableDispatch(get_serviceAction(auth?.currentUser?.uid))
+        }
+    },[stableDispatch ,service])
 
     // console.log(service)
+    if(loading){
+        return(
+            <HomeLayout>
+                <AccountLayout>
+                    <p>loading...</p>
+                </AccountLayout>
+            </HomeLayout>
+        )
+    }
 
     return (
         <HomeLayout>
@@ -139,17 +122,17 @@ function BecomeASeller() {
                {/* category */}
                <div className="flex flex-col  w-full items-center">
                     <div className="flex flex-col self-center bg-white w-full">
-                            <p className="text-sm mb-2 text-gray-700 ml-4">Select service category</p>
-                            <div className={`" w-full"`}>
-                                    <div className="relative mt-1">
-                                        <Select variant="filled" value={selected} placeholder="Select Category" onChange={e=>setSelected(e.target.value)}>
-                                            {
-                                                categories.map(category=>(
-                                                    <option value={category.name}>{category.name}</option>
-                                                ))
-                                            }
-                                        </Select>
-                                    </div>
+                        <p className="text-sm mb-2 text-gray-700 ml-4">Select service category</p>
+                        <div className={`" w-full"`}>
+                        <div className="relative mt-1">
+                            <Select variant="filled" value={selected} placeholder={`${service ? service.category : "Service Category"}`} onChange={e=>setSelected(e.target.value)}>
+                                {
+                                    categories.map(category=>(
+                                        <option value={category.name}>{category.name}</option>
+                                    ))
+                                }
+                            </Select>
+                        </div>
                         </div>
                     </div>
                </div>
@@ -180,7 +163,7 @@ function BecomeASeller() {
                             cols="30" rows="7"
                             variant="filled"
                             className="p-2 border border-gray-300 outline-none rounded-lg bg-white"
-                            placeholder="Describe yourself and/or your service with not less than 150 words"
+                            placeholder={`${service ? service.category : "Describe yourself and/or your service with not less than 150 words"}`}
                             onChange={e=> setDescription(e.target.value)}
                             required
                         />
@@ -277,7 +260,7 @@ function BecomeASeller() {
                <div className="flex flex-col w-full items-center my-8">
                     <div className="flex flex-col self-center bg-white w-full">
                         {
-                            service?.data?.error ? (
+                            !service? (
                                 <>
                                     {
                                         create_lodaing ? (<p className="capitalize bg-blue-900 p-2 text-white rounded-lg text-center opacity-75 hover:bg-blue-800">create_lodaing ...</p>) : (

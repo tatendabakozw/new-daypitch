@@ -9,22 +9,19 @@ import { ALL_SERVICE_GET_REQUEST, ALL_SERVICE_GET_SUCSESS, SERVICE_GET_FAIL,
         SERVIVE_CREATE_SUCCESS} from "../constants/serviceConstants"
 
 //get a single service
-export const get_serviceAction = (token, id) => (dispatch)=>{
+export const get_serviceAction = (id) => (dispatch)=>{
     // console.log(token, id)
     dispatch({
         type: SERVICE_GET_REQUEST,
-        payload: {token, id}
+        payload: {id}
     });
-    axios.get(`${apiUrl}/service/get/single/${id}`,{
-        headers:{
-            authorization: token
-        }
-    }).then(res=>{
+    db.collection('services').doc(id).onSnapshot(snapshot=>{
+        console.log(snapshot.data())
         dispatch({
             type: SERVICE_GET_SUCSESS, 
-            payload: res
+            payload: snapshot.data()
         })
-    }).catch(error=>{
+    },(error)=>{
         dispatch({
             type: SERVICE_GET_FAIL,
             payload: error.response && error.response.message 

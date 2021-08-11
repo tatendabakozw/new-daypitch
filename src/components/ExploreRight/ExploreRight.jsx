@@ -33,9 +33,15 @@ function ExploreRight() {
                         userInfo ? (
                             <div className="w-full flex flex-col">
                                 <span onClick={()=> history.push('/account')} className="flex flex-row items-center mb-8">
-                                    <div className="h-12 w-12 bg-white rounded-full overflow-hidden mr-2">
+                                    {
+                                        userInfo?.user?.photoURL ? (<div className="h-12 w-12 bg-white rounded-full overflow-hidden mr-2">
                                         <img src={userInfo?.user?.photoURL} alt="user_pic" className="object-contain" />
-                                    </div>
+                                    </div>) :(
+                                        <span className="inline-flex items-center justify-center h-14 w-14 rounded-full bg-gray-500 mr-2">
+                                            <span className="text-xl font-medium leading-none text-white">{userInfo?.user?.email.slice(0, 2)}</span>
+                                        </span>
+                                        )
+                                    }
                                     <p className="text-gray-700 font-semibold">My Account</p>
                                 </span>
                                 {
@@ -47,7 +53,11 @@ function ExploreRight() {
                             <div className="flex flex-col">
                                 <div className="flex flex-row items-center mb-8">
                                     <div className="rounded-full overflow-hidden mr-2">
-                                        <UserCircleIcon className="text-gray-600" height={40} width={40} />
+                                    <span className="inline-block h-14 w-14 rounded-full overflow-hidden bg-gray-100">
+                                        <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                                        </svg>
+                                    </span>
                                     </div>
                                     <p className="text-gray-700 font-semibold">You are not logged in</p>
                                 </div>

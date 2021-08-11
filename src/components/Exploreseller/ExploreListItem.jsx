@@ -33,7 +33,7 @@ function ExploreListItem({verified, category, price, rating, tags, propic, busin
     }
 
     return (
-        <span onClick={() =>setOpen(true)} className={`bg-white rounded-lg cursor-pointer md:px-8 px-4 py-4 justify-between items-center w-full self-center shadow mb-4`}>
+        <span onClick={() =>setOpen(true)} className={`bg-white  transition duration-100 transform hover:scale-105 rounded-lg cursor-pointer md:px-8 px-4 py-4 justify-between items-center w-full self-center shadow mb-4`}>
             <div className="flex flex-row items-center justify-between mb-8">
                 <span onClick={()=> setOpen(true)} className="flex flex-row items-center mr-2 cursor-pointer">
                     <img

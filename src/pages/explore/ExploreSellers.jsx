@@ -225,8 +225,21 @@ function ExploreSellers() {
                                     {
                                         all_services?.map(service=>(
                                             <>
-                                                {grid_view ? (<div className="sellers grid md:grid-cols-2 grid-cols-1 gap-16 items-center" key={service._id}>
-                                                <ExploreGridItem 
+                                                {grid_view ? (<div className="flex flex-col" key={service._id}>
+                                                {/* <ExploreGridItem 
+                                                    key={service.user}
+                                                    className="col-span-1"
+                                                    verified={service.verified}
+                                                    category={service.category}
+                                                    price={service.price}
+                                                    rating={service.rating}
+                                                    tags={service.tags}
+                                                    propic={service.service_picture}
+                                                    businessname={service.username}
+                                                    description={service.description}
+                                                    id={service.user}
+                                                /> */}
+                                                <ExploreListItem 
                                                     key={service.user}
                                                     className="col-span-1"
                                                     verified={service.verified}

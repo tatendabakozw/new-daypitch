@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom'
 import HomeLayout from '../../layouts/HomeLayout/HomeLayout'
 import { Switch } from '@headlessui/react'
 import { useState } from 'react'
+import { auth, db } from '../../helpers/firebase'
+import { Button } from '@chakra-ui/react'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -19,6 +21,38 @@ function Contract() {
     const [details, setDetails] = useState('')
     const [phone_number, setPhonenumber] = useState()
     const [amount, setAmount] = useState(0)
+    const [err, setErr] = useState('')
+    const [loaiding, setLoading] = useState(false)
+
+    const create_contract = (e) =>{
+        e.preventDefault()
+        if(!firstname || !lastname || !company || !email || !details){
+            setErr('please enter all fields')
+        }else{
+            if(agreed){
+                setLoading(true)
+                db.collection('contracts').doc(auth.currentUser.uid).set({
+                    sent_by : auth.currentUser.uid,
+                    sent_to : id,
+                    firstname,
+                    lastname,
+                    company,
+                    email,
+                    details,
+                    phone_number,
+                    amount,
+                    country_code,
+                    status: 'inactive'
+                },{merge: true}).then(res=>{
+                    setLoading(false)
+                    console.log(res)
+                }).catch(err=>{
+                    console.log(err)
+                    setLoading(false)
+                })
+            }
+        }
+    }
 
     return (
         <HomeLayout>
@@ -75,7 +109,7 @@ function Contract() {
                         </p>
                     </div>
                     <div className="mt-12">
-                        <form action="#" method="POST" className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+                        <form action="#" method="POST" onSubmit={create_contract} className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
                             <div>
                                 <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
                                     Your first name
@@ -84,6 +118,7 @@ function Contract() {
                                     <input
                                         type="text"
                                         name="first-name"
+                                        required
                                         onChange={e=> setFirstname(e.target.value)}
                                         id="first-name"
                                         autoComplete="given-name"
@@ -99,6 +134,7 @@ function Contract() {
                                     <input
                                         type="text"
                                         name="last-name"
+                                        required
                                         onChange={e=> setLastname(e.target.value)}
                                         id="last-name"
                                         autoComplete="family-name"
@@ -115,6 +151,7 @@ function Contract() {
                                         type="text"
                                         name="company"
                                         id="company"
+                                        required
                                         onChange={e=> setCompany(e.target.value)}
                                         autoComplete="organization"
                                         className="py-3 px-4 block w-full shadow-sm  border-gray-300 rounded-md"
@@ -130,6 +167,7 @@ function Contract() {
                                         id="email"
                                         name="email"
                                         type="email"
+                                        required
                                         onChange={e=> setEmail(e.target.value)}
                                         autoComplete="email"
                                         className="py-3 px-4 block w-full shadow-sm  border-gray-300 rounded-md"
@@ -149,6 +187,7 @@ function Contract() {
                                             onChange={e=> setCountryCode(e.target.value)}
                                             id="country"
                                             name="country"
+                                            required
                                             value={country_code}
                                             className="h-full py-0 pl-4 pr-8 border-transparent bg-transparent text-gray-500  rounded-md"
                                         >
@@ -162,6 +201,7 @@ function Contract() {
                                         name="phone-number"
                                         id="phone-number"
                                         autoComplete="tel"
+                                        required
                                         onChange={e=> setPhonenumber(e.target.value)}
                                         className="py-3 px-4 block w-full pl-20  border-gray-300 rounded-md"
                                         placeholder="+1 (555) 987-6543"
@@ -177,6 +217,7 @@ function Contract() {
                                         id="message"
                                         name="message"
                                         rows={4}
+                                        required
                                         onChange={e=> setDetails(e.target.value)}
                                         className="py-3 px-4 block w-full shadow-sm  border border-gray-300 rounded-md"
                                         defaultValue={''}
@@ -191,6 +232,7 @@ function Contract() {
                                     <input
                                         id="number"
                                         name="amount"
+                                        required
                                         onChange={e=> setAmount(e.target.value)}
                                         type="amount"
                                         className="py-3 px-4 block w-full shadow-sm border  border-gray-300 rounded-md"
@@ -232,14 +274,18 @@ function Contract() {
                                         </p>
                                     </div>
                                 </div>
+                            {err ? <p className="bg-red-100 text-red-700 p-2 text-center w-full my-4">enter all detals</p>:null}
+
                             </div>
                             <div className="sm:col-span-2">
-                                <button
+                                <Button
+                                    isLoading={loaiding}
                                     type="submit"
+                                    colorScheme="blue"
                                     className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-900 hover:bg-blue-800 focus:outline-none"
                                 >
                                     Send Contract
-                                </button>
+                                </Button>
                             </div>
                         </form>
                     </div>

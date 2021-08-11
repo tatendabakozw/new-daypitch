@@ -12,6 +12,7 @@ import {UserCircleIcon} from '@heroicons/react/solid'
 import { useHistory } from 'react-router-dom';
 import { get_allServices } from '../../redux/actions/serviceActions';
 import ExploreRight from '../../components/ExploreRight/ExploreRight';
+import Warning from '../../components/alert/Warning';
 
 const filter_price = [
     { name: 'High To Low' },
@@ -58,7 +59,10 @@ function ExploreSellers() {
 
     return (
         <HomeLayout>
-            <div className="lg:px-16 md:px-8 px-4 pt-32">
+            <div className="lg:px-16 md:px-8 px-4">
+                <div className="pt-24 pb-8">
+                    <Warning />
+                </div>
             <div className="flex flex-row justify-between gap-8">
                 <div className="w-1/4 lg:block md:block hidden min-h-screen">
                     <div className="flex flex-col items-center">

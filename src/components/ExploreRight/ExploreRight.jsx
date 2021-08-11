@@ -10,7 +10,7 @@ import { db } from '../../helpers/firebase'
 
 function ExploreRight() {
     const userSignin = useSelector(state=> state.userCredsSignIn)
-    const {userInfo, loading} = userSignin 
+    const {userInfo} = userSignin 
     const history = useHistory()
     const [user, setUser] = useState()
     const [user_loading, setUserLoading] = useState(false)

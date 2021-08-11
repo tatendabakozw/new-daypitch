@@ -80,8 +80,10 @@ function Home() {
 
                 </div>
 
+                
+
                 {/* // category items */}
-                <div className="flex flex-col items-center md:pt-40 md:px-16 pt-16 px-4 z-20 pb-36 w-full">
+                <div className="flex flex-col items-center md:pt-40 md:px-16 pt-16 px-4 z-20 pb-36 w-full bg-gray-50">
                     <p className="text-gray-700 text-4xl dark:text-gray-200 text-center font-semibold mb-24 md:px-32 px-8 pt-12">Easily prototype and communicate your vision</p>
                     <div className="grid md:grid-cols-3 grid-cols-1 lg:gap-40 md:gap-16 gap-8 items-center">
                         <HomeViewComponent
@@ -130,7 +132,7 @@ function Home() {
                 </div > */}
 
                 {/* // paying boxes */}
-                <div className="flex flex-col items-center md:pt-16 md:px-16 pt-4 z-20 pb-16">
+                <div className="flex flex-col items-center md:pt-16 md:px-16 pt-4 z-20 pb-16 bg-gray-50">
                     <p className="text-2xl text-gray-700 dark:text-gray-400 text-center px-8 font-semibold mb-16">Professionals price arrangements</p>
                         <FreeComponent className="col-span-1" />
                         {/* <PayComponent className="col-span-1" /> */}

@@ -10,7 +10,7 @@ import SendRoundedIcon from '@material-ui/icons/SendRounded';
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { get_all_Firestore_users } from '../../redux/actions/firestore_usersActions'
-import { Spinner, Text } from "@chakra-ui/react"
+import { Input, Spinner, Text } from "@chakra-ui/react"
 import { create_a_Message_action, get_all_Messages } from '../../redux/actions/conversationsActions'
 
 const messages = [
@@ -103,7 +103,7 @@ function Chat() {
                     <div className={`${mobile_on ? "hidden" : "flex"}  md:w-1/4 w-full min-h-screen bg-white`}>
                         <div className={`flex flex-col overflow-hidden bg-white w-full`}>
                             <div className="flex flex-col rounded-lg p-2">
-                                <input type="text" placeholder="search" className="p-2 rounded-lg border border-gray-200 outline-none w-full" />
+                                <Input type="text" placeholder="search" className="p-2 rounded-lg border border-gray-200 outline-none w-full" />
                             </div>
                             {
 								loading ? (<>
@@ -188,7 +188,7 @@ function Chat() {
 						}
 						 <div className="flex-1"></div>
                         <div className="flex bottom-5 mb-16 flex-row items-center flex-end self-end bg-white w-full rounded-full">
-                            <input value={message} onChange={e=>setMessage(e.target.value)} type="text" className="bg-white p-4 rounded-full w-full outline-none" placeholder="type message" />
+                            <Input value={message} onChange={e=>setMessage(e.target.value)} type="text" className="bg-white p-4 rounded-full w-full outline-none" placeholder="type message" />
 							<span onClick={send_a_message} className="cursor-pointer p-4">
 								<SendRoundedIcon fontSize = "large" className="text-gray-700"/>
 							</span>
@@ -201,7 +201,7 @@ function Chat() {
                     <aside className={`w-1/4 flex flex-col pb-16`}>
                         <div className={`flex flex-col h-screen overflow-y-scroll bg-white"`}>
                             <div className="flex flex-col rounded-lg p-2">
-                                <input type="text" placeholder="search" className="p-2 rounded-lg border border-gray-200 outline-none w-full" />
+                                <Input type="text" placeholder="search" className="p-2 rounded-lg border border-gray-200 outline-none w-full" />
                             </div>
                             {
 								loading? (<>
@@ -294,7 +294,7 @@ function Chat() {
 						}
                         <div className="flex-1"></div>
                         <div className="flex bottom-5 mb-16 flex-row items-center flex-end self-end bg-white w-full rounded-full">
-                            <input value={message} onChange={e=>setMessage(e.target.value)} type="text" className="bg-gray-50 p-4 rounded-full w-full outline-none" placeholder="type message" />
+                            <Input value={message} onChange={e=>setMessage(e.target.value)} type="text" className="bg-gray-50 p-4 rounded-full w-full outline-none" placeholder="type message" />
 							<span onClick={send_a_message} className="cursor-pointer p-4">
 								<SendRoundedIcon fontSize = "large" className="text-gray-700"/>
 							</span>

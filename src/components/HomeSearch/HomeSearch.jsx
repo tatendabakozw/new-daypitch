@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { SearchIcon } from '@heroicons/react/solid'
 import { useHistory } from 'react-router-dom'
+import { Input } from '@chakra-ui/react'
 
 
 function HomeSearch() {
@@ -22,7 +23,7 @@ function HomeSearch() {
                     <p className="text-center text-sm text-gray-600 dark:text-gray-400">Search</p>
                 </div>
                 <form onSubmit={searchItems} className="transition duration-100 transform hover:scale-105 cursor-pointer flex flex-row items-center bg-white dark:bg-gray-800 p-2 shadow rounded-lg w-full">
-                    <input 
+                    <Input 
                         onChange={e=>setCategory(e.target.value)}
                         type="text" 
                         className="bg-white w-full border dark:bg-gray-700 dark:border-gray-700 border-gray-100 md:mx-2 mx-0 p-3 my-2 rounded-lg outline-none"

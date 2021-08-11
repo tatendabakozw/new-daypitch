@@ -134,7 +134,7 @@ function Account() {
                             {...getRootProps({ className: "drop-zone" })}
                             ref={dropRef}
                         >
-                            <input {...getInputProps()} />
+                            <Input {...getInputProps()} />
                             <div className="cursor-pointer text-gray-400 flex flex-col  items-center rounded outline-none border-none">
                                 <CameraIcon width={24} height={24} className="text-blue-400 hover:text-blue-600" />
                             </div>

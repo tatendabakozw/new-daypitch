@@ -15,6 +15,11 @@ function UserInfoPanel({open, setOpen, propic, description, verified, id, rating
     })
   }
 
+  const create_contract = (e) =>{
+    e.preventDefault()
+    history.push(`contract/${id}`)
+  }
+
   const history = useHistory()
     return (
         <div>
@@ -93,6 +98,7 @@ function UserInfoPanel({open, setOpen, propic, description, verified, id, rating
                               </button>
                               <button
                                 type="button"
+                                onClick={create_contract}
                                 className="flex-1 w-full inline-flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                               >
                                 Hire

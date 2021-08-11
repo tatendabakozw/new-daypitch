@@ -6,6 +6,7 @@ import CreditCardIcon from '@material-ui/icons/CreditCard';
 import premium from '../../images/premium.svg'
 import text from '../../images/textM.svg'
 import {LockClosedIcon} from '@heroicons/react/outline'
+import { Input } from '@chakra-ui/react';
 
 function Upgrade() {
     return (
@@ -52,17 +53,17 @@ function Upgrade() {
                         <div className="items mx-2 flex flex-col">
                             <p className="text-gray-600 font-semibold dark:text-gray-400">Billing Information</p>
                             <div className="border text-gray-300 mt-1 dark:bg-gray-700 dark:border-gray-700 border-gray-300 flex mb-2 flex-row rounded p-1">
-                                <input 
+                                <Input 
                                     type="text" 
                                     className="w-full dark:bg-gray-700 border-none outline-none" placeholder="Card Number" />
                                 <CreditCardIcon />
                             </div>
                             <div className="two grid md:grid-cols-2 grid-cols-1 gap-2 items-center">
-                                <input
+                                <Input
                                     placeholder="Security Code"
                                     type="text"
                                     className="border col-span-1 dark:bg-gray-700 dark:border-gray-700 border-gray-300 text-gray-300 p-1 rounded" />
-                                <input
+                                <Input
                                     placeholder="CVV"
                                     type="text"
                                     className="border col-span-1 border-gray-300 dark:bg-gray-700  dark:border-gray-700 text-gray-300 p-1 rounded" />

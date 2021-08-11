@@ -6,6 +6,7 @@ import Register from './pages/auth/Register'
 import BecomeASeller from './pages/becomeAseller/BecomeASeller'
 import Chat from './pages/chat/Chat'
 import Contact from './pages/contact/Contact'
+import Contract from './pages/contract/Contract'
 import ExploreSellers from './pages/explore/ExploreSellers'
 import Home from './pages/Home/Home'
 import HowItWorks from './pages/howitworks/HowItWorks'
@@ -27,6 +28,7 @@ function App() {
         <Route exact path="/upgrade" component={Upgrade} />
         <Route exact path="/jobs" component={MyJobs} />
         <Route exact path="/becomeaseller" component={BecomeASeller} />
+        <Route exact path="/contract/:id" component={Contract} />
         <Route exact path="/account" component={Account} />
         <Route exact path="/howitworks" component={HowItWorks} />
         <Route exact path="/contact" component={Contact} />

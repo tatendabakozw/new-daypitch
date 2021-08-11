@@ -1,8 +1,21 @@
 import React, { Fragment } from 'react'
 import { CheckCircleIcon, XIcon } from '@heroicons/react/outline'
 import { Dialog, Transition  } from '@headlessui/react'
+import { useHistory } from 'react-router-dom'
+import { auth, db } from '../../helpers/firebase'
 
 function UserInfoPanel({open, setOpen, propic, description, verified, id, rating, name, school}) {
+
+  const hire_professional = () =>{
+    db.collection('contracts').doc(auth?.currentUser?.uid).set({
+      contract_info : '',
+      contract_period : '',
+      contract_status : 'completed',
+      contract_type : "long-term"
+    })
+  }
+
+  const history = useHistory()
     return (
         <div>
             <Transition.Root show={open} as={Fragment}>
@@ -73,6 +86,7 @@ function UserInfoPanel({open, setOpen, propic, description, verified, id, rating
                             <div className="mt-5 flex flex-wrap space-y-3 sm:space-y-0 sm:space-x-3">
                               <button
                                 type="button"
+                                onClick={()=> history.push('/chat')}
                                 className="flex-shrink-0 w-full inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-900 sm:flex-1"
                               >
                                 Message
@@ -81,64 +95,8 @@ function UserInfoPanel({open, setOpen, propic, description, verified, id, rating
                                 type="button"
                                 className="flex-1 w-full inline-flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                               >
-                                Feedback
+                                Hire
                               </button>
-                              {/* <span className="ml-3 inline-flex sm:ml-0">
-                                <Menu as="div" className="relative inline-block text-left">
-                                  {({ open }) => (
-                                    <>
-                                      <Menu.Button className="inline-flex items-center p-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-400 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                        <span className="sr-only">Open options menu</span>
-                                        <DotsVerticalIcon className="h-5 w-5" aria-hidden="true" />
-                                      </Menu.Button>
-                                      <Transition
-                                        show={open}
-                                        as={Fragment}
-                                        enter="transition ease-out duration-100"
-                                        enterFrom="transform opacity-0 scale-95"
-                                        enterTo="transform opacity-100 scale-100"
-                                        leave="transition ease-in duration-75"
-                                        leaveFrom="transform opacity-100 scale-100"
-                                        leaveTo="transform opacity-0 scale-95"
-                                      >
-                                        <Menu.Items
-                                          static
-                                          className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
-                                        >
-                                          <div className="py-1">
-                                            <Menu.Item>
-                                              {({ active }) => (
-                                                <a
-                                                  href="#"
-                                                  className={classNames(
-                                                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                    'block px-4 py-2 text-sm'
-                                                  )}
-                                                >
-                                                  View profile
-                                                </a>
-                                              )}
-                                            </Menu.Item>
-                                            <Menu.Item>
-                                              {({ active }) => (
-                                                <a
-                                                  href="#"
-                                                  className={classNames(
-                                                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                    'block px-4 py-2 text-sm'
-                                                  )}
-                                                >
-                                                  Copy profile link
-                                                </a>
-                                              )}
-                                            </Menu.Item>
-                                          </div>
-                                        </Menu.Items>
-                                      </Transition>
-                                    </>
-                                  )}
-                                </Menu>
-                              </span> */}
                             </div>
                           </div>
                         </div>

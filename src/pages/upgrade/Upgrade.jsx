@@ -52,8 +52,8 @@ function Upgrade() {
                         <div className="border-b my-4 border-gray-300 dark:border-gray-500"></div>
                         <div className="items mx-2 flex flex-col">
                             <p className="text-gray-600 font-semibold dark:text-gray-400">Billing Information</p>
-                            <div className="border text-gray-300 mt-1 dark:bg-gray-700 dark:border-gray-700 border-gray-300 flex mb-2 flex-row rounded p-1">
-                                <Input 
+                            <div className="border text-gray-300 mt-1 dark:bg-gray-700 dark:border-gray-700 border-gray-300 flex mb-2 flex-row items-center rounded p-1">
+                                <input 
                                     type="text" 
                                     className="w-full dark:bg-gray-700 border-none outline-none" placeholder="Card Number" />
                                 <CreditCardIcon />

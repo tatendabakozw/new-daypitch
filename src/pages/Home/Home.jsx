@@ -8,6 +8,9 @@ import second from '../../images/homeInvest.svg'
 import third from '../../images/homeQuick.svg'
 import {  Link } from 'react-router-dom'
 import {  CheckIcon } from '@heroicons/react/outline'
+import { useEffect } from 'react'
+import axios from 'axios'
+import { apiUrl } from '../../helpers/apiUrl'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')

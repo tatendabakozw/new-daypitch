@@ -3,8 +3,10 @@ import { useParams } from 'react-router-dom'
 import HomeLayout from '../../layouts/HomeLayout/HomeLayout'
 import { Switch } from '@headlessui/react'
 import { useState } from 'react'
-import { auth, db } from '../../helpers/firebase'
+import { auth } from '../../helpers/firebase'
 import { Button } from '@chakra-ui/react'
+import { useDispatch, useSelector } from 'react-redux'
+import { create_a_contract } from '../../redux/actions/contractActions'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -22,34 +24,30 @@ function Contract() {
     const [phone_number, setPhonenumber] = useState()
     const [amount, setAmount] = useState(0)
     const [err, setErr] = useState('')
-    const [loaiding, setLoading] = useState(false)
 
-    const create_contract = (e) =>{
-        e.preventDefault()
+    const contract_state = useSelector(state=> state.create_Contract)
+    const {loading} = contract_state
+    const dispatch = useDispatch()
+
+    const create_contract = () =>{
         if(!firstname || !lastname || !company || !email || !details){
             setErr('please enter all fields')
         }else{
+            const msg_obj = {
+                sent_by : auth.currentUser.uid,
+                sent_to : id,
+                firstname,
+                lastname,
+                company,
+                email,
+                details,
+                phone_number,
+                amount,
+                country_code,
+                status: 'inactive'
+            }
             if(agreed){
-                setLoading(true)
-                db.collection('contracts').doc(auth.currentUser.uid).set({
-                    sent_by : auth.currentUser.uid,
-                    sent_to : id,
-                    firstname,
-                    lastname,
-                    company,
-                    email,
-                    details,
-                    phone_number,
-                    amount,
-                    country_code,
-                    status: 'inactive'
-                },{merge: true}).then(res=>{
-                    setLoading(false)
-                    console.log(res)
-                }).catch(err=>{
-                    console.log(err)
-                    setLoading(false)
-                })
+                dispatch(create_a_contract(msg_obj, id))
             }
         }
     }
@@ -109,7 +107,7 @@ function Contract() {
                         </p>
                     </div>
                     <div className="mt-12">
-                        <form action="#" method="POST" onSubmit={create_contract} className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+                        <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
                             <div>
                                 <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
                                     Your first name
@@ -279,7 +277,8 @@ function Contract() {
                             </div>
                             <div className="sm:col-span-2">
                                 <Button
-                                    isLoading={loaiding}
+                                    isLoading={loading}
+                                    onClick={create_contract}
                                     type="submit"
                                     colorScheme="blue"
                                     className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-900 hover:bg-blue-800 focus:outline-none"
@@ -287,7 +286,7 @@ function Contract() {
                                     Send Contract
                                 </Button>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>

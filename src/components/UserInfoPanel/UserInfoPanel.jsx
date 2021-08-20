@@ -81,7 +81,7 @@ function UserInfoPanel({open, setOpen, propic, description, verified, id, rating
                             <div className="mt-5 flex flex-wrap space-y-3 sm:space-y-0 sm:space-x-3">
                               <button
                                 type="button"
-                                onClick={()=> history.push('/chat')}
+                                onClick={()=> history.push('/message')}
                                 className="flex-shrink-0 w-full inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-900 sm:flex-1"
                               >
                                 Message

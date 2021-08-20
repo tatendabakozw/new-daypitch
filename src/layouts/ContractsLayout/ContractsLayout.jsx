@@ -26,8 +26,8 @@ export default function ContractsLayout({ children }) {
 
     return (
         <HomeLayout>
-            <div className="flex flex-col items-center">
-                <div className="py-16 w-3/5">
+            <div className="flex flex-col items-center px-4">
+                <div className="py-16 lg:w-3/5 md:w-4/5 w-full">
                     <>
                         <SideDrawer
                             sendButton={<Button onClick={post_job} colorScheme="blue">Post Job</Button>}

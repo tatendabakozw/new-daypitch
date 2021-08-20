@@ -4,6 +4,10 @@ import { useHistory, useLocation } from 'react-router-dom'
 import SideDrawer from '../../components/panel/SideDrawer'
 import { Button, Input, Stack, Textarea } from '@chakra-ui/react'
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { auth } from '../../helpers/firebase'
+import { useDispatch } from 'react-redux'
+import { create_a_job } from '../../redux/actions/jobsActions'
 
 const contract_routes = [
     { name: 'Active Contracts', location: '/jobs' },
@@ -18,9 +22,27 @@ export default function ContractsLayout({ children }) {
     const [email, setEmail] = useState('')
     const [details, setDetails] = useState('')
     const [amount, setAmount] = useState(0)
+    const [company, setCompany] = useState('')
+    const [phone_number, setPhoneNumber] = useState('')
+
+    const jobs_state = useSelector(state=> state.create_Job)
+    const {loading} = jobs_state
+    const dispatch = useDispatch()
 
     const post_job = (e) =>{
         e.preventDefault()
+        const msg_obj = {
+            created_by : auth.currentUser.uid,
+            done_by : "",
+            title: job_name,
+            name,
+            company,
+            email,
+            details,
+            phone_number,
+            amount,
+        }
+        dispatch(create_a_job(msg_obj, auth.currentUser.uid))
     }
 
 
@@ -30,7 +52,7 @@ export default function ContractsLayout({ children }) {
                 <div className="py-16 lg:w-3/5 md:w-4/5 w-full">
                     <>
                         <SideDrawer
-                            sendButton={<Button onClick={post_job} colorScheme="blue">Post Job</Button>}
+                            sendButton={<Button isLoading={loading} onClick={post_job} colorScheme="blue">Post Job</Button>}
                             drawer_heading={'Create a job'}
                         >
                             <Stack spacing={8} pt={8}>
@@ -42,9 +64,15 @@ export default function ContractsLayout({ children }) {
                                 <Input placeholder="Job name"
                                     onChange={e => setJobName(e.target.value)}
                                 />
+                                <Input placeholder="Company (Optional)"
+                                    onChange={e => setCompany(e.target.value)}
+                                />
                                 <Input
                                     onChange={e => setEmail(e.target.value)}
                                     placeholder="email" />
+                                <Input
+                                    onChange={e => setPhoneNumber(e.target.value)}
+                                    placeholder="phone number with country code" />
                                 <Input
                                     type="number"
                                     onChange={e => setAmount(e.target.value)}

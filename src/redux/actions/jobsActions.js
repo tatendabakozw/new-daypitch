@@ -1,5 +1,12 @@
 import { db } from "../../helpers/firebase"
-import { CREATE_JOB_FAIL, CREATE_JOB_REQUEST, CREATE_JOB_SUCCESS } from "../constants/jobsConstants"
+import {
+    CREATE_JOB_FAIL,
+    CREATE_JOB_REQUEST,
+    CREATE_JOB_SUCCESS,
+    GET_ALL_JOB_FAIL,
+    GET_ALL_JOB_REQUEST,
+    GET_ALL_JOB_SUCCESS
+} from "../constants/jobsConstants"
 
 export const create_a_job = (msg_obj, id) => (dispatch) => {
     dispatch({
@@ -21,6 +28,32 @@ export const create_a_job = (msg_obj, id) => (dispatch) => {
             payload: err.response && err.response.message
                 ? err.response.err.message
                 : err.message
+        })
+    })
+}
+
+//get all setvices 
+export const get_allServices = () => (dispatch) => {
+    dispatch({
+        type: GET_ALL_JOB_REQUEST
+    });
+    const all_services = []
+
+    db.collection('services').onSnapshot(snapshot => {
+        snapshot.forEach(doc => {
+            all_services.push(doc.data())
+        })
+        // console.log(all_services)
+        dispatch({
+            type: GET_ALL_JOB_SUCCESS,
+            payload: all_services
+        })
+    }, (error) => {
+        dispatch({
+            type: GET_ALL_JOB_FAIL,
+            payload: error.response && error.response.message
+                ? error.response.error.message
+                : error.message
         })
     })
 }

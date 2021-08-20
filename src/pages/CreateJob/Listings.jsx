@@ -4,14 +4,14 @@ import { ChevronUpIcon } from '@heroicons/react/solid'
 import { PaperClipIcon } from '@heroicons/react/solid'
 import ContractsLayout from '../../layouts/ContractsLayout/ContractsLayout'
 
-function MyJobs() {
+export default function Listings() {
     return (
         <ContractsLayout>
             <Disclosure>
                 {({ open }) => (
                     <>
                         <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-blue-900 bg-blue-100 rounded-sm hover:bg-blue-200 focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-75">
-                            <span>Mobile App Developemnt</span>
+                            <span>Write a document</span>
                             <ChevronUpIcon
                                 className={`${open ? 'transform rotate-180' : ''
                                     } w-5 h-5 text-blue-500`}
@@ -38,32 +38,18 @@ function MyJobs() {
                                             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">margotfoster@example.com</dd>
                                         </div>
                                         <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                            <dt className="text-sm font-medium text-gray-500">Expected earnings</dt>
+                                            <dt className="text-sm font-medium text-gray-500">How much you are paying</dt>
                                             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">$1,200</dd>
                                         </div>
                                         <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                             <dt className="text-sm font-medium text-gray-500">Details</dt>
                                             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                To develop and deploy mobile app within the next seven days. Should use react and firebase for everything and should put seo in mind
+                                                I want someone to write a 600 word document for me
                                             </dd>
                                         </div>
                                         <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                            <dt className="text-sm font-medium text-gray-500">Download contract?</dt>
-                                            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                <ul className="border border-gray-200 rounded-md divide-y divide-gray-200">
-                                                    <li className="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
-                                                        <div className="w-0 flex-1 flex items-center">
-                                                            <PaperClipIcon className="flex-shrink-0 h-5 w-5 text-gray-400" aria-hidden="true" />
-                                                            <span className="ml-2 flex-1 w-0 truncate">resume_back_end_developer.pdf</span>
-                                                        </div>
-                                                        <div className="ml-4 flex-shrink-0">
-                                                            <a href="/" className="font-medium text-indigo-600 hover:text-indigo-500">
-                                                                Download
-                                                            </a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </dd>
+                                            <dt className="text-sm font-medium text-gray-500">Status</dt>
+                                            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">On-Going</dd>
                                         </div>
                                     </dl>
                                 </div>
@@ -72,24 +58,7 @@ function MyJobs() {
                     </>
                 )}
             </Disclosure>
-            <Disclosure as="div" className="mt-2">
-                {({ open }) => (
-                    <>
-                        <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-blue-900 bg-blue-100 rounded-sm hover:bg-blue-200 focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-75">
-                            <span>Website develpment</span>
-                            <ChevronUpIcon
-                                className={`${open ? 'transform rotate-180' : ''
-                                    } w-5 h-5 text-blue-500`}
-                            />
-                        </Disclosure.Button>
-                        <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
-                            No.
-                        </Disclosure.Panel>
-                    </>
-                )}
-            </Disclosure>
+           
         </ContractsLayout>
     )
 }
-
-export default MyJobs

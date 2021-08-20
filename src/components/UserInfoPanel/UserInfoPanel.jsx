@@ -2,18 +2,8 @@ import React, { Fragment } from 'react'
 import { CheckCircleIcon, XIcon } from '@heroicons/react/outline'
 import { Dialog, Transition  } from '@headlessui/react'
 import { useHistory } from 'react-router-dom'
-import { auth, db } from '../../helpers/firebase'
 
 function UserInfoPanel({open, setOpen, propic, description, verified, id, rating, name, school}) {
-
-  const hire_professional = () =>{
-    db.collection('contracts').doc(auth?.currentUser?.uid).set({
-      contract_info : '',
-      contract_period : '',
-      contract_status : 'completed',
-      contract_type : "long-term"
-    })
-  }
 
   const create_contract = (e) =>{
     e.preventDefault()

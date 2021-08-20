@@ -8,9 +8,6 @@ import second from '../../images/homeInvest.svg'
 import third from '../../images/homeQuick.svg'
 import {  Link } from 'react-router-dom'
 import {  CheckIcon } from '@heroicons/react/outline'
-import { useEffect } from 'react'
-import axios from 'axios'
-import { apiUrl } from '../../helpers/apiUrl'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -257,7 +254,7 @@ const FreeComponent = ({ className }) => {
                   <p className="mt-6 text-gray-500">{tier.description}</p>
 
                   {/* Feature list */}
-                  <ul role="list" className="mt-6 space-y-6">
+                  <ul className="mt-6 space-y-6">
                     {tier.features.map((feature) => (
                       <li key={feature} className="flex">
                         <CheckIcon className="flex-shrink-0 w-6 h-6 text-green-500" aria-hidden="true" />
@@ -268,7 +265,7 @@ const FreeComponent = ({ className }) => {
                 </div>
 
                 <a
-                  href="#"
+                  href="/"
                   className={classNames(
                     tier.mostPopular
                       ? 'bg-blue-900 text-white hover:bg-blue-800'

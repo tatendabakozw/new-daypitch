@@ -34,7 +34,7 @@ function BecomeASeller() {
 
     const user_service = useSelector(state => state.getService)
     const {service, loading} = user_service
-    const stableDispatch = useCallback(dispatch, []);
+    const stableDispatch = useCallback(dispatch, [dispatch]);
 
 
     const selectedTags = (tags) => {
@@ -103,7 +103,7 @@ function BecomeASeller() {
         if(!service){
             stableDispatch(get_serviceAction(auth?.currentUser?.uid))
         }
-    },[stableDispatch ,service, auth?.currentUser?.uid])
+    },[stableDispatch ,service])
 
     // console.log(service)
     // console.log(auth?.currentUser?.uid)

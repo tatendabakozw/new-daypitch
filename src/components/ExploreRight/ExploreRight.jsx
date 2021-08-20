@@ -1,5 +1,5 @@
 import { Text } from '@chakra-ui/react'
-import { CalendarIcon, ChatAltIcon, LockOpenIcon, UserCircleIcon } from '@heroicons/react/outline'
+import { CalendarIcon, ChatAltIcon} from '@heroicons/react/outline'
 import {BadgeCheckIcon} from '@heroicons/react/solid'
 import React from 'react'
 import { useEffect } from 'react'
@@ -123,7 +123,7 @@ function ExploreRight() {
                                             <ul className="mt-2 leading-8">
                                             <li className="inline">
                                                 <a
-                                                href="#"
+                                                href="/"
                                                 className="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5"
                                                 >
                                                 <div className="absolute flex-shrink-0 flex items-center justify-center">
@@ -134,7 +134,7 @@ function ExploreRight() {
                                             </li>
                                             <li className="inline">
                                                 <a
-                                                href="#"
+                                                href="/"
                                                 className="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5"
                                                 >
                                                 <div className="absolute flex-shrink-0 flex items-center justify-center">

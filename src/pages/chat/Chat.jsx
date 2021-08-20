@@ -3,9 +3,6 @@ import { useState } from 'react'
 import ChatItem from '../../components/chatitem/ChatItem'
 import ChatLayout from '../../layouts/chatlayout/ChatLayout'
 import {ChevronLeftIcon, ChatIcon} from '@heroicons/react/outline'
-import pic from '../../images/IMG_5117_1_1.jpg'
-import image from '../../images/man.png'
-import { useHistory } from 'react-router-dom'
 import SendRoundedIcon from '@material-ui/icons/SendRounded';
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -13,50 +10,9 @@ import { get_all_Firestore_users } from '../../redux/actions/firestore_usersActi
 import { Input, Spinner, Text } from "@chakra-ui/react"
 import { create_a_Message_action, get_all_Messages } from '../../redux/actions/conversationsActions'
 
-const messages = [
-    {
-        message: 'hi, whats app, can i borrow some money',
-        sent_to: 'me',
-        sender_name: 'tatenda bako',
-        receiver_name: 'tafara bako',
-        sender_pic: pic,
-        id: 1,
-        date: 1
-    },
-    {
-        message: 'this is a test message to see if everything works',
-        sent_to: 'me',
-        sender_name: 'tafara bako',
-        receiver_name: 'tatenda bako',
-        sender_pic: image,
-        id: 2,
-        date: 2,
-    },
-    {
-        message: 'hi, whats app, can i borrow some money',
-        sent_to: 'me',
-        sender_name: 'tafara bako',
-        receiver_name: 'tatenda bako',
-        sender_pic: pic,
-        id: 4,
-        date: 3
-    },
-    {
-        message: 'this is a test message to see if everything works',
-        sent_to: 'me',
-        sender_name: 'tatenda bako',
-        receiver_name: 'tafara bako',
-        sender_pic: image,
-        id: 4,
-        date: 4,
-    },
-]
-
 function Chat() {
 
     const [mobile_on, stMobileOn] = useState(false)
-    const history = useHistory()
-    const [current_chat_id, setCurrentChat_id] = useState()
 	const dispatch = useDispatch()
 	const all_users = useSelector(state=> state.all_users)
 	const all_messages = useSelector(state=> state.all_messages)
@@ -69,7 +25,7 @@ function Chat() {
 
 	useEffect(()=>{
 		dispatch(get_all_Firestore_users(JSON.parse(logged_in_user)?.user?.uid))
-	},[dispatch])
+	},[dispatch, logged_in_user])
 
 	
 

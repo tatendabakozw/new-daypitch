@@ -10,7 +10,7 @@ export const get_all_Firestore_users = (uid) =>(dispatch) =>{
     const users = []
     db.collection('users').onSnapshot(snapshot=>{
         snapshot.forEach(doc=>{
-            if(doc.data().uid != uid){
+            if(doc.data().uid !== uid){
                 users.push(doc.data())
             }
         })

@@ -1,4 +1,4 @@
-import {ChatAlt2Icon, BellIcon} from '@heroicons/react/outline'
+import {ChatAlt2Icon} from '@heroicons/react/outline'
 import NavbarNotification from '../components/navigation/NavbarNotification'
 
 export const nav_options = {

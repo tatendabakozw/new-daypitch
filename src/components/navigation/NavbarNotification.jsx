@@ -1,8 +1,7 @@
 import React from 'react'
-import {ChatAlt2Icon, BellIcon} from '@heroicons/react/outline'
+import { BellIcon} from '@heroicons/react/outline'
 import { Fragment, useState } from 'react'
 import { Transition } from '@headlessui/react'
-import { CheckCircleIcon, InboxIcon } from '@heroicons/react/outline'
 import { XIcon } from '@heroicons/react/solid'
 
 function NavbarNotification() {

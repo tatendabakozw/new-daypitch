@@ -1,5 +1,3 @@
-import axios from "axios";
-import { apiUrl } from "../../helpers/apiUrl";
 import { db } from "../../helpers/firebase";
 import { ALL_SERVICE_GET_REQUEST, ALL_SERVICE_GET_SUCSESS, SERVICE_GET_FAIL, 
         SERVICE_GET_REQUEST, 

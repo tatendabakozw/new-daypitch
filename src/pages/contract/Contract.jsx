@@ -261,11 +261,11 @@ function Contract() {
                                     <div className="ml-3">
                                         <p className="text-base text-gray-500">
                                             By selecting this, you agree that{' '}
-                                            <a href="#" className="font-medium text-gray-700 underline">
+                                            <a href="/" className="font-medium text-gray-700 underline">
                                                 you have signed the contract
                                             </a>{' '}
                                             and{' '}
-                                            <a href="#" className="font-medium text-gray-700 underline">
+                                            <a href="/" className="font-medium text-gray-700 underline">
                                                await other party's confirmation
                                             </a>
                                             .

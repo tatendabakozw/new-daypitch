@@ -22,12 +22,11 @@ export default function Warning() {
                 </p>
               </div>
               <div className="order-3 mt-2 flex-shrink-0 w-full sm:order-2 sm:mt-0 sm:w-auto">
-                <a
-                  href="#"
+                <span
                   className="flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-blue-600 bg-white hover:bg-blue-50"
                 >
                   Learn more
-                </a>
+                </span>
               </div>
               <div className="order-2 flex-shrink-0 sm:order-3 sm:ml-3">
                 <button

@@ -1,18 +1,14 @@
 import React, { useState, Fragment } from 'react'
 import HomeLayout from '../../layouts/HomeLayout/HomeLayout'
-import {SearchIcon, ViewGridIcon, ChevronDownIcon, CalendarIcon, LockOpenIcon, ChatAltIcon} from '@heroicons/react/outline'
+import {SearchIcon, ViewGridIcon, ChevronDownIcon,} from '@heroicons/react/outline'
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
-import ExploreGridItem from '../../components/Exploreseller/ExploreGridItem'
 import { RadioGroup, Listbox, Transition } from '@headlessui/react'
 import {CheckIcon , SelectorIcon } from '@heroicons/react/solid'
 import { useEffect } from 'react';
 import ExploreListItem from '../../components/Exploreseller/ExploreListItem';
 import { useDispatch, useSelector } from 'react-redux';
-import {UserCircleIcon} from '@heroicons/react/solid'
-import { useHistory } from 'react-router-dom';
 import { get_allServices } from '../../redux/actions/serviceActions';
 import ExploreRight from '../../components/ExploreRight/ExploreRight';
-import Warning from '../../components/alert/Warning';
 
 const filter_price = [
     { name: 'High To Low' },

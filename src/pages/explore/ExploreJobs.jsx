@@ -31,10 +31,11 @@ export default function ExploreJobs() {
                         <>
                             {all_jobs?.map(job => (
                                 <ExploreJobListItem 
-                                    title={job.title}
-                                    description={job.details}
-                                    amount={job.amount}
-                                    name={job.name}
+                                    title={job.job.title}
+                                    description={job.job.details}
+                                    amount={job.job.amount}
+                                    name={job.job.name}
+                                    id={job.id}
                                 />
                             ))}
                         </>

@@ -13,7 +13,7 @@ export const create_a_job = (msg_obj, id) => (dispatch) => {
         type: CREATE_JOB_REQUEST,
         payload: { msg_obj, id }
     })
-    db.collection('jobs').doc(id).set({
+    db.collection('jobs').add({
         ...msg_obj,
         status: 'pending',
         createdAt: new Date()
@@ -41,7 +41,10 @@ export const get_all_Jobs = () => (dispatch) => {
 
     db.collection('jobs').onSnapshot(snapshot => {
         snapshot.forEach(doc => {
-            all_services.push(doc.data())
+            all_services.push({
+                job: doc.data(),
+                id: doc.id
+            })
         })
         // console.log(all_services)
         dispatch({

@@ -10,16 +10,9 @@ import { useEffect } from 'react'
 import { get_single_Job_Action } from '../../redux/actions/jobsActions'
 import Loading from '../../components/loading/loading'
 
-const user = {
-    name: 'Whitney Francis',
-    email: 'whitney@example.com',
-    imageUrl:
-        'https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80',
-}
 
 const attachments = [
-    { name: 'resume_front_end_developer.pdf', href: '#' },
-    { name: 'coverletter_front_end_developer.pdf', href: '#' },
+    { name: 'sample_picture_of_project.pdf', href: '#' },
 ]
 
 
@@ -31,23 +24,7 @@ const comments = [
         imageId: '1494790108377-be9c29b29330',
         body:
             'Ducimus quas delectus ad maxime totam doloribus reiciendis ex. Tempore dolorem maiores. Similique voluptatibus tempore non ut.',
-    },
-    {
-        id: 2,
-        name: 'Michael Foster',
-        date: '4d ago',
-        imageId: '1519244703995-f4e0f30006d5',
-        body:
-            'Et ut autem. Voluptatem eum dolores sint necessitatibus quos. Quis eum qui dolorem accusantium voluptas voluptatem ipsum. Quo facere iusto quia accusamus veniam id explicabo et aut.',
-    },
-    {
-        id: 3,
-        name: 'Dries Vincent',
-        date: '4d ago',
-        imageId: '1506794778202-cad84cf45f1d',
-        body:
-            'Expedita consequatur sit ea voluptas quo ipsam recusandae. Ab sint et voluptatem repudiandae voluptatem et eveniet. Nihil quas consequatur autem. Perferendis rerum et.',
-    },
+    }
 ]
 
 export default function JobInfo() {
@@ -60,8 +37,6 @@ export default function JobInfo() {
     useEffect(() => {
         dispatch(get_single_Job_Action(id))
     }, [])
-
-    console.log(job)
 
     if (loading) {
         return (
@@ -91,7 +66,7 @@ export default function JobInfo() {
                             <div>
                                 <h1 className="text-2xl font-bold text-gray-900">{job.name}</h1>
                                 <p className="text-sm font-medium text-gray-500">
-                                    Created job{' '} on <time dateTime="2020-08-25">{Date(user?.createdAt * 1000).slice(0,15)}</time>
+                                    Created job{' '} on <time dateTime="2020-08-25">{Date(job?.createdAt * 1000).slice(0,15)}</time>
                                 </p>
                             </div>
                         </div>
@@ -220,9 +195,6 @@ export default function JobInfo() {
                                     </div>
                                     <div className="bg-gray-50 px-4 py-6 sm:px-6">
                                         <div className="flex space-x-3">
-                                            <div className="flex-shrink-0">
-                                                <img className="h-10 w-10 rounded-full" src={user.imageUrl} alt="" />
-                                            </div>
                                             <div className="min-w-0 flex-1">
                                                 <form action="#">
                                                     <div>

@@ -25,7 +25,7 @@ function ExploreSellers() {
 
 
     return (
-        <ExploreLauoput>
+        <ExploreLauoput heading={'Sellers'}>
             {/* //middle row */}
             <div className="w-full min-h-screen">
                 <div className="w-full flex flex-col">

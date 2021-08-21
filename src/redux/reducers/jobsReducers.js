@@ -26,7 +26,7 @@ export const getAll_Jobs_Reducer = (state = {}, action) => {
         case GET_ALL_JOB_REQUEST:
             return { loading: true }
         case GET_ALL_JOB_SUCCESS:
-            return { loading: false, all_services: action.payload }
+            return { loading: false, all_jobs: action.payload }
         case GET_ALL_JOB_FAIL:
             return { loading: false, error: action.payload }
         default:

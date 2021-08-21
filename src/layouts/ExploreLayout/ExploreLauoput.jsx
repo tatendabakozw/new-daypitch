@@ -26,7 +26,7 @@ const categories = [
 
 
 
-function ExploreLauoput({ children }) {
+function ExploreLauoput({ children, heading }) {
 
     const [grid_view, setGridView] = useState(false)
     const [skip, setSkip] = useState(0);
@@ -195,7 +195,7 @@ function ExploreLauoput({ children }) {
                                 </span>
                             </div>
                             <div className="md:flex hidden flex-row items-center justify-between p-8">
-                                <p className="flex-1 text-gray-700 font-semibold">Sellers</p>
+                                <p className="flex-1 text-gray-700 font-semibold">{heading}</p>
                                 <div className="flex flex-row items-center">
                                     <ViewGridAddIcon
                                         height={20} width={20}

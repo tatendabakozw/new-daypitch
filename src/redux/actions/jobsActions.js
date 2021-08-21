@@ -33,13 +33,13 @@ export const create_a_job = (msg_obj, id) => (dispatch) => {
 }
 
 //get all setvices 
-export const get_allServices = () => (dispatch) => {
+export const get_all_Jobs = () => (dispatch) => {
     dispatch({
         type: GET_ALL_JOB_REQUEST
     });
     const all_services = []
 
-    db.collection('services').onSnapshot(snapshot => {
+    db.collection('jobs').onSnapshot(snapshot => {
         snapshot.forEach(doc => {
             all_services.push(doc.data())
         })

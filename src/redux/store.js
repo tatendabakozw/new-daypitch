@@ -3,7 +3,7 @@ import thunk from "redux-thunk"
 import { create_contract_Reducer, get_contract_Reducer } from "./reducers/contractsReducer"
 import { create_conversation_Reducer, get_conversation_Reducer } from "./reducers/conversationsReducer"
 import { firestore_users_Reducer } from "./reducers/firestore_usersReducer"
-import { create_jobs_Reducer, getAll_Jobs_Reducer } from "./reducers/jobsReducers"
+import { create_jobs_Reducer, getAll_Jobs_Reducer, get_single_Job_Reducer } from "./reducers/jobsReducers"
 import { createAServiceReducer, getAllServicesReducer, singleServiceReducer } from "./reducers/serviceReducer"
 import { registerWithCresReducer, signInWithCredsReducer } from "./reducers/userReducer"
 import { sidebarReducer } from "./reducers/user_panelREducer"
@@ -19,6 +19,7 @@ const reducer = combineReducers({
     getService: singleServiceReducer,
     allServices: getAllServicesReducer,
     allJobs: getAll_Jobs_Reducer,
+    single_Job: get_single_Job_Reducer,
     sidebar_panel: sidebarReducer,
     create_service: createAServiceReducer,
     all_users: firestore_users_Reducer,

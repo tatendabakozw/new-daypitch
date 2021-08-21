@@ -5,7 +5,10 @@ import {
     CREATE_JOB_SUCCESS,
     GET_ALL_JOB_FAIL,
     GET_ALL_JOB_REQUEST,
-    GET_ALL_JOB_SUCCESS
+    GET_ALL_JOB_SUCCESS,
+    GET_SINGLE_JOB_FAIL,
+    GET_SINGLE_JOB_REQUEST,
+    GET_SINGLE_JOB_SUCCESS
 } from "../constants/jobsConstants"
 
 export const create_a_job = (msg_obj, id) => (dispatch) => {
@@ -57,6 +60,29 @@ export const get_all_Jobs = () => (dispatch) => {
             payload: error.response && error.response.message
                 ? error.response.error.message
                 : error.message
+        })
+    })
+}
+
+//get a single service
+export const get_single_Job_Action = (id) => (dispatch)=>{
+    // console.log(token, id)
+    dispatch({
+        type: GET_SINGLE_JOB_REQUEST,
+        payload: {id}
+    });
+    db.collection('jobs').doc(id).onSnapshot(snapshot=>{
+        // console.log(id)
+        dispatch({
+            type: GET_SINGLE_JOB_SUCCESS, 
+            payload: snapshot.data()
+        })
+    },(error)=>{
+        dispatch({
+            type: GET_SINGLE_JOB_FAIL,
+            payload: error.response && error.response.message 
+                    ? error.response.error.message 
+                    : error.message
         })
     })
 }

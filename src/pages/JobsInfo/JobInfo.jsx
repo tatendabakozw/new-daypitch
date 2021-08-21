@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { get_single_Job_Action } from '../../redux/actions/jobsActions'
 import Loading from '../../components/loading/loading'
+import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Input, Textarea, useDisclosure } from '@chakra-ui/react'
 
 
 const attachments = [
@@ -33,6 +34,8 @@ export default function JobInfo() {
     const get_job = useSelector(state => state.single_Job)
     const { loading, job } = get_job
     const dispatch = useDispatch()
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const btnRef = React.useRef()
 
     useEffect(() => {
         dispatch(get_single_Job_Action(id))
@@ -53,11 +56,11 @@ export default function JobInfo() {
                     {/* Page header */}
                     <div className="max-w-3xl mx-auto px-4 sm:px-6 md:flex md:items-center md:justify-between md:space-x-5 lg:max-w-7xl lg:px-8">
                         <div className="flex items-center space-x-5">
-                           
+
                             <div>
                                 <h1 className="text-2xl font-bold text-gray-900">{job.name}</h1>
                                 <p className="text-sm font-medium text-gray-500">
-                                    Created job{' '} on <time dateTime="2020-08-25">{Date(job?.createdAt * 1000).slice(0,15)}</time>
+                                    Created job{' '} on <time dateTime="2020-08-25">{Date(job?.createdAt * 1000).slice(0, 15)}</time>
                                 </p>
                             </div>
                         </div>
@@ -68,12 +71,37 @@ export default function JobInfo() {
                             >
                                 Save
                             </button>
-                            <button
+                            <Button ref={btnRef} colorScheme="blue" onClick={onOpen}
                                 type="button"
                                 className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-900 hover:bg-blue-800 focus:outline-none"
                             >
                                 Send Proposal
-                            </button>
+                            </Button>
+                            <Drawer
+                                isOpen={isOpen}
+                                placement="right"
+                                onClose={onClose}
+                                finalFocusRef={btnRef}
+                                size="md"
+                            >
+                                <DrawerOverlay />
+                                <DrawerContent>
+                                    <DrawerCloseButton />
+                                    <DrawerHeader>Type your proposal</DrawerHeader>
+
+                                    <DrawerBody>
+                                        <textarea rows={15} placeholder="Type here..." className="w-full border border-gray-300 rounded p-2 outline-none" />
+                                        <p className="text-gray-400 text-right text-xs">max: 500 words</p>
+                                    </DrawerBody>
+
+                                    <DrawerFooter>
+                                        <Button variant="outline" mr={3} onClick={onClose}>
+                                            Cancel
+                                        </Button>
+                                        <Button colorScheme="blue">Send Proposal</Button>
+                                    </DrawerFooter>
+                                </DrawerContent>
+                            </Drawer>
                         </div>
                     </div>
 

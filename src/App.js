@@ -12,6 +12,7 @@ import ExploreJobs from './pages/explore/ExploreJobs'
 import ExploreSellers from './pages/explore/ExploreSellers'
 import Home from './pages/Home/Home'
 import HowItWorks from './pages/howitworks/HowItWorks'
+import JobInfo from './pages/JobsInfo/JobInfo'
 import SendMessage from './pages/message/SendMessage'
 import MyJobs from './pages/my_jobs/MyJobs'
 import NotFound from './pages/notfound/NotFound'
@@ -28,6 +29,7 @@ function App() {
         <Route exact path="/message" component={SendMessage} />
         <Route exact path="/listings" component={Listings} />
         <Route exact path="/explorejobs" component={ExploreJobs} />
+        <Route exact path="/job/:id" component={JobInfo} />
         <Route exact path="/jobs" component={MyJobs} />
         <Route exact path="/becomeaseller" component={BecomeASeller} />
         <Route exact path="/contract/:id" component={Contract} />

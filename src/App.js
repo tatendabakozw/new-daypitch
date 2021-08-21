@@ -1,5 +1,6 @@
 import React from 'react'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import PrivateRoute from './hocs/PrivateRoute'
 import Account from './pages/account/Account'
 import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
@@ -23,21 +24,21 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
+      <PrivateRoute exact path="/chat" component={Chat} />
+        <PrivateRoute exact path="/message" component={SendMessage} />
+        <PrivateRoute exact path="/listings" component={Listings} />
+        <PrivateRoute exact path="/jobs" component={MyJobs} />
+        <PrivateRoute exact path="/becomeaseller" component={BecomeASeller} />
+        <PrivateRoute exact path="/contract/:id" component={Contract} />
+        <PrivateRoute exact path="/account" component={Account} />
         <Route exact path="/explore" component={ExploreSellers} />
-        <Route exact path="/chat" component={Chat} />
-        <Route exact path="/upgrade" component={Upgrade} />
-        <Route exact path="/message" component={SendMessage} />
-        <Route exact path="/listings" component={Listings} />
         <Route exact path="/explorejobs" component={ExploreJobs} />
         <Route exact path="/job/:id" component={JobInfo} />
-        <Route exact path="/jobs" component={MyJobs} />
-        <Route exact path="/becomeaseller" component={BecomeASeller} />
-        <Route exact path="/contract/:id" component={Contract} />
-        <Route exact path="/account" component={Account} />
         <Route exact path="/howitworks" component={HowItWorks} />
         <Route exact path="/contact" component={Contact} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/upgrade" component={Upgrade} />
         <Route exact path="/" component={Home} />
         <Route component={NotFound} />
       </Switch>

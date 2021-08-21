@@ -11,11 +11,9 @@ import { get_single_Job_Action } from '../../redux/actions/jobsActions'
 import Loading from '../../components/loading/loading'
 import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Input, Textarea, useDisclosure } from '@chakra-ui/react'
 
-
 const attachments = [
     { name: 'sample_picture_of_project.pdf', href: '#' },
 ]
-
 
 const comments = [
     {

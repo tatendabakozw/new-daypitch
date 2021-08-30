@@ -86,7 +86,7 @@ function HomeNavbar({off_background, on_background}) {
                                                         <Link to={item.href}
                                                             style={{ transition: "all .15s ease" }}
                                                             key={item.name}
-                                                            className={classNames('text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-semibold')}
+                                                            className={classNames('text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm ')}
                                                             aria-current={item.current ? 'page' : undefined}
                                                         >
                                                             <Text>{item.name}</Text>
@@ -99,7 +99,7 @@ function HomeNavbar({off_background, on_background}) {
                                                         <Link to={item.href}
                                                             style={{ transition: "all .15s ease" }}
                                                             key={item.name}
-                                                            className={classNames('text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-semibold')}
+                                                            className={classNames('text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm')}
                                                             aria-current={item.current ? 'page' : undefined}
                                                         >
                                                             <Text>{item.name}</Text>
@@ -112,7 +112,7 @@ function HomeNavbar({off_background, on_background}) {
                                                         <Link to={item.href}
                                                             style={{ transition: "all .15s ease" }}
                                                             key={item.name}
-                                                            className={classNames('text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-semibold')}
+                                                            className={classNames('text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm')}
                                                             aria-current={item.current ? 'page' : undefined}
                                                         >
                                                             <Text>{item.name}</Text>

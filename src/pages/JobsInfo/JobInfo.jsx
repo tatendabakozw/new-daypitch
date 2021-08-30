@@ -65,13 +65,13 @@ export default function JobInfo() {
                         <div className="mt-6 flex flex-col-reverse justify-stretch space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-x-reverse sm:space-y-0 sm:space-x-3 md:mt-0 md:flex-row md:space-x-3">
                             <button
                                 type="button"
-                                className="inline-flex items-center justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none"
+                                className="inline-flex items-center justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none"
                             >
                                 Save
                             </button>
                             <Button ref={btnRef} colorScheme="blue" onClick={onOpen}
                                 type="button"
-                                className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-900 hover:bg-blue-800 focus:outline-none"
+                                className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded shadow-sm text-white bg-blue-900 hover:bg-blue-800 focus:outline-none"
                             >
                                 Send Proposal
                             </Button>
@@ -85,9 +85,10 @@ export default function JobInfo() {
                                 <DrawerOverlay />
                                 <DrawerContent>
                                     <DrawerCloseButton />
-                                    <DrawerHeader>Type your proposal</DrawerHeader>
+                                    <DrawerHeader>Proposal</DrawerHeader>
 
                                     <DrawerBody>
+                                        <p className="text-gray-700 text-sm my-2 font-semibold">Type you message</p>
                                         <textarea rows={15} placeholder="Type here..." className="w-full border border-gray-300 rounded p-2 outline-none" />
                                         <p className="text-gray-400 text-right text-xs">max: 500 words</p>
                                     </DrawerBody>
@@ -173,13 +174,7 @@ export default function JobInfo() {
                                                                 <div className="mt-1 text-sm text-gray-700">
                                                                     <p>{comment.body}</p>
                                                                 </div>
-                                                                <div className="mt-2 text-sm space-x-2">
-                                                                    <span className="text-gray-500 font-medium">{comment.date}</span>{' '}
-                                                                    <span className="text-gray-500 font-medium">&middot;</span>{' '}
-                                                                    <button type="button" className="text-gray-900 font-medium">
-                                                                        Reply
-                                                                    </button>
-                                                                </div>
+                                                              
                                                             </div>
                                                         </div>
                                                     </li>
@@ -199,7 +194,7 @@ export default function JobInfo() {
                                                             id="comment"
                                                             name="comment"
                                                             rows={3}
-                                                            className="shadow-sm block w-full focus:ring-blue-500 focus:border-blue-500 sm:text-sm border border-gray-300 rounded-md"
+                                                            className="shadow-sm block w-full focus:ring-blue-500 focus:border-blue-500 sm:text-sm border border-gray-300 rounded"
                                                             placeholder="Add a note"
                                                             defaultValue={''}
                                                         />
@@ -217,7 +212,7 @@ export default function JobInfo() {
                                                         </a>
                                                         <button
                                                             type="submit"
-                                                            className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-900 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                                                            className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded shadow-sm text-white bg-blue-900 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                                                         >
                                                             Comment
                                                         </button>

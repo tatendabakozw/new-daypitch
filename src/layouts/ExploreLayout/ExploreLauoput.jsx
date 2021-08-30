@@ -7,7 +7,6 @@ import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { useSelector } from 'react-redux';
 import ExploreRight from '../../components/ExploreRight/ExploreRight';
 
-
 const filter_price = [
     { name: 'High To Low' },
     { name: 'Low To High' }
@@ -22,9 +21,6 @@ const categories = [
     { name: 'budiness' },
     { name: 'vehicle and transportation' }
 ]
-
-
-
 
 function ExploreLauoput({ children, heading }) {
 
@@ -56,7 +52,7 @@ function ExploreLauoput({ children, heading }) {
                     <div className="w-1/4 lg:block md:block hidden min-h-screen">
                         <div className="flex flex-col items-center">
                             <div className=" w-full">
-                                <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-3 bg-white dark:bg-gray-800 flex-col">
+                                <div className="border border-gray-200 dark:border-gray-800 rounded p-3 bg-white dark:bg-gray-800 flex-col">
                                     <span className="flex flex-row items-center mb-4 dark:text-white">
                                         {/* <XIcon height={20} width={20} /> */}
                                         <p className="text-gray-700 font-sm dark:text-green-500 font-semibold">Filters</p>
@@ -68,7 +64,7 @@ function ExploreLauoput({ children, heading }) {
                                     <div className="bg-white z-30 mb-4">
                                         <Listbox value={selected} onChange={setSelected}>
                                             <div className="relative mt-1">
-                                                <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white rounded-lg border border-gray-300 focus:outline-none cursor-pointer sm:text-sm">
+                                                <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white rounded border border-gray-300 focus:outline-none cursor-pointer sm:text-sm">
                                                     <span className="block truncate">{selected.name}</span>
                                                     <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                                                         <SelectorIcon
@@ -83,7 +79,7 @@ function ExploreLauoput({ children, heading }) {
                                                     leaveFrom="opacity-100"
                                                     leaveTo="opacity-0"
                                                 >
-                                                    <Listbox.Options className=" w-full py-1 mt-1 overflow-auto text-base bg-white rounded-lg border border-gray-200 max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                                    <Listbox.Options className=" w-full py-1 mt-1 overflow-auto text-base bg-white rounded border border-gray-200 max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                                                         {filter_price.map((person, personIdx) => (
                                                             <Listbox.Option
                                                                 key={personIdx}
@@ -137,7 +133,7 @@ function ExploreLauoput({ children, heading }) {
                                                                     className={({ active, checked }) =>
                                                                         `${active ? '' : ''}
                                                         ${checked ? 'text-gray-700 ' : 'bg-white text-gray-700'}
-                                                    relative rounded-lg px-2 py-2 cursor-pointer flex focus:outline-none`
+                                                    relative rounded px-2 py-2 cursor-pointer flex focus:outline-none`
                                                                     }>
                                                                     {({ active, checked }) => (
                                                                         <>
@@ -185,12 +181,12 @@ function ExploreLauoput({ children, heading }) {
                     {/* //middle row */}
                     <div className="lg:w-2/4 md:w-3/4 w-full min-h-screen">
                         <div className="w-full flex flex-col">
-                            <div className="search bg-white flex flex-row items-center w-full rounded-lg border border-gray-200 overflow-hidden mb-4">
+                            <div className="search bg-white flex flex-row items-center w-full rounded border border-gray-200 overflow-hidden mb-4">
                                 <input
                                     type="text"
                                     className="bg-white border-none outline-none p-2 flex-1"
                                     placeholder="search" />
-                                <span className="bg-blue-900 p-4 cursor-pointer hover:bg-blue-800 rounded-lg">
+                                <span className="bg-blue-900 p-4 cursor-pointer hover:bg-blue-800 rounded">
                                     <SearchIcon height={20} width={20} className="text-white" />
                                 </span>
                             </div>

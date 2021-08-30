@@ -14,5 +14,11 @@ export const data = {
             id: 2,
             location: 'harare'
         }
+    ],
+    filter_options :[
+        {name: 'Price (Low to high)'},
+        {name: 'Price (High to low)'},
+        {name: 'Location (Near to further)'},
+        {name: 'Location (Further to near)'}
     ]
 }

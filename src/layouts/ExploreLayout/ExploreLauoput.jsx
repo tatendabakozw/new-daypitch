@@ -6,6 +6,7 @@ import { RadioGroup, Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { useSelector } from 'react-redux';
 import ExploreRight from '../../components/ExploreRight/ExploreRight';
+import { data } from '../../data';
 
 const filter_price = [
     { name: 'High To Low' },
@@ -62,58 +63,23 @@ function ExploreLauoput({ children, heading }) {
 
                                     {/* // select price range */}
                                     <div className="bg-white z-30 mb-4">
-                                        <Listbox value={selected} onChange={setSelected}>
-                                            <div className="relative mt-1">
-                                                <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white rounded border border-gray-300 focus:outline-none cursor-pointer sm:text-sm">
-                                                    <span className="block truncate">{selected.name}</span>
-                                                    <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                                                        <SelectorIcon
-                                                            className="w-5 h-5 text-gray-400"
-                                                            aria-hidden="true"
-                                                        />
-                                                    </span>
-                                                </Listbox.Button>
-                                                <Transition
-                                                    as={Fragment}
-                                                    leave="transition ease-in duration-100"
-                                                    leaveFrom="opacity-100"
-                                                    leaveTo="opacity-0"
-                                                >
-                                                    <Listbox.Options className=" w-full py-1 mt-1 overflow-auto text-base bg-white rounded border border-gray-200 max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                                                        {filter_price.map((person, personIdx) => (
-                                                            <Listbox.Option
-                                                                key={personIdx}
-                                                                className={({ active }) =>
-                                                                    `${active ? 'text-amber-900 bg-amber-100' : 'text-gray-900'}
-                                                                        select-none relative py-2 pl-10 pr-4 hover:bg-gray-200 cursor-pointer`
-                                                                }
-                                                                value={person}
-                                                            >
-                                                                {({ selected, active }) => (
-                                                                    <>
-                                                                        <span
-                                                                            className={`${selected ? 'font-medium' : 'font-normal'
-                                                                                } block truncate`}
-                                                                        >
-                                                                            {person.name}
-                                                                        </span>
-                                                                        {selected ? (
-                                                                            <span
-                                                                                className={`${active ? 'text-amber-600' : 'text-amber-600'
-                                                                                    }
-                                                            absolute inset-y-0 left-0 flex items-center pl-3`}
-                                                                            >
-                                                                                <CheckIcon className="w-5 h-5" aria-hidden="true" />
-                                                                            </span>
-                                                                        ) : null}
-                                                                    </>
-                                                                )}
-                                                            </Listbox.Option>
-                                                        ))}
-                                                    </Listbox.Options>
-                                                </Transition>
-                                            </div>
-                                        </Listbox>
+                                        <div>
+                                            <label htmlFor="location" className="block text-sm font-medium text-gray-700">
+                                                Sort by
+                                            </label>
+                                            <select
+                                                id="location"
+                                                name="location"
+                                                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border border-gray-300 focus:outline-none sm:text-sm rounded-md"
+                                                defaultValue="Price (Low to high)"
+                                            >
+                                                {
+                                                    data.filter_options.map((option, index)=>(
+                                                        <option key={index}>{option.name}</option>
+                                                    ))
+                                                }
+                                            </select>
+                                        </div>
                                     </div>
 
                                     <p className="text-gray-700 font-sm dark:text-green-500 font-semibold">Categories:</p>
@@ -227,21 +193,21 @@ function ExploreLauoput({ children, heading }) {
 
 function NewCheckIcon(props) {
     return (
-      <svg viewBox="0 0 24 24" fill="none" {...props}>
-        <circle cx={12} cy={12} r={12} fill="#fff" opacity="0.2" />
-        <path
-          d="M7 13l3 3 7-7"
-          stroke="#059669"
-          strokeWidth={1.5}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
+        <svg viewBox="0 0 24 24" fill="none" {...props}>
+            <circle cx={12} cy={12} r={12} fill="#fff" opacity="0.2" />
+            <path
+                d="M7 13l3 3 7-7"
+                stroke="#059669"
+                strokeWidth={1.5}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+        </svg>
     )
-  }
+}
 
-  
-const LoadingComponent = () =>{
+
+const LoadingComponent = () => {
     return (
         <div class="border border-gray-200 rounded p-4 w-full mx-auto bg-white mb-8">
             <div class="animate-pulse flex flex-col space-x-4">

@@ -1,4 +1,3 @@
-import {ChatAlt2Icon} from '@heroicons/react/outline'
 import NavbarNotification from '../components/navigation/NavbarNotification'
 
 export const nav_options = {
@@ -17,7 +16,7 @@ export const nav_options = {
       
     BuyerAuthenticatedNavigation : [
         { name: 'Explore Sellers', href: '/explore', current: false },
-        { name: 'My Jobs', href: '/explorejobs', current: true },
+        { name: 'My Jobs', href: '/jobs', current: true },
         // { name: <ChatAlt2Icon height={20} width={20} className="text-gray-700" />, href: '/chat', current: true },
         { name: <span>
                 <NavbarNotification/>

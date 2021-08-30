@@ -13,8 +13,6 @@ function ExploreSellers() {
     const [limit] = useState(8);
     const dispatch = useDispatch()
 
-
-
     //service info
     const servicesInfo = useSelector(state => state.allServices)
     const { loading, all_services } = servicesInfo
@@ -29,28 +27,6 @@ function ExploreSellers() {
             {/* //middle row */}
             <div className="w-full min-h-screen">
                 <div className="w-full flex flex-col">
-                    <div className="search bg-white flex flex-row items-center w-full rounded-lg border border-gray-200 overflow-hidden mb-4">
-                        <input
-                            type="text"
-                            className="bg-white border-none outline-none p-2 flex-1"
-                            placeholder="search" />
-                        <span className="bg-blue-900 p-4 cursor-pointer hover:bg-blue-800 rounded-lg">
-                            <SearchIcon height={20} width={20} className="text-white" />
-                        </span>
-                    </div>
-                    <div className="md:flex hidden flex-row items-center justify-between p-8">
-                        <p className="flex-1 text-gray-700 font-semibold">Sellers</p>
-                        <div className="flex flex-row items-center">
-                            <ViewGridIcon
-                                height={20} width={20}
-                                onClick={() => setGridView(true)}
-                                className={`${grid_view ? "text-blue-500" : "text-gray-500"} mr-4 cursor-pointer`} />
-                            <FormatListBulletedIcon
-                                fontSize="small"
-                                onClick={() => setGridView(false)}
-                                className={`${grid_view ? "text-gray-500" : "text-blue-500"} mr-4 cursor-pointer`} />
-                        </div>
-                    </div>
                     <div >
                         {
                             !loading ? (

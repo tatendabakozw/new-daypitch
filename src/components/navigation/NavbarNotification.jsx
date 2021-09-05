@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { BadgeCheckIcon, BellIcon } from '@heroicons/react/outline'
+import { BellIcon } from '@heroicons/react/outline'
 import { Fragment, useState } from 'react'
 import { Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/solid'
@@ -162,7 +162,7 @@ function NavbarNotification() {
                           </div>
                           <div className="ml-3 w-0 flex-1">
                             <p className="text-sm font-medium text-gray-900">{contract.contracts.company}</p>
-                            <Text noOfLines={2} className="mt-1 text-sm text-gray-500">{contract.contracts.details}</Text>
+                            <Text noOfLines={1} className="mt-1 text-sm text-gray-500">{contract.contracts.details}</Text>
                             <div className="mt-4 flex">
                               <button
                                 type="button"

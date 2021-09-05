@@ -15,7 +15,7 @@ export const nav_options = {
       ],
       
     BuyerAuthenticatedNavigation : [
-        { name: 'Explore Sellers', href: '/explore', current: false },
+        // { name: 'Explore Sellers', href: '/explore', current: false },
         { name: 'My Jobs', href: '/jobs', current: true },
         // { name: <ChatAlt2Icon height={20} width={20} className="text-gray-700" />, href: '/chat', current: true },
         { name: <span>

@@ -67,6 +67,7 @@ function HomeNavbar({off_background, on_background}) {
                                         />
                                     </Link>
                                     <Link to='/explorejobs' className="flex-shrink-0 md:flex hidden ml-4 text-gray-600 items-center" >Explore jobs</Link>
+                                    <Link to='/explore' className="flex-shrink-0 md:flex hidden ml-4 text-gray-600 items-center" >Explore sellers</Link>
                                 </div>
                                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                                     <div className="hidden sm:flex items-center sm:ml-6">

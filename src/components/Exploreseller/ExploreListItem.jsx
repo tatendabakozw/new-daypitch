@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from 'react'
 import { StarIcon as StarRateIcon, HeartIcon as FavoriteIcon, CheckCircleIcon } from '@heroicons/react/outline'
-import { HeartIcon as FavoriteBorderIcon, BookmarkIcon, ChatIcon } from '@heroicons/react/solid'
+import { HeartIcon as FavoriteBorderIcon, BookmarkIcon, ChatIcon, BadgeCheckIcon } from '@heroicons/react/solid'
 import { Dialog, Transition } from '@headlessui/react'
 import { useHistory } from 'react-router-dom'
 import UserInfoPanel from '../UserInfoPanel/UserInfoPanel'
@@ -43,16 +43,11 @@ function ExploreListItem({ verified, category, price, rating, tags, propic, busi
                         alt="user propic"
                     />
 
-                    <p className={`text-gray-700 font-semibold`}>{businessname} -</p>
+                    <p className={`text-gray-700 font-semibold mr-2`}>{businessname}</p>
                     {verified ? (<div className="saved flex flex-row items-center text-blue-600">
-                        <CheckCircleIcon height={24} width={24} className="text-blue-700" />
+                        <BadgeCheckIcon height={16} width={16} className="text-blue-700" />
                         <p className="text-xs">Verified</p>
-                    </div>) : (
-                        <p className="text-xs text-gray-500 dark:text-gray-400 p-1 rounded flex flex-row items-center">
-                            <CheckCircleIcon height={24} width={24} />
-                            <p>not verified</p>
-                        </p>
-                    )}
+                    </div>) : null}
                     <>
                         <UserInfoPanel
                             propic={propic}
@@ -84,7 +79,10 @@ function ExploreListItem({ verified, category, price, rating, tags, propic, busi
                 </div>
             </div>
             <div className="price mb-2">
-                <p className="text-sm text-gray-700 font-semibold flex flex-row flex-wrap">Price range - <span className="font-normal">${price}/hr - </span><span className="flex flex-row items-center"><BookmarkIcon height={16} width={16} />{category}</span></p>
+                <p className="text-sm text-gray-700 font-semibold flex flex-row flex-wrap">Price range - <span className="font-normal">${price}/hr - </span>
+                <span className="flex flex-row items-center">
+                    <BookmarkIcon height={12} width={12} />{category}</span>
+                </p>
             </div>
             <div className="price mb-4 overflow-hidden">
                 <Text noOfLines={3} className="text-sm text-gray-500">{description}</Text>

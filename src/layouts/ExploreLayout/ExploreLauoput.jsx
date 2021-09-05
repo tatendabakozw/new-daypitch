@@ -1,9 +1,8 @@
-import React, { useState, Fragment, useEffect } from 'react'
+import React, { useState } from 'react'
 import HomeLayout from '../HomeLayout/HomeLayout'
 import { SearchIcon, ChevronDownIcon, ViewGridAddIcon } from '@heroicons/react/outline'
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
-import { RadioGroup, Listbox, Transition } from '@headlessui/react'
-import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
+import { RadioGroup } from '@headlessui/react'
 import { useSelector } from 'react-redux';
 import ExploreRight from '../../components/ExploreRight/ExploreRight';
 import { data } from '../../data';
@@ -11,16 +10,6 @@ import { data } from '../../data';
 const filter_price = [
     { name: 'High To Low' },
     { name: 'Low To High' }
-]
-
-const categories = [
-    { name: 'Programming and tech' },
-    { name: 'Writing & translation' },
-    { name: 'video and animation' },
-    { name: 'graphics and design' },
-    { name: 'home and living' },
-    { name: 'budiness' },
-    { name: 'vehicle and transportation' }
 ]
 
 function ExploreLauoput({ children, heading }) {
@@ -92,7 +81,7 @@ function ExploreLauoput({ children, heading }) {
                                                     <RadioGroup value={selected_category} onChange={setSelecCategory}>
                                                         <RadioGroup.Label className="sr-only">category</RadioGroup.Label>
                                                         <div className="space-y-2">
-                                                            {categories?.map((category) => (
+                                                            {data.categories?.map((category) => (
                                                                 <RadioGroup.Option
                                                                     key={category.name}
                                                                     value={category}

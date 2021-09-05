@@ -20,5 +20,14 @@ export const data = {
         {name: 'Price (High to low)'},
         {name: 'Location (Near to further)'},
         {name: 'Location (Further to near)'}
+    ],
+    categories :[
+        {name: 'Programming & tech'},
+        {name: 'Writting & translation'},
+        {name: 'Video  & animation'},
+        {name: 'Graphics & design'},
+        {name: 'Home & living'},
+        {name: 'Vehicle & transportation'},
+        {name: 'Business'}
     ]
 }

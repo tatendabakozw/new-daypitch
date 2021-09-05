@@ -1,6 +1,5 @@
 import React from 'react'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
-import PrivateRoute from './hocs/PrivateRoute'
 import Account from './pages/account/Account'
 import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'

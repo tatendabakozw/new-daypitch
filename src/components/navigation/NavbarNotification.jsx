@@ -41,7 +41,7 @@ function NavbarNotification() {
               leaveTo="opacity-0"
             >
               <div className="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5">
-                <div className="bg-gray-100 p-4 flex flex-row items-center justify-between">
+                <div className="bg-gray-100 p-2 flex flex-row items-center justify-between">
                   <p>Notifications</p>
                   <div className="ml-4 flex-shrink-0 flex">
                     <button
@@ -95,7 +95,7 @@ function NavbarNotification() {
                 leaveTo="opacity-0"
               >
                 <div className="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5">
-                  <div className="bg-gray-100 p-4 flex flex-row items-center justify-between">
+                  <div className="bg-gray-100 p-2 flex flex-row items-center justify-between">
                     <p>Notifications</p>
                     <div className="ml-4 flex-shrink-0 flex">
                       <button
@@ -136,7 +136,7 @@ function NavbarNotification() {
                     leaveTo="opacity-0"
                   >
                     <div className="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5">
-                      <div className="bg-gray-100 p-4 flex flex-row items-center justify-between">
+                      <div className="bg-gray-100 p-2 flex flex-row items-center justify-between">
                         <p>Notifications</p>
                         <div className="ml-4 flex-shrink-0 flex">
                           <button

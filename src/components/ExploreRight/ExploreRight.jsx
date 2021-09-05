@@ -46,7 +46,7 @@ function ExploreRight() {
                         </span>
                         {
                             !user?.verified ? (<span onClick={() => history.push('/upgrade')} className="bg-blue-900 text-sm p-2 rounded text-white text-center w-2/3 hover:bg-blue-800 cursor-pointer">Upgrade account</span>) :
-                                (<span onClick={() => history.push('/account')} className="bg-blue-900 text-sm p-2 rounded-lg text-white text-center w-2/3 hover:bg-blue-800 cursor-pointer">Edit account</span>)
+                                (<span onClick={() => history.push('/account')} className="bg-blue-900 text-sm p-2 rounded text-white text-center w-2/3 hover:bg-blue-800 cursor-pointer">Edit account</span>)
                         }
                     </div>
                 ) : (
@@ -61,8 +61,8 @@ function ExploreRight() {
                             </div>
                             <p className="text-gray-700 font-semibold">You are not logged in</p>
                         </div>
-                        <div className="grid items-center w-full border border-gray-200 p-16 content-center rounded-lg">
-                            <span onClick={() => history.push('/login')} className="text-center bg-blue-900 text-white p-2 text-sm rounded-lg cursor-pointer hover:bg-blue-800">Login</span>
+                        <div className="grid items-center w-full border border-gray-200 p-16 content-center rounded">
+                            <span onClick={() => history.push('/login')} className="text-center bg-blue-900 text-white p-2 text-sm rounded cursor-pointer hover:bg-blue-800">Login</span>
                         </div>
                     </div>
                 )

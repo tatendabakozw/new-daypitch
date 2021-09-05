@@ -33,7 +33,7 @@ function App() {
         <Route exact path="/upgrade" component={Upgrade} />
         <Route exact path="/" component={Home} />
         <Route exact path="/chat" component={Chat} />
-        <Route exact path="/message" component={SendMessage} />
+        <Route exact path="/message/:id" component={SendMessage} />
         <Route exact path="/listings" component={Listings} />
         <Route exact path="/jobs" component={MyJobs} />
         <Route exact path="/becomeaseller" component={BecomeASeller} />

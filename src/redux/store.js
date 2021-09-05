@@ -1,9 +1,10 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux"
 import thunk from "redux-thunk"
 import { create_contract_Reducer, get_contract_Reducer, get_user_contracts_Reducer } from "./reducers/contractsReducer"
-import { create_conversation_Reducer, get_conversation_Reducer } from "./reducers/conversationsReducer"
+import {  get_conversation_Reducer } from "./reducers/conversationsReducer"
 import { firestore_users_Reducer } from "./reducers/firestore_usersReducer"
 import { create_jobs_Reducer, getAll_Jobs_Reducer, get_single_Job_Reducer } from "./reducers/jobsReducers"
+import { create_message_Reducer } from "./reducers/messageReducer"
 import { createAServiceReducer, getAllServicesReducer, singleServiceReducer } from "./reducers/serviceReducer"
 import { registerWithCresReducer, signInWithCredsReducer } from "./reducers/userReducer"
 import { sidebarReducer } from "./reducers/user_panelREducer"
@@ -23,7 +24,7 @@ const reducer = combineReducers({
     sidebar_panel: sidebarReducer,
     create_service: createAServiceReducer,
     all_users: firestore_users_Reducer,
-    create_message: create_conversation_Reducer,
+    create_message: create_message_Reducer,
     all_messages: get_conversation_Reducer,
     create_Contract: create_contract_Reducer,
     user_Contracts: get_contract_Reducer,

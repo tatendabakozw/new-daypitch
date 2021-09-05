@@ -1,5 +1,5 @@
 import React from 'react'
-import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Account from './pages/account/Account'
 import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
@@ -23,7 +23,6 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        
         <Route exact path="/explore" component={ExploreSellers} />
         <Route exact path="/explorejobs" component={ExploreJobs} />
         <Route exact path="/job/:id" component={JobInfo} />

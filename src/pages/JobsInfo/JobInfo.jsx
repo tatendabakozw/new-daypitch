@@ -1,6 +1,5 @@
-import React from 'react'
+import React, {useState, useCallback} from 'react'
 import {
-    PaperClipIcon,
     QuestionMarkCircleIcon,
 } from '@heroicons/react/solid'
 import HomeLayout from '../../layouts/HomeLayout/HomeLayout'
@@ -9,7 +8,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { get_single_Job_Action } from '../../redux/actions/jobsActions'
 import Loading from '../../components/loading/loading'
-import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Input, Textarea, useDisclosure } from '@chakra-ui/react'
+import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, useDisclosure, Text } from '@chakra-ui/react'
+import { useDropzone } from 'react-dropzone'
+
 
 const attachments = [
     { name: 'sample_picture_of_project.pdf', href: '#' },
@@ -34,6 +35,21 @@ export default function JobInfo() {
     const dispatch = useDispatch()
     const { isOpen, onOpen, onClose } = useDisclosure()
     const btnRef = React.useRef()
+    const [pictures, setPictures] = useState([])
+
+    const maxSize = 1048576;
+    const onDrop = useCallback(acceptedFiles => {
+        console.log(acceptedFiles);
+        setPictures(acceptedFiles)
+    }, []);
+
+    const { isDragActive, getRootProps, getInputProps, isDragReject, acceptedFiles, rejectedFiles } = useDropzone({
+        onDrop,
+        // accept: 'image/png, image/jpg, image/jpeg',
+        minSize: 0,
+        maxSize,
+    });
+    const isFileTooLarge = rejectedFiles?.length > 0 && rejectedFiles[0].size > maxSize;
 
     useEffect(() => {
         dispatch(get_single_Job_Action(id))
@@ -89,8 +105,29 @@ export default function JobInfo() {
 
                                     <DrawerBody>
                                         <p className="text-gray-700 text-sm my-2 font-semibold">Type you message</p>
-                                        <textarea rows={15} placeholder="Type here..." className="w-full border border-gray-300 rounded p-2 outline-none" />
+                                        <textarea rows={10} placeholder="Type here..." className="w-full border border-gray-300 rounded p-2 outline-none" />
                                         <p className="text-gray-400 text-right text-xs">max: 500 words</p>
+
+                                        <Text className="text-gray-700 text-sm ml-2 mt-4" size="sm">Select any files you want to attach</Text>
+                                        {/* //for picking up the images */}
+                                        <ul className="list-group mt-2">
+                                            {acceptedFiles.length > 0 && acceptedFiles.map(acceptedFile => (
+                                                <li key={acceptedFile.name} className="list-group-item list-group-item-success">
+                                                    {acceptedFile.name}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                        <div {...getRootProps()} className="bg-gray-100 text-center text-sm rounded-full p-4 cursor-pointer">
+                                            <input {...getInputProps()} />
+                                            {!isDragActive && 'Click here or drop a file to upload!'}
+                                            {isDragActive && !isDragReject && "Drop it like it's hot!"}
+                                            {isDragReject && "File type not accepted, sorry!"}
+                                            {isFileTooLarge && (
+                                                <div className="text-danger mt-2">
+                                                    File is too large.
+                                                </div>
+                                            )}
+                                        </div>
                                     </DrawerBody>
 
                                     <DrawerFooter>
@@ -174,7 +211,7 @@ export default function JobInfo() {
                                                                 <div className="mt-1 text-sm text-gray-700">
                                                                     <p>Worked well with him, and he gives more time if there are any difficulties during development</p>
                                                                 </div>
-                                                              
+
                                                             </div>
                                                         </div>
                                                     </li>

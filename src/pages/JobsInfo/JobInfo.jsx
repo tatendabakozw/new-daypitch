@@ -111,9 +111,9 @@ export default function JobInfo() {
                                 <div className="bg-white shadow sm:rounded-lg">
                                     <div className="px-4 py-5 sm:px-6">
                                         <h2 id="applicant-information-title" className="text-lg leading-6 font-medium text-gray-900">
-                                            Applicant Information
+                                            Job Information
                                         </h2>
-                                        <p className="mt-1 max-w-2xl text-sm text-gray-500">Personal details and application.</p>
+                                        <p className="mt-1 max-w-2xl text-sm text-gray-500">Information about the job.</p>
                                     </div>
                                     <div className="border-t border-gray-200 px-4 py-5 sm:px-6">
                                         <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
@@ -168,11 +168,11 @@ export default function JobInfo() {
                                                             <div>
                                                                 <div className="text-sm">
                                                                     <a href="#" className="font-medium text-gray-900">
-                                                                        {comment.name}
+                                                                        Tafara Bako
                                                                     </a>
                                                                 </div>
                                                                 <div className="mt-1 text-sm text-gray-700">
-                                                                    <p>{comment.body}</p>
+                                                                    <p>Worked well with him, and he gives more time if there are any difficulties during development</p>
                                                                 </div>
                                                               
                                                             </div>
@@ -208,7 +208,6 @@ export default function JobInfo() {
                                                                 className="flex-shrink-0 h-5 w-5 text-gray-400 group-hover:text-gray-500"
                                                                 aria-hidden="true"
                                                             />
-                                                            <span>Some HTML is okay.</span>
                                                         </a>
                                                         <button
                                                             type="submit"

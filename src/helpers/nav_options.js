@@ -2,7 +2,8 @@ import NavbarNotification from '../components/navigation/NavbarNotification'
 
 export const nav_options = {
     navigation : [
-        { name: 'Explore', href: '/explore', current: false },
+        { name: 'Explore Sellers', href: '/explore', current: false },
+        { name: 'Explore Jobs', href: '/explorejobs', current: true },
         { name: 'About', href: '/howitworks', current: false },
         { name: 'Sign In', href: '/login', current: false },
       ],

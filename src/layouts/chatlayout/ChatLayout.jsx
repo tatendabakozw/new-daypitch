@@ -8,7 +8,6 @@ function ChatLayout({children}) {
                 <HomeNavbar/>
             </div>
             {children}
-            
         </div>
     )
 }

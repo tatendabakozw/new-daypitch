@@ -2,7 +2,9 @@ import { db } from "../../helpers/firebase"
 import {
     CREATE_MESSAGE_FAIL,
     CREATE_MESSAGE_REQUEST,
-    CREATE_MESSAGE_SUCCESS
+    CREATE_MESSAGE_SUCCESS,
+    GET_ALL_USER_MESSAGES_REQUEST,
+    GET_ALL_USER_MESSAGES_FAIL
 } from "../constants/messageConstants"
 import firebase from 'firebase'
 
@@ -73,4 +75,23 @@ export const create_message_Action = (sent_by, body, sent_to) => (dispatch) => {
         })
     })
 
+}
+
+//get all user messages
+export const get_all_user_messages_Action = (id) => (dispatch) => {
+    dispatch({
+        type: GET_ALL_USER_MESSAGES_REQUEST,
+        dispatch: { id }
+    })
+    let _chats = []
+    db.collection('users').doc(id).get().then(res => {
+        console.log(res.data().UserChatRooms.length)
+        const user = db.collection('ChatRooms').where(firebase.firestore.FieldPath.documentId, 'in', res.data().UserChatRooms).getDocuments()
+        console.log(user)
+    }).catch(error => {
+        dispatch({
+            type: GET_ALL_USER_MESSAGES_FAIL,
+            payload: error.message
+        })
+    })
 }

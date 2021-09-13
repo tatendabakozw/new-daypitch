@@ -5,7 +5,6 @@ import ContractsLayout from '../../layouts/ContractsLayout/ContractsLayout'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { get_user_jobs_Actions } from '../../redux/actions/jobsActions'
-import Loading from '../../components/loading/loading'
 import { Spinner } from '@chakra-ui/spinner'
 
 export default function Listings() {
@@ -68,7 +67,7 @@ export default function Listings() {
                                         jobs?.map(job => (
                                             <>
                                                 <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-blue-900 bg-blue-100 rounded-sm hover:bg-blue-200 focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-75">
-                                                    <span>Write a document</span>
+                                                    <span>{job?.job?.title}</span>
                                                     <ChevronUpIcon
                                                         className={`${open ? 'transform rotate-180' : ''
                                                             } w-5 h-5 text-blue-500`}
@@ -84,29 +83,37 @@ export default function Listings() {
                                                             <dl className="sm:divide-y sm:divide-gray-200">
                                                                 <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                                                     <dt className="text-sm font-medium text-gray-500">Contractor name</dt>
-                                                                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">Margot Foster</dd>
+                                                                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{job?.job?.name}</dd>
                                                                 </div>
                                                                 <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                                                     <dt className="text-sm font-medium text-gray-500">Contract name</dt>
-                                                                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">Mobile app development</dd>
+                                                                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{job?.job?.title}</dd>
                                                                 </div>
                                                                 <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                                                     <dt className="text-sm font-medium text-gray-500">Email address</dt>
-                                                                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">margotfoster@example.com</dd>
+                                                                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{job?.job?.email}</dd>
                                                                 </div>
                                                                 <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                                                     <dt className="text-sm font-medium text-gray-500">How much you are paying</dt>
-                                                                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">$1,200</dd>
+                                                                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">${job?.job?.amount}</dd>
                                                                 </div>
                                                                 <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                                                     <dt className="text-sm font-medium text-gray-500">Details</dt>
                                                                     <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                                        I want someone to write a 600 word document for me
+                                                                        {job?.job?.details}
                                                                     </dd>
                                                                 </div>
                                                                 <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                                                     <dt className="text-sm font-medium text-gray-500">Status</dt>
-                                                                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">On-Going</dd>
+                                                                    {
+                                                                        job?.job?.status === 'pending' ? (
+                                                                            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">Not Started</dd>
+                                                                        ) : job?.job?.status === 'on-going' ? (
+                                                                            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">On-Going</dd>
+                                                                        ): (
+                                                                            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">Finished</dd>
+                                                                        )
+                                                                    }
                                                                 </div>
                                                             </dl>
                                                         </div>

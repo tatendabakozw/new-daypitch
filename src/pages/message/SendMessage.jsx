@@ -15,7 +15,7 @@ function SendMessage() {
     const _message = useSelector(state => state.create_message)
     const userSignin = useSelector(state => state.userCredsSignIn)
     const { userInfo } = userSignin
-    const {loading, error} = _message
+    const {loading} = _message
     const dispatch = useDispatch()
     const {id} = useParams()
 

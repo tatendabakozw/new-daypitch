@@ -14,7 +14,7 @@ export default function ExploreJobs() {
 
     useEffect(() => {
         dispatch(get_all_Jobs(limit, skip))
-    }, [dispatch])
+    }, [dispatch, limit, skip])
 
     console.log(all_jobs)
 

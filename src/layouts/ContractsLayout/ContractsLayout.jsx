@@ -26,6 +26,7 @@ export default function ContractsLayout({ children }) {
     const [company, setCompany] = useState('')
     const [title, setTitle] = useState('')
     const [phone_number, setPhoneNumber] = useState('')
+    // eslint-disable-next-line
     const [category, setCategory] = useState('')
 
     const jobs_state = useSelector(state => state.create_Job)
@@ -37,7 +38,7 @@ export default function ContractsLayout({ children }) {
         const msg_obj = {
             created_by: auth.currentUser.uid,
             done_by: "",
-            title: job_name,
+            job_name: job_name,
             name,
             company,
             email,

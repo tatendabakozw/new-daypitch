@@ -11,11 +11,6 @@ import Loading from '../../components/loading/loading'
 import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, useDisclosure, Text } from '@chakra-ui/react'
 import { useDropzone } from 'react-dropzone'
 
-
-const attachments = [
-    { name: 'sample_picture_of_project.pdf', href: '#' },
-]
-
 const comments = [
     {
         id: 1,
@@ -35,6 +30,7 @@ export default function JobInfo() {
     const dispatch = useDispatch()
     const { isOpen, onOpen, onClose } = useDisclosure()
     const btnRef = React.useRef()
+    // eslint-disable-next-line
     const [pictures, setPictures] = useState([])
 
     const maxSize = 1048576;
@@ -53,7 +49,7 @@ export default function JobInfo() {
 
     useEffect(() => {
         dispatch(get_single_Job_Action(id))
-    }, [])
+    }, [dispatch, id])
 
     if (loading) {
         return (
@@ -74,7 +70,7 @@ export default function JobInfo() {
                             <div>
                                 <h1 className="text-2xl font-bold text-gray-900">{job.name}</h1>
                                 <p className="text-sm font-medium text-gray-500">
-                                    Created job{' '} on <time dateTime="2020-08-25">{Date(job?.createdAt * 1000).slice(0, 15)}</time>
+                                    Job Created{' '} on <time dateTime="2020-08-25">{Date(job?.createdAt * 1000).slice(0, 15)}</time>
                                 </p>
                             </div>
                         </div>
@@ -191,7 +187,7 @@ export default function JobInfo() {
                                             </h2>
                                         </div>
                                         <div className="px-4 py-6 sm:px-6">
-                                            <ul role="list" className="space-y-8">
+                                            <ul className="space-y-8">
                                                 {comments.map((comment) => (
                                                     <li key={comment.id}>
                                                         <div className="flex space-x-3">
@@ -204,9 +200,9 @@ export default function JobInfo() {
                                                             </div>
                                                             <div>
                                                                 <div className="text-sm">
-                                                                    <a href="#" className="font-medium text-gray-900">
+                                                                    <p className="font-medium text-gray-900">
                                                                         Tafara Bako
-                                                                    </a>
+                                                                    </p>
                                                                 </div>
                                                                 <div className="mt-1 text-sm text-gray-700">
                                                                     <p>Worked well with him, and he gives more time if there are any difficulties during development</p>
@@ -237,15 +233,14 @@ export default function JobInfo() {
                                                         />
                                                     </div>
                                                     <div className="mt-3 flex items-center justify-between">
-                                                        <a
-                                                            href="#"
+                                                        <p
                                                             className="group inline-flex items-start text-sm space-x-2 text-gray-500 hover:text-gray-900"
                                                         >
                                                             <QuestionMarkCircleIcon
                                                                 className="flex-shrink-0 h-5 w-5 text-gray-400 group-hover:text-gray-500"
                                                                 aria-hidden="true"
                                                             />
-                                                        </a>
+                                                        </p>
                                                         <button
                                                             type="submit"
                                                             className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded shadow-sm text-white bg-blue-900 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"

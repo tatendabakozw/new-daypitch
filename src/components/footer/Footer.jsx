@@ -5,14 +5,13 @@ const navigation = {
     { name: 'About', href: '/howitwors' },
     { name: 'Contact', href: '/contact' },
     { name: 'Jobs', href: '/jobs' },
-    // { name: 'Press', href: '#' },
     { name: 'Explore', href: '/explore' },
     { name: 'Join', href: '/register' },
   ],
   social: [
     {
       name: 'Facebook',
-      href: '#',
+      href: 'https://www.facebook.com',
       icon: (props) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -76,7 +75,7 @@ export default function Footer() {
         </nav>
         <div className="mt-8 flex justify-center space-x-6">
           {navigation.social.map((item) => (
-            <a key={item.name} href={item.href} className="text-gray-500 hover:text-gray-700">
+            <a target="_blank" rel="noreferrer" key={item.name} href={item.href} className="text-gray-500 hover:text-gray-700">
               <span className="sr-only">{item.name}</span>
               <item.icon className="h-6 w-6" aria-hidden="true" />
             </a>

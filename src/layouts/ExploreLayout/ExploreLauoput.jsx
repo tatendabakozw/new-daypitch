@@ -25,6 +25,7 @@ function ExploreLauoput({ children, heading }) {
 
     //filter items
     const [selected_category, setSelecCategory] = useState('category')
+    // eslint-disable-next-line
     const [selected, setSelected] = useState(filter_price[0])
 
     const handleLoadMore = (e) => {
@@ -192,24 +193,6 @@ function NewCheckIcon(props) {
                 strokeLinejoin="round"
             />
         </svg>
-    )
-}
-
-
-const LoadingComponent = () => {
-    return (
-        <div class="border border-gray-200 rounded p-4 w-full mx-auto bg-white mb-8">
-            <div class="animate-pulse flex flex-col space-x-4">
-                <div class="rounded-full bg-gray-200 self-start mb-8 h-16 w-16"></div>
-                <div class="flex-1 space-y-4 py-1">
-                    <div class="h-4 bg-gray-200 rounded w-3/4"></div>
-                    <div class="space-y-2">
-                        <div class="h-4 bg-gray-300 rounded"></div>
-                        <div class="h-4 bg-gray-400 rounded w-5/6"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
     )
 }
 

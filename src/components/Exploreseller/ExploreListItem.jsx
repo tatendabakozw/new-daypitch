@@ -1,5 +1,5 @@
 import React, { useState, Fragment } from 'react'
-import { StarIcon as StarRateIcon, HeartIcon as FavoriteIcon, CheckCircleIcon } from '@heroicons/react/outline'
+import { StarIcon as StarRateIcon, HeartIcon as FavoriteIcon } from '@heroicons/react/outline'
 import { HeartIcon as FavoriteBorderIcon, BookmarkIcon, ChatIcon, BadgeCheckIcon } from '@heroicons/react/solid'
 import { Dialog, Transition } from '@headlessui/react'
 import { useHistory } from 'react-router-dom'

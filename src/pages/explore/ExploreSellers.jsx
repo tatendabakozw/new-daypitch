@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { SearchIcon, ViewGridIcon, } from '@heroicons/react/outline'
-import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 import ExploreListItem from '../../components/Exploreseller/ExploreListItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { get_allServices } from '../../redux/actions/serviceActions';
 import ExploreLauoput from '../../layouts/ExploreLayout/ExploreLauoput';
 
 function ExploreSellers() {
+    // eslint-disable-next-line
     const [grid_view, setGridView] = useState(false)
     const [skip] = useState(0);
     // eslint-disable-next-line

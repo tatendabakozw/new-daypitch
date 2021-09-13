@@ -83,7 +83,6 @@ export const get_all_user_messages_Action = (id) => (dispatch) => {
         type: GET_ALL_USER_MESSAGES_REQUEST,
         dispatch: { id }
     })
-    let _chats = []
     db.collection('users').doc(id).get().then(res => {
         console.log(res.data().UserChatRooms.length)
         const user = db.collection('ChatRooms').where(firebase.firestore.FieldPath.documentId, 'in', res.data().UserChatRooms).getDocuments()

@@ -6,11 +6,9 @@ import { ChevronLeftIcon, ChatIcon } from '@heroicons/react/outline'
 import SendRoundedIcon from '@material-ui/icons/SendRounded';
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { get_all_Firestore_users } from '../../redux/actions/firestore_usersActions'
 import { Input, Spinner, Text } from "@chakra-ui/react"
-import { create_a_Message_action, get_all_Messages } from '../../redux/actions/conversationsActions'
+import { create_a_Message_action } from '../../redux/actions/conversationsActions'
 import { get_all_user_messages_Action } from '../../redux/actions/messageActions'
-import { db } from '../../helpers/firebase'
 
 function Chat() {
 
@@ -27,7 +25,7 @@ function Chat() {
 
 	useEffect(() => {
 		dispatch(get_all_user_messages_Action(JSON.parse(logged_in_user)?.user?.uid)) 
-	}, [])
+	}, [dispatch, logged_in_user])
 
 
 

@@ -10,7 +10,6 @@ import {
     DrawerCloseButton,
     Button,
     useDisclosure,
-    Input,
 } from "@chakra-ui/react"
 
 export default function SideDrawer({drawer_heading, sendButton, children}) {

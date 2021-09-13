@@ -26,7 +26,7 @@ function HomeSearch() {
                     <Input 
                         onChange={e=>setCategory(e.target.value)}
                         type="text" 
-                        className="bg-white w-full border dark:bg-gray-700 dark:border-gray-700 border-gray-100 md:mx-2 mx-0 p-3 my-2 rounded-lg outline-none"
+                        className="bg-white w-full border dark:bg-gray-700 dark:border-gray-700 border-gray-100 md:mx-2 mx-0 p-4 my-2 rounded-lg outline-none"
                         placeholder="Search..."
                     />
                     {/* <input 

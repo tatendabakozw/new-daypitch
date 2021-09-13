@@ -119,7 +119,7 @@ export default function ContractsLayout({ children }) {
                                 <div className="flex flex-row items-center">
                                     {
                                         contract_routes.map((option, index) => (
-                                            <span onClick={() => history.push(option.location)} key={index} className={`${location.pathname === option.location ? "border-b-2 border-blue-900 " : "border-none "} text-gray-700 hover:bg-gray-100 cursor-pointer py-4 mb-8 px-4 text-lg font-semibold`}>{option.name}</span>
+                                            <span onClick={() => history.push(option.location)} key={index} className={`${location.pathname === option.location ? "border-b-2 border-blue-900 bg-gray-100 " : "border-none "} text-gray-700 hover:bg-gray-100 cursor-pointer py-4 mb-8 px-4 text font-semibold`}>{option.name}</span>
                                         ))
                                     }
                                 </div>

@@ -2,7 +2,7 @@ import { applyMiddleware, combineReducers, compose, createStore } from "redux"
 import thunk from "redux-thunk"
 import { create_contract_Reducer, get_contract_Reducer, get_user_contracts_Reducer } from "./reducers/contractsReducer"
 import { firestore_users_Reducer } from "./reducers/firestore_usersReducer"
-import { create_jobs_Reducer, getAll_Jobs_Reducer, get_single_Job_Reducer } from "./reducers/jobsReducers"
+import { create_jobs_Reducer, getAll_Jobs_Reducer, get_single_Job_Reducer, get_user_jobs_Reducer } from "./reducers/jobsReducers"
 import { create_message_Reducer, get_all_user_messages_Reducer } from "./reducers/messageReducer"
 import { createAServiceReducer, getAllServicesReducer, singleServiceReducer } from "./reducers/serviceReducer"
 import { registerWithCresReducer, signInWithCredsReducer } from "./reducers/userReducer"
@@ -28,7 +28,8 @@ const reducer = combineReducers({
     create_Contract: create_contract_Reducer,
     user_Contracts: get_contract_Reducer,
     create_Job: create_jobs_Reducer,
-    all_user_contracts : get_user_contracts_Reducer
+    all_user_contracts : get_user_contracts_Reducer,
+    user_jobs : get_user_jobs_Reducer
 })
 
 const composeForBrowser = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose

@@ -1,3 +1,4 @@
+import { GET_A_CONTRACT_FAIL } from "../constants/contractsConstants"
 import {
     CREATE_JOB_FAIL,
     CREATE_JOB_REQUEST,
@@ -7,7 +8,9 @@ import {
     GET_ALL_JOB_SUCCESS,
     GET_SINGLE_JOB_FAIL,
     GET_SINGLE_JOB_REQUEST,
-    GET_SINGLE_JOB_SUCCESS
+    GET_SINGLE_JOB_SUCCESS,
+    GET_USER_JOBS_REQUEST,
+    GET_USER_JOBS_SUCCESS
 } from "../constants/jobsConstants"
 
 export const create_jobs_Reducer = (state = {}, action) => {
@@ -38,13 +41,27 @@ export const getAll_Jobs_Reducer = (state = {}, action) => {
 }
 
 //get service
-export const get_single_Job_Reducer = (state={loading: true}, action) =>{
+export const get_single_Job_Reducer = (state={loading: false}, action) =>{
     switch(action.type){
         case GET_SINGLE_JOB_REQUEST:
             return {loading: true}
         case GET_SINGLE_JOB_SUCCESS:
             return {loading: false, job: action.payload}
         case GET_SINGLE_JOB_FAIL:
+            return {loading: false, error: action.payload}
+        default:
+            return state
+    }
+}
+
+//get user reduer
+export const get_user_jobs_Reducer = (state={loading: false}, action) =>{
+    switch(action.type){
+        case GET_USER_JOBS_REQUEST:
+            return {loading: true}
+        case GET_USER_JOBS_SUCCESS:
+            return {loading: false, jobs: action.payload}
+        case GET_A_CONTRACT_FAIL:
             return {loading: false, error: action.payload}
         default:
             return state

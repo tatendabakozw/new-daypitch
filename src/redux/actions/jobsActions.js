@@ -8,7 +8,10 @@ import {
     GET_ALL_JOB_SUCCESS,
     GET_SINGLE_JOB_FAIL,
     GET_SINGLE_JOB_REQUEST,
-    GET_SINGLE_JOB_SUCCESS
+    GET_SINGLE_JOB_SUCCESS,
+    GET_USER_JOBS_FAIL,
+    GET_USER_JOBS_REQUEST,
+    GET_USER_JOBS_SUCCESS
 } from "../constants/jobsConstants"
 
 export const create_a_job = (msg_obj, id) => (dispatch) => {
@@ -64,25 +67,52 @@ export const get_all_Jobs = () => (dispatch) => {
     })
 }
 
+//export single jobs
+export const get_user_jobs_Actions = (id) => (dispatch) => {
+    dispatch({
+        type: GET_USER_JOBS_REQUEST,
+        payload: id
+    })
+    const _jobs = []
+    db.collection('jobs').where('created_by', '==', id).get().then(res => {
+        res.forEach(doc => {
+            _jobs.push({
+                id: doc.id,
+                job: doc.data()
+            })
+        })
+    }).finally(() => {
+        dispatch({
+            type: GET_USER_JOBS_SUCCESS,
+            payload: _jobs
+        })
+    }).catch(error => {
+        dispatch({
+            type: GET_USER_JOBS_FAIL,
+            payload: error.message
+        })
+    })
+}
+
 //get a single service
-export const get_single_Job_Action = (id) => (dispatch)=>{
+export const get_single_Job_Action = (id) => (dispatch) => {
     // console.log(token, id)
     dispatch({
         type: GET_SINGLE_JOB_REQUEST,
-        payload: {id}
+        payload: { id }
     });
-    db.collection('jobs').doc(id).onSnapshot(snapshot=>{
+    db.collection('jobs').doc(id).onSnapshot(snapshot => {
         // console.log(id)
         dispatch({
-            type: GET_SINGLE_JOB_SUCCESS, 
+            type: GET_SINGLE_JOB_SUCCESS,
             payload: snapshot.data()
         })
-    },(error)=>{
+    }, (error) => {
         dispatch({
             type: GET_SINGLE_JOB_FAIL,
-            payload: error.response && error.response.message 
-                    ? error.response.error.message 
-                    : error.message
+            payload: error.response && error.response.message
+                ? error.response.error.message
+                : error.message
         })
     })
 }

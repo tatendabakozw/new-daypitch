@@ -68,7 +68,7 @@ export default function JobInfo() {
                         <div className="flex items-center space-x-5">
 
                             <div>
-                                <h1 className="text-2xl font-bold text-gray-900">{job.name}</h1>
+                                <h1 className="text-2xl font-bold text-gray-900">{job?.name}</h1>
                                 <p className="text-sm font-medium text-gray-500">
                                     Job Created{' '} on <time dateTime="2020-08-25">{Date(job?.createdAt * 1000).slice(0, 15)}</time>
                                 </p>
@@ -152,24 +152,24 @@ export default function JobInfo() {
                                         <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
                                             <div className="sm:col-span-1">
                                                 <dt className="text-sm font-medium text-gray-500">Job title</dt>
-                                                <dd className="mt-1 text-sm text-gray-900">{job.title}</dd>
+                                                <dd className="mt-1 text-sm text-gray-900">{job?.title}</dd>
                                             </div>
                                             <div className="sm:col-span-1">
                                                 <dt className="text-sm font-medium text-gray-500">Email address</dt>
-                                                <dd className="mt-1 text-sm text-gray-900">{job.email}</dd>
+                                                <dd className="mt-1 text-sm text-gray-900">{job?.email}</dd>
                                             </div>
                                             <div className="sm:col-span-1">
                                                 <dt className="text-sm font-medium text-gray-500">Amount</dt>
-                                                <dd className="mt-1 text-sm text-gray-900">${job.amount}</dd>
+                                                <dd className="mt-1 text-sm text-gray-900">${job?.amount}</dd>
                                             </div>
                                             <div className="sm:col-span-1">
                                                 <dt className="text-sm font-medium text-gray-500">Phone</dt>
-                                                <dd className="mt-1 text-sm text-gray-900">{job.phone_number}</dd>
+                                                <dd className="mt-1 text-sm text-gray-900">{job?.phone_number}</dd>
                                             </div>
                                             <div className="sm:col-span-2">
                                                 <dt className="text-sm font-medium text-gray-500">About</dt>
                                                 <dd className="mt-1 text-sm text-gray-900">
-                                                    {job.details}
+                                                    {job?.details}
                                                 </dd>
                                             </div>
                                         </dl>

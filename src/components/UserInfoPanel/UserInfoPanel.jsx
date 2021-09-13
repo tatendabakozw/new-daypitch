@@ -67,7 +67,7 @@ function UserInfoPanel({open, setOpen, propic, description, verified, id, rating
                                 </span>
                               </div>
                               <div className="ml-2 text-sm text-gray-500">
-                              {!verified ? (<div className="saved flex flex-row items-center text-blue-600">
+                              {verified ? (<div className="saved flex flex-row items-center text-blue-600">
                                     <BadgeCheckIcon height={24} width={24} className="text-blue-700" />
                                     <p className="text-xs">Verified</p>
                                 </div>) : (

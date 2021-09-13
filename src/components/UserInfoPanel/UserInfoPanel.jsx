@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { CheckCircleIcon, XIcon } from '@heroicons/react/outline'
+import { CheckCircleIcon, XIcon, BadgeCheckIcon } from '@heroicons/react/outline'
 import { Dialog, Transition  } from '@headlessui/react'
 import { useHistory } from 'react-router-dom'
 
@@ -59,16 +59,16 @@ function UserInfoPanel({open, setOpen, propic, description, verified, id, rating
                         </div>
                         <div className="mt-6 px-4 sm:mt-8 sm:flex sm:items-end sm:px-6">
                           <div className="sm:flex-1">
-                            <div>
+                            <div className="flex flex-row items-center">
                               <div className="flex items-center">
                                 <h3 className="font-bold text-xl text-gray-900 sm:text-2xl">{name}</h3>
                                 <span className="ml-2.5 bg-green-400 flex-shrink-0 inline-block h-2 w-2 rounded-full">
                                   <span className="sr-only">Online</span>
                                 </span>
                               </div>
-                              <p className="text-sm text-gray-500">
-                              {verified ? (<div className="saved flex flex-row items-center text-blue-600">
-                                    <CheckCircleIcon height={24} width={24} className="text-blue-700" />
+                              <div className="ml-2 text-sm text-gray-500">
+                              {!verified ? (<div className="saved flex flex-row items-center text-blue-600">
+                                    <BadgeCheckIcon height={24} width={24} className="text-blue-700" />
                                     <p className="text-xs">Verified</p>
                                 </div>) : (
                                     <p className="text-xs text-gray-500 dark:text-gray-400 p-1 rounded flex flex-row items-center">
@@ -76,7 +76,7 @@ function UserInfoPanel({open, setOpen, propic, description, verified, id, rating
                                         <p>not verified</p>
                                     </p>
                                 )}
-                              </p>
+                              </div>
                             </div>
                             <div className="mt-5 flex flex-wrap space-y-3 sm:space-y-0 sm:space-x-3">
                               <button

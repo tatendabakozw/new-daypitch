@@ -1,10 +1,55 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Disclosure } from '@headlessui/react'
 import { ChevronUpIcon } from '@heroicons/react/solid'
 import { PaperClipIcon } from '@heroicons/react/solid'
 import ContractsLayout from '../../layouts/ContractsLayout/ContractsLayout'
+import { useDispatch, useSelector } from 'react-redux'
+import { get_all_user_contracts_Action } from '../../redux/actions/contractActions'
+import { Spinner } from '@chakra-ui/spinner'
 
 function MyJobs() {
+
+    const dispatch = useDispatch()
+    const userSignin = useSelector(state => state.userCredsSignIn)
+    const { userInfo } = userSignin
+    const user_contracts = useSelector(state => state.all_user_contracts)
+    const { loading } = user_contracts
+
+    useEffect(() => {
+        dispatch(get_all_user_contracts_Action(userInfo?.user?.uid))
+    }, [dispatch, userInfo?.user?.uid])
+
+    if (loading) {
+        return (
+            <ContractsLayout>
+                <Disclosure>
+                    {({ open }) => (
+                        <>
+                            <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-blue-900 bg-blue-100 rounded-sm hover:bg-blue-200 focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-75">
+                                <span>Loading...</span>
+                                <ChevronUpIcon
+                                    className={`${open ? 'transform rotate-180' : ''
+                                        } w-5 h-5 text-blue-500`}
+                                />
+                            </Disclosure.Button>
+                            <Disclosure.Panel className="px-4 pb-2 text-sm text-gray-500">
+                                <div className="flex flex-col w-full items-center my-8">
+                                    <Spinner
+                                        thickness="4px"
+                                        speed="0.65s"
+                                        emptyColor="gray.200"
+                                        color="blue.900"
+                                        size="xl"
+                                    />
+                                </div>
+                            </Disclosure.Panel>
+                        </>
+                    )}
+                </Disclosure>
+            </ContractsLayout>
+        )
+    }
+
     return (
         <ContractsLayout>
             <Disclosure>

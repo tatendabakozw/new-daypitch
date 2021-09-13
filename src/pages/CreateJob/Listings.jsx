@@ -19,7 +19,6 @@ export default function Listings() {
         dispatch(get_user_jobs_Actions(userInfo?.user?.uid))
     }, [dispatch])
 
-    console.log(userInfo?.user?.uid)
     if (loading) {
         return (
             <ContractsLayout>

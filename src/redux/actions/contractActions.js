@@ -2,10 +2,10 @@ import { db } from "../../helpers/firebase"
 import {
     CREATE_CONTRACTS_FAIL,
     CREATE_CONTRACTS_REQUEST,
-    CREATE_CONTRACTS_SUCCESS, 
-    GET_ALL_USER_CONTRACTS_FAIL, 
-    GET_ALL_USER_CONTRACTS_REQUEST, 
-    GET_ALL_USER_CONTRACTS_SUCCESS, 
+    CREATE_CONTRACTS_SUCCESS,
+    GET_ALL_USER_CONTRACTS_FAIL,
+    GET_ALL_USER_CONTRACTS_REQUEST,
+    GET_ALL_USER_CONTRACTS_SUCCESS,
     GET_A_CONTRACT_FAIL,
     GET_A_CONTRACT_REQUEST,
     GET_A_CONTRACT_SUCCESS
@@ -56,26 +56,53 @@ export const get_a_Contract = (id) => (dispatch) => {
     })
 }
 
-//GET ALL USER CONTRACTS
-export const get_user_contracts_Action = (id) => (dispatch) =>{
+//GET ALL USER CONTRACTS for notifications
+export const get_user_contracts_Action = (id) => (dispatch) => {
     dispatch({
         type: GET_ALL_USER_CONTRACTS_REQUEST,
-        payload: {id}
+        payload: { id }
     })
     const arr = []
-    db.collection('contracts').where('sent_to', '==', id).where('status', '==', 'inactive').get().then(res=>{
-        res.forEach(doc=>{
+    db.collection('contracts').where('sent_to', '==', id).where('status', '==', 'inactive').get().then(res => {
+        res.forEach(doc => {
             arr.push({
                 id: doc.id,
                 contracts: doc.data()
             })
         })
-    }).finally(()=>{
+    }).finally(() => {
         dispatch({
             type: GET_ALL_USER_CONTRACTS_SUCCESS,
             payload: arr
         })
-    }).catch(error=>{
+    }).catch(error => {
+        dispatch({
+            type: GET_ALL_USER_CONTRACTS_FAIL,
+            payload: error.message
+        })
+    })
+}
+
+//get all user contracts 
+export const get_all_user_contracts_Action = (id) => (dispatch) => {
+    dispatch({
+        type: GET_ALL_USER_CONTRACTS_REQUEST,
+        payload: { id }
+    })
+    const arr = []
+    db.collection('contracts').where('sent_to', '==', id).get().then(res => {
+        res.forEach(doc => {
+            arr.push({
+                id: doc.id,
+                contracts: doc.data()
+            })
+        })
+    }).finally(() => {
+        dispatch({
+            type: GET_ALL_USER_CONTRACTS_SUCCESS,
+            payload: arr
+        })
+    }).catch(error => {
         dispatch({
             type: GET_ALL_USER_CONTRACTS_FAIL,
             payload: error.message

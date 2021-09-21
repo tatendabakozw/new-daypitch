@@ -56,7 +56,7 @@ export const get_allServices = () => (dispatch) =>{
 } 
 
 //create a service 
-export const create_a_service = (id, description, tags, level, school, price, category, location) => (dispatch) =>{
+export const create_a_service_Action = (id, description, tags, level, school, price, category, location, website, role, service_picture, username, email) => (dispatch) =>{
     dispatch({
         type: SERVIVE_CREATE_REQUEST
     })
@@ -67,8 +67,13 @@ export const create_a_service = (id, description, tags, level, school, price, ca
         school: school,
         price: price,
         category: category,
-        location: location
-    }).then(res=>{
+        location: location,
+        website: website,
+        role: role,
+        service_picture: service_picture,
+        username: username,
+        email: email
+    }, {merge: true}).then(res=>{
         dispatch({
             type: SERVIVE_CREATE_SUCCESS,
             payload: res

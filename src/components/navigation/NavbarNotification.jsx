@@ -42,7 +42,7 @@ function NavbarNotification() {
             >
               <div className="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5">
                 <div className="bg-gray-100 p-2 flex flex-row items-center justify-between">
-                  <p>Notifications</p>
+                  <span>Notifications</span>
                   <div className="ml-4 flex-shrink-0 flex">
                     <button
                       className="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -69,16 +69,16 @@ function NavbarNotification() {
   return (
     <>
       {/* Global notification live region, render this permanently at the end of the document */}
-      <span onClick={() => setShow(true)} className="">
-        <span class="relative inline-block">
+      <div onClick={() => setShow(true)} className="">
+        <div className="relative inline-block">
           <BellIcon className="text-gray-700" height={20} width={20} />
           {
             contracts?.length > 0 ? (
-              <span class="absolute top-0 right-0 inline-flex items-center justify-center p-1 text-xs font-semibold leading-none text-blue-100 transform translate-x-1/2 -translate-y-1/2 bg-blue-900 rounded-full"></span>
+              <span className="absolute top-0 right-0 inline-flex items-center justify-center p-1 text-xs font-semibold leading-none text-blue-100 transform translate-x-1/2 -translate-y-1/2 bg-blue-900 rounded-full"></span>
             ) : null
           }
-        </span>
-      </span>
+        </div>
+      </div>
       {
         contracts?.length < 1 ? (
           <div aria-live="assertive"
@@ -96,7 +96,7 @@ function NavbarNotification() {
               >
                 <div className="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5">
                   <div className="bg-gray-100 p-2 flex flex-row items-center justify-between">
-                    <p>Notifications</p>
+                    <span>Notifications</span>
                     <div className="ml-4 flex-shrink-0 flex">
                       <button
                         className="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -118,8 +118,9 @@ function NavbarNotification() {
           </div>
         ) : <>
           {
-            contracts?.map(contract => (
+            contracts?.map((contract, index) => (
               <div
+                key={index}
                 aria-live="assertive"
                 className="fixed inset-12 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start"
               >
@@ -137,7 +138,7 @@ function NavbarNotification() {
                   >
                     <div className="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5">
                       <div className="bg-gray-100 p-2 flex flex-row items-center justify-between">
-                        <p>Notifications</p>
+                        <span>Notifications</span>
                         <div className="ml-4 flex-shrink-0 flex">
                           <button
                             className="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"

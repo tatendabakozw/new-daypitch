@@ -83,41 +83,38 @@ function HomeNavbar({off_background, on_background}) {
                                         {
                                             userInfo  ? (
                                                 <div className="flex space-x-4">
-                                                    {nav_options.BuyerAuthenticatedNavigation.map((item) => (
-                                                        <Link to={item.href}
+                                                    {nav_options.BuyerAuthenticatedNavigation.map((item, index) => (
+                                                        <div key={index} to={item.href}
                                                             style={{ transition: "all .15s ease" }}
-                                                            key={item.name}
-                                                            className={classNames('text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm ')}
+                                                            className={classNames('text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm cursor-pointer ')}
                                                             aria-current={item.current ? 'page' : undefined}
                                                         >
                                                             <Text>{item.name}</Text>
-                                                        </Link>
+                                                        </div>
                                                     ))}
                                                 </div>
                                             ) : JSON.parse(user_info)?.role === "seller" ? (
                                                 <div className="flex space-x-4">
-                                                    {nav_options.SellerAuthenticatedNavigation.map((item) => (
-                                                        <Link to={item.href}
+                                                    {nav_options.SellerAuthenticatedNavigation.map((item, index) => (
+                                                        <div key={index} to={item.href}
                                                             style={{ transition: "all .15s ease" }}
-                                                            key={item.name}
-                                                            className={classNames('text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm')}
+                                                            className={classNames('text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm cursor-pointer')}
                                                             aria-current={item.current ? 'page' : undefined}
                                                         >
                                                             <Text>{item.name}</Text>
-                                                        </Link>
+                                                        </div>
                                                     ))}
                                                 </div>
                                             ) : (
                                                 <div className="flex space-x-4">
-                                                    {nav_options.navigation.map((item) => (
-                                                        <Link to={item.href}
+                                                    {nav_options.navigation.map((item, index) => (
+                                                        <div key={index} to={item.href}
                                                             style={{ transition: "all .15s ease" }}
-                                                            key={item.name}
-                                                            className={classNames('text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm')}
+                                                            className={classNames('text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm cursor-pointer')}
                                                             aria-current={item.current ? 'page' : undefined}
                                                         >
                                                             <Text>{item.name}</Text>
-                                                        </Link>
+                                                        </div>
                                                     ))}
                                                 </div>
                                             )
@@ -240,26 +237,24 @@ function HomeNavbar({off_background, on_background}) {
                             {
                                 userInfo ? (
                                     <div className="px-2 pt-2 pb-3 space-y-1 shadow-md">
-                                        {nav_options.BuyerAuthenticatedNavigation.map((item) => (
-                                            <Link to={item.href}
-                                                key={item.name}
+                                        {nav_options.BuyerAuthenticatedNavigation.map((item, index) => (
+                                            <div key={index} to={item.href}
                                                 className={classNames('text-gray-600 hover:text-gray-900 block px-3 py-2 rounded-md text-base')}
                                                 aria-current={item.current ? 'page' : undefined}
                                             >
                                                 {item.name}
-                                            </Link>
+                                            </div>
                                         ))}
                                     </div>
                                 ) : (
                                     <div className="px-2 pt-2 pb-3 space-y-1 shadow-md">
-                                        {nav_options.navigation.map((item) => (
-                                            <Link to={item.href}
-                                                key={item.name}
+                                        {nav_options.navigation.map((item, index) => (
+                                            <div key={index} to={item.href}
                                                 className={classNames('text-gray-600 hover:text-gray-900 block px-3 py-2 rounded-md text-base')}
                                                 aria-current={item.current ? 'page' : undefined}
                                             >
                                                 {item.name}
-                                            </Link>
+                                            </div>
                                         ))}
                                     </div>
                                 )

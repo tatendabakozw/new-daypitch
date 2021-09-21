@@ -4,7 +4,7 @@ import HomeNavbar from '../../components/navigation/HomeNavbar'
 
 function HomeLayout({children}) {
     return (
-        <div className="layout">
+        <main className="layout">
             <div className="fixed w-full top-0 z-50">
                 <HomeNavbar/>
             </div>
@@ -14,7 +14,7 @@ function HomeLayout({children}) {
             <div className="footer">
                 <Footer/>
             </div>
-        </div>
+        </main>
     )
 }
 

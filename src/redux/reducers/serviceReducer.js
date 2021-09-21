@@ -37,14 +37,14 @@ export const getAllServicesReducer = (state={}, action) =>{
 }
 
 //create a service 
-export const createAServiceReducer = (state={loading: false}, action) =>{
+export const createAServiceReducer = (state={create_loading: false}, action) =>{
     switch(action.type){
         case SERVIVE_CREATE_REQUEST:
-            return {loading: true}
+            return {create_loading: true}
         case SERVIVE_CREATE_SUCCESS:
-            return {loading: false, service: action.payload}
+            return {create_loading: false, service: action.payload}
         case SERVIVE_CREATE_FAIL:
-            return {loading: false, error: action.payload}
+            return {create_loading: false, error: action.payload}
         default:
             return state
     }

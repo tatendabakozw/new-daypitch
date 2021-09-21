@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import HomeLayout from "../../layouts/HomeLayout/HomeLayout";
 import Tags from "../../components/tags/Tags";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,7 +9,6 @@ import {
   create_a_service_Action,
   edit_a_service_Action,
 } from "../../redux/actions/serviceActions";
-import { auth } from "../../helpers/firebase";
 import { Input, Select, Textarea } from "@chakra-ui/react";
 import Loading from "../../components/loading/loading";
 import PrimaryButton from "../../components/buttons/PrimaryButton";
@@ -46,7 +45,6 @@ function BecomeASeller() {
   const { edit_loading, edit_error, edit_message } = _edit_service;
   const { create_loading, create_message, create_error } = _create_service;
   const { service, loading } = _user_service;
-  const stableDispatch = useCallback(dispatch, [dispatch]);
 
   const selectedTags = (tags) => {
     setCatTags(tags);
@@ -62,7 +60,7 @@ function BecomeASeller() {
         level,
         school,
         pricerange,
-        "category",
+        selected,
         location,
         website,
         "seller",
@@ -77,7 +75,7 @@ function BecomeASeller() {
     e.preventDefault();
     dispatch(
       edit_a_service_Action(
-       userInfo?.user?.uid,
+        userInfo?.user?.uid,
         service,
         description,
         level,
@@ -280,6 +278,8 @@ function BecomeASeller() {
             <div className="flex flex-col self-center bg-white w-full">
               {edit_message && <Success text={edit_message} />}
               {edit_error && <Error text={edit_error} />}
+              {create_message && <Success text={create_message} />}
+              {create_error && <Error text={create_error} />}
               {service ? (
                 <>
                   <PrimaryButton
@@ -292,7 +292,7 @@ function BecomeASeller() {
                 <>
                   <PrimaryButton
                     button_text="Create Profile"
-                    onClick={() => console.log("clicked")}
+                    onClick={create_user_profile}
                     loading={create_loading}
                   />
                 </>

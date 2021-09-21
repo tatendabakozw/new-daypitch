@@ -7,6 +7,7 @@ import { useEffect } from 'react'
 import { get_serviceAction } from '../../redux/actions/serviceActions'
 import { auth, db } from '../../helpers/firebase'
 import { Input, Select, Textarea } from '@chakra-ui/react'
+import Loading from '../../components/loading/loading'
 
 const categories = [
     { name: 'Programming and tech' },
@@ -111,7 +112,9 @@ function BecomeASeller() {
         return(
             <HomeLayout>
                 <AccountLayout>
-                    <p>loading...</p>
+                    <div>
+                        <Loading />
+                    </div>
                 </AccountLayout>
             </HomeLayout>
         )

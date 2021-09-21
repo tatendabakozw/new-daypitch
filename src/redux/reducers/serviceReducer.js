@@ -42,7 +42,7 @@ export const createAServiceReducer = (state={create_loading: false}, action) =>{
         case SERVIVE_CREATE_REQUEST:
             return {create_loading: true}
         case SERVIVE_CREATE_SUCCESS:
-            return {create_loading: false, service: action.payload}
+            return {create_loading: false, created_service: action.payload}
         case SERVIVE_CREATE_FAIL:
             return {create_loading: false, error: action.payload}
         default:

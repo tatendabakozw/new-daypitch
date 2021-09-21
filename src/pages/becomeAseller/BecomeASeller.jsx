@@ -1,19 +1,26 @@
-import React, { Fragment, useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 import HomeLayout from "../../layouts/HomeLayout/HomeLayout";
 import Tags from "../../components/tags/Tags";
 import { useDispatch, useSelector } from "react-redux";
 import AccountLayout from "../../layouts/AccountLayuot/AccountLayout";
 import { useEffect } from "react";
-import { get_serviceAction, create_a_service_Action } from "../../redux/actions/serviceActions";
-import { auth, db } from "../../helpers/firebase";
+import {
+  get_serviceAction,
+  create_a_service_Action,
+  edit_a_service_Action,
+} from "../../redux/actions/serviceActions";
+import { auth } from "../../helpers/firebase";
 import { Input, Select, Textarea } from "@chakra-ui/react";
 import Loading from "../../components/loading/loading";
+import PrimaryButton from "../../components/buttons/PrimaryButton";
+import Success from "../../components/alert/Success";
+import Error from "../../components/alert/Error";
 
 const categories = [
   { name: "Programming and tech" },
   { name: "Writing & translation" },
   { name: "video and animation" },
-  { name: "graphocs and design" },
+  { name: "graphics and design" },
   { name: "home and living" },
   { name: "budiness" },
   { name: "vehicle and transportation" },
@@ -27,15 +34,18 @@ function BecomeASeller() {
   const [school, setSchool] = useState("");
   const [pricerange, setPriceRange] = useState(0);
   const [selected, setSelected] = useState(categories[0]);
-  const [create_lodaing, setCreate_lodaing] = useState(false);
   const [website, setWebsite] = useState("");
   const [location, setLocation] = useState("");
   const dispatch = useDispatch();
 
-  const user_service = useSelector((state) => state.getService);
-  const _edit_service = useSelector((state) => state.create_service);
-  const { create_loading, created_service } = _edit_service;
-  const { service, loading } = user_service;
+  const _user = useSelector((state) => state.userCredsSignIn);
+  const { userInfo } = _user;
+  const _user_service = useSelector((state) => state.getService);
+  const _create_service = useSelector((state) => state.create_service);
+  const _edit_service = useSelector((state) => state.edit_service);
+  const { edit_loading, edit_error, edit_message } = _edit_service;
+  const { create_loading, create_message, create_error } = _create_service;
+  const { service, loading } = _user_service;
   const stableDispatch = useCallback(dispatch, [dispatch]);
 
   const selectedTags = (tags) => {
@@ -46,7 +56,7 @@ function BecomeASeller() {
     e.preventDefault();
     dispatch(
       create_a_service_Action(
-        auth.currentUser?.uid,
+        userInfo?.user?.uid,
         description,
         catTags,
         level,
@@ -56,51 +66,37 @@ function BecomeASeller() {
         location,
         website,
         "seller",
-        auth.currentUser?.photoURL,
-        auth.currentUser?.displayName,
-        auth.currentUser?.email
+        userInfo?.user?.photoURL,
+        userInfo?.user?.displayName,
+        userInfo?.user?.email
       )
     );
   };
 
-  const edit_user_profiule = (e) => {
+  const edit_user_profile = (e) => {
     e.preventDefault();
-    db.collection("services")
-      .doc(auth.currentUser.uid)
-      .set(
-        {
-          description: description,
-          school_level: level === "" ? service?.school_level : level,
-          school_attended: school === "" ? service?.school_level : school,
-          price: pricerange === "" ? service?.price : pricerange,
-          category: selected === "" ? service?.category : selected.name,
-          user: auth.currentUser.uid,
-          location: location === "" ? service?.location : location,
-          website: website === "" ? service?.website : website,
-          tags: catTags === undefined ? service?.tags : catTags,
-          role: "seller",
-          service_picture: auth.currentUser.photoURL,
-          username: auth.currentUser.displayName,
-          email: auth.currentUser.email,
-        },
-        { merge: true }
+    dispatch(
+      edit_a_service_Action(
+       userInfo?.user?.uid,
+        service,
+        description,
+        level,
+        school,
+        pricerange,
+        selected,
+        location,
+        website,
+        catTags,
+        userInfo?.user?.photoURL,
+        userInfo?.user?.displayName,
+        userInfo?.user?.email
       )
-      .then((res) => {
-        setCreate_lodaing(false);
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-        setCreate_lodaing(false);
-      });
-    console.log(catTags);
+    );
   };
 
   useEffect(() => {
-    if (!service) {
-      stableDispatch(get_serviceAction(auth?.currentUser?.uid));
-    }
-  }, [stableDispatch, service]);
+    dispatch(get_serviceAction(userInfo?.user?.uid));
+  }, [dispatch]);
 
   // console.log(service)
   // console.log(auth?.currentUser?.uid)
@@ -152,7 +148,11 @@ function BecomeASeller() {
           <div className="flex flex-col w-full items-center">
             <div className="flex flex-col self-center bg-white w-full">
               {/* <p className="text-sm my-4 text-gray-700 ml-4 font-semibold">Search tags</p> */}
-              <Tags selectedTags={selectedTags} className="" />
+              <Tags
+                selectedTags={selectedTags}
+                className=""
+                currentTags={service?.tags}
+              />
             </div>
           </div>
 
@@ -278,35 +278,23 @@ function BecomeASeller() {
           {/* //create profile button */}
           <div className="flex flex-col w-full items-center my-8">
             <div className="flex flex-col self-center bg-white w-full">
-              {!service ? (
+              {edit_message && <Success text={edit_message} />}
+              {edit_error && <Error text={edit_error} />}
+              {service ? (
                 <>
-                  {create_lodaing ? (
-                    <p className="capitalize bg-blue-900 p-2 text-white rounded-lg text-center opacity-75 hover:bg-blue-800">
-                      create_lodaing ...
-                    </p>
-                  ) : (
-                    <span
-                      onClick={create_user_profile}
-                      className="capitalize bg-blue-900 p-2 text-white rounded-lg text-center cursor-pointer hover:bg-blue-800"
-                    >
-                      Create My Profile
-                    </span>
-                  )}
+                  <PrimaryButton
+                    button_text="Edit Profile"
+                    onClick={edit_user_profile}
+                    loading={edit_loading}
+                  />
                 </>
               ) : (
                 <>
-                  {create_lodaing ? (
-                    <p className="capitalize bg-blue-900 p-2 text-white rounded-lg text-center opacity-75 hover:bg-blue-800">
-                      create_lodaing ...
-                    </p>
-                  ) : (
-                    <span
-                      onClick={edit_user_profiule}
-                      className="capitalize bg-blue-900 p-2 text-white rounded-lg text-center cursor-pointer hover:bg-blue-800"
-                    >
-                      Edit Profile
-                    </span>
-                  )}
+                  <PrimaryButton
+                    button_text="Create Profile"
+                    onClick={() => console.log("clicked")}
+                    loading={create_loading}
+                  />
                 </>
               )}
             </div>

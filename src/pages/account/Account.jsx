@@ -181,6 +181,11 @@ function Account() {
 
                 {/* //edit username part */}
                 <div className="w-full pb-8">
+                    <div className="flex flex-row items-center w-full mb-4groo">
+                        <div className="border-b border-gray-300 w-1/3"></div>
+                        <p className="text-gray-700 font-semibold text-center text-sm w-1/3">Display info</p>
+                        <div className="border-b border-gray-300 w-1/3"></div>
+                    </div>
                     <span className="flex flex-col">
                         <label htmlFor="username" className="text-gray-500 text-sm pb-2 font-semibold">Username/Businessname</label>
                         <Input 

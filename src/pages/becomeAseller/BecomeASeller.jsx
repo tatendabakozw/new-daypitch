@@ -37,6 +37,12 @@ function BecomeASeller() {
   const [location, setLocation] = useState("");
   const dispatch = useDispatch();
 
+  //location info
+  const [city, setCity] = useState("");
+  const [code, setCode] = useState("");
+  const [house_number, setHouseNumber] = useState("");
+  const [street, setStreet] = useState();
+
   const _user = useSelector((state) => state.userCredsSignIn);
   const { userInfo } = _user;
   const _user_service = useSelector((state) => state.getService);
@@ -212,12 +218,7 @@ function BecomeASeller() {
               <p className="text-sm my-2 text-gray-700 ml-4">
                 Price range e.g $45/hour
               </p>
-              {/* <textarea 
-                            name="description" 
-                            id="description" 
-                            cols="30" rows="10"
-                            className="p-2 border border-gray-300 outline-none"  
-                            placeholder="describe yourself with not less than 150 words"/> */}
+
               <Input
                 type="number"
                 variant="filled"
@@ -232,20 +233,46 @@ function BecomeASeller() {
           <div className="flex flex-col w-full items-center mt-4">
             <div className="flex flex-col self-center bg-white w-full">
               <p className="text-sm my-2 text-gray-700 ml-4">
-                location (city/country)
+                Location info (city/country)
               </p>
-              {/* <textarea 
-                            name="description" 
-                            id="description" 
-                            cols="30" rows="10"
-                            className="p-2 border border-gray-300 outline-none"  
-                            placeholder="describe yourself with not less than 150 words"/> */}
+              <div className="grid md:grid-cols-2 grid-cols-1 gap-4 my-2">
+                <Input
+                  type="text"
+                  variant="filled"
+                  placeholder="Whats your work/house number"
+                  className="p-2 border col-span-1 border-gray-300 bg-white outline-none rounded-lg"
+                  onChange={(e) => setHouseNumber(e.target.value)}
+                />
+                <Input
+                  type="text"
+                  variant="filled"
+                  placeholder="Whats your work area street name"
+                  className="p-2 border col-span-1 border-gray-300 bg-white outline-none rounded-lg"
+                  onChange={(e) => setStreet(e.target.value)}
+                />
+              </div>
+              <div className="grid md:grid-cols-2 grid-cols-1 gap-4 mb-2">
+                <Input
+                  type="text"
+                  variant="filled"
+                  placeholder="postal code"
+                  className="p-2 border col-span-1 border-gray-300 bg-white outline-none rounded-lg"
+                  onChange={(e) => setCode(e.target.value)}
+                />
+                <Input
+                  type="text"
+                  variant="filled"
+                  placeholder="Street name of work area"
+                  className="p-2 border col-span-1 border-gray-300 bg-white outline-none rounded-lg"
+                  onChange={(e) => setStreet(e.target.value)}
+                />
+              </div>
               <Input
                 type="text"
                 variant="filled"
-                placeholder="where are you located"
+                placeholder="Full address"
                 className="p-2 border col-span-2 border-gray-300 bg-white outline-none rounded-lg"
-                onChange={(e) => setLocation(e.target.value)}
+                onChange={(e) => setCity(e.target.value)}
                 required
               />
             </div>

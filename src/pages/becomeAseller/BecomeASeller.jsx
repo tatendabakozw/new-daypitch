@@ -72,7 +72,11 @@ function BecomeASeller() {
         "seller",
         userInfo?.user?.photoURL,
         userInfo?.user?.displayName,
-        userInfo?.user?.email
+        userInfo?.user?.email,
+        city,
+        code,
+        house_number,
+        street
       )
     );
   };

@@ -1,34 +1,20 @@
-/*
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  const colors = require('tailwindcss/colors')
-  
-  module.exports = {
-    // ...
-    theme: {
-      extend: {
-        colors: {
-          'warm-gray': colors.warmGray,
-          teal: colors.teal,
-        }
-      }
-    },
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ]
-  }
-  ```
-*/
 import { MailIcon, PhoneIcon } from '@heroicons/react/outline'
 import HomeLayout from '../../layouts/HomeLayout/HomeLayout'
 import { Input } from '@chakra-ui/react'
+import { useState } from 'react'
 
 export default function Contact() {
+
+  const [firstname, setFirstname] = useState('')
+  const [lastname, setLastname] = useState('')
+  const [company, setCompany] = useState('')
+  const [email, setEmail] = useState('')
+  const [code, setCode] = useState('')
+  const [number, setNumber] = useState('')
+  const [details, setDetails] = useState('')
+  const [amount, setAmount] = useState('')
+  const [agreed, setAgreed] = useState('')
+
   return (
     <HomeLayout>
       <div className="min-h-screen bg-white">
@@ -252,6 +238,7 @@ export default function Contact() {
                             type="text"
                             name="first-name"
                             id="first-name"
+                            onChange={e => setFirstname(e.target.value)}
                             autoComplete="given-name"
                             className="py-3 px-4 block w-full shadow-sm text-warm-gray-900 focus:ring-teal-500 focus:border-teal-500 border-warm-gray-300 rounded-md"
                           />
@@ -265,6 +252,7 @@ export default function Contact() {
                           <Input
                             type="text"
                             name="last-name"
+                            onChange={e => setLastname(e.target.value)}
                             id="last-name"
                             autoComplete="family-name"
                             className="py-3 px-4 block w-full shadow-sm text-warm-gray-900 focus:ring-teal-500 focus:border-teal-500 border-warm-gray-300 rounded-md"
@@ -279,6 +267,7 @@ export default function Contact() {
                           <Input
                             id="email"
                             name="email"
+                            onChange={e => setEmail(e.target.value)}
                             type="email"
                             autoComplete="email"
                             className="py-3 px-4 block w-full shadow-sm text-warm-gray-900 focus:ring-teal-500 focus:border-teal-500 border-warm-gray-300 rounded-md"
@@ -298,6 +287,7 @@ export default function Contact() {
                           <Input
                             type="text"
                             name="phone"
+                            onChange={e => setNumber(e.target.value)}
                             id="phone"
                             autoComplete="tel"
                             className="py-3 px-4 block w-full shadow-sm text-warm-gray-900 focus:ring-teal-500 focus:border-teal-500 border-warm-gray-300 rounded-md"
@@ -313,6 +303,7 @@ export default function Contact() {
                           <Input
                             type="text"
                             name="subject"
+                            onChange={e => setFirstname(e.target.value)}
                             id="subject"
                             className="py-3 px-4 block w-full shadow-sm text-warm-gray-900 focus:ring-teal-500 focus:border-teal-500 border-warm-gray-300 rounded-md"
                           />

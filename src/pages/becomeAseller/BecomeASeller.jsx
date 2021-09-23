@@ -83,21 +83,26 @@ function BecomeASeller() {
 
   const edit_user_profile = (e) => {
     e.preventDefault();
+    console.log(selected)
     dispatch(
       edit_a_service_Action(
         userInfo?.user?.uid,
         service,
-        description,
+        description,  
         level,
         school,
         pricerange,
-        selected,
+        selected.name,
         location,
         website,
         catTags,
         userInfo?.user?.photoURL,
         userInfo?.user?.displayName,
-        userInfo?.user?.email
+        userInfo?.user?.email,
+        city,
+        code,
+        house_number,
+        street
       )
     );
   };
@@ -143,8 +148,8 @@ function BecomeASeller() {
                     }`}
                     onChange={(e) => setSelected(e.target.value)}
                   >
-                    {categories.map((category) => (
-                      <option value={category.name}>{category.name}</option>
+                    {categories.map((category, index) => (
+                      <option key={index} value={category.name}>{category.name}</option>
                     ))}
                   </Select>
                 </div>

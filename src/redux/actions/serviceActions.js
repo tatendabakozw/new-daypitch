@@ -162,15 +162,16 @@ export const edit_a_service_Action =
     dispatch({
       type: EDIT_SERVICE_REQUEST,
     });
+    console.log(selected)
     db.collection("services")
       .doc(id)
       .set(
         {
-          description: description,
+          description: description === "" ? service.description : description,
           school_level: level === "" ? service?.school_level : level,
           school_attended: school === "" ? service?.school_level : school,
           price: pricerange === "" ? service?.price : pricerange,
-          category: selected === "" ? service?.category : selected.name,
+          category: selected === "" ? service?.category : selected,
           user: id,
           location: location === "" ? service?.location : location,
           website: website === "" ? service?.website : website,

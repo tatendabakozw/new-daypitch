@@ -11,8 +11,8 @@ import { create_a_job } from '../../redux/actions/jobsActions'
 import { data } from '../../data'
 
 const contract_routes = [
-    { name: 'Active Contracts', location: '/jobs' },
-    { name: 'My Listings', location: '/listings' }
+    { name: 'Contracts', location: '/jobs' },
+    { name: 'Jobs', location: '/listings' }
 ]
 
 export default function ContractsLayout({ children }) {

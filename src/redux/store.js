@@ -16,6 +16,7 @@ import {
   create_message_Reducer,
   get_all_user_messages_Reducer,
 } from "./reducers/messageReducer";
+import { create_a_proposal_Reducer } from "./reducers/proposalRedcuers";
 import {
   createAServiceReducer,
   edit_a_service_Reducer,
@@ -64,6 +65,9 @@ const reducer = combineReducers({
   create_Contract: create_contract_Reducer,
   user_Contracts: get_contract_Reducer,
   all_user_contracts: get_user_contracts_Reducer,
+
+  //for proposals
+  create_proposal: create_a_proposal_Reducer
 });
 
 const composeForBrowser =

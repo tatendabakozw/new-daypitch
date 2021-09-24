@@ -7,23 +7,39 @@ function HomeSearch() {
   const history = useHistory();
   // eslint-disable-next-line
   const [category, setCategory] = useState("");
-  const [selected, setSelected] = useState('jobs')
+  const [selected, setSelected] = useState("jobs");
 
   const searchItems = (e) => {
     e.preventDefault();
-    history.push("/explore");
+    {
+      selected === "jobs"
+        ? history.push("/explorejobs")
+        : history.push("/explore");
+    }
   };
 
   return (
     <div className="sear transition duration-500 ease-in-out w-full">
       <div className="flex flex-col w-full">
         <div className="flex flex-row items-center">
-          <div className={`${selected === 'jobs' ? "bg-blue-200 " : "bg-white "}  dark:bg-gray-700 dark:text-gray-200 ml-4 cursor-pointer rounded-tl-lg border-r border-gray-300 w-24 py-2 text-center flex flex-col items-center`}>
-            <div onClick={() => setSelected('jobs')} className="text-center text-gray-600 dark:text-gray-400">
+          <div
+            className={`${
+              selected === "jobs" ? "bg-blue-200 " : "bg-white "
+            }  dark:bg-gray-700 dark:text-gray-200 ml-4 cursor-pointer rounded-tl-lg border-r border-gray-300 w-24 py-2 text-center flex flex-col items-center`}
+          >
+            <div
+              onClick={() => setSelected("jobs")}
+              className="text-center text-gray-600 dark:text-gray-400"
+            >
               Jobs
             </div>
           </div>
-          <div onClick={() => setSelected('sellers')} className={`${selected === 'sellers' ? "bg-blue-200 " : "bg-white "} cursor-pointer dark:bg-gray-700 dark:text-gray-200 rounded-tr-lg w-24 py-2 text-center flex flex-col items-center`}>
+          <div
+            onClick={() => setSelected("sellers")}
+            className={`${
+              selected === "sellers" ? "bg-blue-200 " : "bg-white "
+            } cursor-pointer dark:bg-gray-700 dark:text-gray-200 rounded-tr-lg w-24 py-2 text-center flex flex-col items-center`}
+          >
             <p className="text-center text-gray-600 dark:text-gray-400">
               Sellers
             </p>

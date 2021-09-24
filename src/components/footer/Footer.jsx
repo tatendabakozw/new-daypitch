@@ -2,7 +2,7 @@
 import {Link} from 'react-router-dom'
 const navigation = {
   main: [
-    { name: 'About', href: '/howitwors' },
+    { name: 'About', href: '/howitworks' },
     { name: 'Contact', href: '/contact' },
     { name: 'Jobs', href: '/jobs' },
     { name: 'Explore', href: '/explore' },

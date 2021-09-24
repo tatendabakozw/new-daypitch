@@ -76,7 +76,7 @@ function MyJobs() {
           {({ open }) => (
             <div id="my-node" className="w-full">
               <Disclosure.Button className="myPage flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-blue-900 bg-blue-100 rounded-sm hover:bg-blue-200 focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-75">
-                <span>Mobile App Developemnt</span>
+                <span>{contract.contracts.title !== '' ? contract.contracts.title : 'No Title'}</span>
                 <ChevronUpIcon
                   className={`${
                     open ? "transform rotate-180" : ""
@@ -105,10 +105,18 @@ function MyJobs() {
                       </div>
                       <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <dt className="text-sm font-medium text-gray-500">
-                          Contract name
+                          Contract title
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                          Mobile app development
+                        {contract.contracts.title !== '' ? contract.contracts.title : 'No Title'}
+                        </dd>
+                      </div>
+                      <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt className="text-sm font-medium text-gray-500">
+                          Contract status
+                        </dt>
+                        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                        {contract.contracts.status}
                         </dd>
                       </div>
                       <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">

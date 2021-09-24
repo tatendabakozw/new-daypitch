@@ -25,10 +25,10 @@ function Contract() {
   const [amount, setAmount] = useState(0);
   const [err, setErr] = useState("");
   const [period, setPeriod] = useState("");
+  const [title, setTitle] = useState("");
 
   const [contract_type, setContractType] = useState("");
-  const [payment_period, setPaymentPeriod] = useState()
-
+  const [payment_period, setPaymentPeriod] = useState();
 
   const contract_state = useSelector((state) => state.create_Contract);
   const { loading } = contract_state;
@@ -51,7 +51,9 @@ function Contract() {
         country_code,
         status: "inactive",
         period_of_contract: period,
-        payment_period
+        payment_period,
+        title,
+        agreed
       };
       if (agreed) {
         dispatch(create_a_contract(msg_obj, id));
@@ -174,6 +176,24 @@ function Contract() {
                     onChange={(e) => setLastname(e.target.value)}
                     id="last-name"
                     autoComplete="family-name"
+                    className="py-3 px-4 block w-full shadow-sm  border border-gray-300 outline-none rounded-md"
+                  />
+                </div>
+              </div>
+              <div className="sm:col-span-2">
+                <label
+                  htmlFor="company"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Contract title
+                </label>
+                <div className="mt-1">
+                  <input
+                    type="text"
+                    name="title"
+                    id="title"
+                    required
+                    onChange={(e) => setTitle(e.target.value)}
                     className="py-3 px-4 block w-full shadow-sm  border border-gray-300 outline-none rounded-md"
                   />
                 </div>
@@ -312,7 +332,7 @@ function Contract() {
                   </div>
                 ) : contract_type === "periodic" ? (
                   <div className="grid grid-cols-2 w-full gap-4">
-                      <div>
+                    <div>
                       <label
                         htmlFor="first-name"
                         className="block text-sm font-medium text-gray-700"
@@ -340,7 +360,7 @@ function Contract() {
                         htmlFor="first-name"
                         className="block text-sm font-medium text-gray-700"
                       >
-                       Amount
+                        Amount
                       </label>
                       <div className="mt-1">
                         <input
@@ -354,7 +374,6 @@ function Contract() {
                         />
                       </div>
                     </div>
-                    
                   </div>
                 ) : null}
               </div>

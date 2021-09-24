@@ -11,9 +11,9 @@ export const signInWithCredsReducer = (state={loading: false}, action) =>{
         case LOGIN_USER_REQUEST:
             return {loading: true}
         case LOGIN_USER_SUCCESS:
-            return {loading: false, userInfo: action.payload}
+            return {loading: false, userInfo: action.payload, message: action.message}
         case LOGIN_USER_FAIL:
-            return {loading: false, error: action.payload, message: action.message}
+            return {loading: false, error: action.payload }
         case USER_SIGNOUT:
             return {}
         default:

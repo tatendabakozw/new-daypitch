@@ -4,7 +4,10 @@ import HomeLayout from "../../layouts/HomeLayout/HomeLayout";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { get_single_Job_Action } from "../../redux/actions/jobsActions";
+import {
+  get_single_Job_Action,
+  save_single_job_Action,
+} from "../../redux/actions/jobsActions";
 import Loading from "../../components/loading/loading";
 import {
   Button,
@@ -41,6 +44,8 @@ export default function JobInfo() {
   const _user = useSelector((state) => state.userCredsSignIn);
   const _proposal = useSelector((state) => state.create_proposal);
   const { create_message, create_loading, create_error } = _proposal;
+  const _save_job = useSelector((state) => state.save_job);
+  const { save_loading, save_error } = _save_job;
   const { userInfo } = _user;
   const { loading, job } = get_job;
   const dispatch = useDispatch();
@@ -92,6 +97,12 @@ export default function JobInfo() {
     );
   };
 
+  const save_job = () => {
+    dispatch(save_single_job_Action(id, userInfo?.user?.uid));
+  };
+
+  console.log(job?._saved.includes(userInfo?.user?.uid));
+
   if (loading) {
     return (
       <HomeLayout>
@@ -109,23 +120,38 @@ export default function JobInfo() {
             <div className="flex items-center space-x-5">
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">
-                  {job?.name}
+                  {job?.data?.name}
                 </h1>
                 <p className="text-sm font-medium text-gray-500">
                   Job Created on{" "}
                   <time dateTime="2020-08-25">
-                    {Date(job?.createdAt * 1000).slice(0, 15)}
+                    {Date(job?.data?.createdAt * 1000).slice(0, 15)}
                   </time>
                 </p>
               </div>
             </div>
             <div className="mt-6 flex flex-col-reverse justify-stretch space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-x-reverse sm:space-y-0 sm:space-x-3 md:mt-0 md:flex-row md:space-x-3">
-              <button
-                type="button"
-                className="inline-flex items-center justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none"
-              >
-                Save
-              </button>
+              {!job?._saved.includes(userInfo?.user?.uid) ? (
+                <Button
+                  onClick={save_job}
+                  isLoading={save_loading}
+                  type="button"
+                  className="inline-flex items-center justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none"
+                >
+                  Save
+                </Button>
+              ) : (
+                <Button
+                  onClick={save_job}
+                  isLoading={save_loading}
+                  type="button"
+                  colorScheme="pink"
+                  className="inline-flex items-center justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded text-gray-700 bg-pink-200 hover:bg-gray-50 focus:outline-none"
+                >
+                  Remove from Saved
+                </Button>
+              )}
+
               <Button
                 ref={btnRef}
                 colorScheme="blue"
@@ -164,7 +190,7 @@ export default function JobInfo() {
                     <p className="text-gray-700 text-sm my-2 font-semibold">
                       What's your offer?
                     </p>
-                    {job?.contract_type === "once_off" ? (
+                    {job?.data?.contract_type === "once_off" ? (
                       <div className="sm:col-span-2 mb-8">
                         <label
                           htmlFor="email"
@@ -183,7 +209,7 @@ export default function JobInfo() {
                           />
                         </div>
                       </div>
-                    ) : job?.contract_type === "periodic" ? (
+                    ) : job?.data?.contract_type === "periodic" ? (
                       <div className="grid grid-cols-2 w-full gap-4">
                         <div>
                           <label
@@ -306,7 +332,7 @@ export default function JobInfo() {
                           Job title
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900">
-                          {job?.title}
+                          {job?.data?.title}
                         </dd>
                       </div>
                       <div className="sm:col-span-1">
@@ -314,7 +340,7 @@ export default function JobInfo() {
                           Email address
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900">
-                          {job?.email}
+                          {job?.data?.email}
                         </dd>
                       </div>
                       <div className="sm:col-span-1">
@@ -322,7 +348,7 @@ export default function JobInfo() {
                           Amount
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900">
-                          ${job?.amount}
+                          ${job?.data?.amount}
                         </dd>
                       </div>
                       <div className="sm:col-span-1">
@@ -330,7 +356,7 @@ export default function JobInfo() {
                           Phone
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900">
-                          {job?.phone_number}
+                          {job?.data?.phone_number}
                         </dd>
                       </div>
                       <div className="sm:col-span-2">
@@ -338,7 +364,7 @@ export default function JobInfo() {
                           About
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900">
-                          {job?.details}
+                          {job?.data?.details}
                         </dd>
                       </div>
                     </dl>

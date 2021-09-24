@@ -11,6 +11,7 @@ import {
   getAll_Jobs_Reducer,
   get_single_Job_Reducer,
   get_user_jobs_Reducer,
+  save_single_job_Reducer,
 } from "./reducers/jobsReducers";
 import {
   create_message_Reducer,
@@ -53,6 +54,7 @@ const reducer = combineReducers({
   single_Job: get_single_Job_Reducer,
   create_Job: create_jobs_Reducer,
   user_jobs: get_user_jobs_Reducer,
+  save_job: save_single_job_Reducer,
 
   //for ui
   sidebar_panel: sidebarReducer,

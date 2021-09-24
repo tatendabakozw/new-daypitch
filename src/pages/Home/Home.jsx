@@ -39,7 +39,7 @@ function Home() {
               <div className="w-full self-center flex mb-2 z-40">
                 <HomeSearch />
               </div>
-              <p className="text-gray-900 text-xs self-start dark:text-gray-300 z-40">
+              <p className="text-gray-900 text-sm self-start dark:text-gray-300 z-40">
                 Popular: Mechanic, Health, Software
               </p>
             </div>

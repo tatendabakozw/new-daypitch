@@ -91,7 +91,8 @@ export const create_a_service_Action =
     city,
     code,
     house_number,
-    street
+    street,
+    seller_range_type
   ) =>
   (dispatch) => {
     dispatch({
@@ -117,6 +118,7 @@ export const create_a_service_Action =
           code,
           house_number,
           street,
+          seller_range_type
         },
         { merge: true }
       )
@@ -156,7 +158,8 @@ export const edit_a_service_Action =
     city,
     code,
     house_number,
-    street
+    street,
+    seller_range_type
   ) =>
   (dispatch) => {
     dispatch({
@@ -184,6 +187,7 @@ export const edit_a_service_Action =
           code: code=== "" ? service.code : code,
           house_number : house_number === "" ? service.house_number : house_number,
           street: street === "" ? service.street : street,
+          seller_range_type: seller_range_type === "" ? service.seller_range_type : seller_range_type
         },
         { merge: true }
       )

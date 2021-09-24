@@ -8,6 +8,7 @@ import second from '../../images/homeInvest.svg'
 import third from '../../images/homeQuick.svg'
 import {  Link } from 'react-router-dom'
 import {  CheckIcon } from '@heroicons/react/outline'
+import analytics from '../../images/analytics.svg'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -85,18 +86,18 @@ function Home() {
                 {/* // category items */}
                 <div className="flex flex-col items-center md:pt-40 md:px-16 pt-16 px-4 z-20 pb-36 w-full bg-gray-50">
                     <p className="text-gray-700 text-4xl dark:text-gray-200 text-center font-semibold mb-24 md:px-32 px-8 pt-12">Easily prototype and communicate your vision</p>
-                    <div className="grid md:grid-cols-3 grid-cols-1 lg:gap-40 md:gap-16 gap-8 items-center">
+                    <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:gap-24 md:gap-16 gap-8 items-center">
                         <HomeViewComponent
                             className="col-span-1"
                             picture={first}
-                            description={'Mix and match best professionals as a seller'}
+                            description={'Mix and match best professionals as a seller. Find sellers as a professional'}
                             heading={'Communication'}
                             id={1}
                             />
                         <HomeViewComponent
                             className="col-span-1"
-                            picture={second}
-                            description={'No need for advertisement, because we do it for you'}
+                            picture={analytics}
+                            description={'No need for advertisement, because we do it for you. Just create your account'}
                             heading={'Advertisement'} 
                             id={2}
                             />
@@ -109,27 +110,6 @@ function Home() {
                             />
                     </div>
                 </div>
-
-                {/* // category loading */}
-                {/* <div className="md:pt-16 md:px-16 pt-4 px-4 z-20 flex flex-col">
-                    <p className="text-gray-700 dark:text-gray-400 text-3xl pb-8 self-center font-semibold z-20">Categories</p>
-                        <>
-                            <div className="md:grid hidden md:grid-cols-5 grid-col-2 gap-8">
-                                <CategoryLoading />
-                                <CategoryLoading />
-                                <CategoryLoading />
-                                <CategoryLoading />
-                                <CategoryLoading />
-                                
-                            </div>
-                            <div className="grid md:hidden grid-cols-2 gap-4">
-                                <CategoryLoading />
-                                <CategoryLoading />
-                            </div>
-                        </>
-
-                    <div className="absolute top-0 right-0 bg-gradient-to-l from-gray-50 dark:from-gray-800 h-10 w-3/12" />
-                </div > */}
 
                 {/* // paying boxes */}
                 <div className="flex flex-col items-center md:pt-16 md:px-16 pt-4 z-20 pb-16 bg-gray-50">
@@ -171,8 +151,8 @@ function Home() {
 const HomeViewComponent = ({ className, picture, description, heading, id }) => {
     return (
         <div key={id}>
-            <div className={`${className} flex flex-col w-64 items-center`}>
-                <img src={picture} className="w-60 mb-4" alt="buy" />
+            <div className={`${className} flex flex-col items-center bg-white rounded-lg shadow-sm lg:py-16 md:py-8 py-4 px-4`}>
+                <img src={picture} className="w-60 h-60 mb-4" alt="buy" />
                 <h3 className="text-gray-800 dark:text-gray-200 mb-2 font-semibold">{heading}</h3>
                 <p className="font-gray-500 dark:text-gray-400 text-center text-sm">{description}</p>
             </div>

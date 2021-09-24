@@ -25,7 +25,7 @@ import { useDropzone } from "react-dropzone";
 import { create_a_proposal_Action } from "../../redux/actions/proposalActions";
 import Success from "../../components/alert/Success";
 import Error from "../../components/alert/Error";
-import { getRandomString } from "../../utils/getRandomString";;
+import { getRandomString } from "../../utils/getRandomString";
 
 export default function JobInfo() {
   let { id } = useParams();
@@ -334,9 +334,15 @@ export default function JobInfo() {
                         <dt className="text-sm font-medium text-gray-500">
                           Amount
                         </dt>
-                        <dd className="mt-1 text-sm text-gray-900">
-                          ${job?.data?.amount}
-                        </dd>
+                        {!job?.data?.period !== "" ? (
+                          <dd className="mt-1 text-sm text-gray-900">
+                            ${job?.data?.amount}
+                          </dd>
+                        ) : (
+                          <dd className="mt-1 text-sm text-gray-900">
+                            ${job?.data?.amount} / {job?.data?.period}
+                          </dd>
+                        )}
                       </div>
                       <div className="sm:col-span-1">
                         <dt className="text-sm font-medium text-gray-500">
@@ -371,7 +377,6 @@ export default function JobInfo() {
                         Comments Feature coming soon
                       </h2>
                     </div>
-                    
                   </div>
                   {/* <CommentsComponent/> */}
                 </div>

@@ -73,7 +73,7 @@ function MyJobs() {
     <ContractsLayout>
       <>
       {
-        contracts.length < 1 ? (
+        contracts?.length < 1 ? (
           <p className="mb-4 text-center text-gray-700 text-lg">You have no contracts at the moment</p>
         ) :(
           <>
@@ -138,7 +138,7 @@ function MyJobs() {
                               Expected earnings
                             </dt>
                             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                              ${contract.contracts.amount}
+                              ${contract.contracts.amount}  
                             </dd>
                           </div>
                           <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">

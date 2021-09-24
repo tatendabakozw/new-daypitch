@@ -31,7 +31,7 @@ export default function SideDrawer({drawer_heading, sendButton, children}) {
                 isOpen={isOpen}
                 placement="right"
                 onClose={onClose}
-                size="md"
+                size="lg"
                 finalFocusRef={btnRef}>
                 <DrawerOverlay />
                 <DrawerContent>

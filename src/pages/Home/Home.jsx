@@ -1,26 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import HomeLayout from "../../layouts/HomeLayout/HomeLayout";
 import person from "../../images/nomad3.svg";
 import HomeSearch from "../../components/HomeSearch/HomeSearch";
 import Stars from "../../components/banner/Stars";
 import first from "../../images/homeBuy.svg";
 import third from "../../images/homeQuick.svg";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { CheckIcon } from "@heroicons/react/outline";
 import analytics from "../../images/analytics.svg";
-import {
-  ChakraProvider,
-  extendTheme,
-  Container,
-  Heading,
-  Button,
-  VStack,
-  HStack,
-  Text,
-  Flex,
-  Tag,
-} from "@chakra-ui/react";
-import capsFirst from "../../utils/capsFirst";
+import { ChakraProvider, Container, Flex } from "@chakra-ui/react";
 import ChakraCarousel from "../../components/ChakraCourosel/ChakraCourosel";
 import { data } from "../../data";
 
@@ -29,6 +17,7 @@ function classNames(...classes) {
 }
 
 function Home() {
+  const history = useHistory();
 
   return (
     <HomeLayout>
@@ -115,8 +104,10 @@ function Home() {
         </div>
 
         {/* //categories */}
-        <div className="md:pt-20 pt-40 bg-gray-50 md:px-16 px-4">
-          <p className="text-center text-gray-700 font-semibold text-4xl">Categories</p>
+        <div className="md:pt-28 pt-40 bg-gray-50 md:px-16 px-4">
+          <p className="text-center text-gray-700 font-semibold text-4xl">
+            Categories
+          </p>
           <ChakraProvider>
             <Container
               py={8}
@@ -133,6 +124,7 @@ function Home() {
               <ChakraCarousel gap={32}>
                 {data.categories.map((post, index) => (
                   <Flex
+                    onClick={() => history.push("/explore")}
                     key={index}
                     justifyContent="space-between"
                     flexDirection="column"
@@ -142,8 +134,13 @@ function Home() {
                     flex={1}
                     className="rounded-lg"
                   >
-                    <img src={post.image} className="h-full rounded-lg mb-4 shadow" />
-                    <p className="text-gray-600 font-semibold text-center">{post.name}</p>
+                    <img
+                      src={post.image}
+                      className="h-full rounded-lg mb-4 shadow"
+                    />
+                    <p className="text-gray-600 font-semibold text-center">
+                      {post.name}
+                    </p>
                   </Flex>
                 ))}
               </ChakraCarousel>
@@ -152,7 +149,7 @@ function Home() {
         </div>
 
         {/* // category items */}
-        <div className="flex flex-col items-center md:pt-40 md:px-16 pt-16 px-4 z-20 pb-36 w-full bg-gray-50">
+        <div className="flex flex-col items-center md:px-16 pt-8 px-4 z-20 pb-36 w-full bg-gray-50">
           <p className="text-gray-700 text-4xl dark:text-gray-200 text-center font-semibold mb-24 md:px-32 px-8 pt-12">
             Easily prototype and communicate your vision
           </p>

@@ -14,6 +14,8 @@ function ExploreListItem({ verified, category, price, rating, tags, propic, busi
     const history = useHistory()
     const [open, setOpen] = useState(false)
 
+    console.log(id)
+
     function closeModal() {
         setIsOpen(false)
     }

@@ -10,6 +10,8 @@ function UserInfoPanel({open, setOpen, propic, description, verified, id, rating
     history.push(`contract/${id}`)
   }
 
+  console.log(id)
+
   const history = useHistory()
     return (
         <div>

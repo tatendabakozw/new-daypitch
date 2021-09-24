@@ -53,7 +53,6 @@ function Contract() {
         period_of_contract: period,
         payment_period,
         title,
-        agreed
       };
       if (agreed) {
         dispatch(create_a_contract(msg_obj, id));

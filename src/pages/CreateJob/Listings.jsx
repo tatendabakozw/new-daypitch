@@ -58,7 +58,7 @@ export default function Listings() {
                         {
                             jobs?.length <= 0 ? (
                                 <>
-                                    <p className="text-center text-gray-500">You haven't posted any jobs at the moment</p>
+                                    <p className="text-center text-gray-700 text-lg mb-4">You haven't posted any jobs at the moment</p>
                                 </>
                             ) : (
                                 <>

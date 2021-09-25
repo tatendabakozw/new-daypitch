@@ -39,6 +39,7 @@
     "slick-carousel": "^1.8.1",
     "tailwind-scrollbar-hide": "^1.0.3",
     "web-vitals": "^1.0.1",
+    "yallist": "^4.0.0",
     "yarn": "^1.22.11"
   },
   "scripts": {

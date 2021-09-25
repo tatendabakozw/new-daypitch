@@ -36,6 +36,7 @@ function BecomeASeller() {
   const [website, setWebsite] = useState("");
   const [location, setLocation] = useState("");
   const dispatch = useDispatch();
+  const [seller_range_type, setSellerRangeType] = useState("hour");
 
   //location info
   const [city, setCity] = useState("");
@@ -72,13 +73,19 @@ function BecomeASeller() {
         "seller",
         userInfo?.user?.photoURL,
         userInfo?.user?.displayName,
-        userInfo?.user?.email
+        userInfo?.user?.email,
+        city,
+        code,
+        house_number,
+        street,
+        seller_range_type
       )
     );
   };
 
   const edit_user_profile = (e) => {
     e.preventDefault();
+    console.log(selected);
     dispatch(
       edit_a_service_Action(
         userInfo?.user?.uid,
@@ -87,13 +94,18 @@ function BecomeASeller() {
         level,
         school,
         pricerange,
-        selected,
+        selected.name,
         location,
         website,
         catTags,
         userInfo?.user?.photoURL,
         userInfo?.user?.displayName,
-        userInfo?.user?.email
+        userInfo?.user?.email,
+        city,
+        code,
+        house_number,
+        street,
+        seller_range_type
       )
     );
   };
@@ -139,8 +151,10 @@ function BecomeASeller() {
                     }`}
                     onChange={(e) => setSelected(e.target.value)}
                   >
-                    {categories.map((category) => (
-                      <option value={category.name}>{category.name}</option>
+                    {categories.map((category, index) => (
+                      <option key={index} value={category.name}>
+                        {category.name}
+                      </option>
                     ))}
                   </Select>
                 </div>
@@ -219,10 +233,21 @@ function BecomeASeller() {
                 Price range e.g $45/hour
               </p>
 
+              <Select
+                className="mb-4"
+                onChange={(e) => setSellerRangeType(e.target.value)}
+                placeholder="per hour"
+              >
+                <option value="hour">per hour</option>
+                <option value="day">per day</option>
+                <option value="week">per week</option>
+                <option value="month">per month</option>
+              </Select>
+
               <Input
                 type="number"
                 variant="filled"
-                placeholder="$35/hour"
+                placeholder={`$35/${seller_range_type}`}
                 className="p-2 border col-span-2 border-gray-300 bg-white outline-none rounded-lg"
                 onChange={(e) => setPriceRange(e.target.value)}
               />

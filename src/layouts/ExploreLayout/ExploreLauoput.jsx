@@ -33,6 +33,10 @@ function ExploreLauoput({ children, heading }) {
         setSkip(skip + limit);
     };
 
+    const filter_by_category = () =>{
+        console.log(selected_category)
+    }
+
     return (
         <HomeLayout>
             <div className="lg:px-16 md:px-8 pt-24 px-4">
@@ -79,7 +83,10 @@ function ExploreLauoput({ children, heading }) {
                                         !loading ? (
                                             <div className="w-full py-2 z-10">
                                                 <div className="w-full max-w-md mx-aut">
-                                                    <RadioGroup value={selected_category} onChange={setSelecCategory}>
+                                                    <RadioGroup value={selected_category} onChange={(e)=> {
+                                                        setSelecCategory(e)
+                                                        filter_by_category()
+                                                    }}>
                                                         <RadioGroup.Label className="sr-only">category</RadioGroup.Label>
                                                         <div className="space-y-2">
                                                             {data.categories?.map((category) => (

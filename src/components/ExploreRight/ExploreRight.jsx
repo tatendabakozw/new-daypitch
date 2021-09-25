@@ -112,13 +112,13 @@ function ExploreRight() {
                                                                 alt=""
                                                             />
                                                         </div>
-                                                        <div className="text-sm font-medium text-gray-900">Eduardo Benz</div>
+                                                        {/* <div className="text-sm font-medium text-gray-900">Eduardo Benz</div> */}
                                                     </Link>
                                                 </li>)
                                             }
                                         </ul>
                                     </div>
-                                    <div>
+                                    {/* <div>
                                         <h2 className="text-sm font-medium text-gray-500">Tags</h2>
                                         <ul className="mt-2 leading-8">
                                             <li className="inline">
@@ -144,7 +144,7 @@ function ExploreRight() {
                                                 </a>{' '}
                                             </li>
                                         </ul>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </>
                         )

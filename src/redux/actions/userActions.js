@@ -3,6 +3,9 @@ import {
   CHANGE_PROFILE_PICTURE_FAIL,
   CHANGE_PROFILE_PICTURE_REQUEST,
   CHANGE_PROFILE_PICTURE_SUCCESS,
+  EDIT_PROFILE_REQUEST,
+  EDIT_PROFILE_SUCCESS,
+  EDIT_PROFILE_FAIL,
   LOGIN_USER_FAIL,
   LOGIN_USER_REQUEST,
   LOGIN_USER_SUCCESS,
@@ -289,3 +292,29 @@ export const change_profile_picture_Action = (id, picture) => (dispatch) => {
     }
   );
 };
+
+//edit profile action
+export const edit_profile_info_Action = (id,username, firstname, lastname, address, city, country) => (dispatch) =>{
+  dispatch({
+    type: EDIT_PROFILE_REQUEST,
+    payload: id
+  })
+  db.collection('users').doc(id).set({
+    username: username,
+    firstname: firstname,
+    lastname: lastname,
+    address: address,
+    city: city,
+    country: country
+  },{merge: true}).then(res=>{
+    dispatch({
+      type: EDIT_PROFILE_SUCCESS,
+      payload:res
+    })
+  }).catch(err=>{
+    dispatch({
+      EDIT_PROFILE_FAIL,
+      payload: err.message
+    })
+  })
+}

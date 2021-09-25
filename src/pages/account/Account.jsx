@@ -22,7 +22,7 @@ function Account() {
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
   const [username, setUsername] = useState("");
-  const [user, setUser] = useState();
+  const [msg, setMsg] = useState('')
 
   const userSignin = useSelector((state) => state.userCredsSignIn);
   const _picture = useSelector((state) => state.change_user_picture);
@@ -32,7 +32,6 @@ function Account() {
   //for image picking
   const [previewSrc, setPreviewSrc] = useState("");
   const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
-  const [profile_progress, setProfileProgress] = useState(101);
   const dropRef = useRef();
 
   //delete account
@@ -57,15 +56,6 @@ function Account() {
     setIsPreviewAvailable(uploadedFile.name.match(/\.(jpeg|jpg|png)$/));
   };
 
-  useEffect(() => {
-    auth.onAuthStateChanged((auth_user) => {
-      if (auth_user) {
-        console.log(auth_user);
-        setUser(auth_user);
-      }
-    });
-  }, []);
-
   const changeProPic = (e) => {
     e.preventDefault();
     dispatch(change_profile_picture_Action(userInfo?.user?.uid, picture));
@@ -73,30 +63,8 @@ function Account() {
 
   const editDetails = (e) => {
     e.preventDefault();
-    axios
-      .patch(
-        `${apiUrl}/user/edit/${user?.uid}`,
-        {
-          username: username,
-          lastname: lastname,
-          firstname: firstname,
-          city: city,
-          address: address,
-          country: country,
-          // email: email
-        },
-        {
-          headers: {
-            authorization: userInfo?.credential?.oauthIdToken,
-          },
-        }
-      )
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    console.log(firstname, lastname, address, city, country, username)
+    setMsg('Account updated!')
   };
 
   const deleteAccount = (e) => {
@@ -303,26 +271,27 @@ function Account() {
             </span>
           </div>
           {/* //edit address part */}
+          {msg && <Success text={msg} />}
           <div className="pb-8">
             <span className="flex flex-col">
-              <button
+              <span
                 onClick={editDetails}
-                className="border-none bg-blue-900 hover:bg-blue-800 cursor-pointer outline-none rounded-lg p-2 text-white"
+                className="border-none bg-blue-900 hover:bg-blue-800 text-center mt-4 cursor-pointer outline-none rounded-lg p-2 text-white"
               >
                 Save
-              </button>
+              </span>
             </span>
           </div>
 
           {/* //edit address part */}
           <div className="pb-8">
             <span className="flex flex-col">
-              <button
+              <span
                 onClick={openDeleteModal}
-                className="border-none bg-red-500 hover:bg-red-600 cursor-pointer outline-none rounded-lg p-2 text-white"
+                className="border-none bg-red-500 hover:bg-red-600 text-center cursor-pointer outline-none rounded-lg p-2 text-white"
               >
                 Delete Account
-              </button>
+              </span>
             </span>
             <>
               <Transition appear show={isDelteDialogOpen} as={Fragment}>

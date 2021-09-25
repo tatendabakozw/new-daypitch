@@ -86,6 +86,8 @@ export default function JobInfo() {
     );
   };
 
+  console.log(job)
+
   const save_job = () => {
     dispatch(save_single_job_Action(id, userInfo?.user?.uid));
   };
@@ -177,7 +179,7 @@ export default function JobInfo() {
                     <p className="text-gray-700 text-sm my-2 font-semibold">
                       What's your offer?
                     </p>
-                    {job?.data?.contract_type === "once_off" ? (
+                    {job?.data.period !== '' ? (
                       <div className="sm:col-span-2 mb-8">
                         <label
                           htmlFor="email"
@@ -196,7 +198,7 @@ export default function JobInfo() {
                           />
                         </div>
                       </div>
-                    ) : job?.data?.contract_type === "periodic" ? (
+                    ) : (
                       <div className="grid grid-cols-2 w-full gap-4">
                         <div>
                           <label
@@ -241,8 +243,6 @@ export default function JobInfo() {
                           </div>
                         </div>
                       </div>
-                    ) : (
-                      <p>Write your offer here</p>
                     )}
 
                     <Text className="text-gray-700 text-sm ml-2 mt-4" size="sm">
@@ -296,7 +296,7 @@ export default function JobInfo() {
             </div>
           </div>
 
-          <div className="mt-8  mx-auto lg:px-24 md:px-16 px-4">
+          <div className="mt-8  mx-auto md::px-8 px-4 lg:max-w-7xl">
             <div className="space-y-6 lg:col-start-1 lg:col-span-2">
               {/* Description list*/}
               <section aria-labelledby="applicant-information-title">
@@ -366,7 +366,7 @@ export default function JobInfo() {
               </section>
 
               {/* Comments*/}
-              <section aria-labelledby="notes-title">
+              {/* <section aria-labelledby="notes-title">
                 <div className="bg-white shadow sm:rounded-lg sm:overflow-hidden">
                   <div className="divide-y divide-gray-200">
                     <div className="px-4 py-5 sm:px-6">
@@ -378,9 +378,9 @@ export default function JobInfo() {
                       </h2>
                     </div>
                   </div>
-                  {/* <CommentsComponent/> */}
+                  <CommentsComponent/>
                 </div>
-              </section>
+              </section> */}
             </div>
           </div>
         </main>

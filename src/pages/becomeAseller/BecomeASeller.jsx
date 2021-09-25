@@ -23,13 +23,17 @@ function BecomeASeller() {
     //input values
     const [description, setDescription] = useState('')
     const [catTags, setCatTags] = useState([])
-    const [level, setLevel] = useState('')
+    const [company, setCompany] = useState('')
     const [school, setSchool] = useState('')
     const [pricerange, setPriceRange] = useState(0)
     const [selected, setSelected] = useState(categories[0])
     const [create_lodaing, setCreate_lodaing] = useState(false)
     const [website, setWebsite] = useState('')
     const [location, setLocation] = useState('')
+    const [city, setCity] = useState('')
+    const [code, setCode] = useState('')
+    const [area_range, setAreaRange] = useState('')
+    // const [company, setCompany] = useState('')
     const dispatch = useDispatch()
 
     const user_service = useSelector(state => state.getService)
@@ -46,13 +50,13 @@ function BecomeASeller() {
         // console.log(catTags)
         // console.log(description)
         // console.log(selected)
-        // console.log(level)
+        // console.log(company)
         // console.log(school)
         // console.log(pricerange)
         setCreate_lodaing(true)   
         db.collection('services').doc(auth?.currentUser?.uid).set({
             description: description,
-            school_level: level,
+            school_company: company,
             school_attended: school,
             price:pricerange,
             category: selected,
@@ -77,8 +81,8 @@ function BecomeASeller() {
         e.preventDefault()
         db.collection('services').doc(auth.currentUser.uid).set({
             description: description,
-            school_level: level === "" ? service?.school_level : level,
-            school_attended: school === "" ? service?.school_level : school,
+            school_company: company === "" ? service?.school_company : company,
+            school_attended: school === "" ? service?.school_company : school,
             price:pricerange === "" ? service?.price : pricerange,
             category: selected === "" ? service?.category : selected.name,
             user: auth.currentUser.uid,
@@ -155,12 +159,6 @@ function BecomeASeller() {
                <div className="flex flex-col w-full items-center">
                     <div className="flex flex-col self-center bg-white w-full">
                         <p className="text-sm my-2 text-gray-700 ml-4">Description</p>
-                        {/* <textarea 
-                            name="description" 
-                            id="description" 
-                            cols="30" rows="10"
-                            className="p-2 border border-gray-300 outline-none"  
-                            placeholder="describe yourself with not less than 150 words"/> */}
                         <Textarea 
                             minLength={150}
                             cols="30" rows="7"
@@ -181,10 +179,11 @@ function BecomeASeller() {
                             <Input 
                                 type="text"
                                 variant="filled"
-                                placeholder="Level Reached"
+                                placeholder="your company name"
                                 className="p-2 col-span-1 border border-gray-300 bg-white outline-none rounded-lg"
-                                onChange={e=> setLevel(e.target.value)}
+                                onChange={e=> setCompany(e.target.value)}
                             />
+                            <p>if you dont have a company leave it blank</p>
                             <Input
                                 variant="filled" 
                                 type="text"
@@ -201,12 +200,6 @@ function BecomeASeller() {
                <div className="flex flex-col w-full items-center mt-4">
                     <div className="flex flex-col self-center bg-white w-full">
                         <p className="text-sm my-2 text-gray-700 ml-4">Price range e.g $45/hour</p>
-                        {/* <textarea 
-                            name="description" 
-                            id="description" 
-                            cols="30" rows="10"
-                            className="p-2 border border-gray-300 outline-none"  
-                            placeholder="describe yourself with not less than 150 words"/> */}
                         <Input 
                             type="number"
                             variant="filled"
@@ -221,12 +214,6 @@ function BecomeASeller() {
                 <div className="flex flex-col w-full items-center mt-4">
                     <div className="flex flex-col self-center bg-white w-full">
                         <p className="text-sm my-2 text-gray-700 ml-4">location (city/country)</p>
-                        {/* <textarea 
-                            name="description" 
-                            id="description" 
-                            cols="30" rows="10"
-                            className="p-2 border border-gray-300 outline-none"  
-                            placeholder="describe yourself with not less than 150 words"/> */}
                         <Input 
                             type="text"
                             variant="filled"

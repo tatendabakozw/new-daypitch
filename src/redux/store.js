@@ -25,6 +25,7 @@ import {
   singleServiceReducer,
 } from "./reducers/serviceReducer";
 import {
+  change_user_picture_Reducer,
   registerWithCresReducer,
   signInWithCredsReducer,
 } from "./reducers/userReducer";
@@ -42,6 +43,7 @@ const reducer = combineReducers({
   userCredsSignIn: signInWithCredsReducer,
   registerWithCreds: registerWithCresReducer,
   all_users: firestore_users_Reducer,
+  change_user_picture: change_user_picture_Reducer,
 
   //for services
   create_service: createAServiceReducer,

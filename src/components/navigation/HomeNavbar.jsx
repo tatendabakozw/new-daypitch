@@ -239,7 +239,8 @@ function HomeNavbar({off_background, on_background}) {
                             </span> */}
                             {
                                 userInfo ? (
-                                    <div className="px-2 pt-2 pb-3 space-y-1 shadow-md">
+                                    <>
+                                    <div className="px-2 pt-2 pb-3 space-y-1 shadow-md md:flex hidden flex-col">
                                         {nav_options.BuyerAuthenticatedNavigation.map((item) => (
                                             <Link to={item.href}
                                                 key={item.name}
@@ -250,8 +251,20 @@ function HomeNavbar({off_background, on_background}) {
                                             </Link>
                                         ))}
                                     </div>
+                                    <div className="px-2 pt-2 pb-3 space-y-1 shadow-md md:hidden flex flex-col">
+                                        {nav_options.MobileBuyerAuthenticatedNavigation.map((item) => (
+                                            <Link to={item.href}
+                                                key={item.name}
+                                                className={classNames('text-gray-600 hover:text-gray-900 block px-3 py-2 rounded-md text-base')}
+                                                aria-current={item.current ? 'page' : undefined}
+                                            >
+                                                {item.name}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                    </>
                                 ) : (
-                                    <div className="px-2 pt-2 pb-3 space-y-1 shadow-md">
+                                    <div className="px-2 pt-2 pb-3 space-y-1 shadow-md md:flex">
                                         {nav_options.navigation.map((item) => (
                                             <Link to={item.href}
                                                 key={item.name}

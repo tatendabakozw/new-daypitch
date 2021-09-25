@@ -31,7 +31,6 @@ function App() {
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/upgrade" component={Upgrade} />
-        <Route exact path="/" component={Home} />
         <Route exact path="/chat" component={Chat} />
         <Route exact path="/message/:id" component={SendMessage} />
         <Route exact path="/listings" component={Listings} />
@@ -39,6 +38,7 @@ function App() {
         <Route exact path="/becomeaseller" component={BecomeASeller} />
         <Route exact path="/contract/:id" component={Contract} />
         <Route exact path="/account" component={Account} />
+        <Route exact path="/" component={Home} />
         <Route component={NotFound} />
       </Switch>
     </BrowserRouter>

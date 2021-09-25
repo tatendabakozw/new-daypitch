@@ -99,7 +99,7 @@ function ExploreLauoput({ children, heading }) {
                       </SliderTrack>
                       <SliderThumb />
                     </Slider>
-                    <Text className="text-sm text-gray-600">{distance}km</Text>
+                    <Text className="text-sm text-gray-600 ml-2">{distance}km</Text>
                   </div>
 
                   <p className="text-gray-700 font-sm dark:text-green-500 font-semibold">

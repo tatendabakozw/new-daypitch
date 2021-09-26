@@ -8,6 +8,7 @@ function HomeSearch() {
   // eslint-disable-next-line
   const [category, setCategory] = useState("");
   const [selected, setSelected] = useState("jobs");
+  
 
   const searchItems = (e) => {
     e.preventDefault();

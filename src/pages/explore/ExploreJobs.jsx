@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import ExploreJobListItem from "../../components/ExploreJobs/ExploreJobListItem";
 import ExploreLauoput from "../../layouts/ExploreLayout/ExploreLauoput";
 import { get_all_Jobs } from "../../redux/actions/jobsActions";
@@ -8,15 +9,59 @@ import { get_all_Jobs } from "../../redux/actions/jobsActions";
 export default function ExploreJobs() {
   const jobsInfo = useSelector((state) => state.allJobs);
   const { loading, all_jobs } = jobsInfo;
+  const _search = useSelector((state) => state.search_item);
+  const { search_result } = _search;
   const dispatch = useDispatch();
   const [limit] = useState();
   const [skip] = useState();
+  const history = useHistory()
 
   useEffect(() => {
     dispatch(get_all_Jobs(limit, skip));
   }, [dispatch, limit, skip]);
 
-  console.log(all_jobs);
+  console.log(search_result);
+
+  if (search_result) {
+    return (
+      <ExploreLauoput heading="Jobs">
+        <div className="flex flex-col w-full">
+          {search_result.length > 1 ? (
+            <>
+              {search_result?.map((job, index) => (
+                <div key={index}>
+                  <ExploreJobListItem
+                    title={job.job.title}
+                    description={job.job.details}
+                    amount={job.job.amount}
+                    name={job.job.name}
+                    id={job.id}
+                  />
+                </div>
+              ))}
+            </>
+          ) : (
+            <div className="flex flex-col items-center">
+              <p className="text-gray-700 font-semibold mt-8">
+                No Jobs found, try another search term
+              </p>
+              <span className="flex flex-col items-center py-16">
+                <p className="text-black text-sm mt-2">
+                  Do you want to become a seller?
+                </p>
+                <span
+                  onClick={() => history.push("/listings")}
+                  className="bg-blue-900 p-2 rounded-full text-white text-sm mt-4 hover:bg-blue-800 cursor-pointer"
+                >
+                  Become a recruiter?
+                </span>
+              </span>
+            </div>
+          )}
+        </div>
+      </ExploreLauoput>
+    );
+  }
 
   return (
     <ExploreLauoput heading="Jobs">

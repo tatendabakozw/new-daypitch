@@ -19,6 +19,10 @@ import {
 } from "./reducers/messageReducer";
 import { create_a_proposal_Reducer } from "./reducers/proposalRedcuers";
 import {
+  filter_by_category_Reducer,
+  search_item_Reducer,
+} from "./reducers/searchReducers";
+import {
   createAServiceReducer,
   edit_a_service_Reducer,
   getAllServicesReducer,
@@ -71,7 +75,11 @@ const reducer = combineReducers({
   all_user_contracts: get_user_contracts_Reducer,
 
   //for proposals
-  create_proposal: create_a_proposal_Reducer
+  create_proposal: create_a_proposal_Reducer,
+
+  // for search
+  search_item: search_item_Reducer,
+  filter_by_category: filter_by_category_Reducer,
 });
 
 const composeForBrowser =

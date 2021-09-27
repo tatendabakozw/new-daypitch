@@ -14,16 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@material-ui/icons/-/icons-4.11.2.tgz: ESOCKETTIMEDOUT
-      at ClientRequest.<anonymous> (C:\Users\tatendaZw\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141289:19)
-      at Object.onceWrapper (events.js:421:28)
-      at ClientRequest.emit (events.js:315:20)
-      at TLSSocket.emitRequestTimeout (_http_client.js:784:9)
-      at Object.onceWrapper (events.js:421:28)
-      at TLSSocket.emit (events.js:327:22)
-      at TLSSocket.Socket._onTimeout (net.js:483:8)
-      at listOnTimeout (internal/timers.js:554:17)
-      at processTimers (internal/timers.js:497:7)
+  Error: ENOENT: no such file or directory, open 'C:\Users\tatendaZw\AppData\Local\Yarn\Cache\v6\npm-node-notifier-8.0.1-f86e89bbc925f2b068784b31f382afdc6ca56be1-integrity\node_modules\node-notifier\.yarn-metadata.json'
 
 npm manifest: 
   {

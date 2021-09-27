@@ -47,11 +47,11 @@ export default function ExploreJobs() {
               </p>
               <span className="flex flex-col items-center py-16">
                 <p className="text-black text-sm mt-2">
-                  Do you want to become a seller?
+                  Do you want to become a recruiter?
                 </p>
                 <span
                   onClick={() => history.push("/listings")}
-                  className="bg-blue-900 p-2 rounded-full text-white text-sm mt-4 hover:bg-blue-800 cursor-pointer"
+                  className="bg-blue-900 py-2 px-4 rounded text-white text-sm mt-4 hover:bg-blue-800 cursor-pointer"
                 >
                   Become a recruiter?
                 </span>

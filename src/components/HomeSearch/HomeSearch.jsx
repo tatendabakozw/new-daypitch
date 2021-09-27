@@ -2,16 +2,18 @@ import React, { useState } from "react";
 import { SearchIcon } from "@heroicons/react/solid";
 import { useHistory } from "react-router-dom";
 import { Input } from "@chakra-ui/react";
+import { search_item_Action } from "../../redux/actions/searchActions";
+import { useDispatch } from "react-redux";
 
 function HomeSearch() {
   const history = useHistory();
   // eslint-disable-next-line
   const [category, setCategory] = useState("");
   const [selected, setSelected] = useState("jobs");
-  
+  const dispatch = useDispatch()
 
   const searchItems = (e) => {
-    e.preventDefault();
+    dispatch(search_item_Action(category));
     {
       selected === "jobs"
         ? history.push("/explorejobs")

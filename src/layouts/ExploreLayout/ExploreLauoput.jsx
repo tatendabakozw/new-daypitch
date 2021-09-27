@@ -29,7 +29,8 @@ function ExploreLauoput({ children, heading }) {
     setSkip(skip + limit);
   };
 
-  const searchItems = () => {
+  const searchItems = (e) => {
+    e.preventDefault()
     dispatch(search_item_Action(searchQuery));
   };
 
@@ -47,20 +48,20 @@ function ExploreLauoput({ children, heading }) {
           {/* //middle row */}
           <div className="lg:w-2/4 md:w-3/4 w-full min-h-screen">
             <div className="w-full flex flex-col">
-              <div className="search bg-white flex flex-row items-center w-full rounded border border-gray-200 overflow-hidden mb-4">
+              <form onSubmit={searchItems} className="search bg-white flex flex-row items-center w-full rounded border border-gray-200 overflow-hidden mb-4">
                 <input
                   type="text"
                   className="bg-white border-none outline-none p-2 flex-1"
                   placeholder="search"
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
-                <span
-                  onClick={searchItems}
+                <button
+                  type="submit"
                   className="bg-blue-900 p-4 cursor-pointer hover:bg-blue-800 rounded"
                 >
                   <SearchIcon height={20} width={20} className="text-white" />
-                </span>
-              </div>
+                </button>
+              </form>
               <div className="md:flex hidden flex-row items-center justify-between p-8">
                 <p className="flex-1 text-gray-700 font-semibold">{heading}</p>
                 <div className="flex flex-row items-center">

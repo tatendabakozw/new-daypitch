@@ -14,7 +14,7 @@ function ExploreListItem({ verified, category, price, rating, tags, propic, busi
     const history = useHistory()
     const [open, setOpen] = useState(false)
 
-    console.log(id)
+    // console.log(id)
 
     function closeModal() {
         setIsOpen(false)
@@ -96,8 +96,8 @@ function ExploreListItem({ verified, category, price, rating, tags, propic, busi
                             realatedcatefory={tag} />
                     ))}
                 </div>
-                <span onClick={chat_with_user} className="flex bg-blue-100 hover:bg-blue-200 rounded-full py-1 px-2 flex-row items-center justify-between cursor-pointer">
-                    <p className="text-xs text-blue-800 mr-1">Talk</p>
+                <span onClick={() => history.push(`/message/${id}`)} className="flex bg-blue-100 hover:bg-blue-200 rounded-full py-1 px-2 flex-row items-center justify-between cursor-pointer">
+                    <p className="text-xs text-blue-800 mr-1">Chat</p>
                     <ChatIcon height={24} width={24} className="text-blue-800" />
                 </span>
                 <>

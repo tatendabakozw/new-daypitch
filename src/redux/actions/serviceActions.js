@@ -92,7 +92,7 @@ export const create_a_service_Action =
     code,
     house_number,
     street,
-    seller_range_type
+    seller_range_type,
   ) =>
   (dispatch) => {
     dispatch({
@@ -118,7 +118,8 @@ export const create_a_service_Action =
           code,
           house_number,
           street,
-          seller_range_type
+          seller_range_type,
+          owner: id
         },
         { merge: true }
       )

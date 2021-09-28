@@ -20,6 +20,8 @@ function ExploreSellers() {
     const servicesInfo = useSelector(state => state.allServices)
     const { loading, all_services } = servicesInfo
 
+    console.log(all_services)
+
     useEffect(() => {
         dispatch(get_allServices(limit, skip))
     }, [dispatch, limit, skip])
@@ -45,7 +47,7 @@ function ExploreSellers() {
                                             propic={service.service_picture}
                                             businessname={service.username}
                                             description={service.description}
-                                            id={service.user}
+                                            id={service.owner}
                                         />
 
 
@@ -62,7 +64,7 @@ function ExploreSellers() {
                                                 propic={service.service_picture}
                                                 businessname={service.username}
                                                 description={service.description}
-                                                id={service.user}
+                                                id={service.owner}
                                             />
                                         </div>
                                     )}
@@ -106,7 +108,6 @@ function ExploreSellers() {
                                         all_services?.map(service => (
                                             <>
                                                 {grid_view ? (<div className="flex flex-col" key={service._id}>
-
                                                     <ExploreListItem
                                                         key={service.user}
                                                         className="col-span-1"
@@ -118,10 +119,9 @@ function ExploreSellers() {
                                                         propic={service.service_picture}
                                                         businessname={service.username}
                                                         description={service.description}
-                                                        id={service.user}
+                                                        id={service.owner}
+                                                        service={service}
                                                     />
-
-
                                                 </div>) : (
                                                     <div key={service._id} className="flex flex-col">
                                                         <ExploreListItem
@@ -135,7 +135,7 @@ function ExploreSellers() {
                                                             propic={service.service_picture}
                                                             businessname={service.username}
                                                             description={service.description}
-                                                            id={service.user}
+                                                            id={service.owner}
                                                         />
                                                     </div>
                                                 )}

@@ -12,6 +12,8 @@ import {
     Text,
   } from "@chakra-ui/react";
 import { data } from "../../data";
+import { search_item_Action } from "../../redux/actions/searchActions";
+import { useDispatch } from "react-redux";
 
 const filter_price = [{ name: "High To Low" }, { name: "Low To High" }];
 
@@ -19,12 +21,14 @@ function ExploreLeft({loading}) {
   const [distance, setDistance] = useState(30)
 //   const [selected, setSelected] = useState(filter_price[0])
   const [selected_category, setSelecCategory] = useState("category");
-
+  const dispatch = useDispatch()
   console.log(distance)
 
 
   const filter_by_category = () => {
-    console.log(selected_category);
+    if(selected_category){
+      dispatch(search_item_Action(selected_category))
+    }
   };
 
   return (

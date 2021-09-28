@@ -74,17 +74,17 @@ function ExploreSellers() {
                     ) : (
                         <div className="flex flex-col items-center">
                             <p className="text-gray-700 font-semibold mt-8">
-                                No Jobs found, try another search term
+                                No Servies found, try another search term
                             </p>
                             <span className="flex flex-col items-center py-16">
                                 <p className="text-black text-sm mt-2">
-                                    Do you want to become a recruiter?
+                                    Do you want to become a freelancer?
                                 </p>
                                 <span
-                                    onClick={() => history.push("/listings")}
+                                    onClick={() => history.push("/becomeaseller")}
                                     className="bg-blue-900 py-2 px-4 rounded text-white text-sm mt-4 hover:bg-blue-800 cursor-pointer"
                                 >
-                                    Become a recruiter?
+                                    Become a freelancer?
                                 </span>
                             </span>
                         </div>

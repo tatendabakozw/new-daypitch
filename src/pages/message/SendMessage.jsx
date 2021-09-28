@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router'
+import Error from '../../components/alert/Error'
+import Success from '../../components/alert/Success'
 import HomeLayout from '../../layouts/HomeLayout/HomeLayout'
 import { create_message_Action } from '../../redux/actions/messageActions'
 
@@ -15,16 +17,22 @@ function SendMessage() {
     const _message = useSelector(state => state.create_message)
     const userSignin = useSelector(state => state.userCredsSignIn)
     const { userInfo } = userSignin
-    const {loading} = _message
+    const { loading, message } = _message
     const dispatch = useDispatch()
-    const {id} = useParams()
+    const [err, setErr] = useState('')
+    const { id } = useParams()
 
     const send_message = () => {
-        console.log(first_name, last_name, email, phone_number, body)
-        if(userInfo?.user.uid === id){
+        if (userInfo?.user.uid === id) {
             console.log('you cant send yourself a message')
-        }else{
-            dispatch(create_message_Action(userInfo?.user.uid, body, id))
+            setErr('You cant send yourself a message')
+            console.log(first_name, last_name, email, phone_number)
+        } else {
+            if (!body) {
+                setErr('Type a message')
+            } else {
+                dispatch(create_message_Action(userInfo?.user.uid, body, id))
+            }
         }
     }
 
@@ -35,7 +43,7 @@ function SendMessage() {
             <div className="md:pt-24 pt-16 flex flex-col items-center min-h-screen">
                 <Text size="lg" className="font-semibold text-gray-600 pb-8">Type your message below</Text>
                 <form action="" className="bg-white p-4 rounded shadow lg:w-2/5 md:w-2/3 w-full">
-                    <Stack spacing={8}>
+                    <Stack spacing={4}>
                         <Input placeholder="First Name" onChange={e => setFirstName(e.target.value)} />
                         <Input placeholder="Last Name" onChange={e => setLastName(e.target.value)} />
                         <Input
@@ -47,6 +55,8 @@ function SendMessage() {
                         <Textarea
                             onChange={e => setBody(e.target.value)}
                             placeholder="type your message" />
+                        {err && <Error text={err} />}
+                        {message && <Success text={message} />}
                         <Button isLoading={loading} colorScheme="blue" onClick={send_message}>send</Button>
                     </Stack>
                 </form>

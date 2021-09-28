@@ -27,7 +27,7 @@ function Home() {
             <Stars />
           </div>
           <div className="md:my-auto my-auto pt-16 w-full">
-            <div className="col-span-1 pt-8 flex flex-col md:items-start items-center w-full">
+            <div className="lg:col-span-1 md:col-span-2 col-span-1 pt-8 flex flex-col md:items-start items-center w-full">
               <p className="md:text-7xl text-gray-900  md:dark:text-gray-100 dark:text-geay-100 text-4xl mx-auto w-full mb-4 font-semibold z-40">
                 Find the perfect location for your professionals
               </p>

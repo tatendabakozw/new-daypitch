@@ -3,6 +3,7 @@ import ExploreListItem from '../../components/Exploreseller/ExploreListItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { get_allServices } from '../../redux/actions/serviceActions';
 import ExploreLauoput from '../../layouts/ExploreLayout/ExploreLauoput';
+import { useHistory } from 'react-router';
 
 function ExploreSellers() {
     // eslint-disable-next-line
@@ -11,6 +12,9 @@ function ExploreSellers() {
     // eslint-disable-next-line
     const [limit] = useState(8);
     const dispatch = useDispatch()
+    const _search = useSelector((state) => state.search_item);
+    const { search_result } = _search;
+    const history = useHistory()
 
     //service info
     const servicesInfo = useSelector(state => state.allServices)
@@ -19,6 +23,74 @@ function ExploreSellers() {
     useEffect(() => {
         dispatch(get_allServices(limit, skip))
     }, [dispatch, limit, skip])
+
+    if (search_result) {
+        return (
+            <ExploreLauoput heading="Jobs">
+                <div className="flex flex-col w-full">
+                    {search_result.length > 1 ? (
+                        <>
+                            {search_result?.map((service) => (
+                                <>
+                                    {grid_view ? (<div className="flex flex-col" key={service._id}>
+
+                                        <ExploreListItem
+                                            key={service.user}
+                                            className="col-span-1"
+                                            verified={service.verified}
+                                            category={service.category}
+                                            price={service.price}
+                                            rating={service.rating}
+                                            tags={service.tags}
+                                            propic={service.service_picture}
+                                            businessname={service.username}
+                                            description={service.description}
+                                            id={service.user}
+                                        />
+
+
+                                    </div>) : (
+                                        <div key={service._id} className="flex flex-col">
+                                            <ExploreListItem
+                                                key={service.user}
+                                                className="col-span-1"
+                                                verified={service.verified}
+                                                category={service.category}
+                                                price={service.price}
+                                                rating={service.rating}
+                                                tags={service.tags}
+                                                propic={service.service_picture}
+                                                businessname={service.username}
+                                                description={service.description}
+                                                id={service.user}
+                                            />
+                                        </div>
+                                    )}
+                                </>
+                            ))}
+                        </>
+                    ) : (
+                        <div className="flex flex-col items-center">
+                            <p className="text-gray-700 font-semibold mt-8">
+                                No Jobs found, try another search term
+                            </p>
+                            <span className="flex flex-col items-center py-16">
+                                <p className="text-black text-sm mt-2">
+                                    Do you want to become a recruiter?
+                                </p>
+                                <span
+                                    onClick={() => history.push("/listings")}
+                                    className="bg-blue-900 py-2 px-4 rounded text-white text-sm mt-4 hover:bg-blue-800 cursor-pointer"
+                                >
+                                    Become a recruiter?
+                                </span>
+                            </span>
+                        </div>
+                    )}
+                </div>
+            </ExploreLauoput>
+        );
+    }
 
 
     return (
@@ -34,7 +106,7 @@ function ExploreSellers() {
                                         all_services?.map(service => (
                                             <>
                                                 {grid_view ? (<div className="flex flex-col" key={service._id}>
-                                             
+
                                                     <ExploreListItem
                                                         key={service.user}
                                                         className="col-span-1"

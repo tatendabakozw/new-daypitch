@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ExploreRight from "../../components/ExploreRight/ExploreRight";
 import { search_item_Action } from "../../redux/actions/searchActions";
 import ExploreLeft from "../../components/ExploreLeft/ExploreLeft";
+import Loading from "../../components/loading/loading";
 
 function ExploreLauoput({ children, heading }) {
   const [grid_view, setGridView] = useState(false);
@@ -69,22 +70,20 @@ function ExploreLauoput({ children, heading }) {
                     height={20}
                     width={20}
                     onClick={() => setGridView(true)}
-                    className={`${
-                      grid_view ? "text-blue-500" : "text-gray-500"
-                    } mr-4 cursor-pointer`}
+                    className={`${grid_view ? "text-blue-500" : "text-gray-500"
+                      } mr-4 cursor-pointer`}
                   />
                   <FormatListBulletedIcon
                     fontSize="small"
                     onClick={() => setGridView(false)}
-                    className={`${
-                      grid_view ? "text-gray-500" : "text-blue-500"
-                    } mr-4 cursor-pointer`}
+                    className={`${grid_view ? "text-gray-500" : "text-blue-500"
+                      } mr-4 cursor-pointer`}
                   />
                 </div>
               </div>
 
               {search_loading ? (
-                <p>Loading</p>
+                <Loading />
               ) : (
                 <>
                   {/* //the items go here */}

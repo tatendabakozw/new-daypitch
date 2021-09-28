@@ -9,7 +9,7 @@ import { Link, useHistory } from "react-router-dom";
 import { CheckIcon } from "@heroicons/react/outline";
 import analytics from "../../images/analytics.svg";
 import { ChakraProvider, Container, Flex } from "@chakra-ui/react";
-import ChakraCarousel from "../../components/ChakraCourosel/ChakraCourosel";
+// import ChakraCarousel from "../../components/ChakraCourosel/ChakraCourosel";
 import { data } from "../../data";
 
 function classNames(...classes) {
@@ -121,7 +121,7 @@ function Home() {
                 xxl: "87.5rem",
               }}
             >
-              <ChakraCarousel gap={32}>
+              {/* <ChakraCarousel gap={32}>
                 {data.categories.map((post, index) => (
                   <Flex
                     onClick={() => history.push("/explore")}
@@ -143,7 +143,7 @@ function Home() {
                     </p>
                   </Flex>
                 ))}
-              </ChakraCarousel>
+              </ChakraCarousel> */}
             </Container>
           </ChakraProvider>
         </div>

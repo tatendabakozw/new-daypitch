@@ -36,7 +36,6 @@
     "react-slick": "^0.28.1",
     "redux": "^4.1.0",
     "redux-thunk": "^2.3.0",
-    "shebang-command": "^2.0.0",
     "slick-carousel": "^1.8.1",
     "tailwind-scrollbar-hide": "^1.0.3",
     "web-vitals": "^1.0.1",

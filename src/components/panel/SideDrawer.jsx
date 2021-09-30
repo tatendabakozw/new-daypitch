@@ -19,7 +19,7 @@ export default function SideDrawer({drawer_heading, sendButton, children}) {
     return (
         <>
             <div className="flex flex-row items-center justify-between">
-                <p className="text-gray-700 font-semibold text-2xl m-4">My Current Jobs </p>
+                <p className="text-gray-700 font-semibold md:text-2xl text-lg m-4">My Current Jobs </p>
                 <div className="flex items-center">
                     <p className="mr-2 text-gray-700">Create a job</p>
                     <span ref={btnRef} colorScheme="teal" onClick={onOpen} className="bg-blue-900 hover:bg-blue-800 cursor-pointer text-white p-2 rounded-full">

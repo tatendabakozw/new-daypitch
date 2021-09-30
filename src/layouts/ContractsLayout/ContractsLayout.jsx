@@ -176,7 +176,7 @@ export default function ContractsLayout({ children }) {
                         location.pathname === option.location
                           ? "border-b-2 border-blue-900 bg-gray-100 "
                           : "border-none "
-                      } text-gray-700 hover:bg-gray-100 cursor-pointer py-4 mb-8 px-4 text font-semibold`}
+                      } text-gray-700 hover:bg-gray-100 cursor-pointer md:py-4 py-2 md:mb-8 mb-4 px-4 text font-semibold`}
                     >
                       {option.name}
                     </span>

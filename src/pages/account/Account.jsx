@@ -1,4 +1,4 @@
-import React, { useState, useRef, Fragment } from "react";
+import React, { useState, useRef, Fragment, useEffect } from "react";
 import HomeLayout from "../../layouts/HomeLayout/HomeLayout";
 import { CameraIcon } from "@heroicons/react/outline";
 import Dropzone from "react-dropzone";
@@ -6,9 +6,10 @@ import { Dialog, Transition } from "@headlessui/react";
 import { useDispatch, useSelector } from "react-redux";
 import AccountLayout from "../../layouts/AccountLayuot/AccountLayout";
 import { Input } from "@chakra-ui/react";
-import { change_profile_picture_Action } from "../../redux/actions/userActions";
+import { change_profile_picture_Action, get_single_user_Action } from "../../redux/actions/userActions";
 import Success from "../../components/alert/Success";
 import Error from "../../components/alert/Error";
+import Loading from "../../components/loading/loading";
 
 function Account() {
   const dispatch = useDispatch();
@@ -20,6 +21,11 @@ function Account() {
   const [country, setCountry] = useState("");
   const [username, setUsername] = useState("");
   const [msg, setMsg] = useState('')
+  // eslint-disable-next-line
+  const [loading, setLoading] = useState(false)
+
+  const _user = useSelector(state => state.single_user)
+  const { user_loading } = _user
 
   const userSignin = useSelector((state) => state.userCredsSignIn);
   const _picture = useSelector((state) => state.change_user_picture);
@@ -59,14 +65,32 @@ function Account() {
   };
 
   const editDetails = (e) => {
+    setLoading(true)
     e.preventDefault();
     console.log(firstname, lastname, address, city, country, username)
+    setTimeout(() => {
+      setLoading(false)
+    }, 1500);
     setMsg('Account updated!')
   };
 
   const deleteAccount = (e) => {
     e.preventDefault();
   };
+
+  useEffect(() => {
+    dispatch(get_single_user_Action(userInfo?.user?.uid))
+  }, [dispatch, userInfo?.user?.uid])
+
+  if (user_loading) {
+    return (
+      <HomeLayout>
+        <AccountLayout>
+          <Loading />
+        </AccountLayout>
+      </HomeLayout>
+    )
+  }
 
   return (
     <HomeLayout>
@@ -76,29 +100,32 @@ function Account() {
 
           {/* //edit picture */}
           <div className="flex flex-row self-center items-end pb-16">
-            <div className="self-center h-24 w-24 bg-gray-200 rounded-full overflow-hidden border border-gray-300">
-              <img src={userInfo?.user?.photoURL} alt="w-auto" />
-            </div>
-            {/* <span className="cursor-pointer">
-                        <CameraIcon height={24} width={24} className="text-blue-400 hover:text-blue-600" />
-                    </span> */}
-            <Dropzone onDrop={onDrop}>
-              {({ getRootProps, getInputProps }) => (
-                <div
-                  {...getRootProps({ className: "drop-zone" })}
-                  ref={dropRef}
-                >
-                  <Input {...getInputProps()} />
-                  <div className="cursor-pointer text-gray-400 flex flex-col  items-center rounded outline-none border-none">
-                    <CameraIcon
-                      width={24}
-                      height={24}
-                      className="text-blue-400 hover:text-blue-600"
-                    />
+            <div className="relative">
+              <div className="self-center h-24 w-24 bg-gray-200 rounded-full overflow-hidden border border-gray-300">
+                <img src={userInfo?.user?.photoURL} alt="user pro pic" />
+              </div>
+
+
+              <Dropzone onDrop={onDrop}>
+                {({ getRootProps, getInputProps }) => (
+                  <div
+                    {...getRootProps({ className: "drop-zone" })}
+                    ref={dropRef}
+                  >
+                    <Input {...getInputProps()} />
+                    <div className="cursor-pointer absolute right-0 bottom-0 bg-gray-300 rounded-full p-2 border-2 border-white">
+                      <CameraIcon
+                        width={24}
+                        height={24}
+                        className="text-blue-300 hover:text-blue-500"
+                      />
+                    </div>
                   </div>
-                </div>
-              )}
-            </Dropzone>
+                )}
+              </Dropzone>
+
+            </div>
+
             {previewSrc ? (
               isPreviewAvailable ? (
                 <div className="flex flex-col ml-2">
@@ -132,7 +159,7 @@ function Account() {
             )}
           </div>
           {profile_message && <Success text={profile_message} />}
-          {profile_error && <Error text={profile_error}/>}
+          {profile_error && <Error text={profile_error} />}
 
           {/* //edit username part */}
           <div className="w-full pb-8 mt-4">
@@ -197,22 +224,6 @@ function Account() {
             </span>
           </div>
 
-          {/* //edit email part */}
-          {/* <div className="w-full pb-8">
-                    <span className="flex flex-col">
-                        <label htmlFor="email" className="text-gray-500 text-sm pb-2 font-semibold">Email</label>
-                        <Input 
-                            type="text"
-                            variant="filled" 
-                            id='email' 
-                            className="border border-blue-300 outline-none rounded-lg p-2 bg-gray-50"
-                            onChange={e=> setEmail(e.target.value)}
-                            placeholder={`${user?.email}`}
-                        />
-                    </span>
-                </div> */}
-
-          {/* //edit address part */}
           <div className="w-full pb-8">
             <span className="flex flex-col">
               <label

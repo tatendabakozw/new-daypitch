@@ -2,6 +2,9 @@ import {
   CHANGE_PROFILE_PICTURE_FAIL,
   CHANGE_PROFILE_PICTURE_REQUEST,
   CHANGE_PROFILE_PICTURE_SUCCESS,
+  GET_SINGLE_USER_FAIL,
+  GET_SINGLE_USER_REQUEST,
+  GET_SINGLE_USER_SUCCESS,
   LOGIN_USER_FAIL,
   LOGIN_USER_REQUEST,
   LOGIN_USER_SUCCESS,
@@ -68,3 +71,24 @@ export const change_user_picture_Reducer = (
       return state;
   }
 };
+
+//change profile picture and update firebase document
+export const get_single_user_Reducer = (
+  state = { user_loading: false },
+  action
+) => {
+  switch (action.type) {
+    case GET_SINGLE_USER_REQUEST:
+      return { user_loading: true };
+    case GET_SINGLE_USER_SUCCESS:
+      return {
+        user_loading: false,
+        single_user: action.payload,
+      };
+    case GET_SINGLE_USER_FAIL:
+      return { user_loading: false, user_error: action.payload };
+    default:
+      return state;
+  }
+};
+

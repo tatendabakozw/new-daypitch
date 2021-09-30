@@ -391,7 +391,7 @@ function Contract() {
                     required
                     onChange={(e) => setPeriod(e.target.value)}
                     type="text"
-                    className="py-3 px-4 block w-full shadow-sm border  border border-gray-300 outline-none rounded-md"
+                    className="py-3 px-4 block w-full shadow-sm  border border-gray-300 outline-none rounded-md"
                   />
                 </div>
               </div>

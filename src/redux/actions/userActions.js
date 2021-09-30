@@ -13,6 +13,9 @@ import {
   REGISTER_USER_REQUEST,
   REGISTER_USER_SUCCESS,
   USER_SIGNOUT,
+  GET_SINGLE_USER_REQUEST,
+  GET_SINGLE_USER_SUCCESS,
+  GET_SINGLE_USER_FAIL
 } from "../constants/userConstants";
 import firebase from "firebase";
 import { getRandomString } from "../../utils/getRandomString";
@@ -294,11 +297,12 @@ export const change_profile_picture_Action = (id, picture) => (dispatch) => {
 };
 
 //edit profile action
-export const edit_profile_info_Action = (id,username, firstname, lastname, address, city, country) => (dispatch) =>{
+export const edit_profile_info_Action = (id, username, firstname, lastname, address, city, country) => (dispatch) => {
   dispatch({
     type: EDIT_PROFILE_REQUEST,
     payload: id
   })
+  
   db.collection('users').doc(id).set({
     username: username,
     firstname: firstname,
@@ -306,15 +310,35 @@ export const edit_profile_info_Action = (id,username, firstname, lastname, addre
     address: address,
     city: city,
     country: country
-  },{merge: true}).then(res=>{
+  }, { merge: true }).then(res => {
     dispatch({
       type: EDIT_PROFILE_SUCCESS,
-      payload:res
+      payload: res
     })
-  }).catch(err=>{
+  }).catch(err => {
     dispatch({
       EDIT_PROFILE_FAIL,
       payload: err.message
+    })
+  })
+}
+
+//get single user
+export const get_single_user_Action = (id) => (dispatch) => {
+  dispatch({
+    type: GET_SINGLE_USER_REQUEST,
+    payload: id
+  })
+  db.collection('users').doc(id).onSnapshot(res => {
+    console.log(res.data())
+    dispatch({
+      type: GET_SINGLE_USER_SUCCESS,
+      payload: res.data()
+    })
+  }, (error) => {
+    dispatch({
+      GET_SINGLE_USER_FAIL,
+      payload: error.message
     })
   })
 }

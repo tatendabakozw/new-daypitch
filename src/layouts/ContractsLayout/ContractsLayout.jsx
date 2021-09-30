@@ -5,7 +5,6 @@ import SideDrawer from "../../components/panel/SideDrawer";
 import { Button, Input, Stack, Textarea, Select, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { auth } from "../../helpers/firebase";
 import { useDispatch } from "react-redux";
 import { create_a_job } from "../../redux/actions/jobsActions";
 import { data } from "../../data";

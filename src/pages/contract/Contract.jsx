@@ -26,7 +26,8 @@ function Contract() {
   const [err, setErr] = useState("");
   const [period, setPeriod] = useState("");
   const [title, setTitle] = useState("");
-
+  const _user = useSelector(state => state.userCredsSignIn)
+  const {userInfo} = _user
   const [contract_type, setContractType] = useState("");
   const [payment_period, setPaymentPeriod] = useState();
 
@@ -39,7 +40,7 @@ function Contract() {
       setErr("please enter all fields");
     } else {
       const msg_obj = {
-        sent_by: auth.currentUser.uid,
+        sent_by: userInfo?.user.uid,
         sent_to: id,
         firstname,
         lastname,

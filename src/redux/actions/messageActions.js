@@ -8,13 +8,13 @@ import {
 } from "../constants/messageConstants"
 import firebase from 'firebase'
 
-const generateChannelID = (otherID, myid) => {
-    if (myid > otherID) {
-        return (otherID + myid)
-    } else {
-        return (myid + otherID)
-    }
-}
+// const generateChannelID = (otherID, myid) => {
+//     if (myid > otherID) {
+//         return (otherID + myid)
+//     } else {
+//         return (myid + otherID)
+//     }
+// }
 
 //send a message
 export const create_message_Action = (sent_by, body, sent_to) => (dispatch) => {

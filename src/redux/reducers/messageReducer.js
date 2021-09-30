@@ -13,7 +13,7 @@ export const create_message_Reducer = (state = {}, action) => {
         case CREATE_MESSAGE_REQUEST:
             return { loading: true }
         case CREATE_MESSAGE_SUCCESS:
-            return { loading: false, message: action.payload, message: 'Message Send' }
+            return { loading: false, message: action.payload, _message: 'Message Send' }
         case CREATE_MESSAGE_FAIL:
             return { loading: false, error: action.payload }
         default:

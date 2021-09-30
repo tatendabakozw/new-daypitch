@@ -12,7 +12,6 @@ import {
   useTheme,
   Progress,
   VStack,
-  Button,
   Flex,
   Box,
 } from "@chakra-ui/react";
@@ -140,10 +139,7 @@ const Slider = ({
   useLayoutEffect(
     () => initSliderWidth(Math.round(width)),
     [width, initSliderWidth]
-  );
-
-  const handleFocus = () => setTrackIsActive(true);
-
+  );  
   const handleDecrementClick = () => {
     setTrackIsActive(true);
     !(activeItem === positions.length - positions.length) &&

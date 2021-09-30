@@ -1,10 +1,7 @@
-import React, { useState, useEffect, useRef, Fragment } from "react";
+import React, { useState, useRef, Fragment } from "react";
 import HomeLayout from "../../layouts/HomeLayout/HomeLayout";
 import { CameraIcon } from "@heroicons/react/outline";
-import { auth, storage } from "../../helpers/firebase";
 import Dropzone from "react-dropzone";
-import axios from "axios";
-import { apiUrl } from "../../helpers/apiUrl";
 import { Dialog, Transition } from "@headlessui/react";
 import { useDispatch, useSelector } from "react-redux";
 import AccountLayout from "../../layouts/AccountLayuot/AccountLayout";

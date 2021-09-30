@@ -19,6 +19,7 @@ export default function ContractsLayout({ children }) {
   const location = useLocation();
   const history = useHistory();
   const [name, setName] = useState("name");
+  // eslint-disable-next-line
   const [job_name, setJobName] = useState("");
   const [email, setEmail] = useState("");
   const [details, setDetails] = useState("");

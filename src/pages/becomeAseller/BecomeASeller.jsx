@@ -34,6 +34,7 @@ function BecomeASeller() {
   const [pricerange, setPriceRange] = useState(0);
   const [selected, setSelected] = useState(categories[0]);
   const [website, setWebsite] = useState("");
+  // eslint-disable-next-line
   const [location, setLocation] = useState("");
   const dispatch = useDispatch();
   const [seller_range_type, setSellerRangeType] = useState("hour");
@@ -112,7 +113,7 @@ function BecomeASeller() {
 
   useEffect(() => {
     dispatch(get_serviceAction(userInfo?.user?.uid));
-  }, [dispatch]);
+  }, [dispatch, userInfo?.user?.uid]);
 
   // console.log(service)
   // console.log(auth?.currentUser?.uid)

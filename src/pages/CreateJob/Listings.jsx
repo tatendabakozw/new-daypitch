@@ -17,7 +17,7 @@ export default function Listings() {
 
     useEffect(() => {
         dispatch(get_user_jobs_Actions(userInfo?.user?.uid))
-    }, [dispatch])
+    }, [dispatch, userInfo?.user?.uid])
 
     if (loading) {
         return (

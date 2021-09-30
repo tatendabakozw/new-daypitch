@@ -26,14 +26,14 @@ function ExploreListItem({ verified, category, price, rating, tags, propic, busi
 
     const userInfo = localStorage.getItem('userInfo')
 
-    const chat_with_user = (e) => {
-        e.preventDefault()
-        if (!userInfo) {
-            openModal()
-        } else {
-            history.push('/chat')
-        }
-    }
+    // const chat_with_user = (e) => {
+    //     e.preventDefault()
+    //     if (!userInfo) {
+    //         openModal()
+    //     } else {
+    //         history.push('/chat')
+    //     }
+    // }
 
     return (
         <span onClick={() => setOpen(true)} className={`bg-white  transition duration-100 transform hover:scale-105 cursor-pointer md:px-0 px-2 py-4 justify-between items-center w-full self-center mb-4 border-b border-gray-200`}>

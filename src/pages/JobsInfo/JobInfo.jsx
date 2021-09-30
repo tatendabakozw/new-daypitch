@@ -34,7 +34,7 @@ export default function JobInfo() {
   const _proposal = useSelector((state) => state.create_proposal);
   const { create_message, create_loading, create_error } = _proposal;
   const _save_job = useSelector((state) => state.save_job);
-  const { save_loading, save_error } = _save_job;
+  const { save_loading } = _save_job;
   const { userInfo } = _user;
   const { loading, job } = get_job;
   const dispatch = useDispatch();

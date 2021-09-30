@@ -15,8 +15,6 @@ import { data } from "../../data";
 import { search_item_Action } from "../../redux/actions/searchActions";
 import { useDispatch } from "react-redux";
 
-const filter_price = [{ name: "High To Low" }, { name: "Low To High" }];
-
 function ExploreLeft({loading}) {
   const [distance, setDistance] = useState(30)
 //   const [selected, setSelected] = useState(filter_price[0])

@@ -135,6 +135,7 @@ function Home() {
                     className="rounded-lg"
                   >
                     <img
+                      alt="daypitch category"
                       src={post.image}
                       className="h-full rounded-lg mb-4 shadow"
                     />
@@ -346,7 +347,7 @@ const FreeComponent = ({ className }) => {
             </div>
 
             <a
-              href="/"
+              href="/upgrade"
               className={classNames(
                 tier.mostPopular
                   ? "bg-blue-900 text-white hover:bg-blue-800"

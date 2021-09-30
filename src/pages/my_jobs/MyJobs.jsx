@@ -8,8 +8,6 @@ import { get_all_user_contracts_Action } from "../../redux/actions/contractActio
 import { Spinner } from "@chakra-ui/spinner";
 import jsPDF from "jspdf";
 import * as htmlToImage from "html-to-image";
-import ReactPDF from "@react-pdf/renderer";
-import PdfDocument from "../../components/PdfDocument/PdfDocument";
 
 function MyJobs() {
   const dispatch = useDispatch();

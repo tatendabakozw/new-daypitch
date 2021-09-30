@@ -21,6 +21,7 @@ export default function Contact() {
       setErr("Enter all details!");
     } else {
       setMessage("Thank you for contacting us");
+      console.log(firstname, lastname, email, code, number)
     }
   };
 
@@ -230,7 +231,6 @@ export default function Contact() {
                         <a
                           href={"https://www.instagram.com/daypitch/?hl=en"}
                           className="text-teal-200 hover:text-teal-100"
-                          href="/"
                         >
                           <span className="sr-only">Facebook</span>
                           <svg
@@ -251,7 +251,6 @@ export default function Contact() {
                         <a
                           href={"https://www.instagram.com/daypitch/?hl=en"}
                           className="text-teal-200 hover:text-teal-100"
-                          href="/"
                         >
                           <span className="sr-only">Instagram</span>
                           <svg
@@ -272,7 +271,6 @@ export default function Contact() {
                         <a
                           href="https://twitter.com/Daypitch1"
                           className="text-teal-200 hover:text-teal-100"
-                          href="/"
                         >
                           <span className="sr-only">Twitter</span>
                           <svg

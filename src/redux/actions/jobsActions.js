@@ -16,7 +16,6 @@ import {
   SAVE_JOB_REQUEST,
   SAVE_JOB_SUCCESS,
 } from "../constants/jobsConstants";
-import firebase from "firebase";
 
 //create a job
 export const create_a_job = (msg_obj, id) => (dispatch) => {

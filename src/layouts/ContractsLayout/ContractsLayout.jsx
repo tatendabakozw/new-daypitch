@@ -32,6 +32,8 @@ export default function ContractsLayout({ children }) {
 
   const [paymeny_option, setPaymentOption] = useState("");
   const [period, setPeriod] = useState("hourly");
+  const _user = useSelector(state => state.userCredsSignIn)
+  const {userInfo} = _user
 
   const jobs_state = useSelector((state) => state.create_Job);
   const { loading } = jobs_state;
@@ -40,7 +42,7 @@ export default function ContractsLayout({ children }) {
   const post_job = (e) => {
     e.preventDefault();
     const msg_obj = {
-      created_by: auth.currentUser.uid,
+      created_by: userInfo?.user.uid,
       done_by: "",
       job_name: job_name,
       name,
@@ -52,7 +54,7 @@ export default function ContractsLayout({ children }) {
       title,
       period
     };
-    dispatch(create_a_job(msg_obj, auth.currentUser.uid));
+    dispatch(create_a_job(msg_obj, userInfo?.user.uid));
   };
 
   return (

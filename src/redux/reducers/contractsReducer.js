@@ -29,7 +29,7 @@ export const get_contract_Reducer = (state = {}, action) => {
         case GET_A_CONTRACT_REQUEST:
             return { loading: true }
         case GET_A_CONTRACT_SUCCESS:
-            return { loading: false, messages: action.payload }
+            return { loading: false, contract: action.payload }
         case GET_A_CONTRACT_FAIL:
             return { loading: false, error: action.payload }
         default:

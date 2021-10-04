@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Disclosure } from "@headlessui/react";
-import { ChevronUpIcon } from "@heroicons/react/solid";
+import { ChevronDownIcon } from "@heroicons/react/solid";
 import { PaperClipIcon } from "@heroicons/react/solid";
 import ContractsLayout from "../../layouts/ContractsLayout/ContractsLayout";
 import { useDispatch, useSelector } from "react-redux";
@@ -43,7 +43,7 @@ function MyJobs() {
             <>
               <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-blue-900 bg-blue-100 rounded-sm hover:bg-blue-200 focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-75">
                 <span>Loading...</span>
-                <ChevronUpIcon
+                <ChevronDownIcon
                   className={`${
                     open ? "transform rotate-180" : ""
                   } w-5 h-5 text-blue-500`}
@@ -81,7 +81,7 @@ function MyJobs() {
                 <div id="my-node" className="w-full">
                   <Disclosure.Button className="myPage flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-blue-900 bg-blue-100 rounded-sm hover:bg-blue-200 focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-75">
                     <span>{contract.contracts.title !== '' ? contract.contracts.title : 'No Title'}</span>
-                    <ChevronUpIcon
+                    <ChevronDownIcon
                       className={`${
                         open ? "transform rotate-180" : ""
                       } w-5 h-5 text-blue-500`}
@@ -171,6 +171,21 @@ function MyJobs() {
                                     >
                                       Download
                                     </span>
+                                  </div>
+                                </li>
+                              </ul>
+                            </dd>
+                          </div>
+                          <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 items-center">
+                            <dt className="text-sm font-medium text-gray-500">
+                              Action
+                            </dt>
+                            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                              <ul className="divide-y divide-gray-200">
+                                <li className="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
+                                  <div className="flex flex-row items-center justify-end w-full">
+                                    <p className="text-green-700 mr-3 font-semibold cursor-pointer">Accept</p>
+                                    <p className="text-red-700 mr-3 font-semibold cursor-pointer">Decline</p>
                                   </div>
                                 </li>
                               </ul>

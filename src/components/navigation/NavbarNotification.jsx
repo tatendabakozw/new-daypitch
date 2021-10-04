@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { get_user_contracts_Action } from '../../redux/actions/contractActions'
 import Loading from '../loading/loading'
 import { Text } from '@chakra-ui/layout'
+import { useHistory } from 'react-router'
 
 function NavbarNotification() {
   const [show, setShow] = useState(false)
@@ -16,6 +17,7 @@ function NavbarNotification() {
   const { userInfo } = userSignin
   const user_contracts = useSelector(state => state.all_user_contracts)
   const { loading, contracts } = user_contracts
+  const history = useHistory()
 
   useEffect(() => {
     dispatch(get_user_contracts_Action(userInfo?.user?.uid))
@@ -166,6 +168,7 @@ function NavbarNotification() {
                             <Text noOfLines={1} className="mt-1 text-sm text-gray-500">{contract.contracts.details}</Text>
                             <div className="mt-4 flex">
                               <button
+                                onClick={()=> history.push(`/signcontract/${contract.id}`)}
                                 type="button"
                                 className="inline-flex items-center py-1 px-2 border border-transparent shadow-sm text-xs leading-4 rounded-md text-white bg-blue-900 hover:bg-blue-800 focus:outline-none"
                               >

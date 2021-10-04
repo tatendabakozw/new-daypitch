@@ -73,7 +73,7 @@ const reducer = combineReducers({
 
   //for contracts
   create_Contract: create_contract_Reducer,
-  user_Contracts: get_contract_Reducer,
+  single_contract: get_contract_Reducer,
   all_user_contracts: get_user_contracts_Reducer,
 
   //for proposals

@@ -41,10 +41,9 @@ export const get_a_Contract = (id) => (dispatch) => {
         payload: { id }
     })
     db.collection('contracts').doc(id).get().then(res => {
-        console.log(id)
         dispatch({
             type: GET_A_CONTRACT_SUCCESS,
-            payload: res
+            payload: res.data()
         })
     }).catch(err => {
         dispatch({

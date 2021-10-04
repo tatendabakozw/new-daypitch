@@ -29,7 +29,7 @@ function Contract() {
   const _user = useSelector(state => state.userCredsSignIn)
   const {userInfo} = _user
   const [contract_type, setContractType] = useState("");
-  const [payment_period, setPaymentPeriod] = useState();
+  const [payment_period, setPaymentPeriod] = useState('');
 
   const contract_state = useSelector((state) => state.create_Contract);
   const { loading } = contract_state;
@@ -54,6 +54,7 @@ function Contract() {
         period_of_contract: period,
         payment_period,
         title,
+        contract_type
       };
       if (agreed) {
         dispatch(create_a_contract(msg_obj, id));
@@ -348,10 +349,10 @@ function Contract() {
                           mb={4}
                           onChange={(e) => setPaymentPeriod(e.target.value)}
                         >
-                          <option value="periodic">Hourly</option>
-                          <option value="once_off">Weekly</option>
-                          <option value="periodic">Monthly</option>
-                          <option value="periodic">Yearly</option>
+                          <option value="hourly">Hourly</option>
+                          <option value="weekly">Weekly</option>
+                          <option value="monthly">Monthly</option>
+                          <option value="yearly">Yearly</option>
                         </Select>
                       </div>
                     </div>

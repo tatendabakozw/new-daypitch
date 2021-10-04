@@ -16,6 +16,7 @@ import JobInfo from './pages/JobsInfo/JobInfo'
 import SendMessage from './pages/message/SendMessage'
 import MyJobs from './pages/my_jobs/MyJobs'
 import NotFound from './pages/notfound/NotFound'
+import SinlgeContract from './pages/SingleContract/SinlgeContract'
 import Upgrade from './pages/upgrade/Upgrade'
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
         <Route exact path="/listings" component={Listings} />
         <Route exact path="/jobs" component={MyJobs} />
         <Route exact path="/becomeaseller" component={BecomeASeller} />
+        <Route exact path="/signcontract/:id" component={SinlgeContract} />
         <Route exact path="/contract/:id" component={Contract} />
         <Route exact path="/account" component={Account} />
         <Route exact path="/" component={Home} />

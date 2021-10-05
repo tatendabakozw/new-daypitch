@@ -7,7 +7,10 @@ import {
     GET_ALL_USER_CONTRACTS_SUCCESS,
     GET_A_CONTRACT_FAIL,
     GET_A_CONTRACT_REQUEST,
-    GET_A_CONTRACT_SUCCESS
+    GET_A_CONTRACT_SUCCESS,
+    REACT_TO_A_CONTRACTS_FAIL,
+    REACT_TO_A_CONTRACTS_REQUEST,
+    REACT_TO_A_CONTRACTS_SUCCESS
 } from "../constants/contractsConstants"
 
 
@@ -46,6 +49,20 @@ export const get_user_contracts_Reducer = (state = { loading: false }, action) =
             return { loading: false, contracts: action.payload }
         case GET_ALL_USER_CONTRACTS_FAIL:
             return { loading: false, error: action.payload }
+        default:
+            return state
+    }
+}
+
+//react to a contract reducer
+export const react_to_a_contract_Reducer = (state = {react_loading: false}, action) => {
+    switch (action.type) {
+        case REACT_TO_A_CONTRACTS_REQUEST:
+            return { react_loading: true }
+        case REACT_TO_A_CONTRACTS_SUCCESS:
+            return { react_loading: false, reaction: action.payload, message: 'Reaction successful' }
+        case REACT_TO_A_CONTRACTS_FAIL:
+            return { react_loading: false, react_error: action.payload }
         default:
             return state
     }

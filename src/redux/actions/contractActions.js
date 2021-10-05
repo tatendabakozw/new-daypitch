@@ -8,7 +8,10 @@ import {
     GET_ALL_USER_CONTRACTS_SUCCESS,
     GET_A_CONTRACT_FAIL,
     GET_A_CONTRACT_REQUEST,
-    GET_A_CONTRACT_SUCCESS
+    GET_A_CONTRACT_SUCCESS,
+    REACT_TO_A_CONTRACTS_FAIL,
+    REACT_TO_A_CONTRACTS_REQUEST,
+    REACT_TO_A_CONTRACTS_SUCCESS
 } from "../constants/contractsConstants"
 
 export const create_a_contract = (msg_obj, id) => (dispatch) => {
@@ -105,6 +108,28 @@ export const get_all_user_contracts_Action = (id) => (dispatch) => {
         dispatch({
             type: GET_ALL_USER_CONTRACTS_FAIL,
             payload: error.message
+        })
+    })
+}
+
+//react to a contract 
+export const react_to_a_contract_Action = (id, status) => (dispatch) =>{
+    dispatch({
+        type: REACT_TO_A_CONTRACTS_REQUEST,
+        payload: {id, status}
+    })
+    db.collection('contracts').doc(id).set({
+        status: status,
+        position: status === 'active' ? 'accepted' : 'declined'
+    },{merge: true}).then((res)=>{
+        dispatch({
+            type: REACT_TO_A_CONTRACTS_SUCCESS,
+            payload: res
+        })
+    }).catch(err=>{
+        dispatch({
+            type: REACT_TO_A_CONTRACTS_FAIL,
+            payload: err.message
         })
     })
 }

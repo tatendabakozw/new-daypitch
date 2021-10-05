@@ -4,6 +4,7 @@ import {
   create_contract_Reducer,
   get_contract_Reducer,
   get_user_contracts_Reducer,
+  react_to_a_contract_Reducer,
 } from "./reducers/contractsReducer";
 import { firestore_users_Reducer } from "./reducers/firestore_usersReducer";
 import {
@@ -75,6 +76,7 @@ const reducer = combineReducers({
   create_Contract: create_contract_Reducer,
   single_contract: get_contract_Reducer,
   all_user_contracts: get_user_contracts_Reducer,
+  react_to_contract: react_to_a_contract_Reducer,
 
   //for proposals
   create_proposal: create_a_proposal_Reducer,

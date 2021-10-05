@@ -3,12 +3,14 @@ import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import HomeLayout from '../../layouts/HomeLayout/HomeLayout'
-import { get_a_Contract } from '../../redux/actions/contractActions'
-import { PaperClipIcon } from "@heroicons/react/solid";
+import { get_a_Contract, react_to_a_contract_Action } from '../../redux/actions/contractActions'
 import Loading from '../../components/loading/loading'
+import Success from '../../components/alert/Success'
 
 function SinlgeContract() {
     const _contract = useSelector(state => state.single_contract)
+    const _reaction = useSelector(state=> state.react_to_contract)
+    const {react_loading, message} = _reaction
     const { loading, contract } = _contract
     const dispatch = useDispatch()
     const { id } = useParams()
@@ -17,7 +19,13 @@ function SinlgeContract() {
         dispatch(get_a_Contract(id))
     }, [dispatch])
 
-    // console.info(contract)
+    const accept_contract = () =>{
+        dispatch(react_to_a_contract_Action(id, 'active'))
+    }
+
+    const reject_contract = () =>{
+        dispatch(react_to_a_contract_Action(id, 'rejection'))
+    }
 
     if (loading) {
         return (
@@ -96,11 +104,24 @@ function SinlgeContract() {
                                     Action
                                 </dt>
                                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    {message && <Success text={message} />}
                                     <ul className="divide-y divide-gray-200">
                                         <li className="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
                                             <div className="flex flex-row items-center justify-end w-full">
-                                                <p className="text-green-700 mr-3 font-semibold cursor-pointer">Accept</p>
-                                                <p className="text-red-700 mr-3 font-semibold cursor-pointer">Decline</p>
+                                                {
+                                                    react_loading ? (
+                                                        <div className="text-green-700 mr-3 font-semibold">Loading...</div>
+                                                    ):(
+                                                        <div onClick={accept_contract} className="text-green-700 mr-3 font-semibold cursor-pointer">Accept</div>
+                                                    )
+                                                }
+                                                {
+                                                    react_loading ? (
+                                                        <div className="text-red-700 mr-3 font-semibold">Loading...</div>
+                                                    ):(
+                                                        <div onClick={reject_contract} className="text-red-700 mr-3 font-semibold cursor-pointer">Decline</div>
+                                                    )
+                                                }
                                             </div>
                                         </li>
                                     </ul>

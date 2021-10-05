@@ -20,6 +20,7 @@
     "add": "^2.0.6",
     "axios": "^0.21.1",
     "country-flags-svg": "^1.1.1",
+    "cross-spawn": "^7.0.3",
     "firebase": "^8.6.1",
     "firebase-admin": "^9.8.0",
     "framer-motion": "4",

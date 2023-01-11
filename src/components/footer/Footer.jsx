@@ -94,6 +94,12 @@ export default function Footer() {
           ))}
         </div>
         <p className="mt-8 text-center text-sm text-gray-500">&copy; {new Date().getFullYear()}{" "}Daypitch. A product of Perkskick Group{" "}</p>
+        <a
+          href="https://www.ladworx.com"
+          className="text-gray-600 hover:text-gray-900"
+        >
+          By LadWorx
+        </a>
       </div>
     </footer>
   )

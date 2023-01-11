@@ -98,7 +98,7 @@ export default function Footer() {
           href="https://www.ladworx.com"
           className="text-gray-600 hover:text-gray-900"
         >
-          By LadWorx
+          By ladworx
         </a>
       </div>
     </footer>
